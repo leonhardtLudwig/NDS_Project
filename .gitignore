@@ -1,0 +1,12 @@
+# Generated figures (rebuild with tools/run_livescripts.m)
+figures/**
+!figures/.gitkeep
+
+# MATLAB artefacts
+*.asv
+*.autosave
+slprj/
+octave-workspace
+
+# macOS
+.DS_Store
