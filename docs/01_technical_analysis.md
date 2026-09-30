@@ -654,6 +654,13 @@ of `−(L+Γ)x + Γu = 0` with `(I − ΛW)x = (I−Λ)u` on matched parameters,
 
 ## 8. MATLAB implementation plan (design only — no code in this phase)
 
+> **SUPERSEDED (2026-08-06).** The architecture proposed in this section — the `net` struct, the
+> uniform `res` struct, the `predict_limit_*` family and the option-parsing plumbing — was
+> deliberately replaced by a smaller, matrix-first library, so that the code mirrors the equations
+> rather than wrapping them. See `README.md` for the current API and `03_api_change.md` for the
+> mapping. **Sections 1–7 and 9–12 of this document are unaffected**; only the software design here
+> is out of date.
+
 ### 8.1 Repository layout
 
 ```

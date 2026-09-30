@@ -1,69 +1,52 @@
-function res = sim_degroot(W, x0, K, varargin)
-%SIM_DEGROOT Simulate the French-DeGroot averaging model.
+function X = sim_degroot(W, x0, K)
+%SIM_DEGROOT French-DeGroot opinion dynamics.
 %
-%   res = SIM_DEGROOT(W, x0, K) iterates
+%   X = SIM_DEGROOT(W, x0, K) iterates the averaging model
 %
-%       x(k+1) = W x(k),        k = 0, 1, ..., K-1
+%       x(k+1) = W x(k),        k = 0, 1, ..., K-1                     (M1.1)
 %
-%   for a row-stochastic influence matrix W, returning the standard result
-%   structure with K+1 samples at times 0..K.
+%   for a row-stochastic influence matrix W, and returns the trajectory as an
+%   n-by-(K+1) matrix whose column k+1 is x(k).
 %
-%   W may be a matrix or a network struct (net.W is used).
-%   x0 may be a scalar, an n-vector, or an n-by-d matrix of vector opinions.
+%   x0 may be an n-vector (scalar opinions) or an n-by-m matrix, in which
+%   case every column evolves independently and X is n-by-m-by-(K+1); this is
+%   the vector-opinion form X(k+1) = W X(k) of (M1.2).
 %
-%   Name-value options
-%       'Predict'  also compute the theoretical limit via
-%                  PREDICT_LIMIT_DEGROOT (default true)
+%   THEORY
+%       W row-stochastic makes each update a CONVEX COMBINATION, so the
+%       convex hull of the opinions can only shrink: the model is Lyapunov
+%       stable but never asymptotically stable, since W always has the
+%       eigenvalue 1.
 %
-%   Result fields: see PACK_RESULT. res.xinf holds the predicted limit
-%   (NaN when the model does not converge, e.g. on a periodic graph).
-%
-%   MODEL
-%       Each agent replaces its opinion by a weighted average of the opinions
-%       it observes. Because W is row-stochastic the update is a CONVEX
-%       COMBINATION, so the convex hull of the opinions can only shrink: the
-%       model is Lyapunov stable but never asymptotically stable, since W
-%       always has the eigenvalue 1 with eigenvector 1.
-%
-%       Convergence and consensus are decided purely by the GRAPH, not by the
-%       weights (Theorem 12): convergent iff every closed strong component is
-%       aperiodic; consensual iff additionally the graph is rooted. Use
-%       GRAPH_REPORT to check before simulating.
-%
-%   IMPLEMENTATION
-%       The recursion is iterated directly rather than forming W^k, which
-%       would be both slower and less accurate for large k.
+%       Convergence and consensus are decided by the GRAPH, not the weights.
+%       Use GRAPH_SUMMARY(W) before simulating: the model converges iff every
+%       closed strong component is aperiodic, and reaches consensus iff the
+%       graph is additionally rooted.
 %
 %   Example
-%       net = make_example_french3();
-%       res = sim_degroot(net, [1; 0; -1], 30);
-%       plot_opinions(res);
+%       W  = [1/2 1/2 0; 1/3 1/3 1/3; 0 1/2 1/2];
+%       X  = sim_degroot(W, [3; -1; 5], 30);
+%       plot_opinions(X)
 %
-%   See also SIM_FRIEDKIN_JOHNSEN, PREDICT_LIMIT_DEGROOT, GRAPH_REPORT.
+%   See also SIM_FRIEDKIN_JOHNSEN, SOCIAL_POWER, LIMIT_MATRIX, GRAPH_SUMMARY.
 
-    narginchk(3, Inf);
+    narginchk(3, 3);
+    n = check_square(W, 'W');
+    if ~is_row_stochastic(W)
+        error('NDS:sim_degroot:notStochastic', ...
+            'W must be row-stochastic. Use W = row_stochastic(A).');
+    end
+    x0 = check_state(x0, n);
 
-    [W, net] = network_matrix(W, 'W');
-    n = validate_row_stochastic(W, 'W');
-    [X0, d] = prepare_state(x0, n, 'x0');
+    X = zeros(size(x0, 1), size(x0, 2), K + 1);
+    X(:, :, 1) = x0;
 
-    validateattributes(K, {'numeric'}, ...
-        {'scalar', 'integer', 'nonnegative'}, mfilename, 'K', 3);
-    K = double(K);
-
-    opts = parse_options(struct('Predict', true), varargin, mfilename);
-
-    traj = zeros(n, d, K + 1);
-    traj(:, :, 1) = X0;
-    X = X0;
     for k = 1:K
-        X = W * X;
-        traj(:, :, k + 1) = X;
+        x0 = W * x0;                  % <-- the model: x(k+1) = W x(k)
+        X(:, :, k + 1) = x0;
     end
 
-    [xinf, predictInfo] = safe_predict(opts.Predict, ...
-        @predict_limit_degroot, W, X0);
-
-    params = struct('W', W, 'K', K, 'predict', predictInfo);
-    res = pack_result('degroot', 0:K, traj, xinf, params, net);
+    if size(X, 2) == 1
+        X = reshape(X, n, K + 1);
+    end
 end

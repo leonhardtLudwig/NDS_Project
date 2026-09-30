@@ -1,194 +1,139 @@
-function h = plot_opinions(res, varargin)
-%PLOT_OPINIONS Trajectories of every agent's opinion over time.
+function h = plot_opinions(X, t, varargin)
+%PLOT_OPINIONS Plot opinion trajectories, annotated with their final values.
 %
-%   h = PLOT_OPINIONS(res) plots the opinion of each agent against time for a
-%   result structure produced by any of the four simulators, and returns the
-%   line handles. Discrete-time models are drawn as stairs, continuous-time
-%   models as smooth curves, so the two are visually distinguishable.
+%   PLOT_OPINIONS(X) plots each row of the n-by-K trajectory X against the
+%   step index, titles the figure with the name of the variable passed in,
+%   and puts each agent's FINAL OPINION in the legend, so the outcome can be
+%   read off the figure instead of inferred from it.
 %
-%   Name-value options
-%       'Axes'       axes to draw into (default: a new figure)
-%       'Prejudice'  n-vector of prejudices u; drawn as faint dashed
-%                    horizontal lines so that convergence into their convex
-%                    hull is visible at a glance
-%       'Limit'      show the predicted limit as markers on the right edge
-%                    (default true when res.xinf is finite)
-%       'Highlight'  indices of agents to draw with a thicker line, e.g. the
-%                    stubborn ones
-%       'Labels'     agent labels (default from res.net, else 1..n)
-%       'Legend'     true | false | 'auto' (default 'auto': shown for n <= 12)
-%       'Dimension'  which opinion dimension to plot when d > 1 (default 1)
-%       'Title'      figure title (default derived from the model name)
+%   PLOT_OPINIONS(X, t) plots against the time vector t -- use this for the
+%   continuous-time models, passing the same t given to the simulator. Pass []
+%   to keep the step index.
+%
+%   PLOT_OPINIONS(X, t, Name, Value, ...) accepts
+%
+%       'Labels'     agent names for the legend
+%       'Title'      override the automatic title (see below)
+%       'Subtitle'   override the automatic subtitle (see below)
+%       'Limit'      n-vector of theoretically predicted final opinions,
+%                    drawn as dashed reference lines. Use it to show that
+%                    theory and simulation agree.
+%       'Prejudice'  n-vector of prejudices u, drawn as faint dotted lines,
+%                    so that convergence into their convex hull is visible
+%
+%   h = PLOT_OPINIONS(...) returns the line handles.
+%
+%   TITLES AND SUBTITLES
+%       By default the title is the caller's variable name and the subtitle
+%       describes the contents. Both are fully under your control:
+%
+%           'Title', 'Example 1.3'      your own title
+%           'Subtitle', 'matrix W'      your own subtitle
+%           'Title', ''                 no title
+%           'Subtitle', ''              no subtitle
+%
+%       Passing [] (the default) keeps the automatic text. You can equally
+%       ignore the options and call TITLE and SUBTITLE yourself afterwards.
+%
+%   WHAT THE FIGURE TELLS YOU BY ITSELF
+%       The title names the variable; the subtitle states the number of
+%       agents, the horizon, and the final spread max_i x_i - min_i x_i --
+%       which is the number that distinguishes consensus from cleavage. A
+%       spread of 0 means the group agreed; anything else is persistent
+%       disagreement, and the legend shows exactly where each agent ended up.
 %
 %   Example
-%       [net, u, x0] = make_example_fj4();
-%       res = sim_friedkin_johnsen(net, fj_lambda(net,'classic'), u, x0, 12);
-%       plot_opinions(res, 'Prejudice', u, 'Highlight', 3);
+%       W = [1/2 1/2 0; 1/3 1/3 1/3; 0 1/2 1/2];
+%       X = sim_degroot(W, [3; -1; 5], 30);
+%       plot_opinions(X)
+%       plot_opinions(X, [], 'Limit', social_power(W)' * [3; -1; 5] * ones(3,1))
+%       plot_opinions(X, [], 'Title', 'Example 1.3', 'Subtitle', 'x(k+1) = Wx(k)')
 %
-%   See also PLOT_CONVERGENCE, PLOT_NETWORK, PLOT_ALPHA_SWEEP.
+%   See also PLOT_CONVERGENCE, PLOT_GRAPH, SIM_DEGROOT.
 
-    validate_result(res);
+    if ndims(X) == 3
+        error('NDS:plot_opinions:vectorOpinions', ...
+            ['X holds vector-valued opinions. Plot one component at a time, ' ...
+             'e.g. plot_opinions(squeeze(X(:,1,:))).']);
+    end
 
-    opts = parse_options(struct( ...
-        'Axes',      [], ...
-        'Prejudice', [], ...
-        'Limit',     [], ...
-        'Highlight', [], ...
+    [n, K] = size(X);
+    if nargin < 2, t = []; end
+
+    opts = name_value(struct( ...
         'Labels',    [], ...
-        'Legend',    'auto', ...
-        'Dimension', 1, ...
-        'Title',     ''), varargin, mfilename);
+        'Title',     [], ...
+        'Subtitle',  [], ...
+        'Limit',     [], ...
+        'Prejudice', []), varargin);
+    labels = opts.Labels;
 
-    n = res.n;
-    X = select_dimension(res, opts.Dimension);
-    t = res.t;
-    labels = resolve_labels(res, opts.Labels, n);
-
-    ax = resolve_axes(opts.Axes);
-    hold(ax, 'on');
-    grid(ax, 'on');
-
-    colors = lines(max(n, 1));
-    isDiscrete = any(strcmp(res.model, {'degroot', 'fj'}));
-
-    highlight = false(n, 1);
-    if ~isempty(opts.Highlight)
-        validateattributes(opts.Highlight, {'numeric'}, ...
-            {'vector', 'integer', '>=', 1, '<=', n}, mfilename, 'Highlight');
-        highlight(opts.Highlight) = true;
-    end
-
-    % Prejudice reference lines first, so the trajectories draw on top.
-    if ~isempty(opts.Prejudice)
-        uVec = prepare_state(opts.Prejudice, n, 'Prejudice');
-        uVec = uVec(:, min(opts.Dimension, size(uVec, 2)));
-        for ii = 1:n
-            plot(ax, [t(1), t(end)], [uVec(ii), uVec(ii)], ':', ...
-                'Color', [colors(ii, :), 0.45], 'LineWidth', 0.75, ...
-                'HandleVisibility', 'off');
-        end
-    end
-
-    h = gobjects(n, 1);
-    for ii = 1:n
-        if highlight(ii)
-            lw = 2.6;
-        else
-            lw = 1.4;
-        end
-        if isDiscrete
-            h(ii) = plot(ax, t, X(ii, :), '-o', ...
-                'Color', colors(ii, :), 'LineWidth', lw);
-        else
-            h(ii) = plot(ax, t, X(ii, :), '-', ...
-                'Color', colors(ii, :), 'LineWidth', lw);
-        end
-    end
-
-    if show_limit(res, opts.Limit)
-        xinf = res.xinf(:, min(opts.Dimension, size(res.xinf, 2)));
-        for ii = 1:n
-            plot(ax, t(end), xinf(ii), 'o', ...
-                'MarkerSize', 5, 'MarkerEdgeColor', colors(ii, :), ...
-                'MarkerFaceColor', 'w', 'LineWidth', 1.2, ...
-                'HandleVisibility', 'off');
-        end
-    end
-
-    if isDiscrete
-        xlabel(ax, 'step k');
+    if isempty(t)
+        t = 0:K-1;
+        xName = 'step k';
     else
-        xlabel(ax, 'time t');
+        t = t(:).';
+        xName = 'time t';
     end
-    ylabel(ax, 'opinion');
-    title(ax, resolve_title(res, opts.Title));
-    xlim(ax, [t(1), max(t(end), t(1) + eps)]);
-
-    if want_legend(opts.Legend, n)
-        legend(ax, h, labels, 'Location', 'best', 'Interpreter', 'none');
-    end
-    hold(ax, 'off');
-
-    if nargout == 0
-        clear h;
-    end
-end
-
-% -------------------------------------------------------------------------
-function X = select_dimension(res, dimIndex)
-    validateattributes(dimIndex, {'numeric'}, ...
-        {'scalar', 'integer', '>=', 1}, mfilename, 'Dimension');
-    if res.d == 1
-        X = res.X;
-    else
-        if dimIndex > res.d
-            error('NDS:plotOpinions:badDimension', ...
-                'Dimension %d requested but the opinions have dimension %d.', ...
-                dimIndex, res.d);
-        end
-        X = reshape(res.X(:, dimIndex, :), res.n, []);
-    end
-end
-
-% -------------------------------------------------------------------------
-function tf = show_limit(res, requested)
-    if isempty(requested)
-        tf = all(isfinite(res.xinf(:)));
-    else
-        tf = logical(requested) && all(isfinite(res.xinf(:)));
-    end
-end
-
-% -------------------------------------------------------------------------
-function tf = want_legend(setting, n)
-    if ischar(setting) || isstring(setting)
-        validatestring(setting, {'auto'}, mfilename, 'Legend');
-        tf = (n <= 12);
-    else
-        tf = logical(setting);
-    end
-end
-
-% -------------------------------------------------------------------------
-function labels = resolve_labels(res, userLabels, n)
-    if ~isempty(userLabels)
-        labels = cellstr(userLabels);
-    elseif ~isempty(res.net) && isfield(res.net, 'labels')
-        labels = res.net.labels;
-    else
+    if isempty(labels)
         labels = arrayfun(@(k) sprintf('%d', k), (1:n).', 'UniformOutput', false);
     end
-    labels = labels(:);
-    if numel(labels) ~= n
-        error('NDS:plotOpinions:labelCount', ...
-            'Expected %d labels, got %d.', n, numel(labels));
-    end
-end
+    labels = cellstr(labels);
 
-% -------------------------------------------------------------------------
-function str = resolve_title(res, userTitle)
-    if ~isempty(userTitle)
-        str = char(userTitle);
-        return;
-    end
-    names = struct('degroot', 'French-DeGroot', 'abelson', 'Abelson', ...
-        'taylor', 'Taylor', 'fj', 'Friedkin-Johnsen');
-    if isfield(names, res.model)
-        str = names.(res.model);
-    else
-        str = res.model;
-    end
-    if ~isempty(res.net) && isfield(res.net, 'name')
-        str = sprintf('%s  --  %s', str, res.net.name);
-    end
-end
+    ax = prepare_axes();
+    colors = lines(max(n, 7));
+    hold(ax, 'on');
 
-% -------------------------------------------------------------------------
-function validate_result(res)
-    required = {'model', 't', 'X', 'n', 'd', 'xinf'};
-    if ~isstruct(res) || ~isscalar(res) || ~all(isfield(res, required))
-        error('NDS:plotOpinions:badResult', ...
-            ['Input must be a result structure returned by one of the SIM_* ' ...
-             'functions (missing one of: %s).'], strjoin(required, ', '));
+    % --- prejudices first, so the trajectories draw on top ---------------
+    if ~isempty(opts.Prejudice)
+        u = opts.Prejudice(:);
+        for i = 1:n
+            plot(ax, [t(1) t(end)], [u(i) u(i)], ':', ...
+                'Color', [colors(i,:) 0.5], 'LineWidth', 0.8, ...
+                'HandleVisibility', 'off');
+        end
     end
+
+    % --- predicted limits ------------------------------------------------
+    if ~isempty(opts.Limit)
+        xinf = opts.Limit(:);
+        for i = 1:n
+            plot(ax, [t(1) t(end)], [xinf(i) xinf(i)], '--', ...
+                'Color', [colors(i,:) 0.7], 'LineWidth', 1.0, ...
+                'HandleVisibility', 'off');
+        end
+    end
+
+    % --- the trajectories ------------------------------------------------
+    h = gobjects(n, 1);
+    for i = 1:n
+        h(i) = plot(ax, t, X(i,:), '-', 'Color', colors(i,:), 'LineWidth', 1.6);
+    end
+
+    grid(ax, 'on');
+    xlabel(ax, xName);
+    ylabel(ax, 'opinion  x_i');
+    xlim(ax, [min(t) max(t)]);
+
+    % --- the legend carries the final value ------------------------------
+    if n <= 12
+        entries = arrayfun(@(i) sprintf('%s  ->  %.4g', labels{i}, X(i,end)), ...
+            (1:n).', 'UniformOutput', false);
+        legend(ax, h, entries, 'Location', 'eastoutside', 'Interpreter', 'none');
+    end
+
+    % --- a title that identifies the run ---------------------------------
+    autoName = inputname(1);
+    if isempty(autoName), autoName = 'opinion trajectories'; end
+
+    spread = max(X(:,end)) - min(X(:,end));
+    info = sprintf('%d agents, %d samples, final spread = %.3g', n, K, spread);
+    if ~isempty(opts.Limit)
+        info = [info, '   (dashed = predicted limit)'];
+    end
+    figure_title(ax, pick_label(opts.Title, autoName), ...
+                     pick_label(opts.Subtitle, info));
+
+    hold(ax, 'off');
+    if nargout == 0, clear h; end
 end

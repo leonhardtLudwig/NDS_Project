@@ -1,107 +1,125 @@
-function h = plot_convergence(res, varargin)
-%PLOT_CONVERGENCE Diagnostics showing how fast the opinions settle.
+function h = plot_convergence(X, t, varargin)
+%PLOT_CONVERGENCE Plot the disagreement spread, annotated with its rate.
 %
-%   h = PLOT_CONVERGENCE(res) draws, on a logarithmic vertical axis, the
-%   disagreement spread max(x) - min(x) and, when a predicted limit is
-%   available, the distance ||x(t) - x(inf)||_inf. Returns the line handles.
+%   PLOT_CONVERGENCE(X) plots max_i x_i - min_i x_i on a log vertical axis,
+%   titles the figure with the name of the variable passed in, and states the
+%   final spread and the measured decay rate in the subtitle.
 %
-%   Name-value options
-%       'Axes'     axes to draw into
-%       'Rate'     predicted asymptotic decay rate, drawn as a reference
-%                  slope. For a discrete model pass |lambda_2| or rho(Lambda*W);
-%                  for a continuous model pass the smallest positive real part
-%                  of an eigenvalue.
-%       'Dimension' opinion dimension to use when d > 1 (default 1)
-%       'Title'    figure title
+%   PLOT_CONVERGENCE(X, t) plots against the time vector t. Pass [] to keep
+%   the step index.
+%
+%   PLOT_CONVERGENCE(X, t, Name, Value, ...) accepts
+%
+%       'Title'    override the automatic title (see below)
+%       'Subtitle' override the automatic subtitle (see below)
+%       'Rate'   theoretically predicted rate, drawn as a reference slope.
+%                For a discrete model pass |lambda_2| or rho(Lambda W); for a
+%                continuous model the smallest positive real part of an
+%                eigenvalue of L. The figure then shows whether the observed
+%                decay matches the predicted one.
+%
+%   TITLES AND SUBTITLES
+%       By default the title is the caller's variable name and the subtitle
+%       describes the contents. Both are fully under your control:
+%
+%           'Title', 'Example 1.3'      your own title
+%           'Subtitle', 'matrix W'      your own subtitle
+%           'Title', ''                 no title
+%           'Subtitle', ''              no subtitle
+%
+%       Passing [] (the default) keeps the automatic text. You can equally
+%       ignore the options and call TITLE and SUBTITLE yourself afterwards.
 %
 %   READING THE PLOT
-%       A straight line on the log axis is exponential convergence, and its
-%       slope is the spectral quantity governing the rate. A PLATEAU followed
-%       by a second decay indicates a timescale separation -- the signature of
-%       weakly coupled communities, where opinions agree quickly inside each
-%       block and only slowly between blocks.
+%       A straight line is exponential convergence, and its slope is the
+%       spectral quantity governing the rate. A PLATEAU followed by a second
+%       decay is a timescale separation -- the signature of weakly coupled
+%       communities. A spread that does not decay means the model is not
+%       convergent, which is equally informative and is stated in the
+%       subtitle.
 %
-%       For a non-convergent (periodic) model the spread does not decay at
-%       all, which is equally informative.
+%   Example
+%       W = row_stochastic(two_communities(4, 4, 0.02));
+%       X = sim_degroot(W, (1:8)', 400);
+%       lam = sort(abs(eig(W)), 'descend');
+%       plot_convergence(X, [], 'Rate', lam(2))
 %
 %   See also PLOT_OPINIONS, PLOT_SPECTRUM.
 
-    if ~isstruct(res) || ~all(isfield(res, {'X', 't', 'n', 'd', 'xinf'}))
-        error('NDS:plotConvergence:badResult', ...
-            'Input must be a result structure returned by one of the SIM_* functions.');
-    end
+    [~, K] = size(X);
+    if nargin < 2, t = []; end
 
-    opts = parse_options(struct( ...
-        'Axes',      [], ...
-        'Rate',      [], ...
-        'Dimension', 1, ...
-        'Title',     ''), varargin, mfilename);
+    opts = name_value(struct('Title', [], 'Subtitle', [], 'Rate', []), varargin);
 
-    if res.d == 1
-        X = res.X;
-        xinf = res.xinf(:, 1);
+    if isempty(t)
+        t = 0:K-1;
+        xName = 'step k';
+        discrete = true;
     else
-        X = reshape(res.X(:, opts.Dimension, :), res.n, []);
-        xinf = res.xinf(:, opts.Dimension);
+        t = t(:).';
+        xName = 'time t';
+        discrete = false;
     end
-    t = res.t;
 
     spread = max(X, [], 1) - min(X, [], 1);
-    floorValue = eps;              % keep zeros plottable on a log axis
+    floorValue = eps;
 
-    ax = resolve_axes(opts.Axes);
+    ax = prepare_axes();
     hold(ax, 'on');
-    grid(ax, 'on');
-
-    handles = gobjects(0, 1);
-    handles(end+1, 1) = semilogy(ax, t, max(spread, floorValue), '-', ...
-        'LineWidth', 1.6, 'DisplayName', 'spread  max(x) - min(x)');
-
-    if all(isfinite(xinf))
-        err = max(abs(X - xinf), [], 1);
-        handles(end+1, 1) = semilogy(ax, t, max(err, floorValue), '--', ...
-            'LineWidth', 1.6, 'DisplayName', '||x(t) - x(\infty)||_\infty');
-    end
+    h = semilogy(ax, t, max(spread, floorValue), '-', 'LineWidth', 1.8, ...
+        'DisplayName', 'observed spread');
 
     if ~isempty(opts.Rate)
-        validateattributes(opts.Rate, {'numeric'}, ...
-            {'scalar', 'real', 'positive', 'finite'}, mfilename, 'Rate');
-        reference = build_reference(res.model, t, opts.Rate, spread);
-        handles(end+1, 1) = semilogy(ax, t, max(reference, floorValue), ':', ...
+        elapsed = t - t(1);
+        if discrete
+            reference = spread(1) * opts.Rate .^ elapsed;
+        else
+            reference = spread(1) * exp(-opts.Rate * elapsed);
+        end
+        semilogy(ax, t, max(reference, floorValue), '--', ...
             'Color', [0.4 0.4 0.4], 'LineWidth', 1.4, ...
-            'DisplayName', 'predicted rate');
+            'DisplayName', sprintf('predicted rate %.4g', opts.Rate));
+        legend(ax, 'Location', 'best');
     end
 
     set(ax, 'YScale', 'log');
-    if any(strcmp(res.model, {'degroot', 'fj'}))
-        xlabel(ax, 'step k');
-    else
-        xlabel(ax, 'time t');
-    end
-    ylabel(ax, 'disagreement');
-    if isempty(opts.Title)
-        title(ax, 'Convergence diagnostics');
-    else
-        title(ax, char(opts.Title));
-    end
-    legend(ax, handles, 'Location', 'best');
-    hold(ax, 'off');
+    grid(ax, 'on');
+    xlabel(ax, xName);
+    ylabel(ax, 'max_i x_i - min_i x_i');
 
-    h = handles;
-    if nargout == 0
-        clear h;
-    end
+    autoName = inputname(1);
+    if isempty(autoName), autoName = 'convergence'; end
+    figure_title(ax, pick_label(opts.Title, autoName), ...
+                     pick_label(opts.Subtitle, rate_text(spread, discrete)));
+
+    hold(ax, 'off');
+    if nargout == 0, clear h; end
 end
 
 % -------------------------------------------------------------------------
-function reference = build_reference(model, t, rate, spread)
-%BUILD_REFERENCE Reference decay curve anchored at the initial disagreement.
+function s = rate_text(spread, discrete)
+%RATE_TEXT State the final spread and the empirical decay rate.
 
-    anchor = max(spread(1), eps);
-    elapsed = t - t(1);
-    if any(strcmp(model, {'degroot', 'fj'}))
-        reference = anchor * rate .^ elapsed;      % discrete: rate^k
+    final = spread(end);
+
+    if final > 0.5 * spread(1)
+        s = sprintf('final spread = %.3g   |   NOT converging', final);
+        return;
+    end
+
+    % Estimate the geometric ratio over the last decade of decay.
+    usable = find(spread > 1e3 * eps);
+    if numel(usable) >= 4
+        last = usable(max(1, round(0.6*numel(usable))):end);
+        ratio = (spread(last(end)) / spread(last(1))) ^ (1 / (numel(last) - 1));
+        if discrete
+            s = sprintf('final spread = %.3g   |   measured rate ~ %.4g per step', ...
+                final, ratio);
+        else
+            s = sprintf('final spread = %.3g   |   measured decay ~ %.4g per sample', ...
+                final, ratio);
+        end
     else
-        reference = anchor * exp(-rate * elapsed); % continuous: exp(-rate*t)
+        s = sprintf('final spread = %.3g', final);
     end
 end

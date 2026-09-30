@@ -1,80 +1,71 @@
-function res = sim_friedkin_johnsen(W, Lambda, u, x0, K, varargin)
-%SIM_FRIEDKIN_JOHNSEN Simulate the Friedkin-Johnsen model with prejudices.
+function X = sim_friedkin_johnsen(W, lambda, u, x0, K)
+%SIM_FRIEDKIN_JOHNSEN Friedkin-Johnsen opinion dynamics.
 %
-%   res = SIM_FRIEDKIN_JOHNSEN(W, Lambda, u, x0, K) iterates
+%   X = SIM_FRIEDKIN_JOHNSEN(W, lambda, u, x0, K) iterates
 %
-%       x(k+1) = Lambda*W*x(k) + (I - Lambda)*u,     k = 0, ..., K-1
+%       x(k+1) = Lambda W x(k) + (I - Lambda) u                        (M4.1)
 %
-%   returning K+1 samples at times 0..K.
+%   with Lambda = diag(lambda), and returns the n-by-(K+1) trajectory whose
+%   column k+1 is x(k).
 %
-%   W      : row-stochastic influence matrix, or a network struct (net.W)
-%   Lambda : susceptibilities in [0,1] -- scalar, n-vector, or diagonal
-%            matrix; use FJ_LAMBDA for the standard presets
-%   u      : prejudices, n-by-1 or n-by-d
-%   x0     : initial opinions (pass u to follow Friedkin's own convention
-%            that prejudices are the initial opinions)
-%   K      : number of steps
+%       lambda  n-vector of susceptibilities, lambda_i in [0,1]
+%       u       n-vector of prejudices
 %
-%   Name-value options
-%       'Predict'  also compute the theoretical limit (default true)
+%   Equivalently, agent i obeys
 %
-%   WHY THIS MODEL IS DIFFERENT
-%       The update is AFFINE, not linear. The homogeneous part Lambda*W is
-%       SUBSTOCHASTIC, so 1 is no longer invariant and the consensus manifold
-%       disappears from the dynamics. When every agent is P-dependent,
-%       rho(Lambda*W) < 1 and the system is exponentially stable with a
-%       unique attracting equilibrium x(inf) = V u, where the total-influence
-%       matrix V = (I - Lambda*W)^{-1}(I - Lambda) is ROW-STOCHASTIC.
+%       x_i(k+1) = lambda_i * sum_j w_ij x_j(k) + (1 - lambda_i) u_i,
 %
-%       So MORE STABILITY MEANS LESS AGREEMENT: the eigenvalue that was
-%       pinned at 1, carrying the consensus mode, is pushed strictly inside
-%       the unit disc, and with it the possibility of unanimity. Because V is
-%       row-stochastic, final opinions stay inside the convex hull of the
-%       prejudices -- disagreement is persistent but BOUNDED.
+%   so 1 - lambda_i measures how tightly agent i is anchored to its prejudice.
 %
 %   SPECIAL CASES
-%       Lambda = I            reduces exactly to French-DeGroot
-%       lambda_i = 0          agent i is totally stubborn, x_i(k) = u_i for k >= 1
-%       0 < lambda_i < 1      agent i listens AND re-injects its prejudice at
-%                             every step -- partial stubbornness, the object
-%                             that pure averaging models cannot express
+%       lambda_i = 1 for all i   reduces exactly to French-DeGroot
+%       lambda_i = 0             agent i is totally stubborn, x_i(k) = u_i
+%       0 < lambda_i < 1         agent i listens AND re-injects its prejudice
+%                                at every step -- partial stubbornness, the
+%                                behaviour pure averaging cannot express
 %
-%   Example (reproduces Fig. 6 of the tutorial)
-%       [net, u, x0] = make_example_fj4();
-%       lambda = fj_lambda(net, 'classic');
-%       res = sim_friedkin_johnsen(net, lambda, u, x0, 12);
-%       plot_opinions(res, 'Prejudice', u);
+%   WHY IT DIFFERS FROM AVERAGING
+%       The update is AFFINE, not linear. The homogeneous part Lambda*W is
+%       SUBSTOCHASTIC, so the consensus direction 1 is no longer invariant
+%       and the consensus manifold leaves the dynamics altogether. When every
+%       agent is reached by a prejudice, rho(Lambda W) < 1 and there is a
+%       unique globally attracting equilibrium FJ_EQUILIBRIUM(W, lambda, u).
 %
-%   See also FJ_LAMBDA, FJ_MATRICES, PREDICT_LIMIT_FJ, SIM_DEGROOT.
+%       So MORE STABILITY MEANS LESS AGREEMENT: the eigenvalue pinned at 1,
+%       which carried the consensus mode, is pushed strictly inside the unit
+%       disc, and unanimity goes with it.
+%
+%   Example
+%       W = [0.220 0.120 0.360 0.300
+%            0.147 0.215 0.344 0.294
+%            0     0     1     0
+%            0.090 0.178 0.446 0.286];
+%       u = [-1; -0.2; 0.6; 1];
+%       X = sim_friedkin_johnsen(W, 1 - diag(W), u, u, 15);
+%
+%   See also FJ_EQUILIBRIUM, TOTAL_INFLUENCE, SIM_DEGROOT.
 
-    narginchk(5, Inf);
+    narginchk(5, 5);
+    n      = check_square(W, 'W');
+    lambda = check_vector(lambda, n, 'lambda');
+    u      = check_vector(u, n, 'u');
+    x0     = check_state(x0, n);
 
-    [W, net] = network_matrix(W, 'W');
-    n = validate_row_stochastic(W, 'W');
-    lambda = diagonal_parameter(Lambda, n, 'Lambda', 0, 1);
-    [X0, d] = prepare_state(x0, n, 'x0');
-    U = match_input_dimension(u, n, d, 'u');
-
-    validateattributes(K, {'numeric'}, ...
-        {'scalar', 'integer', 'nonnegative'}, mfilename, 'K', 5);
-    K = double(K);
-
-    opts = parse_options(struct('Predict', true), varargin, mfilename);
-
-    anchorTerm = (1 - lambda) .* U;        % = (I - Lambda) * U
-
-    traj = zeros(n, d, K + 1);
-    traj(:, :, 1) = X0;
-    X = X0;
-    for k = 1:K
-        X = lambda .* (W * X) + anchorTerm;
-        traj(:, :, k + 1) = X;
+    if ~is_row_stochastic(W)
+        error('NDS:sim_friedkin_johnsen:notStochastic', ...
+            'W must be row-stochastic. Use W = row_stochastic(A).');
+    end
+    if any(lambda < 0) || any(lambda > 1)
+        error('NDS:sim_friedkin_johnsen:badLambda', ...
+            'lambda must lie in [0,1].');
     end
 
-    [xinf, predictInfo] = safe_predict(opts.Predict, ...
-        @predict_limit_fj, W, lambda, U, X0);
+    anchor = (1 - lambda) .* u;          % the constant term (I - Lambda) u
+    X = zeros(n, K + 1);
+    X(:, 1) = x0;
 
-    params = struct('W', W, 'lambda', lambda, 'u', U, 'K', K, ...
-        'predict', predictInfo);
-    res = pack_result('fj', 0:K, traj, xinf, params, net);
+    for k = 1:K
+        x0 = lambda .* (W * x0) + anchor;    % <-- x(k+1) = LWx(k) + (I-L)u
+        X(:, k + 1) = x0;
+    end
 end
