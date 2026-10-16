@@ -1,0 +1,66 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------------------------------------------------------------------------
+% Packages
+% ---------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+% ---------------------------------------------------------------------------
+% TikZ styles for small digraphs (edge i -> j: agent i is influenced by agent j)
+% ---------------------------------------------------------------------------
+\tikzset{
+  agent/.style    = {circle, draw, inner sep=0pt, minimum size=4.5mm, font=\scriptsize},
+  edge/.style     = {-{Stealth[length=1.6mm]}, thin},
+  selfloop/.style = {-{Stealth[length=1.6mm]}, thin, loop above, looseness=6, min distance=4mm},
+  weight/.style   = {font=\tiny, inner sep=1pt}
+}
+\usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------------------
+% Theorem environments
+% ---------------------------------------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------------------
+% Title
+% ---------------------------------------------------------------------------
+\title{Title}
+\author{Leonardo Luigi Pepe}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Abstract.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\input{intro/intro_main}
+\input{fdg/fdg_main}
+\input{fj/fj_main}
+\input{conclusion/conclusion_main}
+
+% \bibliographystyle{plain}
+% \bibliography{references}
+
+\end{document}

@@ -338,19 +338,19 @@ the model collapses to a per-agent **prejudice**:
 ẋ_i = Σ_j a_ij (x_j − x_i) + γ_i (u_i − x_i)
 ```
 
-> **⚠ Notational trap in the paper.** The tutorial writes the matrix form as `ẋ = −(L[A] + Γ)x + u`
-> (Eq. 15). Consistency with Eq. (14) and with the limit formula in Theorem 18 (which contains `Γ¹¹`)
-> requires
+> **Matrix form (checked on the PDF).** Eq. (15) of the tutorial reads
 > ```
 > ẋ = −( L[A] + Γ ) x + Γ u ,      Γ = diag(γ_1,…,γ_n)
 > ```
-> i.e. the `u` of Eq. (15) is the `Γu` of Eq. (14). **Implement the version with `Γu`.** Flag this in the
-> report; it is exactly the sort of thing that produces a wrong steady state and hours of debugging.
+> consistent with Eq. (14). The misprint is elsewhere: in Eq. (18) (Theorem 18) the block `[Γ¹¹ L¹²]`
+> should read `[Γ¹¹ −L¹²]`, as in the formula for `M` below. Taylor is out of scope for the report, so
+> this only matters for the code.
 
 **Definition 17 [T].** Agent `i` is **prejudiced** if `γ_i > 0`. A prejudiced agent that is also closed to
 interpersonal influence (`a_ij = 0 ∀j`) converges to its prejudice, `x_i(t) → u_i`, with `γ_i` setting the
-rate; if additionally `u_i = x_i(0)` it is **totally stubborn**. But the concept is much broader: a
-prejudiced agent may be simultaneously anchored *and* socially influenced.
+rate; if additionally `u_i = x_i(0)` it is **stubborn** (the tutorial's term; Parsegov et al. say *totally
+stubborn*). But the concept is much broader: a prejudiced agent may be simultaneously anchored *and*
+socially influenced.
 
 ### 4.2 Theoretical properties
 
@@ -415,8 +415,9 @@ x(k+1) = Λ W x(k) + (I − Λ) u ,      Λ = diag(λ_1,…,λ_n),  λ_i ∈ [0,
 - `u` — constant vector of **prejudices**.
 
 Special cases:
-- `Λ = I` ⟹ exactly French–DeGroot.
-- `λ_i = 0` ⟹ `x_i(k) ≡ u_i` for all `k ≥ 1` — **totally stubborn**; if `u_i = x_i(0)`, the agent never moves.
+- `Λ = I` ⟹ exactly French–DeGroot (the tutorial misprints this as «Λ = 0» right after Eq. (20)).
+- `λ_i = 0` ⟹ `x_i(k) ≡ u_i` for all `k ≥ 1`; if moreover `u_i = x_i(0)` the agent never moves and is
+  **stubborn** in the tutorial's sense (*totally stubborn* in Parsegov et al., footnote 17).
 - `0 < λ_i < 1` ⟹ **partially stubborn / prejudiced** — the genuinely new object.
 
 **Two modelling conventions [T] — make this a switch in the code.**
@@ -563,7 +564,7 @@ This section deserves the most care; it is the professor's explicit focus.
 
 | # | Notion | Formalisation | Behaviour |
 |---|---|---|---|
-| 1 | **Total stubbornness / zealot / radical** | `w_ii = 1` (FD); `λ_i = 0` (FJ); `γ_i>0, a_ij≡0` (Taylor). A **source node**. | Opinion constant. Absorbing state of the dual chain. |
+| 1 | **Stubbornness** (tutorial: *stubborn*, Def. 16; also *zealot* / *radical*) | `w_ii = 1` (FD); `λ_i = 0` and `u_i = x_i(0)` (FJ); `γ_i>0`, `a_ij≡0` and `u_i = x_i(0)` (Taylor). A **source node** in the tutorial's arc convention. | Opinion constant. Absorbing state of the dual chain. |
 | 2 | **Prejudice / partial stubbornness** | `0 < λ_i < 1` (FJ); `γ_i > 0` (Taylor) | Agent **listens and still re-injects `u_i` at every step**. The genuinely new object. |
 | 3 | **Self-confidence / inertia** | `w_ii` large but `< 1` | **NOT stubbornness.** Slows convergence; does not prevent consensus. |
 | 4 | **Structural insulation** | agent lies in a closed SCC that receives no outside influence | Unaffected by outsiders, but not necessarily constant. |
@@ -623,7 +624,7 @@ Consequences, in order of importance:
 
 - **Persistent disagreement / community cleavage** on a strongly connected, aperiodic graph — impossible
   under FD.
-- **Clustering around stubborn leaders**: with two totally stubborn agents at `±1`, everyone else spreads
+- **Clustering around stubborn leaders**: with two stubborn agents at `±1`, everyone else spreads
   along the interval according to their *relative* graph distance to the two anchors — the electrical
   analogy makes this exact (potentials in a resistor network between two voltage sources).
 - **Extreme sensitivity to anchor placement**: a single stubborn agent at a high-centrality node can drag the
@@ -639,12 +640,12 @@ Consequences, in order of importance:
 
 ### 7.5 Analogues in the other models
 
-| Model | Total stubbornness | Partial stubbornness |
+| Model | Stubborn (tutorial; Parsegov et al.: *totally stubborn*) | Prejudiced / "partially" stubborn |
 |---|---|---|
 | French–DeGroot | ✅ `w_ii = 1` (source node / absorbing state) | ❌ **not expressible** |
 | Abelson | ✅ `a_ij = 0 ∀j` (source node) | ❌ not expressible |
 | Taylor | ✅ `γ_i > 0`, `a_ij ≡ 0`, `u_i = x_i(0)` | ✅ `γ_i > 0` — the continuous-time analogue of `1 − λ_i` |
-| Friedkin–Johnsen | ✅ `λ_i = 0` | ✅ `0 < λ_i < 1` — **the model's raison d'être** |
+| Friedkin–Johnsen | ✅ `λ_i = 0`, `u_i = x_i(0)` | ✅ `0 < λ_i < 1` — **the model's raison d'être** |
 
 Taylor and FJ are, in this precise sense, **the same idea in the two time domains** — and Taylor got there
 first. The comparison `Γ ↔ (I−Λ)/Λ`-style correspondence, checked numerically by comparing steady states
@@ -1040,7 +1041,8 @@ Chapters 1–8 map onto `livescripts/00–06`; chapters 9–11 onto `06_comparat
    convention once (§1.1), write it in `net.meta`, and add an assertion helper. Every reachability
    computation (roots, closed SCCs, P-dependence) must be done in the *stated* graph, and reversing it
    silently gives plausible-looking but wrong answers.
-2. **Taylor Eq. (15) vs. (18).** The paper's matrix form omits `Γ`; the correct input term is `Γu` (§4.1).
+2. **Taylor Eq. (18).** Eq. (15) is printed correctly (`+Γu`); the misprint is the missing minus sign
+   before `L¹²` in Eq. (18) (§4.1).
 3. **Terminology collision** between the tutorial and Parsegov et al. (§7.1) — both PDFs are in the repo.
 4. **Assuming Abelson polarises.** It does not, on a rooted graph (§3.3).
 5. **Assuming strong connectivity ⟹ consensus in discrete time.** Aperiodicity is an *independent*
@@ -1113,8 +1115,9 @@ before implementation begins:
 
 1. Re-read Part I §§3–6 with this document side by side and confirm every theorem number cited here
    (Lemmas 2, 5, 7–11, 17, 24; Theorems 3, 12, 16, 18, 20, 21; Corollaries 4, 6, 13–15, 19, 22, 23).
-2. Confirm the Taylor `Γu` reading (§4.1) by checking Eq. (14) → Eq. (15) → Eq. (18) consistency directly in
-   the PDF, and note the discrepancy in the report.
+2. ~~Confirm the Taylor `Γu` reading (§4.1) by checking Eq. (14) → Eq. (15) → Eq. (18) consistency directly
+   in the PDF~~ — **DONE.** Eq. (15) reads `+Γu`; the only misprint is the missing minus before `L¹²` in
+   Eq. (18). Taylor is out of scope, so nothing goes in the report.
 3. Confirm the direction convention by re-reading Def. 2 in Part I and the Fig. 5.5 caption in Bullo.
 4. Confirm the corrigendum's scope (Lemma 2 and Corollary 6 only).
 5. ~~Locate and record provenance for the Krackhardt and Sampson data files~~ — **DONE (Phase 2).**

@@ -36,8 +36,9 @@ true for the **datasets** and for **structural balance**, but it is not true for
 the four papers concerns French–DeGroot, Abelson, Taylor, or Friedkin–Johnsen. None contains a convergence
 theorem, a stability result, or anything about stubbornness.
 
-Consequently the theoretical open items from Phase 1 — convergence rates, the grounded Laplacian, the
-Taylor `Γu` discrepancy, identification of `W`/`Λ`/`u` from data — are **all still open** (§5). This is not
+Consequently the theoretical open items from Phase 1 — convergence rates, the grounded Laplacian,
+identification of `W`/`Λ`/`u` from data — are **all still open** (§5). (The Taylor `Γu` question has since
+been closed by re-reading the PDF: see §5.1.) This is not
 a problem for the project; it just means the *empirical/structural* foundation is now much stronger than
 the *dynamical* one. §5.3 lists the six papers that would close the remaining gaps if you want to upload
 a second batch.
@@ -388,7 +389,7 @@ None of these was touched by the uploads, because none of the uploads is about o
 
 | Open item (Phase 1 ref.) | Status | Why still open |
 |---|---|---|
-| **Taylor Eq. (15) vs (18): is the input `u` or `Γu`?** (§4.1, §11.2) | **Open** | Requires Taylor (1968) itself. My reading — that `Γu` is correct because Theorem 18's limit formula contains `Γ¹¹` — stands and is internally consistent, but is an inference from the tutorial, not a check against the source. |
+| **Taylor Eq. (15) vs (18): is the input `u` or `Γu`?** (§4.1, §11.2) | **Closed** | Re-reading the PDF: Eq. (15) already reads `+Γu`, so there is no discrepancy. The only misprint is the missing minus before `L¹²` in Eq. (18). |
 | **Convergence rates** — SLEM, spectral gap, Cheeger (§12.2) | **Open** | Needs Olshevsky & Tsitsiklis (2011), Cao–Morse–Anderson (2008b). |
 | **Grounded Laplacian** `λ_min(L¹¹+Γ¹¹)` (§12.2) | **Open** | Needs Pirani & Sundaram (2016). |
 | **Forest/tree combinatorics of `p_∞`** (§12.2) | **Open** | Needs Chebotarev & Agaev. |
@@ -410,7 +411,7 @@ In descending order of value to this project:
 1. **Friedkin & Johnsen (1999)**, *Social influence networks and opinion change*, Advances in Group
    Processes 16:1–29 — the primary FJ source, the empirical validation, and the `λᵢ = 1 − wᵢᵢ` coupling.
 2. **Taylor (1968)**, *Towards a mathematical theory of influence and attitude change*, Human Relations
-   21:121–139 — settles the `Γu` question definitively.
+   21:121–139 — primary source of Taylor's model (the `Γu` question is already closed, §5.1).
 3. **DeGroot (1974)**, *Reaching a consensus*, JASA 69:118–121 — three pages, the primary source.
 4. **French (1956)**, *A formal theory of social power*, Psychological Review 63:181–194 — the origin of
    social power, and the reason the whole field exists.
@@ -454,10 +455,10 @@ social power 0.0148. A middleman controls *transmission*; social power measures 
 FJ total-influence matrix `V` should reveal which one predicts the shift in the group's final opinion when
 that agent is anchored.
 
-**Proposed experiment.** For each manager `i`, make `i` totally stubborn (`λᵢ = 0`) and record the induced
-shift in the group mean `‖x(∞) − x_baseline(∞)‖`. Regress that against (a) `p_∞`, (b) betweenness/Bonacich,
-(c) `ν`. **Prediction:** social power wins, brokerage does poorly. If so, that is a clean, defensible,
-original result — and it directly serves the professor's stubbornness brief.
+**Proposed experiment.** For each manager `i`, make `i` stubborn (`λᵢ = 0` with `uᵢ = xᵢ(0)`) and record
+the induced shift in the group mean `‖x(∞) − x_baseline(∞)‖`. Regress that against (a) `p_∞`, (b)
+betweenness/Bonacich, (c) `ν`. **Prediction:** social power wins, brokerage does poorly. If so, that is a
+clean, defensible, original result — and it directly serves the professor's stubbornness brief.
 
 ### 6.3 NEW: verify the transcription once
 
