@@ -303,6 +303,14 @@ INPUT ./intro/intro_main.tex
 INPUT ./intro/intro_main.tex
 INPUT ./intro/intro_main.tex
 INPUT intro/intro_main.tex
+INPUT ./intro/intro_preliminaries.tex
+INPUT ./intro/intro_preliminaries.tex
+INPUT intro/intro_preliminaries.tex
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT ./fdg/fdg_main.tex
 INPUT ./fdg/fdg_main.tex
 INPUT ./fdg/fdg_main.tex
@@ -311,11 +319,6 @@ INPUT fdg/fdg_main.tex
 INPUT ./fdg/fdg_intro.tex
 INPUT ./fdg/fdg_intro.tex
 INPUT fdg/fdg_intro.tex
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
