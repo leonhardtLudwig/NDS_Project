@@ -353,6 +353,9 @@ INPUT ./conclusion/conclusion_main.tex
 INPUT ./conclusion/conclusion_main.tex
 INPUT ./conclusion/conclusion_main.tex
 INPUT conclusion/conclusion_main.tex
+INPUT ./main.bbl
+INPUT ./main.bbl
+INPUT main.bbl
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out

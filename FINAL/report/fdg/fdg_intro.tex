@@ -11,7 +11,8 @@ $G = (V, E, \{a_{ij}\}_{(i,j) \in E})$: following the convention of
 Section~\ref{subsec:prelim}, an edge $(i,j) \in E$, with weight $a_{ij} > 0$, means
 that individual $i$ is influenced by individual $j$.
 
-The French--Harary--DeGroot (FDG) model describes how each individual, or agent,
+The French--Harary--DeGroot (FDG) model~\cite{baggio_dt}, called French--DeGroot
+model in~\cite{proskurnikov2017tutorial}, describes how each individual, or agent,
 updates its opinion: the new opinion is a weighted average of the opinions of the
 agents it is influenced by,
 \begin{equation}\label{eq:fdg}
@@ -40,11 +41,11 @@ powers of $A$. Three outcomes are possible:
 
 The following theorem characterizes when the FDG model reaches a consensus. Its
 condition (A3) involves the subgraph of globally reachable nodes: this set of nodes is
-always strongly connected: a walk between two globally reachable nodes only visits
+always strongly connected~\cite{baggio_dt}: a walk between two globally reachable nodes only visits
 nodes that are themselves globally reachable. Hence its periodicity is well defined
 (Definition~\ref{def:periodic}).
 
-\begin{theorem}[Consensus in DT averaging systems]
+\begin{theorem}[Consensus in DT averaging systems~\cite{baggio_dt}]
 \label{thm:consensus}
 Let $G$ be a weighted digraph with row-stochastic adjacency matrix $A$. The following
 statements are equivalent:
@@ -67,7 +68,7 @@ If any, and therefore all, of the previous conditions are satisfied, then
 \end{itemize}
 \end{theorem}
 
-\begin{corollary}[Average consensus]
+\begin{corollary}[Average consensus~\cite{baggio_dt}]
 \label{cor:average}
 If $A$ is doubly-stochastic, i.e.\ row-stochastic with also
 $\mathbf{1}_n^\top A = \mathbf{1}_n^\top$, and (A3) holds, then
@@ -75,9 +76,9 @@ $w = \frac{1}{n}\mathbf{1}_n$ and
 $\lim_{k \to +\infty} x(k) = \big(\frac{1}{n}\sum_{i=1}^{n} x_i(0)\big)\, \mathbf{1}_n$.
 \end{corollary}
 
-% TODO: cite Proskurnikov & Tempo (2017), Sec. 3.5, once the bibliography is set up.
 The entry $w_i$ is called the \emph{social power} of agent $i$: it is the weight of
-the initial opinion $x_i(0)$ in the final opinion of the group.
+the initial opinion $x_i(0)$ in the final opinion of the
+group~\cite{proskurnikov2017tutorial}.
 
 Point (i) has a direct social interpretation. Since the consensus value
 $w^\top x(0)$ is the same for every agent, the initial opinion of agent $i$ can
@@ -98,7 +99,7 @@ unique sink in the condensation digraph $C(G)$. We now consider the case in whic
 $C(G)$ has $n_s \geq 2$ sinks. Each sink is a strongly connected component, so its
 periodicity is well defined (Definition~\ref{def:periodic}).
 
-\begin{theorem}[Disagreement in DT averaging systems]
+\begin{theorem}[Disagreement in DT averaging systems~\cite{baggio_dt}]
 \label{thm:disagreement}
 Let $G$ be a weighted digraph with row-stochastic adjacency matrix $A$. Assume that
 the condensation digraph $C(G)$ has $n_s \geq 2$ sinks. The following statements are
@@ -119,7 +120,7 @@ The final opinions can be described group by group. The agents of a sink are not
 influenced by anyone outside the sink, so each sink evolves as an FDG model on its own
 and, being aperiodic, reaches an internal consensus that depends only on the initial
 opinions of its members. Every agent outside the sinks converges instead to a convex
-combination of the consensus values of the sinks.
+combination of the consensus values of the sinks~\cite{baggio_dt}.
 
 In social terms, a sink is a closed group that listens only to itself, and two closed
 groups never influence each other: each of them keeps its own consensus value. The
@@ -134,7 +135,7 @@ the smallest and the largest consensus value of the sinks.
 
 The results of this section, together with the consensus and disagreement theorems
 above, classify all the possible behaviours of the FDG model. The classification is
-summarized in Table~\ref{tab:rosetta}, the so-called \emph{Rosetta stone}, which
+summarized in Table~\ref{tab:rosetta}, the so-called \emph{Rosetta stone}~\cite{baggio_dt}, which
 translates each property of the row-stochastic matrix $A$ into a property of the
 digraph $G$ and into the corresponding asymptotic outcome; for each case, the table
 also reports an example digraph, its matrix and its spectrum.
@@ -218,6 +219,8 @@ $x(k) = x(0)$ for all $k$.
   \end{tabular}
   \caption{Rosetta stone of the FDG model $x(k+1) = A x(k)$, with $A$ row-stochastic:
   for each case, an example digraph (unlabelled edges have weight $1$), its matrix
-  $A$, the spectrum of $A$, the general property of $A$ and of $G$, and the outcome.}
+  $A$, the spectrum of $A$, the general property of $A$ and of $G$, and the outcome. Cases (i)--(iv)
+  and the examples follow~\cite{baggio_dt}; the properties of case (v),
+  left blank in the slides, follow from~\cite{proskurnikov2017tutorial}.}
   \label{tab:rosetta}
 \end{table}

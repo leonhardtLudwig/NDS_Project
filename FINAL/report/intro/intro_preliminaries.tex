@@ -2,7 +2,7 @@
 \label{subsec:prelim}
 
 This subsection collects the notions on graphs and non-negative matrices used for both
-models, following the course slides.
+models, following the course slides~\cite{baggio_graph,baggio_matrix,baggio_dt}.
 
 \subsubsection{Graphs}
 \label{subsubsec:prelim-graphs}
@@ -11,10 +11,11 @@ A \emph{weighted digraph} $G = (V, E, \{a_{ij}\}_{(i,j) \in E})$ has node set
 $V = \{1, 2, \dots, n\}$, edge set $E \subseteq V \times V$ and a weight $a_{ij} > 0$ for
 each edge $(i,j) \in E$; an edge $(i,i)$ is a \emph{self-loop}. Throughout the report
 the nodes are agents, and an edge $(i,j)$ means that agent $i$ is influenced by agent
-$j$. This is the convention of the course slides; the tutorial by Proskurnikov and
-Tempo draws the edges in the opposite direction.
+$j$. This is the convention of the course slides~\cite{baggio_dt}; the tutorial by
+Proskurnikov and Tempo draws the edges in the opposite
+direction~\cite{proskurnikov2017tutorial}.
 
-\begin{definition}[Weighted adjacency matrix]
+\begin{definition}[Weighted adjacency matrix~\cite{baggio_graph}]
 \label{def:adjacency}
 Given a weighted digraph $G = (V, E, \{a_{ij}\}_{(i,j) \in E})$ of order $n$, its
 \emph{weighted adjacency matrix} is the $n \times n$ matrix $A$ whose $(i,j)$ entry
@@ -22,7 +23,7 @@ is equal to the edge weight $a_{ij}$ if $(i,j) \in E$, and is equal to zero
 otherwise.
 \end{definition}
 
-\begin{definition}[Strong connectivity and globally reachable nodes]
+\begin{definition}[Strong connectivity and globally reachable nodes~\cite{baggio_graph}]
 A digraph $G = (V, E)$ is \emph{strongly connected} if there is a directed walk from
 any node to any other node. A node of $G$ is \emph{globally reachable} if it can be
 reached from any other node through a directed walk.
@@ -34,7 +35,7 @@ strongly connected when every agent influences every other agent, at least
 indirectly, and a globally reachable node is an agent that influences the whole
 group.
 
-\begin{definition}[Periodic digraph]
+\begin{definition}[Periodic digraph~\cite{baggio_graph}]
 \label{def:periodic}
 A strongly connected digraph is \emph{periodic} if there exists an integer $k > 1$
 (the period) that divides the length of every simple cycle of the digraph; otherwise
@@ -42,11 +43,12 @@ it is \emph{aperiodic}.
 \end{definition}
 
 Equivalently, a strongly connected digraph $G$ is periodic if and only if the greatest
-common divisor of the lengths of its simple cycles is larger than $1$. In particular,
+common divisor of the lengths of its simple cycles is larger than
+$1$~\cite{baggio_graph}. In particular,
 a strongly connected digraph with a self-loop is aperiodic, since the self-loop is a
 cycle of length $1$.
 
-\begin{definition}[Strongly connected components and condensation digraph]
+\begin{definition}[Strongly connected components and condensation digraph~\cite{baggio_dt}]
 Given a weighted digraph $G$, a subgraph $S$ is a \emph{strongly connected component}
 of $G$ if $S$ is strongly connected and any other subgraph of $G$ strictly containing
 $S$ is not strongly connected. The \emph{condensation digraph} $C(G)$ is obtained by
@@ -54,31 +56,32 @@ collapsing each strongly connected component of $G$ into a single node: for any 
 distinct strongly connected components $S_k$ and $S_h$, there is an edge
 $(S_k, S_h)$ in $C(G)$ if and only if there exists an edge $(i,j) \in E$ with
 $i \in S_k$ and $j \in S_h$ (self-loops are not allowed in $C(G)$). A node of $C(G)$
-with no outgoing edges is called a \emph{sink}.
+with no outgoing edges is called a \emph{sink}~\cite{baggio_graph}.
 \end{definition}
 
 A sink of $C(G)$ is a group of agents that are influenced only by members of the group
 itself: no agent outside the group can change their opinions.
 
-If $G$ contains a globally reachable node, then $C(G)$ has a unique sink.
+If $G$ contains a globally reachable node, then $C(G)$ has a unique
+sink~\cite{baggio_dt}.
 
 \subsubsection{Matrices}
 \label{subsubsec:prelim-matrices}
 
-\begin{definition}[Row-stochastic matrix]
+\begin{definition}[Row-stochastic matrix~\cite{baggio_matrix}]
 \label{def:row-stochastic}
 A matrix $A \in \mathbb{R}^{n \times n}$ is \emph{row-stochastic} if it is
 non-negative and $A \mathbf{1}_n = \mathbf{1}_n$, i.e.\ each row sums to $1$.
 \end{definition}
 
-\begin{theorem}[Spectral properties of row-stochastic matrices]
+\begin{theorem}[Spectral properties of row-stochastic matrices~\cite{baggio_matrix}]
 \label{thm:stoch-spectrum}
 If $A \in \mathbb{R}^{n \times n}$ is row-stochastic, then
 $1 \in \operatorname{spec}(A)$ and $\rho(A) = 1$; hence $\operatorname{spec}(A)$ is
 contained in the closed unit disk.
 \end{theorem}
 
-\begin{definition}[Semi-convergent matrix]
+\begin{definition}[Semi-convergent matrix~\cite{baggio_matrix}]
 \label{def:semiconv}
 A matrix $A \in \mathbb{R}^{n \times n}$ is \emph{semi-convergent} if
 $\lim_{k \to +\infty} A^k$ exists and is finite.
@@ -87,19 +90,19 @@ $\lim_{k \to +\infty} A^k$ exists and is finite.
 The properties of a non-negative matrix that determine its spectrum are characterized
 by the graph notions above.
 
-\begin{definition}[Irreducible and primitive matrices]
+\begin{definition}[Irreducible and primitive matrices~\cite{baggio_matrix}]
 A non-negative matrix $A \in \mathbb{R}^{n \times n}$, $n \geq 2$, is
 \emph{irreducible} if $\sum_{k=0}^{n-1} A^k$ is positive, and \emph{primitive} if
 there exists $k \in \mathbb{N}$ such that $A^k$ is positive.
 \end{definition}
 
-\begin{theorem}[Irreducible matrices and digraphs]
+\begin{theorem}[Irreducible matrices and digraphs~\cite{baggio_graph}]
 \label{thm:irreducible}
 Let $G$ be a weighted digraph of order $n \geq 2$ with weighted adjacency matrix $A$.
 Then $A$ is irreducible if and only if $G$ is strongly connected.
 \end{theorem}
 
-\begin{theorem}[Primitive matrices and digraphs]
+\begin{theorem}[Primitive matrices and digraphs~\cite{baggio_graph}]
 \label{thm:primitive}
 Let $G$ be a weighted digraph of order $n \geq 2$ with weighted adjacency matrix $A$.
 Then $A$ is primitive if and only if $G$ is strongly connected and aperiodic. In

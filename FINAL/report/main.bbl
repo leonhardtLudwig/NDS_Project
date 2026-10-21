@@ -1,0 +1,23 @@
+\begin{thebibliography}{1}
+
+\bibitem{baggio_dt}
+Giacomo Baggio.
+\newblock {DT} averaging systems.
+\newblock Lecture slides, Network Dynamical Systems, University of Padova, 2025.
+
+\bibitem{baggio_graph}
+Giacomo Baggio.
+\newblock {Elements of Graph Theory}.
+\newblock Lecture slides, Network Dynamical Systems, University of Padova, 2025.
+
+\bibitem{baggio_matrix}
+Giacomo Baggio.
+\newblock {Elements of Matrix Theory}.
+\newblock Lecture slides, Network Dynamical Systems, University of Padova, 2025.
+
+\bibitem{proskurnikov2017tutorial}
+Anton~V. Proskurnikov and Roberto Tempo.
+\newblock A tutorial on modeling and analysis of dynamic social networks. {Part I}.
+\newblock {\em Annual Reviews in Control}, 43:65--79, 2017.
+
+\end{thebibliography}
