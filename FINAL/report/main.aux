@@ -65,25 +65,42 @@
 \citation{proskurnikov2017tutorial}
 \citation{baggio_dt}
 \citation{proskurnikov2017tutorial}
-\bibstyle{plain}
-\bibdata{references}
-\bibcite{baggio_dt}{1}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Rosetta stone}{5}{subsubsection.2.1.4}\protected@file@percent }
 \newlabel{subsubsec:rosetta}{{2.1.4}{5}{Rosetta stone}{subsubsection.2.1.4}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Rosetta stone of the FDG model $x(k+1) = A x(k)$, with $A$ row-stochastic: for each case, an example digraph (unlabelled edges have weight $1$), its matrix $A$, the spectrum of $A$, the general property of $A$ and of $G$, and the outcome. Cases (i)--(iv) and the examples follow~\cite  {baggio_dt}; the properties of case (v), left blank in the slides, follow from~\cite  {proskurnikov2017tutorial}.}}{5}{table.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{tab:rosetta}{{1}{5}{Rosetta stone of the FDG model $x(k+1) = A x(k)$, with $A$ row-stochastic: for each case, an example digraph (unlabelled edges have weight $1$), its matrix $A$, the spectrum of $A$, the general property of $A$ and of $G$, and the outcome. Cases (i)--(iv) and the examples follow~\cite {baggio_dt}; the properties of case (v), left blank in the slides, follow from~\cite {proskurnikov2017tutorial}}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Stubbornness and social power in the FDG model}{5}{subsection.2.2}\protected@file@percent }
+\newlabel{subsec:fdg-stub}{{2.2}{5}{Stubbornness and social power in the FDG model}{subsection.2.2}{}}
+\citation{proskurnikov2017tutorial}
+\citation{proskurnikov2017tutorial}
+\citation{proskurnikov2017tutorial}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The two networks used in Sections~\ref {subsec:fdg-stub} and~\ref {sec:fj}. An edge $i \to j$ means that agent $i$ is influenced by agent $j$. In (a) all edges have weight $1$, in (b) all edges have weight $1/2$. The dashed self-loop of agent~$1$, of weight $t$, is the only modification considered: the other edges of agent~$1$ are scaled by $1-t$ (equation~\eqref  {eq:self-weight}).}}{6}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:networks}{{1}{6}{The two networks used in Sections~\ref {subsec:fdg-stub} and~\ref {sec:fj}. An edge $i \to j$ means that agent $i$ is influenced by agent $j$. In (a) all edges have weight $1$, in (b) all edges have weight $1/2$. The dashed self-loop of agent~$1$, of weight $t$, is the only modification considered: the other edges of agent~$1$ are scaled by $1-t$ (equation~\eqref {eq:self-weight})}{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Modelling stubbornness: self-weights and stubborn agents}{6}{subsubsection.2.2.1}\protected@file@percent }
+\newlabel{subsubsec:fdg-stub-model}{{2.2.1}{6}{Modelling stubbornness: self-weights and stubborn agents}{subsubsection.2.2.1}{}}
+\newlabel{def:stubborn}{{2.4}{6}{Stubbornness~\cite {proskurnikov2017tutorial}}{theorem.2.4}{}}
+\newlabel{eq:self-weight}{{2}{6}{Modelling stubbornness: self-weights and stubborn agents}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Self-weights, stubbornness and convergence}{7}{subsubsection.2.2.2}\protected@file@percent }
+\newlabel{subsubsec:fdg-stub-conv}{{2.2.2}{7}{Self-weights, stubbornness and convergence}{subsubsection.2.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Opinions $x_i(k)$ in the two networks of Figure~\ref {fig:networks} (top: directed cycle; bottom: bidirectional ring) for three values of the self-weight $t$ of agent~$1$ (columns), with $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top $. Agent~$1$ is marked with dots.}}{8}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:fdg-conv}{{2}{8}{Opinions $x_i(k)$ in the two networks of Figure~\ref {fig:networks} (top: directed cycle; bottom: bidirectional ring) for three values of the self-weight $t$ of agent~$1$ (columns), with $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top $. Agent~$1$ is marked with dots}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Self-weights, stubbornness and social power}{8}{subsubsection.2.2.3}\protected@file@percent }
+\newlabel{subsubsec:fdg-stub-power}{{2.2.3}{8}{Self-weights, stubbornness and social power}{subsubsection.2.2.3}{}}
+\citation{proskurnikov2017tutorial}
+\bibstyle{plain}
+\bibdata{references}
+\bibcite{baggio_dt}{1}
 \bibcite{baggio_graph}{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Social power of agent~$1$ ($w_1$) and of agent~$2$ ($w_2$) as a function of the self-weight $t \in (0,1]$ of agent~$1$, computed numerically in the directed cycle (dots) and in the bidirectional ring (crosses); the two networks give the same values.}}{9}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:fdg-power}{{3}{9}{Social power of agent~$1$ ($w_1$) and of agent~$2$ ($w_2$) as a function of the self-weight $t \in (0,1]$ of agent~$1$, computed numerically in the directed cycle (dots) and in the bidirectional ring (crosses); the two networks give the same values}{figure.caption.5}{}}
+\newlabel{rem:many-stubborn}{{2.5}{9}{More than one stubborn agent}{theorem.2.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}FJ}{9}{section.3}\protected@file@percent }
+\newlabel{sec:fj}{{3}{9}{FJ}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Introduction to the FJ model}{9}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stubborness and social power in the FJ model}{9}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{9}{section.4}\protected@file@percent }
+\newlabel{sec:conclusions}{{4}{9}{Conclusions}{section.4}{}}
 \bibcite{baggio_matrix}{3}
 \bibcite{proskurnikov2017tutorial}{4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Stubborness and social power in the FDG model}{6}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Modelling stubborness}{6}{subsubsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Stubborness and convergence}{6}{subsubsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Stubborness and social power}{6}{subsubsection.2.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}FJ}{6}{section.3}\protected@file@percent }
-\newlabel{sec:fj}{{3}{6}{FJ}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Introduction to the FJ model}{6}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stubborness and social power in the FJ model}{6}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{6}{section.4}\protected@file@percent }
-\newlabel{sec:conclusions}{{4}{6}{Conclusions}{section.4}{}}
-\gdef \@abspage@last{6}
+\gdef \@abspage@last{10}
