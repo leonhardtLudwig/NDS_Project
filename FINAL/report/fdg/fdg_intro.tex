@@ -40,9 +40,9 @@ powers of $A$. Three outcomes are possible:
 \label{subsubsec:consensus}
 
 The following theorem characterizes when the FDG model reaches a consensus. Its
-condition (A3) involves the subgraph of globally reachable nodes: this set of nodes is
-always strongly connected~\cite{baggio_dt}: a walk between two globally reachable nodes only visits
-nodes that are themselves globally reachable. Hence its periodicity is well defined
+condition (A3) involves the subgraph of globally reachable nodes. This set of nodes is
+always strongly connected~\cite{baggio_dt}, since a walk between two globally reachable
+nodes only visits nodes that are themselves globally reachable. Hence its periodicity is well defined
 (Definition~\ref{def:periodic}).
 
 \begin{theorem}[Consensus in DT averaging systems~\cite{baggio_dt}]
@@ -90,6 +90,17 @@ reachable agent reaches the whole group and has a positive weight. Hence the
 consensus value depends only on the initial opinions of the globally reachable
 agents.
 
+Among the globally reachable agents, the social power depends on their position in the
+network, and it can be regarded as a centrality measure~\cite{proskurnikov2017tutorial}.
+For instance, in the model of French with $n = 3$ agents and
+\[
+  A = \begin{bmatrix} 1/2 & 1/2 & 0 \\ 1/3 & 1/3 & 1/3 \\ 0 & 1/2 & 1/2 \end{bmatrix},
+\]
+agents~$1$ and~$3$ listen to themselves and to agent~$2$, while agent~$2$ listens to
+everybody. All agents are globally reachable, but agent~$2$, the only one listened to by
+all the others, has the largest social power:
+$w = (2/7,\, 3/7,\, 2/7)^\top$~\cite{proskurnikov2017tutorial}.
+
 
 \subsubsection{Disagreement}
 \label{subsubsec:disagreement}
@@ -125,8 +136,8 @@ combination of the consensus values of the sinks~\cite{baggio_dt}.
 In social terms, a sink is a closed group that listens only to itself, and two closed
 groups never influence each other: each of them keeps its own consensus value. The
 agents in between listen, directly or through intermediaries, to several closed
-groups and settle on an intermediate opinion, closer to the groups they listen to
-more. As a consequence, the disagreement is bounded: every final opinion lies between
+groups and settle on an intermediate opinion between their consensus values. As a
+consequence, the disagreement is bounded: every final opinion lies between
 the smallest and the largest consensus value of the sinks.
 
 
@@ -152,7 +163,7 @@ is influenced only by itself, so each agent is a sink of $C(G)$ ($n_s = 2$), bot
 are aperiodic thanks to the self-loops, and every agent keeps its initial opinion,
 $x(k) = x(0)$ for all $k$.
 
-\begin{table}[ht]
+\begin{table}[H]
   \centering
   \small
   \renewcommand{\arraystretch}{1.6}

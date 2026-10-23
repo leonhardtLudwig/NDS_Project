@@ -21,7 +21,7 @@ left eigenvector associated with the eigenvalue $1$: no agent is favoured by the
 structure of the network, and any asymmetry in the social power will be due only to
 the self-weight added to agent~$1$.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \begin{tikzpicture}[baseline=(c.base)]
     \foreach \i in {1,...,6} {
@@ -60,7 +60,7 @@ the self-weight added to agent~$1$.
 \label{subsubsec:fdg-stub-model}
 
 The self-weight $a_{ii}$ is the weight that agent $i$ gives to its own \emph{current}
-opinion; it indicates how open the agent is to the opinions of the
+opinion~\cite{bullo2024lns}; it indicates how open the agent is to the opinions of the
 others~\cite{proskurnikov2017tutorial}. An agent with $a_{ii} = 0$ is open-minded and
 relies completely on the others; an agent with a positive self-weight changes its
 opinion more slowly, but it still moves towards the opinions it listens to. In social
@@ -115,9 +115,10 @@ The three values of $t$ correspond to three different cases of the Rosetta stone
         agent~$1$ is a cycle of length $1$, so the digraph becomes aperiodic. By
         Theorem~\ref{thm:primitive} the matrix is primitive, and the group reaches a
         consensus (case~(i)).
-  \item $t = 1$: agent~$1$ is stubborn. By the discussion in
-        Section~\ref{subsubsec:fdg-stub-model}, it is the only sink of $C(G)$ and the
-        only globally reachable node, so the group reaches a consensus on its initial
+  \item $t = 1$: agent~$1$ is stubborn. In both networks every other agent is
+        influenced by agent~$1$ through the cycle, directly or through intermediaries,
+        so by the discussion in Section~\ref{subsubsec:fdg-stub-model} agent~$1$ is the
+        only sink of $C(G)$ and the only globally reachable node, so the group reaches a consensus on its initial
         opinion $x_1(0)$ (case~(iii)).
 \end{itemize}
 
@@ -125,7 +126,7 @@ The same picture can be read on the spectrum of the matrix. For the directed cyc
 characteristic polynomial is
 \[
   p(\lambda) = (\lambda - 1)\,\big[\lambda^5 + (1-t)(\lambda^4 + \lambda^3 + \lambda^2
-  + \lambda + 1)\big],
+  + \lambda + 1)\big].
 \]
 Apart from $\lambda_1 = 1$, the eigenvalues are the roots of a polynomial of degree $5$,
 which for a generic $t$ have no closed-form expression; for the three values of $t$
@@ -142,7 +143,7 @@ For the bidirectional ring the characteristic polynomial is
 \[
   p(\lambda) = (\lambda - 1)\big(\lambda - \tfrac{1}{2}\big)
   \big(\lambda + \tfrac{1}{2}\big)\Big[\lambda^3 + (1-t)\lambda^2
-  - \tfrac{2t+1}{4}\,\lambda + \tfrac{t-1}{4}\Big],
+  - \tfrac{2t+1}{4}\,\lambda + \tfrac{t-1}{4}\Big].
 \]
 The eigenvalues $1$ and $\pm\frac{1}{2}$ do not depend on $t$, while the other three are
 the roots of the cubic factor, whose closed-form expression in $t$ is too involved to be
@@ -174,7 +175,7 @@ reached exactly after $n - 1 = 5$ steps. In the bidirectional ring every agent a
 the opinions of its two neighbours, so the opinions approach $x_1(0)$ gradually, the
 neighbours of agent~$1$ first.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{figures/fdg_convergence.eps}
   \caption{Opinions $x_i(k)$ in the two networks of Figure~\ref{fig:networks}
@@ -221,13 +222,25 @@ In other words, on these two networks the self-weight of agent~$1$ changes how t
 opinions converge, which depends on the network (Figure~\ref{fig:fdg-conv}), but not
 where they converge.
 
-\begin{figure}[ht]
+The bottom panel of Figure~\ref{fig:fdg-power} shows where the group converges: by
+point~(ii) of Theorem~\ref{thm:consensus}, the consensus value is $w^\top x(0)$, here
+computed for $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$, the initial condition of
+Figure~\ref{fig:fdg-conv}. For small $t$ all the agents have almost the same social
+power and the consensus value is close to the average of the initial opinions, $0.5$;
+as $t$ grows, the social power of agent~$1$ grows and the consensus value moves
+towards its initial opinion, $x_1(0) = 0$, which is reached for $t = 1$. For $t = 1/2$
+the consensus value is $\approx 0.429$, the value reached by the trajectories of
+Figure~\ref{fig:fdg-conv}. Also this curve is the same on the two networks.
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{figures/fdg_social_power.eps}
-  \caption{Social power of agent~$1$ ($w_1$) and of agent~$2$ ($w_2$) as a function
-  of the self-weight $t \in (0,1]$ of agent~$1$, computed numerically in the directed
-  cycle (dots) and in the bidirectional ring (crosses); the two networks give the same
-  values.}
+  \caption{Top: social power of agent~$1$ ($w_1$) and of agent~$2$ ($w_2$) as a
+  function of the self-weight $t \in (0,1]$ of agent~$1$. Bottom: consensus value
+  $w^\top x(0)$ for $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$; the dashed
+  lines mark the average of $x(0)$ and $x_1(0)$. Both panels are computed numerically
+  in the directed cycle (dots) and in the bidirectional ring (crosses); the two networks
+  give the same values.}
   \label{fig:fdg-power}
 \end{figure}
 

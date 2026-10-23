@@ -1,0 +1,267 @@
+\subsection{Introduction to the FJ model}
+\label{subsec:fj-intro}
+
+\subsubsection{The FJ model}
+\label{subsubsec:fj-model}
+
+In the FDG model every agent keeps averaging the opinions it listens to, and a
+persistent disagreement can only come from the structure of the network, i.e.\ from
+several closed groups (Theorem~\ref{thm:disagreement}). The Friedkin--Johnsen (FJ)
+model adds a second ingredient: every agent is also tied to a fixed opinion of its own,
+called its \emph{prejudice}. Following~\cite{proskurnikov2017tutorial}, the model reads
+\begin{equation}\label{eq:fj}
+  x(k+1) = \Lambda W x(k) + (I - \Lambda)\, u ,
+\end{equation}
+where
+\begin{itemize}
+  \item $W \in \mathbb{R}^{n \times n}$ is a row-stochastic matrix, the \emph{matrix of
+        social influences}; with the convention of Section~\ref{subsec:prelim},
+        $w_{ij} > 0$ means that agent $i$ is influenced by agent $j$, so $W$ plays the
+        role that $A$ plays in the FDG model;
+  \item $\Lambda = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$, with
+        $\lambda_i \in [0,1]$ the \emph{susceptibility} of agent $i$ to social
+        influence;
+  \item $u \in \mathbb{R}^n$ is a constant vector collecting the agents'
+        \emph{prejudices}.
+\end{itemize}
+Componentwise,
+\begin{equation}\label{eq:fj-i}
+  x_i(k+1) = \lambda_i \sum_{j=1}^{n} w_{ij}\, x_j(k) + (1 - \lambda_i)\, u_i .
+\end{equation}
+At every step agent $i$ averages the opinions it listens to, exactly as in the FDG
+model, and mixes this average with its prejudice: the weight $\lambda_i$ goes to the
+others and the complement $1 - \lambda_i$ goes to $u_i$. The two quantities play
+different roles: the prejudice $u_i$ is an opinion and says \emph{where} the agent is
+anchored, while $1 - \lambda_i$ is a weight and says \emph{how strongly}. The same
+model appears in~\cite{bullo2024lns}, where $\lambda_i$ is called the openness level of
+agent $i$ and $1 - \lambda_i$ its attachment to the prejudice.
+
+The special cases of~\eqref{eq:fj} are the following~\cite{proskurnikov2017tutorial}.
+\begin{itemize}
+  \item If $\lambda_i = 1$, agent $i$ follows the FDG rule. If $\Lambda = I$, the FJ
+        model reduces to the FDG model with $A = W$; for this reason we assume
+        $\Lambda \neq I$ from now on.
+  \item If $\lambda_i < 1$, agent $i$ is called \emph{prejudiced}: it is anchored to its
+        prejudice $u_i$.
+  \item If $\lambda_i = 0$, then $x_i(k) = u_i$ for all $k \geq 1$: the agent ignores
+        the others and jumps to its prejudice after one step. Its opinion never changes,
+        i.e.\ the agent is stubborn in the sense of Definition~\ref{def:stubborn}, only
+        if in addition $u_i = x_i(0)$. A stubborn agent of the FJ model is therefore an
+        agent with $\lambda_i = 0$ and $u_i = x_i(0)$.
+\end{itemize}
+
+In social terms, the self-weight of the FDG model and the prejudice of the FJ model are
+two different forms of resistance to influence. A self-weight ties an agent to its
+\emph{current} opinion, which still moves towards the others
+(Section~\ref{subsubsec:fdg-stub-model}); a prejudice ties it to a \emph{fixed}
+opinion, which never moves.
+
+In the original formulation of Friedkin and Johnsen the prejudices coincide with the
+initial opinions, $u = x(0)$, and the susceptibilities are coupled to the self-weights
+through $1 - \lambda_i = w_{ii}$~\cite{proskurnikov2017tutorial,bullo2024lns}. As
+in~\cite{proskurnikov2017tutorial}, we do not impose these conditions: $u$ and $x(0)$
+are independent, and so are $\Lambda$ and $W$. The choice $u = x(0)$ will be needed in
+Section~\ref{subsec:fj-stub} to define the influence centrality.
+
+\subsubsection{Convergence and stability}
+\label{subsubsec:fj-conv}
+% RESTRUCTURED (2026-10-23): this subsubsection was called "Convergence: all agents
+% P-dependent" and started from Corollary 22 of the tutorial. It now follows the order
+% of the tutorial: definitions, P-dependent agents and decomposition, Theorem 21 (where
+% V is defined), Corollary 22 (all agents P-dependent), Corollary 23, and only at the
+% end our observations (error dynamics). The former subsubsection "The general case:
+% P-independent agents" (label subsubsec:fj-general) is merged here.
+
+The FJ model~\eqref{eq:fj} is a linear system with the constant input $u$. Following
+\cite{proskurnikov2017tutorial}, we say that it \emph{converges} if the limit
+$x(\infty) = \lim_{k \to +\infty} x(k)$ exists for every initial condition $x(0)$, and
+that it is \emph{asymptotically stable} if $\Lambda W$ is convergent, i.e.\
+$\rho(\Lambda W) < 1$ (Definition~\ref{def:semiconv} and
+Theorem~\ref{thm:spectral-radius}). Following the same reference, a matrix $A$ is
+called \emph{regular} if $\lim_{k \to +\infty} A^k$ exists, i.e.\ if it is
+semi-convergent in the sense of Definition~\ref{def:semiconv}.
+
+Both properties are characterized by distinguishing the agents that are reached by the
+prejudices from those that are not.
+
+\begin{definition}[P-dependent agents~\cite{proskurnikov2017tutorial}]
+\label{def:p-dependent}
+An agent is \emph{P-dependent} if it is prejudiced, or if it is influenced, directly or
+through intermediaries, by some prejudiced agent, i.e.\ if there is a directed walk in
+$G$ from the agent to a prejudiced agent. Otherwise, the agent is
+\emph{P-independent}.
+\end{definition}
+
+The walk goes from the agent to the prejudiced agent because of our convention on the
+edges; in~\cite{proskurnikov2017tutorial}, where the edges are drawn in the opposite
+direction, the same walk goes from the prejudiced agent to the agent. In social terms,
+an agent is P-dependent if at least one prejudice reaches it.
+
+A P-independent agent $i$ is not prejudiced, so $\lambda_i = 1$, and it is not
+influenced by any P-dependent agent: if $w_{ij} > 0$ with $j$ P-dependent, there would
+be a walk from $i$ to a prejudiced agent through $j$, and $i$ would be P-dependent.
+Since $\Lambda \neq I$, there is at least one prejudiced agent, hence at least one
+P-dependent agent. Renumbering the agents so that agents $1, \dots, r$, with
+$r \geq 1$, are P-dependent and agents $r+1, \dots, n$ are P-independent, and
+splitting $x = [x^1; x^2]$, $u = [u^1; u^2]$, $W$ and $\Lambda$ accordingly, we
+have $W^{21} = 0$ and $\Lambda^{22} = I$, and the model~\eqref{eq:fj} decomposes
+as~\cite{proskurnikov2017tutorial}
+\begin{align}
+  x^1(k+1) &= \Lambda^{11}\bigl[W^{11} x^1(k) + W^{12} x^2(k)\bigr]
+              + (I - \Lambda^{11})\, u^1, \label{eq:fj-dep}\\
+  x^2(k+1) &= W^{22} x^2(k), \label{eq:fj-indep}
+\end{align}
+where $W^{22}$ is row-stochastic, since $W$ is row-stochastic and $W^{21} = 0$. The
+P-independent agents therefore follow an FDG
+model among themselves, with $A = W^{22}$, and no prejudice reaches them; the
+P-dependent agents receive the opinions of the P-independent ones as an additional
+input.
+
+\begin{theorem}[\cite{proskurnikov2017tutorial}]
+\label{thm:fj-general}
+Let the group have $r \geq 1$ P-dependent agents and $n - r \geq 0$ P-independent
+ones. Then:
+\begin{enumerate}
+  \item[(i)] the subsystem~\eqref{eq:fj-dep} is asymptotically stable, i.e.\
+        $\rho(\Lambda^{11} W^{11}) < 1$;
+  \item[(ii)] the model~\eqref{eq:fj} converges if and only if $r = n$ or $W^{22}$ is
+        regular;
+  \item[(iii)] in this case
+        \begin{equation}\label{eq:fj-V}
+          x^1(\infty) = V \begin{bmatrix} u^1 \\ x^2(\infty) \end{bmatrix}, \qquad
+          V = (I - \Lambda^{11} W^{11})^{-1}
+              \begin{bmatrix} I - \Lambda^{11} & \Lambda^{11} W^{12} \end{bmatrix},
+        \end{equation}
+        and the matrix $V$ is row-stochastic.
+\end{enumerate}
+\end{theorem}
+
+Since $V$ is row-stochastic, the final opinion of every P-dependent agent is a convex
+combination of the prejudices and of the final opinions of the P-independent
+agents~\cite{proskurnikov2017tutorial}. The latter are the limit of the FDG
+model~\eqref{eq:fj-indep}: by the Rosetta stone (Section~\ref{subsubsec:rosetta}),
+$W^{22}$ is regular if and only if every sink of the condensation digraph of the
+subgraph of P-independent agents, whose adjacency matrix is $W^{22}$, is aperiodic. In
+social terms, the P-dependent agents settle on a compromise between the prejudices and
+the opinions of the P-independent agents they listen to whenever these opinions
+settle; whether the whole group settles is decided only by the P-independent agents,
+who ignore the prejudices and behave as in the FDG model.
+
+When $r = n$ there are no P-independent agents, the subsystem~\eqref{eq:fj-dep} is the
+whole model, and~\eqref{eq:fj-V} reduces to
+\begin{equation}\label{eq:fj-V-all}
+  x(\infty) = V u, \qquad V = (I - \Lambda W)^{-1}(I - \Lambda),
+\end{equation}
+now with $V \in \mathbb{R}^{n \times n}$. This case is the subject of the following
+result.
+
+\begin{corollary}[\cite{proskurnikov2017tutorial}]
+\label{cor:fj-stable}
+The FJ model~\eqref{eq:fj} is asymptotically stable if and only if all agents are
+P-dependent. Then $V = (I - \Lambda W)^{-1}(I - \Lambda)$ and $x(\infty) = Vu$ for
+every $x(0)$. This holds, in particular, if $\lambda_i < 1$ for every agent, or if
+$\Lambda \neq I$ and $G$ is strongly connected ($W$ irreducible).
+\end{corollary}
+
+In social terms, the group converges, for every initial opinion, as soon as every agent
+that is not anchored to a prejudice listens, directly or through intermediaries, to
+someone who is. On a strongly connected network, such as the two networks of
+Figure~\ref{fig:networks}, a single prejudiced agent is enough. Note that this does not
+require aperiodicity, unlike the FDG model of Section~\ref{subsec:fdg-stub}.
+
+The condition of Corollary~\ref{cor:fj-stable} can also be read on the matrix
+$\Lambda W$ with the tools of the course. The matrix $\Lambda W$ is no longer
+row-stochastic: since $W$ is row-stochastic, the $i$-th row of $\Lambda W$ sums to
+$\lambda_i$. Rows of agents that are not prejudiced sum to $1$, rows of prejudiced
+agents sum to less than $1$, and since $\Lambda \neq I$ at least one such row exists.
+Hence $\Lambda W$ is row-substochastic (Definition~\ref{def:row-substochastic}) and
+Lemma~\ref{lem:substochastic} applies.
+% MOVED (2026-10-23): Definition "Row-substochastic matrix" and Lemma "Convergent
+% row-substochastic matrices" were here; they are now in the Preliminaries
+% (Section 1.1.2), with the definition of weighted out-degree.
+
+For $A = \Lambda W$ the weighted out-degree of agent $i$ is $\lambda_i$: the nodes with
+out-degree $1$ are the agents that are not prejudiced, and the nodes with out-degree
+less than $1$ are the prejudiced agents. The condition of
+Lemma~\ref{lem:substochastic} therefore reads: every agent that is not prejudiced is
+influenced, directly or through intermediaries, by a prejudiced agent, i.e.\ all the
+agents are P-dependent. This is exactly the condition of
+Corollary~\ref{cor:fj-stable}. Indeed,~\cite{proskurnikov2017tutorial} remarks that
+Corollary~\ref{cor:fj-stable} can be turned into a criterion of Schur stability for
+substochastic matrices, and~\cite{bullo2024lns} proves the same condition for the FJ
+model through this lemma.
+
+If some agents are P-independent, the model is not asymptotically stable, but it may
+still converge. Part (ii) of Theorem~\ref{thm:fj-general} gives the condition in terms
+of $W^{22}$; in terms of the whole matrix $\Lambda W$ it reads as follows.
+
+\begin{corollary}[\cite{proskurnikov2017tutorial}]
+\label{cor:fj-regular}
+The FJ model~\eqref{eq:fj} converges if and only if $\Lambda W$ is regular.
+\end{corollary}
+
+As remarked in~\cite{proskurnikov2017tutorial}, this property is not trivial: a system
+$x(k+1) = A x(k) + B u$ with a regular matrix $A$ may not converge, and may even have
+unbounded solutions, as for $A = B = I$.
+
+We conclude with two observations that are not stated
+in~\cite{proskurnikov2017tutorial}: the first one relies on~\cite{bullo2024lns}, the
+second one is an intuition of ours.
+
+First, the limit of Corollary~\ref{cor:fj-stable} is the unique equilibrium of the
+model. If $\Lambda W$ is convergent, \eqref{eq:fj} is an affine system
+$x(k+1) = A x(k) + b$ with $A = \Lambda W$ convergent and $b = (I - \Lambda)u$; then
+$I - \Lambda W$ is invertible, the only equilibrium is
+$x^* = (I - \Lambda W)^{-1}(I - \Lambda)u = Vu$, and $x(k) \to x^*$ for every
+$x(0)$~\cite{bullo2024lns}. Letting $e(k) = x(k) - x^*$ and subtracting
+$x^* = \Lambda W x^* + (I - \Lambda)u$ from~\eqref{eq:fj} gives
+\begin{equation}\label{eq:fj-error}
+  e(k+1) = \Lambda W\, e(k),
+\end{equation}
+an autonomous linear system in which the prejudice $u$ does not appear: $\Lambda W$
+decides whether the opinions converge, $u$ decides where.
+
+Second, the linear system~\eqref{eq:fj-error} gives an intuition for the role of the
+P-dependent agents. At each step, agent $i$ keeps a fraction $\lambda_i$ of the
+weighted average of the deviations of the agents it listens to. An agent that is not
+prejudiced ($\lambda_i = 1$) only averages the deviations, while a prejudiced agent
+loses a fraction $1-\lambda_i$ of them (in~\eqref{eq:fj}, this fraction is replaced by
+the agent's fixed prejudice). The deviations therefore leave the group only through
+the prejudiced agents, and they vanish only if every agent is influenced, directly or
+through intermediaries, by one of them, i.e.\ all agents are P-dependent. A group of
+agents that is not influenced, even indirectly, by any prejudiced agent loses no
+deviation and behaves as an FDG model, as in~\eqref{eq:fj-indep}.
+
+\subsubsection{The equilibrium and the augmented graph}
+\label{subsubsec:fj-equilibrium}
+
+Assume that all agents are P-dependent, so that the opinions converge to
+$x(\infty) = Vu$, with $V = (I - \Lambda W)^{-1}(I - \Lambda)$
+(Corollary~\ref{cor:fj-stable}). By Theorem~\ref{thm:fj-general}, the matrix $V$ is
+row-stochastic; see also~\cite{bullo2024lns}. The row sums can also be checked
+directly: since $W \mathbf{1}_n = \mathbf{1}_n$, we have
+$(I - \Lambda W)\mathbf{1}_n = (I - \Lambda)\mathbf{1}_n$, and multiplying on the left
+by $(I - \Lambda W)^{-1}$ gives $V \mathbf{1}_n = \mathbf{1}_n$.
+
+Hence each final opinion
+\[
+  x_i(\infty) = \sum_{j=1}^{n} v_{ij}\, u_j
+\]
+is a weighted average of the prejudices, and three facts follow.
+\begin{itemize}
+  \item The initial opinions are forgotten: $x(0)$ does not appear in $x(\infty)$.
+  \item Only the prejudices of prejudiced agents count: if $\lambda_j = 1$, the $j$-th
+        column of $I - \Lambda$ is zero, hence so is the $j$-th column of $V$, and
+        $u_j$ has no weight in any final opinion.
+  \item Every final opinion lies between the smallest and the largest prejudice of the
+        prejudiced agents.
+\end{itemize}
+In the FDG model, the consensus value $w^\top x(0)$ is a weighted average of the
+initial opinions, with the same weights $w$ for every agent
+(Theorem~\ref{thm:consensus}). In the FJ model, the final opinions are weighted
+averages of the prejudices, and each agent has its own weights, given by its row of
+$V$.
+
+% REMOVED (2026-10-23): \subsubsection{The general case: P-independent agents}
+% \label{subsubsec:fj-general} -- merged into Section 3.1.2 (Theorem 21 and
+% Corollary 23 of the tutorial), to follow the order of the tutorial.

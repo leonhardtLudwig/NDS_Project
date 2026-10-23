@@ -17,7 +17,7 @@ direction~\cite{proskurnikov2017tutorial}.
 
 \begin{definition}[Weighted adjacency matrix~\cite{baggio_graph}]
 \label{def:adjacency}
-Given a weighted digraph $G = (V, E, \{a_{ij}\}_{(i,j) \in E})$ of order $n$, its
+Given a weighted digraph $G$ of order $n$, its
 \emph{weighted adjacency matrix} is the $n \times n$ matrix $A$ whose $(i,j)$ entry
 is equal to the edge weight $a_{ij}$ if $(i,j) \in E$, and is equal to zero
 otherwise.
@@ -81,11 +81,17 @@ $1 \in \operatorname{spec}(A)$ and $\rho(A) = 1$; hence $\operatorname{spec}(A)$
 contained in the closed unit disk.
 \end{theorem}
 
-\begin{definition}[Semi-convergent matrix~\cite{baggio_matrix}]
+\begin{definition}[Semi-convergent and convergent matrices~\cite{baggio_matrix}]
 \label{def:semiconv}
 A matrix $A \in \mathbb{R}^{n \times n}$ is \emph{semi-convergent} if
-$\lim_{k \to +\infty} A^k$ exists and is finite.
+$\lim_{k \to +\infty} A^k$ exists and is finite, and \emph{convergent} (or
+\emph{Schur stable}) if, in addition, $\lim_{k \to +\infty} A^k = 0$.
 \end{definition}
+
+\begin{theorem}[Convergence and spectral radius~\cite{baggio_matrix}]
+\label{thm:spectral-radius}
+A matrix $A \in \mathbb{R}^{n \times n}$ is convergent if and only if $\rho(A) < 1$.
+\end{theorem}
 
 The properties of a non-negative matrix that determine its spectrum are characterized
 by the graph notions above.
@@ -113,3 +119,21 @@ primitive.
 % REMOVED (to discuss): "If G is strongly connected, then G is aperiodic if and only
 % if the period of each node is 1." -- the period of a node is not defined in this
 % section, and the gcd characterization above is enough for what follows.
+
+Given a weighted digraph $G$ with weighted adjacency matrix $A$, the \emph{weighted
+out-degree} of node $i$ is the $i$-th row sum $\sum_{j=1}^{n} a_{ij}$ of
+$A$~\cite{baggio_graph}. A row-stochastic matrix has all weighted out-degrees equal to
+$1$; when some of them are smaller than $1$, the following notions apply.
+
+\begin{definition}[Row-substochastic matrix~\cite{baggio_dt}]
+\label{def:row-substochastic}
+A non-negative matrix $A \in \mathbb{R}^{n \times n}$ is \emph{row-substochastic} if
+all its row sums are at most $1$ and at least one row sum is strictly less than $1$.
+\end{definition}
+
+\begin{lemma}[Convergent row-substochastic matrices~\cite{baggio_dt}]
+\label{lem:substochastic}
+Let $G$ be a weighted digraph with row-substochastic adjacency matrix $A$. Then $A$ is
+convergent if and only if $G$ contains directed walks from each node with (weighted)
+out-degree $1$ to a node with (weighted) out-degree strictly less than $1$.
+\end{lemma}
