@@ -68,11 +68,15 @@ terms, a self-weight is a form of inertia, not an anchor to a fixed opinion.
 
 \begin{definition}[Stubbornness~\cite{proskurnikov2017tutorial}]
 \label{def:stubborn}
-An agent is \emph{stubborn} if its opinion remains unchanged independently of the
-others' opinions. In the FDG model, agent $i$ is stubborn, i.e.\
-$x_i(k) = x_i(0)$ for all $k$, if and only if $a_{ii} = 1$ (and hence $a_{ij} = 0$
-for all $j \neq i$).
+% REVISED (2026-10-24): definition now exactly as Definition 16 of the tutorial; the
+% FDG characterization (a_ii = 1) is moved to the text below.
+An agent is said to be \emph{stubborn} if its opinion remains unchanged independent
+of the others' opinions.
 \end{definition}
+
+If the opinions obey the FDG model, then agent $i$ is stubborn, $x_i(k) \equiv x_i(0)$,
+if and only if $a_{ii} = 1$~\cite{proskurnikov2017tutorial} (and hence $a_{ij} = 0$
+for all $j \neq i$, since $A$ is row-stochastic).
 
 Stubbornness is therefore the extreme case of the self-weight, and there is no
 intermediate degree of it: an agent with $0 < a_{ii} < 1$ is not stubborn, it only has
@@ -113,7 +117,7 @@ The three values of $t$ correspond to three different cases of the Rosetta stone
   \item $0 < t < 1$: agent~$1$ still listens to its neighbours with total weight
         $1-t > 0$, so the digraph stays strongly connected, and the self-loop of
         agent~$1$ is a cycle of length $1$, so the digraph becomes aperiodic. By
-        Theorem~\ref{thm:primitive} the matrix is primitive, and the group reaches a
+        Corollary~\ref{cor:primitive-selfloop} the matrix is primitive, and the group reaches a
         consensus (case~(i)).
   \item $t = 1$: agent~$1$ is stubborn. In both networks every other agent is
         influenced by agent~$1$ through the cycle, directly or through intermediaries,

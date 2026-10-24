@@ -1,5 +1,7 @@
 \subsection{Introduction to the FDG model}
 \label{subsec:fdg-intro}
+% REVISED (2026-10-24): Theorems Consensus, Disagreement and Corollary Average consensus
+% are now stated exactly as in the course slides (only the notation is adapted).
 
 \subsubsection{The FDG model}
 \label{subsubsec:fdg-model}
@@ -20,7 +22,8 @@ agents it is influenced by,
 \end{equation}
 or, in vector form, $x(k+1) = A x(k)$, where $A$ is the weighted adjacency matrix
 of $G$ (Definition~\ref{def:adjacency}). The constraint on the weights means that
-$A$ is row-stochastic (Definition~\ref{def:row-stochastic}).
+$A$ is row-stochastic (Definition~\ref{def:row-stochastic}). In the terminology
+of~\cite{baggio_dt}, the FDG model is a \emph{DT averaging system}.
 
 Since $x(k) = A^k x(0)$, the asymptotic behaviour of the model is determined by the
 powers of $A$. Three outcomes are possible:
@@ -53,32 +56,50 @@ statements are equivalent:
   \item[(A1)] the eigenvalue $1$ is simple and all other eigenvalues $\mu$ satisfy
               $|\mu| < 1$;
   \item[(A2)] $A$ is semi-convergent and
-              $\lim_{k \to +\infty} A^k = \mathbf{1}_n w^\top$, where
+              $\lim_{k \to \infty} A^k = \mathbf{1}_n w^\top$ where
               $w \in \mathbb{R}^n$ satisfies $w \geq 0$,
-              $\mathbf{1}_n^\top w = 1$ and $w^\top A = w^\top$;
+              $\mathbf{1}_n^\top w = 1$, and $w^\top A = w^\top$;
   \item[(A3)] $G$ contains a globally reachable node and the subgraph of globally
               reachable nodes is aperiodic.
 \end{itemize}
 If any, and therefore all, of the previous conditions are satisfied, then
 \begin{itemize}
-  \item[(i)]  $w$ is the left eigenvector of $A$ associated with the eigenvalue $1$, and
-              $w_i > 0$ if and only if node $i$ is globally reachable;
-  \item[(ii)] the solution of the FDG model satisfies
-              $\lim_{k \to +\infty} x(k) = \big(w^\top x(0)\big)\, \mathbf{1}_n$.
+  \item[(i)]  $w$ is the left dominant eigenvector of $A$ and $w_i > 0$ iff node $i$
+              is globally reachable;
+  \item[(ii)] the solution of the DT averaging system satisfies
+              $\lim_{k \to \infty} x(k) = \big(w^\top x(0)\big)\mathbf{1}_n$.
 \end{itemize}
 \end{theorem}
 
 \begin{corollary}[Average consensus~\cite{baggio_dt}]
 \label{cor:average}
-If $A$ is doubly-stochastic, i.e.\ row-stochastic with also
-$\mathbf{1}_n^\top A = \mathbf{1}_n^\top$, and (A3) holds, then
+If $A$ is doubly-stochastic and (A3) holds, then
 $w = \frac{1}{n}\mathbf{1}_n$ and
 $\lim_{k \to +\infty} x(k) = \big(\frac{1}{n}\sum_{i=1}^{n} x_i(0)\big)\, \mathbf{1}_n$.
 \end{corollary}
 
+In Theorem~\ref{thm:consensus}, the left dominant eigenvector is the left eigenvector
+associated with the dominant eigenvalue $\rho(A) = 1$
+(Theorem~\ref{thm:stoch-spectrum})~\cite{baggio_matrix}.
+
+\paragraph{Social power.}
 The entry $w_i$ is called the \emph{social power} of agent $i$: it is the weight of
-the initial opinion $x_i(0)$ in the final opinion of the
-group~\cite{proskurnikov2017tutorial}.
+the initial opinion $x_i(0)$ in the final opinion of the group, i.e.\ in the consensus
+value~\cite{proskurnikov2017tutorial}
+\begin{equation}\label{eq:social-power}
+  \lim_{k \to \infty} x_i(k) = w^\top x(0) = \sum_{j=1}^{n} w_j\, x_j(0)
+  \qquad \text{for every agent } i.
+\end{equation}
+This definition requires a consensus. By (A2), $\lim_{k \to \infty} A^k = \mathbf{1}_n w^\top$: all the rows of the
+limit matrix are equal to $w^\top$, so every agent ends at the same weighted average
+$w^\top x(0)$ of the initial opinions, and a single vector $w$ describes the whole
+group. Without a consensus, as in Theorem~\ref{thm:disagreement}, the limit matrix
+still exists, but its rows are not all equal, otherwise every agent would end at the
+same value for every $x(0)$: each agent ends at its own weighted average of the
+initial opinions, so the weight of $x_j(0)$ depends on the agent, and no single vector
+plays the role of $w$.
+% REVISED (2026-10-24): added why the social power requires a consensus (rows of the
+% limit matrix all equal to w^T under (A2), not all equal in the disagreement case).
 
 Point (i) has a direct social interpretation. Since the consensus value
 $w^\top x(0)$ is the same for every agent, the initial opinion of agent $i$ can
@@ -122,9 +143,10 @@ equivalent:
   \item[(A3)] each sink of $C(G)$ is aperiodic.
 \end{itemize}
 If any, and therefore all, of the previous conditions are satisfied, then the solution
-of the FDG model satisfies
-$\lim_{k \to +\infty} x(k) = v \neq \alpha \mathbf{1}_n$ for every
-$\alpha \in \mathbb{R}$.
+of the DT averaging system satisfies
+\[
+  \lim_{k \to \infty} x(k) = v \neq \alpha \mathbf{1}_n, \quad \alpha \in \mathbb{R}.
+\]
 \end{theorem}
 
 The final opinions can be described group by group. The agents of a sink are not
