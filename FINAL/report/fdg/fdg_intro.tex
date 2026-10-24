@@ -32,8 +32,12 @@ powers of $A$. Three outcomes are possible:
         $x(0)$; this happens when $A$ is not semi-convergent
         (Definition~\ref{def:semiconv}), e.g.\ when $A$ has an
         eigenvalue $\mu \neq 1$ with $|\mu| = 1$;
-  \item \emph{consensus}: $\lim_{k \to +\infty} x(k) = \alpha \mathbf{1}_n$ for some
-        $\alpha \in \mathbb{R}$;
+  \item \emph{consensus}: for every $x(0)$, $\lim_{k \to +\infty} x(k) = \alpha \mathbf{1}_n$
+        for some $\alpha \in \mathbb{R}$, which depends on
+        $x(0)$~\cite{proskurnikov2017tutorial};
+% REVISED (2026-10-24): "for every x(0)" added to the consensus outcome, as in
+% Definition 14 of the tutorial (consensus is a property of the model); the other two
+% outcomes are unchanged (as in the course slides).
   \item \emph{disagreement}: $\lim_{k \to +\infty} x(k) = v$ with
         $v \neq \alpha \mathbf{1}_n$ for every $\alpha \in \mathbb{R}$.
 \end{itemize}

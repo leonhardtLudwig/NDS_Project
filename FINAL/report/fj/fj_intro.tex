@@ -7,7 +7,7 @@
 In the FDG model every agent keeps averaging the opinions it listens to, and a
 persistent disagreement can only come from the structure of the network, i.e.\ from
 several closed groups (Theorem~\ref{thm:disagreement}). The Friedkin--Johnsen (FJ)
-model adds a second ingredient: every agent is also tied to a fixed opinion of its own,
+model adds a second ingredient: each agent can also be tied to a fixed opinion of its own,
 called its \emph{prejudice}. Following~\cite{proskurnikov2017tutorial}, the model reads
 \begin{equation}\label{eq:fj}
   x(k+1) = \Lambda W x(k) + (I - \Lambda)\, u ,
@@ -292,9 +292,9 @@ In the FDG model, consensus is a property of the model: the model reaches a cons
 if the final opinions coincide for any initial condition
 $x(0)$~\cite{proskurnikov2017tutorial}. In the FJ model with all agents P-dependent,
 the limit $x(\infty) = Vu$ does not depend on $x(0)$
-(Corollary~\ref{cor:fj-stable}): whether the final opinions coincide is decided by the
-prejudices $u$, which are an external input, and not by the network. This is
-why~\cite{proskurnikov2017tutorial} studies the FJ model in terms of convergence and
+(equation~\eqref{eq:fj-V-all}): whether the final opinions coincide is decided by the
+prejudices $u$, which are an external input, and not by the network. In our
+reading, this is why~\cite{proskurnikov2017tutorial} studies the FJ model in terms of convergence and
 of the form of the limit, and not in terms of consensus.
 
 The notion of consensus of the FDG model applies again only when some agents are
@@ -332,18 +332,37 @@ call the \emph{augmented graph}:
   \item a virtual agent $i'$ is influenced only by itself, with weight $1$, so its
         opinion never changes: it is stubborn (Definition~\ref{def:stubborn}).
 \end{itemize}
-Figure~\ref{fig:augmented} shows the augmented graph of the directed cycle of
-Figure~\ref{fig:networks}(a) when agent~$1$ is the only prejudiced agent. In social
+Figure~\ref{fig:augmented} shows the FJ model on the directed cycle of
+Figure~\ref{fig:networks}(a) when agent~$1$ is the only prejudiced agent, and the
+corresponding augmented graph. In panel~(a) the prejudice is drawn as an input
+entering agent~$1$, since it is not an agent of the network but an external piece of
+information; in panel~(b) it becomes the virtual agent $1'$, and the edge follows our
+convention: it goes from $1$ to $1'$, because agent~$1$ listens to $1'$. In social
 terms, a prejudice behaves as an additional agent that never changes its opinion: a
 prejudiced agent keeps listening to the others, and also listens to this stubborn
 agent placed beside it.
 
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}
+  \begin{tikzpicture}[baseline=(c.base)]
+    \foreach \i in {1,...,6} {
+      \node[agent] (p\i) at ({90-60*(\i-1)}:1.3) {\i};
+    }
+    \node (c) at (0,0) {};
+    \foreach \i/\j in {2/3,3/4,4/5,5/6,6/1} {
+      \draw[edge] (p\i) -- (p\j);
+    }
+    \draw[edge] (p1) -- node[weight, above right] {$\lambda_1$} (p2);
+    \draw[edge] (0,2.7) node[above, font=\scriptsize] {$u_1$}
+      -- node[weight, right] {$1-\lambda_1$} (p1);
+    \node at (0,-2.0) {\small (a) FJ model on the directed cycle};
+  \end{tikzpicture}
+  \hspace{1.5cm}
+  \begin{tikzpicture}[baseline=(c.base)]
     \foreach \i in {1,...,6} {
       \node[agent] (a\i) at ({90-60*(\i-1)}:1.3) {\i};
     }
+    \node (c) at (0,0) {};
     \foreach \i/\j in {2/3,3/4,4/5,5/6,6/1} {
       \draw[edge] (a\i) -- (a\j);
     }
@@ -351,22 +370,28 @@ agent placed beside it.
     \node[agent, dashed, minimum size=5.5mm] (v1) at (0,2.7) {$1'$};
     \draw[edge] (a1) -- node[weight, right] {$1-\lambda_1$} (v1);
     \draw[selfloop] (v1) to node[weight, above] {$1$} (v1);
+    \node at (0,-2.0) {\small (b) augmented graph};
   \end{tikzpicture}
-  \caption{Augmented graph of the directed cycle of Figure~\ref{fig:networks}(a) when
+  \caption{The FJ model on the directed cycle of Figure~\ref{fig:networks}(a) when
   agent~$1$ is the only prejudiced agent ($\lambda_1 < 1$, $\lambda_i = 1$ for
-  $i \neq 1$). Unlabelled edges have weight $1$. The virtual agent $1'$ (dashed) is
-  stubborn and keeps the opinion $u_1$. The virtual agents $2', \dots, 6'$ are
-  stubborn agents that nobody listens to, and are not drawn.}
+  $i \neq 1$), and its augmented graph. Unlabelled edges have weight $1$. (a)~The
+  prejudice $u_1$ enters agent~$1$ as an external input, with weight $1-\lambda_1$;
+  this arrow is not an edge of $G$. (b)~The input becomes the virtual agent $1'$
+  (dashed), which is stubborn and keeps the opinion $u_1$. The virtual agents
+  $2', \dots, 6'$ are stubborn agents that nobody listens to, and are not drawn.}
   \label{fig:augmented}
 \end{figure}
+% REVISED (2026-10-24): Figure fig:augmented now has two panels, (a) the FJ model with
+% the prejudice as an input arrow entering agent 1 and (b) the augmented graph
+% (option (a) chosen by the user; the change of direction is explained in the text).
 
 The augmented graph also shows, from the side of the FDG model, why consensus is not
 the right notion for the FJ model. This observation is ours. The augmented
 model~\eqref{eq:fj-augmented} is an FDG model, so the classification of
 Table~\ref{tab:rosetta} applies to it. Each virtual agent is influenced only by
 itself, so it is a sink of the condensation digraph of the augmented graph, and it is
-aperiodic because of its self-loop. Hence the augmented graph has at least $n \geq 2$
-sinks, and it is not strongly connected: the consensus cases~(i) and~(iii) of
+aperiodic because of its self-loop. Hence the augmented graph has at least $n$ sinks
+and it is not strongly connected; for $n \geq 2$, the consensus cases~(i) and~(iii) of
 Table~\ref{tab:rosetta} never occur, and neither does case~(ii). Only two outcomes
 remain.
 \begin{itemize}
@@ -423,16 +448,16 @@ the consensus value, and it is defined only when the group reaches a consensus
 (Section~\ref{subsubsec:consensus}). In the FJ model consensus is not the relevant
 notion (Section~\ref{subsubsec:fj-final}), so the social power cannot be used as it
 is. Rewriting the FJ model as the augmented FDG model~\eqref{eq:fj-augmented} does not
-help: the augmented graph has at least $n \geq 2$ sinks, so the augmented model never
-reaches a consensus and its social power is not defined (this remark is ours). A
+help: the augmented graph has at least $n$ sinks, so for $n \geq 2$ the augmented
+model never reaches a consensus and its social power is not defined (this remark is ours). A
 different measure is needed:~\cite{proskurnikov2017tutorial} discusses an extension of
 the social power to the FJ model, introduced by Friedkin.
 
 \paragraph{Influence centrality.}
 As in~\cite{proskurnikov2017tutorial}, we confine ourselves to the asymptotically
 stable FJ model with $u = x(0)$, the traditional assumption of the Friedkin--Johnsen
-theory (Section~\ref{subsubsec:fj-model}); then $x(\infty) = V x(0)$ by
-Corollary~\ref{cor:fj-stable}. The assumption $u = x(0)$ is what gives the initial
+theory (Section~\ref{subsubsec:fj-model}); then $x(\infty) = V x(0)$
+by~\eqref{eq:fj-V-all}. The assumption $u = x(0)$ is what gives the initial
 opinions a role: in general $x(\infty) = Vu$ does not depend on $x(0)$, so the initial
 opinions would have no weight in the final opinions. The social power of agent $i$ is
 generalized as the mean weight of its initial opinion in determining the group
@@ -458,9 +483,9 @@ the regularity and the full regularity of the stochastic matrix
 $A$~\cite{proskurnikov2017tutorial} (Definition~\ref{def:regular}). For a fixed $W$,
 let $\Lambda = \alpha I_n$ with $\alpha \in (0,1)$, i.e.\ the same susceptibility for
 all agents, and consider the corresponding matrix $V_\alpha$ and vector $c_\alpha$.
-Then $c_0 = n^{-1} \mathbf{1}_n$, i.e.\ the social power is uniformly distributed between
-all agents~\cite{proskurnikov2017tutorial}: with $\Lambda = 0$ every agent keeps its
-initial opinion, and $V = I$.
+For $\alpha = 0$, i.e.\ $\Lambda = 0$, every agent keeps its initial opinion, $V = I$
+and $c_0 = n^{-1} \mathbf{1}_n$: the social power is uniformly distributed between all
+agents~\cite{proskurnikov2017tutorial}.
 
 \begin{lemma}[\cite{proskurnikov2017tutorial}]
 \label{lem:centrality-limit}
