@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.6)  24 OCT 2026 17:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.6)  28 OCT 2026 14:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -553,24 +553,24 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -580,15 +580,15 @@ LaTeX Font Info:    ... okay on input line 53.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
-* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
+* v-part:(T,H,B)=(51.21504pt, 742.61676pt, 51.21504pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=455.24411pt
-* \textheight=702.78308pt
-* \oddsidemargin=-1.1381pt
-* \evensidemargin=-1.1381pt
-* \topmargin=-38.1381pt
+* \textwidth=483.69687pt
+* \textheight=742.61676pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-58.05495pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=11.0pt
@@ -623,16 +623,16 @@ LaTeX Font Info:    ... okay on input line 53.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 53.
+Package hyperref Info: Link coloring OFF on input line 59.
  (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (./main.toc)
@@ -651,63 +651,191 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [4{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-[5])
+[5]) (./fdg/fdg_stub_sp.tex
 
-[6] (./fdg/fdg_stub_sp.tex
+[6]
 
 [7]
-
-[8]
 Package epstopdf Info: Source file: <figures/fdg_convergence.eps>
 (epstopdf)                    date: 2026-10-22 10:07:55
 (epstopdf)                    size: 141326 bytes
 (epstopdf)             Output file: <figures/fdg_convergence-eps-converted-to.pdf>
-(epstopdf)                    date: 2026-10-22 10:08:26
+(epstopdf)                    date: 2026-10-28 09:46:00
 (epstopdf)                    size: 20147 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fdg_convergence-eps-converted-to.pdf figures/fdg_convergence.eps>
-(epstopdf)             \includegraphics on input line 184.
+(epstopdf)             \includegraphics on input line 238.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdg_convergence-eps-converted-to.pdf, id=304, 445.665pt x 271.0125pt>
+<figures/fdg_convergence-eps-converted-to.pdf, id=308, 445.665pt x 271.0125pt>
 File: figures/fdg_convergence-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdg_convergence-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fdg_convergence-eps-converted-to.pdf  used on input line 184.
-(pdftex.def)             Requested size: 455.24411pt x 276.83847pt.
+Package pdftex.def Info: figures/fdg_convergence-eps-converted-to.pdf  used on input line 238.
+(pdftex.def)             Requested size: 454.67622pt x 276.49524pt.
 
 
-[9]
-
-[10 <./figures/fdg_convergence-eps-converted-to.pdf>]
+[8 <./figures/fdg_convergence-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/fdg_social_power.eps>
 (epstopdf)                    date: 2026-10-22 10:07:57
 (epstopdf)                    size: 130646 bytes
 (epstopdf)             Output file: <figures/fdg_social_power-eps-converted-to.pdf>
-(epstopdf)                    date: 2026-10-22 10:08:26
+(epstopdf)                    date: 2026-10-28 09:46:00
 (epstopdf)                    size: 17331 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fdg_social_power-eps-converted-to.pdf figures/fdg_social_power.eps>
-(epstopdf)             \includegraphics on input line 241.
+(epstopdf)             \includegraphics on input line 314.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdg_social_power-eps-converted-to.pdf, id=339, 426.59375pt x 269.005pt>
+<figures/fdg_social_power-eps-converted-to.pdf, id=335, 426.59375pt x 269.005pt>
 File: figures/fdg_social_power-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdg_social_power-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fdg_social_power-eps-converted-to.pdf  used on input line 241.
-(pdftex.def)             Requested size: 455.24411pt x 287.08955pt.
+Package pdftex.def Info: figures/fdg_social_power-eps-converted-to.pdf  used on input line 314.
+(pdftex.def)             Requested size: 454.67622pt x 286.73244pt.
 )) (./fj/fj_main.tex (./fj/fj_intro.tex
 
-[11 <./figures/fdg_social_power-eps-converted-to.pdf>]
+[9 <./figures/fdg_social_power-eps-converted-to.pdf>]
+
+[10]
+
+[11]
 
 [12]
 
 [13]
 
-[14]
+[14]) (./fj/fj_stub_sp.tex
 
 [15]
+Package epstopdf Info: Source file: <figures/fj_stubborn_equivalence.eps>
+(epstopdf)                    date: 2026-10-28 12:01:45
+(epstopdf)                    size: 153471 bytes
+(epstopdf)             Output file: <figures/fj_stubborn_equivalence-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-10-28 12:02:50
+(epstopdf)                    size: 15011 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fj_stubborn_equivalence-eps-converted-to.pdf figures/fj_stubborn_equivalence.eps>
+(epstopdf)             \includegraphics on input line 187.
+Package epstopdf Info: Output file is already uptodate.
+<figures/fj_stubborn_equivalence-eps-converted-to.pdf, id=532, 445.665pt x 270.00874pt>
+File: figures/fj_stubborn_equivalence-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/fj_stubborn_equivalence-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fj_stubborn_equivalence-eps-converted-to.pdf  used on input line 187.
+(pdftex.def)             Requested size: 454.67622pt x 275.47118pt.
 
-[16]
 
-[17]) (./fj/fj_stub_sp.tex)) (./conclusion/conclusion_main.tex) (./main.bbl)
+[16 <./figures/fj_stubborn_equivalence-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fj_stubborn_perturbation.eps>
+(epstopdf)                    date: 2026-10-28 12:01:47
+(epstopdf)                    size: 153741 bytes
+(epstopdf)             Output file: <figures/fj_stubborn_perturbation-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-10-28 12:02:51
+(epstopdf)                    size: 15401 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fj_stubborn_perturbation-eps-converted-to.pdf figures/fj_stubborn_perturbation.eps>
+(epstopdf)             \includegraphics on input line 238.
+Package epstopdf Info: Output file is already uptodate.
+<figures/fj_stubborn_perturbation-eps-converted-to.pdf, id=562, 445.665pt x 270.00874pt>
+File: figures/fj_stubborn_perturbation-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/fj_stubborn_perturbation-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fj_stubborn_perturbation-eps-converted-to.pdf  used on input line 238.
+(pdftex.def)             Requested size: 454.67622pt x 275.47118pt.
+Package epstopdf Info: Source file: <figures/fj_error.eps>
+(epstopdf)                    date: 2026-10-28 12:01:48
+(epstopdf)                    size: 156640 bytes
+(epstopdf)             Output file: <figures/fj_error-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-10-28 12:02:51
+(epstopdf)                    size: 14647 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fj_error-eps-converted-to.pdf figures/fj_error.eps>
+(epstopdf)             \includegraphics on input line 307.
+Package epstopdf Info: Output file is already uptodate.
+<figures/fj_error-eps-converted-to.pdf, id=571, 445.665pt x 271.0125pt>
+File: figures/fj_error-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/fj_error-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fj_error-eps-converted-to.pdf  used on input line 307.
+(pdftex.def)             Requested size: 454.67622pt x 276.49524pt.
 
-[18] (./main.aux)
+
+[17 <./figures/fj_stubborn_perturbation-eps-converted-to.pdf>]
+
+[18 <./figures/fj_error-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fj_one_prejudiced.eps>
+(epstopdf)                    date: 2026-10-28 12:01:52
+(epstopdf)                    size: 186708 bytes
+(epstopdf)             Output file: <figures/fj_one_prejudiced-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-10-28 12:02:51
+(epstopdf)                    size: 21654 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fj_one_prejudiced-eps-converted-to.pdf figures/fj_one_prejudiced.eps>
+(epstopdf)             \includegraphics on input line 544.
+Package epstopdf Info: Output file is already uptodate.
+<figures/fj_one_prejudiced-eps-converted-to.pdf, id=636, 445.665pt x 270.00874pt>
+File: figures/fj_one_prejudiced-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/fj_one_prejudiced-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fj_one_prejudiced-eps-converted-to.pdf  used on input line 544.
+(pdftex.def)             Requested size: 454.67622pt x 275.47118pt.
+
+
+[19]
+Package epstopdf Info: Source file: <figures/fj_all_prejudiced.eps>
+(epstopdf)                    date: 2026-10-28 12:01:54
+(epstopdf)                    size: 147118 bytes
+(epstopdf)             Output file: <figures/fj_all_prejudiced-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-10-28 12:02:51
+(epstopdf)                    size: 13194 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fj_all_prejudiced-eps-converted-to.pdf figures/fj_all_prejudiced.eps>
+(epstopdf)             \includegraphics on input line 576.
+Package epstopdf Info: Output file is already uptodate.
+<figures/fj_all_prejudiced-eps-converted-to.pdf, id=645, 445.665pt x 155.58125pt>
+File: figures/fj_all_prejudiced-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/fj_all_prejudiced-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fj_all_prejudiced-eps-converted-to.pdf  used on input line 576.
+(pdftex.def)             Requested size: 454.67622pt x 158.72874pt.
+
+
+[20 <./figures/fj_one_prejudiced-eps-converted-to.pdf> <./figures/fj_all_prejudiced-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fj_auxiliary.eps>
+(epstopdf)                    date: 2026-10-28 12:01:55
+(epstopdf)                    size: 175312 bytes
+(epstopdf)             Output file: <figures/fj_auxiliary-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-10-28 12:02:51
+(epstopdf)                    size: 16874 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fj_auxiliary-eps-converted-to.pdf figures/fj_auxiliary.eps>
+(epstopdf)             \includegraphics on input line 645.
+Package epstopdf Info: Output file is already uptodate.
+<figures/fj_auxiliary-eps-converted-to.pdf, id=696, 445.665pt x 271.0125pt>
+File: figures/fj_auxiliary-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/fj_auxiliary-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fj_auxiliary-eps-converted-to.pdf  used on input line 645.
+(pdftex.def)             Requested size: 454.67622pt x 276.49524pt.
+Package epstopdf Info: Source file: <figures/fj_influence_centrality.eps>
+(epstopdf)                    date: 2026-10-28 12:01:57
+(epstopdf)                    size: 248251 bytes
+(epstopdf)             Output file: <figures/fj_influence_centrality-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-10-28 12:02:52
+(epstopdf)                    size: 20934 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fj_influence_centrality-eps-converted-to.pdf figures/fj_influence_centrality.eps>
+(epstopdf)             \includegraphics on input line 719.
+Package epstopdf Info: Output file is already uptodate.
+<figures/fj_influence_centrality-eps-converted-to.pdf, id=702, 425.59pt x 269.005pt>
+File: figures/fj_influence_centrality-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/fj_influence_centrality-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fj_influence_centrality-eps-converted-to.pdf  used on input line 719.
+(pdftex.def)             Requested size: 454.67622pt x 287.40561pt.
+
+
+[21 <./figures/fj_auxiliary-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fj_lemma24.eps>
+(epstopdf)                    date: 2026-10-28 12:01:58
+(epstopdf)                    size: 185836 bytes
+(epstopdf)             Output file: <figures/fj_lemma24-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-10-28 12:02:52
+(epstopdf)                    size: 20118 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fj_lemma24-eps-converted-to.pdf figures/fj_lemma24.eps>
+(epstopdf)             \includegraphics on input line 762.
+Package epstopdf Info: Output file is already uptodate.
+<figures/fj_lemma24-eps-converted-to.pdf, id=729, 386.44376pt x 186.6975pt>
+File: figures/fj_lemma24-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/fj_lemma24-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fj_lemma24-eps-converted-to.pdf  used on input line 762.
+(pdftex.def)             Requested size: 454.67622pt x 219.66301pt.
+)) (./conclusion/conclusion_main.tex) (./main.bbl
+
+[22 <./figures/fj_influence_centrality-eps-converted-to.pdf> <./figures/fj_lemma24-eps-converted-to.pdf>])
+
+[23] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -716,18 +844,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 50BB584286A9F7373FCCDC3E57AB4246;5422.
  ) 
 Here is how much of TeX's memory you used:
- 24624 strings out of 473190
- 455942 string characters out of 5715801
- 854748 words of memory out of 5000000
- 47348 multiletter control sequences out of 15000+600000
+ 24902 strings out of 473190
+ 461960 string characters out of 5715801
+ 855235 words of memory out of 5000000
+ 47603 multiletter control sequences out of 15000+600000
  578087 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,15n,91p,747b,963s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on main.pdf (18 pages, 476603 bytes).
+ 84i,15n,91p,793b,963s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on main.pdf (23 pages, 632256 bytes).
 PDF statistics:
- 656 PDF objects out of 1000 (max. 8388607)
- 558 compressed objects within 6 object streams
- 96 named destinations out of 1000 (max. 500000)
- 223 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 943 PDF objects out of 1000 (max. 8388607)
+ 757 compressed objects within 8 object streams
+ 119 named destinations out of 1000 (max. 500000)
+ 263 words of extra memory for PDF output out of 10000 (max. 10000000)
 

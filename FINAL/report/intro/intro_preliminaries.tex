@@ -59,12 +59,16 @@ integer $k > 1$ (the period) that divides the length of every simple cycle of th
 digraph.
 \end{definition}
 
-A strongly connected digraph that is not periodic is called \emph{aperiodic}.
-Equivalently, a strongly connected digraph $G$ is periodic if and only if the greatest
-common divisor of the lengths of its simple cycles is larger than
-$1$~\cite{baggio_graph}. In particular,
-a strongly connected digraph with a self-loop is aperiodic, since the self-loop is a
-cycle of length $1$.
+A strongly connected digraph that is not periodic is called \emph{aperiodic}; in
+particular, a strongly connected digraph with a self-loop is aperiodic, since the
+self-loop is a cycle of length $1$.
+% REVISED (2026-10-28, review): the gcd characterization is a restatement of the definition and is never used. Was:
+% A strongly connected digraph that is not periodic is called \emph{aperiodic}.
+% Equivalently, a strongly connected digraph $G$ is periodic if and only if the greatest
+% common divisor of the lengths of its simple cycles is larger than
+% $1$~\cite{baggio_graph}. In particular,
+% a strongly connected digraph with a self-loop is aperiodic, since the self-loop is a
+% cycle of length $1$.
 
 \begin{definition}[Strongly connected component~\cite{baggio_dt}]
 Given a (weighted) digraph $G$. A subgraph $S$ is a \emph{strongly connected
@@ -79,8 +83,10 @@ distinct strongly connected components $S_k$ and $S_h$ there is an edge $(S_k, S
 in $C(G)$ iff there exists an edge $(i,j)$ in $G$ with $i \in S_k$ and $j \in S_h$.
 \end{definition}
 
-Self-loops are not allowed in $C(G)$~\cite{baggio_dt}. A node with no outgoing edges is
-called a \emph{sink}~\cite{baggio_graph}.
+A node with no outgoing edges is called a \emph{sink}~\cite{baggio_graph}.
+% REVISED (2026-10-28, review): removed "Self-loops are not allowed in C(G)": it follows from the definition (edges only between distinct components). Was:
+% Self-loops are not allowed in $C(G)$~\cite{baggio_dt}. A node with no outgoing edges is
+% called a \emph{sink}~\cite{baggio_graph}.
 A sink of $C(G)$ is a group of agents that are influenced only by members of the group
 itself: no agent outside the group can change their opinions.
 
@@ -149,9 +155,9 @@ semi-convergent (Definition~\ref{def:semiconv}).
 % ADDED (2026-10-24): Definition 15 of the tutorial (notation W -> A, p_inf -> w),
 % moved here from the FJ chapter because it is a general notion on matrices.
 
-The properties of a non-negative matrix that determine its spectrum are characterized
-by the graph notions above.
-
+% REVISED (2026-10-28, review): removed a vague transition sentence. Was:
+% The properties of a non-negative matrix that determine its spectrum are characterized
+% by the graph notions above.
 \begin{definition}[Irreducible and primitive matrices~\cite{baggio_matrix}]
 A non-negative matrix $A \in \mathbb{R}^{n \times n}$, $n \geq 2$, is
 \begin{itemize}

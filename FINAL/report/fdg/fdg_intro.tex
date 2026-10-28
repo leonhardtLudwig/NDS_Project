@@ -6,17 +6,25 @@
 \subsubsection{The FDG model}
 \label{subsubsec:fdg-model}
 
-Consider a group of individuals $V = \{1, 2, \dots, n\}$, where $x_i \in \mathbb{R}$
-is the opinion that individual $i$ holds on a given topic. The influences among the
-individuals are described by a weighted digraph
-$G = (V, E, \{a_{ij}\}_{(i,j) \in E})$: following the convention of
-Section~\ref{subsec:prelim}, an edge $(i,j) \in E$, with weight $a_{ij} > 0$, means
-that individual $i$ is influenced by individual $j$.
-
-The French--Harary--DeGroot (FDG) model~\cite{baggio_dt}, called French--DeGroot
-model in~\cite{proskurnikov2017tutorial}, describes how each individual, or agent,
-updates its opinion: the new opinion is a weighted average of the opinions of the
-agents it is influenced by,
+Consider a group of agents $V = \{1, 2, \dots, n\}$, where $x_i \in \mathbb{R}$ is the
+opinion of agent $i$ on a given topic, and a weighted digraph
+$G = (V, E, \{a_{ij}\}_{(i,j) \in E})$ describing who influences whom, with the
+convention of Section~\ref{subsec:prelim}. In the
+French--Harary--DeGroot (FDG) model~\cite{baggio_dt}, called French--DeGroot model
+in~\cite{proskurnikov2017tutorial}, the new opinion of each agent is a weighted average
+of the opinions of the agents it is influenced by,
+% REVISED (2026-10-28, review): shortened; the edge convention is already stated in Section 1.1. Was:
+% Consider a group of individuals $V = \{1, 2, \dots, n\}$, where $x_i \in \mathbb{R}$
+% is the opinion that individual $i$ holds on a given topic. The influences among the
+% individuals are described by a weighted digraph
+% $G = (V, E, \{a_{ij}\}_{(i,j) \in E})$: following the convention of
+% Section~\ref{subsec:prelim}, an edge $(i,j) \in E$, with weight $a_{ij} > 0$, means
+% that individual $i$ is influenced by individual $j$.
+%
+% The French--Harary--DeGroot (FDG) model~\cite{baggio_dt}, called French--DeGroot
+% model in~\cite{proskurnikov2017tutorial}, describes how each individual, or agent,
+% updates its opinion: the new opinion is a weighted average of the opinions of the
+% agents it is influenced by,
 \begin{equation}\label{eq:fdg}
   x_i(k+1) = \sum_{j=1}^{n} a_{ij}\, x_j(k), \qquad \sum_{j=1}^{n} a_{ij} = 1,
 \end{equation}
@@ -47,10 +55,15 @@ powers of $A$. Three outcomes are possible:
 \label{subsubsec:consensus}
 
 The following theorem characterizes when the FDG model reaches a consensus. Its
-condition (A3) involves the subgraph of globally reachable nodes. This set of nodes is
-always strongly connected~\cite{baggio_dt}, since a walk between two globally reachable
-nodes only visits nodes that are themselves globally reachable. Hence its periodicity is well defined
+condition (A3) involves the subgraph of globally reachable nodes, which is always
+strongly connected~\cite{baggio_dt}, so that its periodicity is well defined
 (Definition~\ref{def:periodic}).
+% REVISED (2026-10-28, review): shortened (the justification of the strong connectivity is dropped). Was:
+% The following theorem characterizes when the FDG model reaches a consensus. Its
+% condition (A3) involves the subgraph of globally reachable nodes. This set of nodes is
+% always strongly connected~\cite{baggio_dt}, since a walk between two globally reachable
+% nodes only visits nodes that are themselves globally reachable. Hence its periodicity is well defined
+% (Definition~\ref{def:periodic}).
 
 \begin{theorem}[Consensus in DT averaging systems~\cite{baggio_dt}]
 \label{thm:consensus}
@@ -94,26 +107,37 @@ value~\cite{proskurnikov2017tutorial}
   \lim_{k \to \infty} x_i(k) = w^\top x(0) = \sum_{j=1}^{n} w_j\, x_j(0)
   \qquad \text{for every agent } i.
 \end{equation}
-This definition requires a consensus. By (A2), $\lim_{k \to \infty} A^k = \mathbf{1}_n w^\top$: all the rows of the
-limit matrix are equal to $w^\top$, so every agent ends at the same weighted average
-$w^\top x(0)$ of the initial opinions, and a single vector $w$ describes the whole
-group. Without a consensus, as in Theorem~\ref{thm:disagreement}, the limit matrix
-still exists, but its rows are not all equal, otherwise every agent would end at the
-same value for every $x(0)$: each agent ends at its own weighted average of the
-initial opinions, so the weight of $x_j(0)$ depends on the agent, and no single vector
-plays the role of $w$.
+This definition requires a consensus: by (A2), all the rows of
+$\lim_{k \to \infty} A^k = \mathbf{1}_n w^\top$ are equal to $w^\top$, so a single vector
+describes the whole group. Without a consensus, as in Theorem~\ref{thm:disagreement},
+the rows of the limit matrix differ, each agent ends at its own weighted average of the
+initial opinions, and no single vector plays the role of $w$.
+% REVISED (2026-10-28, review): shortened, same content. Was:
+% This definition requires a consensus. By (A2), $\lim_{k \to \infty} A^k = \mathbf{1}_n w^\top$: all the rows of the
+% limit matrix are equal to $w^\top$, so every agent ends at the same weighted average
+% $w^\top x(0)$ of the initial opinions, and a single vector $w$ describes the whole
+% group. Without a consensus, as in Theorem~\ref{thm:disagreement}, the limit matrix
+% still exists, but its rows are not all equal, otherwise every agent would end at the
+% same value for every $x(0)$: each agent ends at its own weighted average of the
+% initial opinions, so the weight of $x_j(0)$ depends on the agent, and no single vector
+% plays the role of $w$.
 % REVISED (2026-10-24): added why the social power requires a consensus (rows of the
 % limit matrix all equal to w^T under (A2), not all equal in the disagreement case).
 
-Point (i) has a direct social interpretation. Since the consensus value
-$w^\top x(0)$ is the same for every agent, the initial opinion of agent $i$ can
-contribute to it only if it reaches \emph{all} the agents. If $i$ is not globally
-reachable, there is at least one agent that is influenced by $i$ neither directly
-nor through intermediaries: the opinion of $i$ never reaches that agent, so it
-cannot enter the common value, and $w_i = 0$. Conversely, the opinion of a globally
-reachable agent reaches the whole group and has a positive weight. Hence the
-consensus value depends only on the initial opinions of the globally reachable
-agents.
+Point (i) has a direct social interpretation: the consensus value is the same for
+every agent, so the initial opinion of agent $i$ can enter it only if it reaches
+\emph{all} the agents, i.e.\ if $i$ is globally reachable. Hence the consensus value
+depends only on the initial opinions of the globally reachable agents.
+% REVISED (2026-10-28, review): shortened, same content. Was:
+% Point (i) has a direct social interpretation. Since the consensus value
+% $w^\top x(0)$ is the same for every agent, the initial opinion of agent $i$ can
+% contribute to it only if it reaches \emph{all} the agents. If $i$ is not globally
+% reachable, there is at least one agent that is influenced by $i$ neither directly
+% nor through intermediaries: the opinion of $i$ never reaches that agent, so it
+% cannot enter the common value, and $w_i = 0$. Conversely, the opinion of a globally
+% reachable agent reaches the whole group and has a positive weight. Hence the
+% consensus value depends only on the initial opinions of the globally reachable
+% agents.
 
 Among the globally reachable agents, the social power depends on their position in the
 network, and it can be regarded as a centrality measure~\cite{proskurnikov2017tutorial}.
@@ -121,10 +145,13 @@ For instance, in the model of French with $n = 3$ agents and
 \[
   A = \begin{bmatrix} 1/2 & 1/2 & 0 \\ 1/3 & 1/3 & 1/3 \\ 0 & 1/2 & 1/2 \end{bmatrix},
 \]
-agents~$1$ and~$3$ listen to themselves and to agent~$2$, while agent~$2$ listens to
-everybody. All agents are globally reachable, but agent~$2$, the only one listened to by
-all the others, has the largest social power:
-$w = (2/7,\, 3/7,\, 2/7)^\top$~\cite{proskurnikov2017tutorial}.
+all agents are globally reachable, but agent~$2$, the only one listened to by all the
+others, has the largest social power, $w = (2/7,\, 3/7,\, 2/7)^\top$~\cite{proskurnikov2017tutorial}.
+% REVISED (2026-10-28, review): shortened (the description of who listens to whom can be read on the matrix). Was:
+% agents~$1$ and~$3$ listen to themselves and to agent~$2$, while agent~$2$ listens to
+% everybody. All agents are globally reachable, but agent~$2$, the only one listened to by
+% all the others, has the largest social power:
+% $w = (2/7,\, 3/7,\, 2/7)^\top$~\cite{proskurnikov2017tutorial}.
 
 
 \subsubsection{Disagreement}
@@ -154,40 +181,63 @@ of the DT averaging system satisfies
 \end{theorem}
 
 The final opinions can be described group by group. The agents of a sink are not
-influenced by anyone outside the sink, so each sink evolves as an FDG model on its own
-and, being aperiodic, reaches an internal consensus that depends only on the initial
-opinions of its members. Every agent outside the sinks converges instead to a convex
-combination of the consensus values of the sinks~\cite{baggio_dt}.
-
-In social terms, a sink is a closed group that listens only to itself, and two closed
-groups never influence each other: each of them keeps its own consensus value. The
-agents in between listen, directly or through intermediaries, to several closed
-groups and settle on an intermediate opinion between their consensus values. As a
-consequence, the disagreement is bounded: every final opinion lies between
-the smallest and the largest consensus value of the sinks.
+influenced by anyone outside it, so each sink evolves as an FDG model on its own and,
+being aperiodic, reaches an internal consensus that depends only on the initial
+opinions of its members; every agent outside the sinks converges to a convex
+combination of the consensus values of the sinks~\cite{baggio_dt}. In social terms, a
+sink is a closed group that listens only to itself, and the agents in between settle
+on an intermediate opinion: the disagreement is bounded by the smallest and the largest
+consensus value of the sinks.
+% REVISED (2026-10-28, review): two paragraphs merged, same content. Was:
+% The final opinions can be described group by group. The agents of a sink are not
+% influenced by anyone outside the sink, so each sink evolves as an FDG model on its own
+% and, being aperiodic, reaches an internal consensus that depends only on the initial
+% opinions of its members. Every agent outside the sinks converges instead to a convex
+% combination of the consensus values of the sinks~\cite{baggio_dt}.
+%
+% In social terms, a sink is a closed group that listens only to itself, and two closed
+% groups never influence each other: each of them keeps its own consensus value. The
+% agents in between listen, directly or through intermediaries, to several closed
+% groups and settle on an intermediate opinion between their consensus values. As a
+% consequence, the disagreement is bounded: every final opinion lies between
+% the smallest and the largest consensus value of the sinks.
 
 
 \subsubsection{Rosetta stone}
 \label{subsubsec:rosetta}
 
-The results of this section, together with the consensus and disagreement theorems
-above, classify all the possible behaviours of the FDG model. The classification is
-summarized in Table~\ref{tab:rosetta}, the so-called \emph{Rosetta stone}~\cite{baggio_dt}, which
-translates each property of the row-stochastic matrix $A$ into a property of the
-digraph $G$ and into the corresponding asymptotic outcome; for each case, the table
-also reports an example digraph, its matrix and its spectrum.
-
-The two consensus cases illustrate Theorem~\ref{thm:consensus}. In case~(i) both
-agents are globally reachable and $A$ is doubly-stochastic, so by
-Corollary~\ref{cor:average} $w = (1/2, 1/2)^\top$ and the group agrees on the average
-$\big(x_1(0) + x_2(0)\big)/2$. In case~(iii) agent~$2$ is influenced by agent~$1$
-but not vice versa, so only agent~$1$ is globally reachable: $w = (1, 0)^\top$ and
-the group agrees on $x_1(0)$, whatever the initial opinion of agent~$2$.
-
-Case~(iv) illustrates Theorem~\ref{thm:disagreement} in its simplest form: each agent
-is influenced only by itself, so each agent is a sink of $C(G)$ ($n_s = 2$), both sinks
-are aperiodic thanks to the self-loops, and every agent keeps its initial opinion,
-$x(k) = x(0)$ for all $k$.
+Table~\ref{tab:rosetta}, the so-called \emph{Rosetta stone}~\cite{baggio_dt},
+summarizes all the possible behaviours of the FDG model: it translates each property
+of the row-stochastic matrix $A$ into a property of the digraph $G$ and into the
+asymptotic outcome, with an example for each case; the translation between $A$ and $G$
+comes from Theorems~\ref{thm:irreducible} and~\ref{thm:primitive} in cases (i)--(ii),
+and from Theorems~\ref{thm:consensus} and~\ref{thm:disagreement} in cases
+(iii)--(iv). In case~(i) both agents are
+globally reachable and $A$ is doubly-stochastic, so by Corollary~\ref{cor:average} the
+group agrees on the average of the initial opinions. In case~(iii) agent~$1$ is
+stubborn (Definition~\ref{def:stubborn}) and is the only globally reachable agent:
+$w = (1, 0)^\top$ and the group agrees on $x_1(0)$. In case~(iv) both agents are
+stubborn: each of them is an aperiodic sink of $C(G)$, and every agent keeps its
+initial opinion (Theorem~\ref{thm:disagreement}).
+% REVISED (2026-10-28, review): shortened; cases (iii) and (iv) are now read as one and two stubborn agents, the thread of Section 2.2; Theorems 1.12 and 1.13, never cited before, are now cited for cases (i)-(ii). Was:
+% The results of this section, together with the consensus and disagreement theorems
+% above, classify all the possible behaviours of the FDG model. The classification is
+% summarized in Table~\ref{tab:rosetta}, the so-called \emph{Rosetta stone}~\cite{baggio_dt}, which
+% translates each property of the row-stochastic matrix $A$ into a property of the
+% digraph $G$ and into the corresponding asymptotic outcome; for each case, the table
+% also reports an example digraph, its matrix and its spectrum.
+%
+% The two consensus cases illustrate Theorem~\ref{thm:consensus}. In case~(i) both
+% agents are globally reachable and $A$ is doubly-stochastic, so by
+% Corollary~\ref{cor:average} $w = (1/2, 1/2)^\top$ and the group agrees on the average
+% $\big(x_1(0) + x_2(0)\big)/2$. In case~(iii) agent~$2$ is influenced by agent~$1$
+% but not vice versa, so only agent~$1$ is globally reachable: $w = (1, 0)^\top$ and
+% the group agrees on $x_1(0)$, whatever the initial opinion of agent~$2$.
+%
+% Case~(iv) illustrates Theorem~\ref{thm:disagreement} in its simplest form: each agent
+% is influenced only by itself, so each agent is a sink of $C(G)$ ($n_s = 2$), both sinks
+% are aperiodic thanks to the self-loops, and every agent keeps its initial opinion,
+% $x(k) = x(0)$ for all $k$.
 
 \begin{table}[H]
   \centering
