@@ -523,12 +523,57 @@ trajectories for every initial condition.
 \subsubsection{Prejudices, stubbornness and convergence}
 \label{subsubsec:fj-stub-conv}
 
-Figure~\ref{fig:fj-one-prejudiced} is the FJ counterpart of Figure~\ref{fig:fdg-conv}:
-agent~$1$ is the only prejudiced agent, and its attachment $1 - \lambda_1$ takes the
-three values $0$, $1/2$ and $1$ of the self-weight $t$. In the middle column the grey
-dashed line marks the consensus value $\approx 0.4286$ reached by the FDG model with
-$t = 1/2$ (Section~\ref{subsubsec:fdg-stub-power}), so that the two models can be
-compared at the same value of the parameter.
+\paragraph{A single prejudice.}
+% ADDED (2026-10-30): heading of block 1.
+Figure~\ref{fig:fj-one-prejudiced} compares, with the same weight $1/2$ on agent~$1$,
+the FDG model with self-weight $t = 1/2$ (left, as in the middle column of
+Figure~\ref{fig:fdg-conv}) and the FJ model in which agent~$1$ is the only prejudiced
+agent, with attachment $1 - \lambda_1 = 1/2$ (right); the triangles mark the limits.
+% REVISED (2026-10-30): the figure now draws the FDG model too, so the first sentence
+% says what the two columns are instead of pointing at a dashed reference line. Was:
+% "Figure~\ref{fig:fj-one-prejudiced} keeps a single prejudiced agent, agent~$1$, with
+% attachment $1 - \lambda_1 = 1/2$: it is the FJ counterpart of the middle column of
+% Figure~\ref{fig:fdg-conv} (self-weight $t = 1/2$), whose consensus value
+% $\approx 0.4286$ is marked by the grey dashed line."
+The other two values need no new
+figure: for $1 - \lambda_1 = 0$ the FJ model is the FDG model of the left column of
+Figure~\ref{fig:fdg-conv}, and for $1 - \lambda_1 = 1$ agent~$1$ is stubborn, as in
+Figure~\ref{fig:fj-stub-equivalence}.
+% REVISED (2026-10-30, cuts): block 1, modelling paragraph shortened. Was:
+% Figure~\ref{fig:fj-one-prejudiced} keeps a single prejudiced agent, agent~$1$, with
+% attachment $1 - \lambda_1 = 1/2$: it is the FJ counterpart of the middle column of
+% Figure~\ref{fig:fdg-conv}, where agent~$1$ has self-weight $t = 1/2$, and the grey
+% dashed line marks the consensus value $\approx 0.4286$ reached there
+% (Section~\ref{subsubsec:fdg-stub-power}). The other two values of the parameter need
+% no new figure: for $1 - \lambda_1 = 0$ the FJ model is the FDG model of the left
+% column of Figure~\ref{fig:fdg-conv}, and for $1 - \lambda_1 = 1$ agent~$1$ is
+% stubborn, as in the right column of Figure~\ref{fig:fj-stub-equivalence}.
+
+% ADDED (2026-10-30): the two update matrices written out, to show where the weight
+% 1/2 taken off by agent 1 goes in each model.
+On the directed cycle the two update matrices are
+\[
+  {\setlength{\arraycolsep}{3pt}
+  \Lambda W = \begin{bmatrix}
+     0&\frac12&0&0&0&0\\ 0&0&1&0&0&0\\ 0&0&0&1&0&0\\ 0&0&0&0&1&0\\ 0&0&0&0&0&1\\ 1&0&0&0&0&0
+  \end{bmatrix},
+  \qquad
+  A(\tfrac12) = \begin{bmatrix}
+     \frac12&\frac12&0&0&0&0\\ 0&0&1&0&0&0\\ 0&0&0&1&0&0\\ 0&0&0&0&1&0\\ 0&0&0&0&0&1\\ 1&0&0&0&0&0
+  \end{bmatrix}}:
+\]
+the weight $1/2$ that agent~$1$ takes off the agent it listens to goes, in $A(1/2)$, to
+the diagonal, i.e.\ to its current opinion, and, in the FJ model, out of the matrix,
+to the input $(1-\lambda_1)u_1$. The first row of $\Lambda W$ sums to $1/2$, so
+$\Lambda W$ is row-substochastic (Definition~\ref{def:row-substochastic}).
+% REVISED (2026-10-29): the figure keeps only the attachment 1/2, so the text no longer
+% announces three columns and says where the other two values are already shown. Was:
+% "Figure~\ref{fig:fj-one-prejudiced} is the FJ counterpart of Figure~\ref{fig:fdg-conv}:
+% agent~$1$ is the only prejudiced agent, and its attachment $1 - \lambda_1$ takes the
+% three values $0$, $1/2$ and $1$ of the self-weight $t$. In the middle column the grey
+% dashed line marks the consensus value $\approx 0.4286$ reached by the FDG model with
+% $t = 1/2$ (Section~\ref{subsubsec:fdg-stub-power}), so that the two models can be
+% compared at the same value of the parameter."
 % REVISED (2026-10-28, review): the parameters are in the caption. Was:
 % Figure~\ref{fig:fj-one-prejudiced} keeps a single prejudiced agent, agent~$1$, and
 % varies its attachment $1 - \lambda_1$ over the three values $0$, $1/2$ and $1$, i.e.\
@@ -542,14 +587,30 @@ compared at the same value of the parameter.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.94\textwidth]{figures/fj_one_prejudiced.eps}
-  \caption{Opinions $x_i(k)$ in the FJ model with a single prejudiced agent, agent~$1$,
-  for three values of its attachment $1 - \lambda_1$ (columns), with $\lambda_i = 1$
-  for $i \neq 1$, $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 40$.
-  Top: directed cycle; bottom: bidirectional ring. In the middle column the grey dashed
-  line marks the consensus value of the FDG model with $t = 1/2$, $\approx 0.4286$.}
+  \caption{Opinions $x_i(k)$ with the same weight $1/2$ on agent~$1$, with
+  $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 60$. Left: FDG model with
+  self-weight $t = 1/2$ (matrix $A(1/2)$, current opinion); right: FJ model with
+  $\lambda_1 = 1/2$, $\lambda_i = 1$ for $i \neq 1$ and $u = x(0)$ (attachment
+  $1 - \lambda_1 = 1/2$, initial opinion). Top: directed cycle; bottom: bidirectional
+  ring. The triangles mark the limits: the consensus value $\approx 0.4286$ of the FDG
+  model and $u_1 = 0$ for the FJ model.}
+% REVISED (2026-10-30): the figure now has four panels, two models by two networks. Was:
+%   \caption{Opinions $x_i(k)$ in the FJ model with a single prejudiced agent, agent~$1$,
+%   with attachment $1 - \lambda_1 = 1/2$, $\lambda_i = 1$ for $i \neq 1$,
+%   $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 40$, on the directed
+%   cycle (left) and on the bidirectional ring (right). The grey dashed line marks the
+%   consensus value $\approx 0.4286$ of the FDG model with self-weight $t = 1/2$
+%   (Figure~\ref{fig:fdg-conv}, middle column).}
+% REVISED (2026-10-29): the figure has two panels, one per network, instead of six. Was:
+%   \caption{Opinions $x_i(k)$ in the FJ model with a single prejudiced agent, agent~$1$,
+%   for three values of its attachment $1 - \lambda_1$ (columns), with $\lambda_i = 1$
+%   for $i \neq 1$, $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 40$.
+%   Top: directed cycle; bottom: bidirectional ring. In the middle column the grey dashed
+%   line marks the consensus value of the FDG model with $t = 1/2$, $\approx 0.4286$.}
   \label{fig:fj-one-prejudiced}
 \end{figure}
 
+% SUPERSEDED (2026-10-29) by the TODO below.
 % TODO (theory): explain the three columns.
 % - 1 - lambda_1 = 0 means Lambda = I, i.e. the FJ model reduces to the FDG model on the
 %   network without self-loops (Section 3.1.1), which is periodic and does not converge.
@@ -562,9 +623,120 @@ compared at the same value of the parameter.
 %   FDG model, where a self-weight t < 1 gives a weighted average of all initial opinions.
 % - numerical checks: the limit is 0 in both networks; the number of steps to reach it
 %   within 1e-3 is 59 (directed cycle) and 83 (bidirectional ring).
+% TODO (theory, 2026-10-29) -- block 1, a single prejudice:
+% - Corollary \ref{cor:fj-stable} (Corollary 22 of the tutorial), particular case
+%   "Lambda != I and W irreducible": asymptotically stable on both networks.
+% - V = 1 e_1^T: column j of V is zero when lambda_j = 1 (Section
+%   \ref{subsubsec:fj-final}) and V is stochastic (Theorem \ref{thm:fj-general}), so
+%   x(inf) = u_1 1 = 0 for EVERY attachment 1 - lambda_1 > 0; the attachment changes
+%   only the transient.
+% - fair comparison with the middle column of Figure \ref{fig:fdg-conv}: the same
+%   weight 1/2 goes to the current opinion x_1(k) in the FDG model (compromise
+%   w(1/2)^T x(0) = 0.4286) and to the initial opinion u_1 = x_1(0) in the FJ model
+%   (the whole group ends at 0, as with the stubborn agent of Figure
+%   \ref{fig:fj-stub-equivalence}).
+% - augmented graph (Section \ref{subsubsec:fj-final}, our reading): the real agents
+%   listen only to the virtual agent 1', which is stubborn: the situation of Section
+%   \ref{subsubsec:fdg-stub-model}.
+% - social reading (Section \ref{subsubsec:fj-model}): self-weight = tie to the
+%   current opinion, prejudice = tie to a fixed opinion.
+% ADDED (2026-10-30): in the text write V only as a formula, V = 1 e_1^T (only the
+% column of the prejudiced agent is non-zero, whatever lambda_1 < 1); no full matrix.
 
-In Figure~\ref{fig:fj-all-prejudiced}, instead, every agent is prejudiced, with the
-same susceptibility; the triangles mark, agent by agent, the limit $Vu$.
+% DONE (2026-10-30): the TODOs of block 1 above are written below.
+Both networks are strongly connected, so every agent is connected by a walk to
+agent~$1$: all the agents are P-dependent and, by Corollary~\ref{cor:fj-stable} (case
+$\Lambda \neq I_n$, $W$ irreducible), the model is asymptotically stable, although the
+same networks oscillate forever in the FDG model without self-loops. Since column $j$ of
+$V$ is zero when $\lambda_j = 1$ (Section~\ref{subsubsec:fj-final}) and $V$ is
+stochastic (Theorem~\ref{thm:fj-general}), $V = \mathbf{1}_6 e_1^\top$ and
+$x(\infty) = u_1 \mathbf{1}_6 = 0$ for every attachment $1 - \lambda_1 > 0$: the group
+reaches a consensus on the prejudice of agent~$1$, and crosses the FDG compromise
+$0.4286$ on its way. The equilibrium shows why (this computation is ours): agents
+$2, \dots, 6$ copy, or average, the agents they listen to, so at an equilibrium they all
+take the value of agent~$1$, whose equation becomes
+$x_1^* = \lambda_1 x_1^* + (1 - \lambda_1) u_1$, i.e.\ $(1 - \lambda_1)(x_1^* - u_1) = 0$.
+The fixed value $u_1$ makes the equilibrium unique, and the attachment only changes how
+fast it is reached; in the FDG model, instead, every consensus is an equilibrium, and the
+initial opinions decide which one is reached. In the augmented graph
+(Section~\ref{subsubsec:fj-final}, our reading) the real agents listen only to the
+stubborn virtual agent $1'$, as in Section~\ref{subsubsec:fdg-stub-model}. In social
+terms, a self-weight is inertia, which slows an agent down but lets it follow the group,
+while a prejudice is an anchor: a single anchored agent, however loosely, decides where
+the whole group ends.
+% REVISED (2026-10-30, cuts): block 1, theory condensed: the comparison 'current vs initial opinion' is already in the matrix paragraph above, and the three readings (equilibrium, augmented graph, social) are kept in one sentence each. Was:
+% Both networks are strongly connected, so every agent is connected by a walk to
+% agent~$1$: all the agents are P-dependent and, by Corollary~\ref{cor:fj-stable} in its
+% particular case $\Lambda \neq I_n$ with $W$ irreducible, the FJ model is asymptotically
+% stable. Periodicity plays no role: the same networks that oscillate forever in the FDG
+% model without self-loops (left column of Figure~\ref{fig:fdg-conv}) now converge.
+%
+% Where the group converges follows from Section~\ref{subsubsec:fj-final}: column $j$ of
+% $V$ is zero when $\lambda_j = 1$, and $V$ is stochastic (Theorem~\ref{thm:fj-general}),
+% so $V = \mathbf{1}_6 e_1^\top$ and $x(\infty) = u_1 \mathbf{1}_6 = 0$ for every
+% attachment $1 - \lambda_1 > 0$. The same result can be read on the equilibrium
+% (this computation is ours): at an equilibrium agents $2, \dots, 6$ copy, or average,
+% the agents they listen to, so they all take the value of agent~$1$, and the equation of
+% agent~$1$ becomes $x_1^* = \lambda_1 x_1^* + (1 - \lambda_1) u_1$, i.e.\
+% $(1 - \lambda_1)(x_1^* - u_1) = 0$. The attachment cancels out: it changes how fast the
+% group converges, not where. The group reaches a consensus, but on the prejudice of
+% agent~$1$, and not on the compromise $0.4286$ of the FDG model with $t = 1/2$, which the
+% trajectories cross on their way to $0$.
+%
+% The comparison is fair, since the two models give the same weight $1/2$ to agent~$1$;
+% the difference is what this weight multiplies: the current opinion $x_1(k)$ in the FDG
+% model, which moves towards the others, and the initial opinion $u_1 = x_1(0)$ in the FJ
+% model, which does not. In the FDG model every consensus is an equilibrium and the
+% initial opinions decide which one is reached; in the FJ model the equation of agent~$1$
+% contains the fixed value $u_1$, and the equilibrium is unique. Hence a prejudiced agent,
+% however weak its attachment, ends up with the same limit as the stubborn agent of
+% Figure~\ref{fig:fj-stub-equivalence}. In the augmented graph of
+% Section~\ref{subsubsec:fj-final} (our reading), the real agents listen only to the
+% virtual agent $1'$, which is stubborn: this is the situation of
+% Section~\ref{subsubsec:fdg-stub-model}, where the whole group converges to the opinion
+% of the stubborn agent. In social terms, a self-weight is inertia, which slows an agent
+% down but lets it follow the group, while a prejudice is an anchor: a single anchored
+% agent, however loosely, decides where the whole group ends.
+
+\paragraph{Every agent prejudiced.}
+% ADDED (2026-10-30): theory of block 1 above and heading of block 2.
+In Figure~\ref{fig:fj-all-prejudiced} every agent resists the influence of the others
+with the same weight $0.2$, in both models: in the FDG model (left) as a self-weight on
+its current opinion, $A = 0.2\, I + 0.8\, W$; in the FJ model (right) as an attachment
+to its initial opinion, $\Lambda = 0.8\, I$ and $u = x(0)$. The triangles mark the
+limits.
+% REVISED (2026-10-30, cuts): block 2, modelling paragraph shortened. Was:
+% In Figure~\ref{fig:fj-all-prejudiced}, instead, every agent resists the influence of
+% the others with the same weight $0.2$, in the two models: on the left, the FDG model
+% with self-weight $a_{ii} = 0.2$ for every agent, i.e.\ $A = 0.2\, I + 0.8\, W$; on
+% the right, the FJ model with attachment $1 - \lambda_i = 0.2$ for every agent, i.e.\
+% $\Lambda = 0.8\, I$, and $u = x(0)$. Agent~$i$ updates its opinion with the same
+% weights in the two models, $0.8$ to the opinions it listens to and $0.2$ to its own:
+% the only difference is that this weight goes to its current opinion $x_i(k)$ in the
+% FDG model and to its initial opinion $u_i = x_i(0)$ in the FJ model. The triangles
+% mark the limits.
+
+% ADDED (2026-10-30): the two update matrices written out, to show that the same weight
+% 0.2 sits on the diagonal of A and is missing from the rows of Lambda W.
+On the directed cycle,
+\[
+  {\setlength{\arraycolsep}{3pt}
+  A = 0.2\, I + 0.8\, W = \begin{bmatrix}
+     0.2&0.8&0&0&0&0\\ 0&0.2&0.8&0&0&0\\ 0&0&0.2&0.8&0&0\\ 0&0&0&0.2&0.8&0\\
+     0&0&0&0&0.2&0.8\\ 0.8&0&0&0&0&0.2
+  \end{bmatrix},
+  \qquad
+  \Lambda W = 0.8\, W = \begin{bmatrix}
+     0&0.8&0&0&0&0\\ 0&0&0.8&0&0&0\\ 0&0&0&0.8&0&0\\ 0&0&0&0&0.8&0\\
+     0&0&0&0&0&0.8\\ 0.8&0&0&0&0&0
+  \end{bmatrix}}:
+\]
+$A$ is row- and column-stochastic, with a positive diagonal, while every row of
+$\Lambda W$ sums to $0.8$.
+% REVISED (2026-10-29): the figure became the fair comparison FDG/FJ at the same weight
+% 0.2, so the paragraph now says what the two columns are. Was:
+% "In Figure~\ref{fig:fj-all-prejudiced}, instead, every agent is prejudiced, with the
+% same susceptibility; the triangles mark, agent by agent, the limit $Vu$."
 % REVISED (2026-10-28, review): the parameters are in the caption. Was:
 % In Figure~\ref{fig:fj-all-prejudiced} every agent is prejudiced with the same
 % susceptibility, $\lambda_i = 0.8$ for all $i$, with $u = x(0)$ and $K = 25$. The
@@ -574,13 +746,22 @@ same susceptibility; the triangles mark, agent by agent, the limit $Vu$.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.94\textwidth]{figures/fj_all_prejudiced.eps}
-  \caption{Opinions $x_i(k)$ in the FJ model with every agent prejudiced,
-  $\lambda_i = 0.8$ for all $i$, $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$
-  and $K = 25$, on the directed cycle (left) and on the bidirectional ring (right). The
-  triangles mark the limit $Vu$ of~\eqref{eq:fj-V-all}.}
+  \caption{Opinions $x_i(k)$ when every agent gives weight $0.2$ to its own opinion, with
+  $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 50$. Left: FDG model with
+  $A = 0.2\, I + 0.8\, W$ (self-weight $a_{ii} = 0.2$, current opinion); right: FJ
+  model with $\Lambda = 0.8\, I$ and $u = x(0)$ (attachment $1 - \lambda_i = 0.2$,
+  initial opinion). Top: directed cycle; bottom: bidirectional ring. The triangles
+  mark the limits: the average $0.5$ of the initial opinions for the FDG model, and
+  $Vu$ of~\eqref{eq:fj-V-all} for the FJ model.}
+% REVISED (2026-10-29): the figure now has four panels, two models by two networks. Was:
+%   \caption{Opinions $x_i(k)$ in the FJ model with every agent prejudiced,
+%   $\lambda_i = 0.8$ for all $i$, $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$
+%   and $K = 25$, on the directed cycle (left) and on the bidirectional ring (right). The
+%   triangles mark the limit $Vu$ of~\eqref{eq:fj-V-all}.}
   \label{fig:fj-all-prejudiced}
 \end{figure}
 
+% SUPERSEDED (2026-10-29) by the TODO below.
 % TODO (theory): explain the meaning of the entries v_ij of V -- by Theorem 21
 % (Theorem \ref{thm:fj-general}) V is stochastic, so the final opinion of every agent is
 % a convex combination of the prejudices, and v_ij is the weight of u_j in x_i(infinity).
@@ -590,47 +771,293 @@ same susceptibility; the triangles mark, agent by agent, the limit $Vu$.
 % and comment on how the weights decay along the network. Note that the group no longer
 % agrees: the limits are (0.374, 0.467, 0.534, 0.567, 0.559, 0.499) on the directed cycle
 % and (0.394, 0.378, 0.451, 0.549, 0.622, 0.606) on the bidirectional ring.
+% TODO (theory, 2026-10-29) -- block 2, every agent prejudiced (fair comparison):
+% - FDG (left): A = 0.2 I + 0.8 W is primitive (Corollary
+%   \ref{cor:primitive-selfloop}) and doubly-stochastic, so by Corollary
+%   \ref{cor:average} the group agrees on the average 0.5 of the initial opinions.
+% - FJ (right): Corollary \ref{cor:fj-stable}, particular case "Lambda < I":
+%   asymptotically stable, x(inf) = V u. V is stochastic (Theorem
+%   \ref{thm:fj-general}): every final opinion is a convex combination of the
+%   prejudices, and v_ij is the weight of u_j in x_i(inf). First row of V:
+%   directed cycle (0.271, 0.217, 0.173, 0.139, 0.111, 0.089),
+%   bidirectional ring (0.344, 0.180, 0.106, 0.085, 0.106, 0.180).
+%   Limits: directed cycle (0.374, 0.467, 0.534, 0.567, 0.559, 0.499),
+%   bidirectional ring (0.394, 0.378, 0.451, 0.549, 0.622, 0.606).
+% - consensus only if the prejudices are equal: u = c 1 gives V u = c 1.
+% - the point of the block: on a strongly connected network the FDG model can only
+%   reach a consensus or not converge (cases (i)-(ii) of Table \ref{tab:rosetta});
+%   disagreement needs at least two closed groups (Theorem \ref{thm:disagreement}).
+%   Here the network is strongly connected and the FJ model disagrees: the
+%   disagreement comes from the prejudices, not from the network. Augmented graph
+%   (Section \ref{subsubsec:fj-final}, our reading): six stubborn virtual agents with
+%   different opinions, i.e. Remark \ref{rem:many-stubborn}. The tutorial calls
+%   this persistent disagreement "cleavage" (Example 3; Section 4.3).
+% ADDED (2026-10-30): in the text write V only as a formula,
+% V = (I - 0.8 W)^{-1} (0.2 I) = 0.2 (I - 0.8 W)^{-1}: stochastic, no zero column, so
+% every prejudice enters every final opinion; no full matrix.
 
-The two networks of Figure~\ref{fig:networks} are strongly connected, so a single
-prejudiced agent is enough to reach every other agent. To show what happens when this
-is not the case, Figure~\ref{fig:fj-aux-network} introduces an auxiliary network on
-$n = 6$ agents: agents~$1$, $2$ and $3$ form a closed cycle, and agents~$4$, $5$
-and~$6$ form a chain that feeds into it. The dashed edge $2 \to 1$ is an optional
-modification: when it is present, agent~$2$ splits its weight equally between agents~$1$
-and~$3$.
+% DONE (2026-10-30): the TODOs of block 2 above are written below.
+In the FDG model, $A$ is primitive (Corollary~\ref{cor:primitive-selfloop}) and
+doubly-stochastic, so the group agrees on the average $0.5$ of the initial opinions
+(Corollary~\ref{cor:average}): the self-weights slow the convergence down, but do not
+prevent the consensus. In the FJ model every agent is prejudiced ($\Lambda < I_6$), so
+the model is asymptotically stable (Corollary~\ref{cor:fj-stable}) and $x(\infty) = Vu$,
+with $V = 0.2\,(I - 0.8\,W)^{-1}$. The matrix $V$ is stochastic
+(Theorem~\ref{thm:fj-general}): every final opinion is a convex combination of the
+prejudices, and $v_{ij}$ is the weight of $u_j$ in $x_i(\infty)$. No column of $V$ is
+zero, so every prejudice enters every final opinion, but with weights that change from
+row to row: the final opinions are closer to each other than the initial ones, but
+different. A consensus requires equal prejudices: since $V$ is invertible and
+$V\mathbf{1}_6 = \mathbf{1}_6$, $Vu = c\,\mathbf{1}_6$ only for $u = c\,\mathbf{1}_6$
+(this remark is ours).
 
+This is the main difference between the two models. On a strongly connected network the
+FDG model can only reach a consensus or not converge (cases (i)--(ii) of
+Table~\ref{tab:rosetta}), since a disagreement needs at least two closed groups
+(Theorem~\ref{thm:disagreement}); the FJ model disagrees on the same network, so its
+disagreement comes from the prejudices. In the augmented graph
+(Section~\ref{subsubsec:fj-final}, our reading) the six prejudices are six stubborn
+virtual agents with different opinions, as in Remark~\ref{rem:many-stubborn}. In social
+terms, inertia gives way in the end, an anchor does not: a group anchored to different
+opinions settles on a persistent disagreement, a cleavage of opinions in the words
+of~\cite{proskurnikov2017tutorial}.
+% REVISED (2026-10-30, cuts): block 2, theory condensed: the numerical first rows of V and the limit vectors are dropped (V only as a formula, the limits are the triangles of the figure); the consensus condition is made exact (V invertible). Was:
+% In the FDG model on the left, the network is strongly connected and every agent has a
+% self-loop, so $A$ is primitive (Corollary~\ref{cor:primitive-selfloop}); since $A$ is
+% also doubly-stochastic, by Corollary~\ref{cor:average} the group agrees on the average
+% $0.5$ of the initial opinions. The self-weights slow the convergence down, especially
+% on the directed cycle, but do not prevent the consensus.
+%
+% In the FJ model on the right every agent is prejudiced, $\Lambda < I_6$, so by
+% Corollary~\ref{cor:fj-stable} the model is asymptotically stable and $x(\infty) = Vu$,
+% with $V = (I - 0.8\,W)^{-1}(0.2\,I) = 0.2\,(I - 0.8\,W)^{-1}$. By
+% Theorem~\ref{thm:fj-general} $V$ is stochastic, so every final opinion is a convex
+% combination of the prejudices, and the entry $v_{ij}$ is the weight of the prejudice
+% $u_j$ in the final opinion $x_i(\infty)$. Here no column of $V$ is zero: every
+% prejudice enters every final opinion, with weights that change from row to row. The
+% first row of $V$, for instance, is $(0.271,\, 0.217,\, 0.173,\, 0.139,\, 0.111,\,
+% 0.089)$ on the directed cycle and $(0.344,\, 0.180,\, 0.106,\, 0.085,\, 0.106,\,
+% 0.180)$ on the bidirectional ring. Different rows applied to different prejudices give
+% different final opinions, $(0.374,\, 0.467,\, 0.534,\, 0.567,\, 0.559,\, 0.499)$ and
+% $(0.394,\, 0.378,\, 0.451,\, 0.549,\, 0.622,\, 0.606)$: they are closer to each other
+% than the initial opinions and lie between the smallest and the largest prejudice, but
+% they do not coincide. A consensus would require, for instance, equal prejudices: if
+% $u = c\,\mathbf{1}_6$, then $Vu = c\,\mathbf{1}_6$, because $V$ is stochastic.
+%
+% This is the main difference between the two models. On a strongly connected network the
+% condensation digraph has a single node, so the FDG model can only reach a consensus or
+% not converge (cases (i)--(ii) of Table~\ref{tab:rosetta}); a disagreement needs at least
+% two closed groups (Theorem~\ref{thm:disagreement}). Here the network is strongly
+% connected and the FJ model disagrees: the disagreement comes from the prejudices, not
+% from the network. The augmented graph of Section~\ref{subsubsec:fj-final} shows why
+% (our reading): every prejudice $u_i$ is a stubborn virtual agent $i'$, so the FJ model
+% behaves as an FDG model with six stubborn agents holding different opinions, which is
+% the situation of Remark~\ref{rem:many-stubborn}. In social terms, inertia gives way in
+% the end, an anchor does not: when every agent is anchored to its own initial opinion,
+% the group settles on a persistent disagreement, which~\cite{proskurnikov2017tutorial}
+% calls a cleavage of opinions.
+
+\paragraph{Where the prejudice does not arrive.}
+% ADDED (2026-10-30): theory of block 2 above and heading of block 3.
+On the two networks of Figure~\ref{fig:networks} a single prejudiced agent reaches every
+other agent. To show what happens when it does not, Figure~\ref{fig:fj-aux-network}
+introduces an auxiliary network: agents~$1$, $2$ and $3$ form a closed group, and
+agents~$4$, $5$ and~$6$ a chain that feeds into it. The closed group is a periodic cycle
+in $W_{\mathrm{p}}$, and becomes aperiodic in $W_{\mathrm{a}}$, where agent~$2$ also
+listens to agent~$1$.
+% REVISED (2026-10-30, cuts): block 3, introduction shortened (the details are in the caption of the figure). Was:
+% The two networks of Figure~\ref{fig:networks} are strongly connected, so a single
+% prejudiced agent is enough to reach every other agent. To show what happens when this
+% is not the case, Figure~\ref{fig:fj-aux-network} introduces an auxiliary network on
+% $n = 6$ agents, in two versions: agents~$1$, $2$ and $3$ form a closed group, and
+% agents~$4$, $5$ and~$6$ form a chain that feeds into it. In $W_{\mathrm{p}}$ the closed
+% group is a cycle of length $3$, which is periodic; in $W_{\mathrm{a}}$ agent~$2$ also
+% listens to agent~$1$, splitting its weight equally between agents~$1$ and~$3$, so that
+% the closed group also contains a cycle of length $2$ and becomes aperiodic.
+% REVISED (2026-10-30): the two versions of the network are now drawn side by side and
+% named, instead of one drawing with an optional dashed edge. Was:
+% "The two networks of Figure~\ref{fig:networks} are strongly connected, so a single
+% prejudiced agent is enough to reach every other agent. To show what happens when this
+% is not the case, Figure~\ref{fig:fj-aux-network} introduces an auxiliary network on
+% $n = 6$ agents: agents~$1$, $2$ and $3$ form a closed cycle, and agents~$4$, $5$
+% and~$6$ form a chain that feeds into it. The dashed edge $2 \to 1$ is an optional
+% modification: when it is present, agent~$2$ splits its weight equally between agents~$1$
+% and~$3$."
+
+% REVISED (2026-10-30): one drawing with an optional dashed edge replaced by the two
+% versions W_p and W_a side by side, each with its own adjacency matrix. Was:
+% \begin{figure}[H]
+%   \centering
+%   \begin{tikzpicture}
+%     \node[agent] (a1) at (0,1.1)      {1};
+%     \node[agent] (a2) at (-1.1,-0.5)  {2};
+%     \node[agent] (a3) at (1.1,-0.5)   {3};
+%     \node[agent] (a6) at (2.6,1.1)    {6};
+%     \node[agent] (a5) at (4.1,1.1)    {5};
+%     \node[agent] (a4) at (5.6,1.1)    {4};
+%     \draw[edge] (a1) -- (a2);
+%     \draw[edge] (a2) -- node[weight, below] {$1/2$} (a3);
+%     \draw[edge] (a3) -- (a1);
+%     \draw[edge, dashed] (a2) to[bend left=35] node[weight, left] {$1/2$} (a1);
+%     \draw[edge] (a4) -- (a5);
+%     \draw[edge] (a5) -- (a6);
+%     \draw[edge] (a6) -- (a1);
+%   \end{tikzpicture}
+%   \caption{The auxiliary network used in Figure~\ref{fig:fj-auxiliary}. The solid edges
+%   have weight $1$; when the dashed edge $2 \to 1$ is present, the two edges leaving
+%   agent~$2$ have weight $1/2$ each.}
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}
-    \node[agent] (a1) at (0,1.1)      {1};
-    \node[agent] (a2) at (-1.1,-0.5)  {2};
-    \node[agent] (a3) at (1.1,-0.5)   {3};
-    \node[agent] (a6) at (2.6,1.1)    {6};
-    \node[agent] (a5) at (4.1,1.1)    {5};
-    \node[agent] (a4) at (5.6,1.1)    {4};
-    \draw[edge] (a1) -- (a2);
-    \draw[edge] (a2) -- node[weight, below] {$1/2$} (a3);
-    \draw[edge] (a3) -- (a1);
-    \draw[edge, dashed] (a2) to[bend left=35] node[weight, left] {$1/2$} (a1);
-    \draw[edge] (a4) -- (a5);
-    \draw[edge] (a5) -- (a6);
-    \draw[edge] (a6) -- (a1);
+  \begin{subfigure}[b]{0.33\textwidth}\centering
+  \begin{tikzpicture}[scale=0.75, every node/.append style={transform shape}, pdep/.style={agent, fill=gray!30}]
+    \node[pdep] (a1) at (0,1.1) {1}; \node[pdep] (a2) at (-1.1,-0.5) {2};
+    \node[pdep] (a3) at (1.1,-0.5) {3}; \node[pdep] (a6) at (2.4,1.1) {6};
+    \node[pdep] (a5) at (3.8,1.1) {5}; \node[pdep] (a4) at (5.1,1.1) {4};
+    \draw[edge] (a1) -- (a2); \draw[edge] (a2) -- node[weight, below] {$0.5$} (a3); \draw[edge] (a3) -- (a1);
+    \draw[edge] (a4) -- (a5); \draw[edge] (a5) -- (a6); \draw[edge] (a6) -- (a1);
+    \draw[edge] (-1.1,-1.8) node[below, font=\scriptsize] {$u_2$} -- node[weight, left] {$0.5$} (a2);
   \end{tikzpicture}
-  \caption{The auxiliary network used in Figure~\ref{fig:fj-auxiliary}. The solid edges
-  have weight $1$; when the dashed edge $2 \to 1$ is present, the two edges leaving
-  agent~$2$ have weight $1/2$ each.}
-% REVISED (2026-10-28, review): the edge convention is already in the caption of Figure 1. Was:
-%   \caption{The auxiliary network used in Figure~\ref{fig:fj-auxiliary}. An edge
-%   $i \to j$ means that agent $i$ is influenced by agent $j$. The solid edges have
-%   weight $1$; when the dashed edge $2 \to 1$ is present, the two edges leaving
-%   agent~$2$ have weight $1/2$ each.}
+  \caption{$W_{\mathrm{p}}$, agent~$2$ prejudiced}
+  \label{fig:fj-aux-network-pa}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.33\textwidth}\centering
+  \begin{tikzpicture}[scale=0.75, every node/.append style={transform shape}, pdep/.style={agent, fill=gray!30}]
+    \node[agent] (a1) at (0,1.1) {1}; \node[agent] (a2) at (-1.1,-0.5) {2};
+    \node[agent] (a3) at (1.1,-0.5) {3}; \node[agent] (a6) at (2.4,1.1) {6};
+    \node[pdep] (a5) at (3.8,1.1) {5}; \node[pdep] (a4) at (5.1,1.1) {4};
+    \draw[edge] (a1) -- (a2); \draw[edge] (a2) -- (a3); \draw[edge] (a3) -- (a1);
+    \draw[edge] (a4) -- (a5); \draw[edge] (a5) -- node[weight, above] {$0.5$} (a6); \draw[edge] (a6) -- (a1);
+    \draw[edge] (3.8,2.4) node[above, font=\scriptsize] {$u_5$} -- node[weight, right] {$0.5$} (a5);
+    \node at (0,-1.8) {};
+  \end{tikzpicture}
+  \caption{$W_{\mathrm{p}}$, agent~$5$ prejudiced}
+  \label{fig:fj-aux-network-pb}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.29\textwidth}\centering
+  \[ {\setlength{\arraycolsep}{2.5pt}
+     W_{\mathrm{p}} = \begin{bmatrix}
+     0&1&0&0&0&0\\ 0&0&1&0&0&0\\ 1&0&0&0&0&0\\ 0&0&0&0&1&0\\ 0&0&0&0&0&1\\ 1&0&0&0&0&0
+     \end{bmatrix}} \]
+  \caption*{}
+  \end{subfigure}
+
+  \medskip
+  \begin{subfigure}[b]{0.33\textwidth}\centering
+  \begin{tikzpicture}[scale=0.75, every node/.append style={transform shape}, pdep/.style={agent, fill=gray!30}]
+    \node[agent] (a1) at (0,1.1) {1}; \node[agent] (a2) at (-1.1,-0.5) {2};
+    \node[agent] (a3) at (1.1,-0.5) {3}; \node[agent] (a6) at (2.4,1.1) {6};
+    \node[pdep] (a5) at (3.8,1.1) {5}; \node[pdep] (a4) at (5.1,1.1) {4};
+    \draw[edge] (a1) to[bend left=20] (a2);
+    \draw[edge] (a2) -- node[weight, below] {$1/2$} (a3); \draw[edge] (a3) -- (a1);
+    \draw[edge] (a2) to[bend left=20] node[weight, below right] {$1/2$} (a1);
+    \draw[edge] (a4) -- (a5); \draw[edge] (a5) -- node[weight, above] {$0.5$} (a6); \draw[edge] (a6) -- (a1);
+    \draw[edge] (3.8,2.4) node[above, font=\scriptsize] {$u_5$} -- node[weight, right] {$0.5$} (a5);
+  \end{tikzpicture}
+  \caption{$W_{\mathrm{a}}$, agent~$5$ prejudiced}
+  \label{fig:fj-aux-network-pc}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.33\textwidth}\centering
+  \begin{tikzpicture}[scale=0.75, every node/.append style={transform shape}, pdep/.style={agent, fill=gray!30}]
+    \node[agent] (a1) at (0,1.1) {1}; \node[agent] (a2) at (-1.1,-0.5) {2};
+    \node[agent] (a3) at (1.1,-0.5) {3}; \node[agent] (a6) at (2.4,1.1) {6};
+    \node[pdep] (a5) at (3.8,1.1) {5}; \node[pdep] (a4) at (5.1,1.1) {4};
+    \draw[edge] (a1) to[bend left=20] (a2);
+    \draw[edge] (a2) -- node[weight, below] {$1/2$} (a3); \draw[edge] (a3) -- (a1);
+    \draw[edge] (a2) to[bend left=20] node[weight, below right] {$1/2$} (a1);
+    \draw[edge] (a4) -- (a5); \draw[edge] (a5) -- node[weight, above] {$0.5$} (a6); \draw[edge] (a6) -- (a1);
+    \draw[edge] (3.8,2.4) node[above, font=\scriptsize] {$u_5$} -- node[weight, right] {$0.5$} (a5);
+    \node[font=\scriptsize, below] at (-1.1,-0.75) {$x_2(0) = 1$};
+  \end{tikzpicture}
+  \caption{as (c), with $x_2(0) = 1$}
+  \label{fig:fj-aux-network-pd}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.29\textwidth}\centering
+  \[ {\setlength{\arraycolsep}{2.5pt}
+     W_{\mathrm{a}} = \begin{bmatrix}
+     0&1&0&0&0&0\\ \frac12&0&\frac12&0&0&0\\ 1&0&0&0&0&0\\ 0&0&0&0&1&0\\ 0&0&0&0&0&1\\ 1&0&0&0&0&0
+     \end{bmatrix}} \]
+  \caption*{}
+  \end{subfigure}
+  \caption{The four configurations of Figure~\ref{fig:fj-auxiliary} on the auxiliary network, in its two
+  versions $W_{\mathrm{p}}$ (top, the closed group $\{1,2,3\}$ is a periodic cycle of
+  length $3$) and $W_{\mathrm{a}}$ (bottom, the edge $2 \to 1$ adds a cycle of length $2$
+  and makes it aperiodic). As in Figure~\ref{fig:augmented}(a), the prejudice $u_i$ enters the prejudiced
+  agent as an external input with weight $1 - \lambda_i = 0.5$; the edges carry the
+  weights of $\Lambda W$, and unlabelled edges have weight $1$. The P-dependent agents are
+  shaded.}
   \label{fig:fj-aux-network}
 \end{figure}
+% REVISED (2026-10-30): Figure fj-aux-network now has one graph per panel of Figure
+% fj-auxiliary, with the input u_i of the prejudiced agent and the P-dependent agents shaded.
+% Was:
+% \begin{figure}[H]
+%   \centering
+%   \begin{subfigure}{0.48\textwidth}\centering
+%   \begin{tikzpicture}
+%     \node[agent] (a1) at (0,1.1) {1}; \node[agent] (a2) at (-1.1,-0.5) {2};
+%     \node[agent] (a3) at (1.1,-0.5) {3}; \node[agent] (a6) at (2.4,1.1) {6};
+%     \node[agent] (a5) at (3.7,1.1) {5}; \node[agent] (a4) at (5.0,1.1) {4};
+%     \draw[edge] (a1) -- (a2); \draw[edge] (a2) -- (a3); \draw[edge] (a3) -- (a1);
+%     \draw[edge] (a4) -- (a5); \draw[edge] (a5) -- (a6); \draw[edge] (a6) -- (a1);
+%   \end{tikzpicture}
+%   \[ {\setlength{\arraycolsep}{2.5pt}
+%      W_{\mathrm{p}} = \begin{bmatrix}
+%      0&1&0&0&0&0\\ 0&0&1&0&0&0\\ 1&0&0&0&0&0\\ 0&0&0&0&1&0\\ 0&0&0&0&0&1\\ 1&0&0&0&0&0
+%      \end{bmatrix}} \]
+%   \caption{The closed group $\{1,2,3\}$ is a cycle of length $3$: periodic.}
+%   \label{fig:fj-aux-network-p}
+%   \end{subfigure}\hfill
+%   \begin{subfigure}{0.48\textwidth}\centering
+%   \begin{tikzpicture}
+%     \node[agent] (a1) at (0,1.1) {1}; \node[agent] (a2) at (-1.1,-0.5) {2};
+%     \node[agent] (a3) at (1.1,-0.5) {3}; \node[agent] (a6) at (2.4,1.1) {6};
+%     \node[agent] (a5) at (3.7,1.1) {5}; \node[agent] (a4) at (5.0,1.1) {4};
+%     \draw[edge] (a1) to[bend left=20] (a2);
+%     \draw[edge] (a2) -- node[weight, below] {$1/2$} (a3);
+%     \draw[edge] (a3) -- (a1);
+%     \draw[edge] (a2) to[bend left=20] node[weight, below right] {$1/2$} (a1);
+%     \draw[edge] (a4) -- (a5); \draw[edge] (a5) -- (a6); \draw[edge] (a6) -- (a1);
+%   \end{tikzpicture}
+%   \[ {\setlength{\arraycolsep}{2.5pt}
+%      W_{\mathrm{a}} = \begin{bmatrix}
+%      0&1&0&0&0&0\\ \frac12&0&\frac12&0&0&0\\ 1&0&0&0&0&0\\ 0&0&0&0&1&0\\ 0&0&0&0&0&1\\ 1&0&0&0&0&0
+%      \end{bmatrix}} \]
+%   \caption{With the edge $2 \to 1$ the closed group also contains the cycle
+%   $1 \to 2 \to 1$ of length $2$: aperiodic.}
+%   \label{fig:fj-aux-network-a}
+%   \end{subfigure}
+%   \caption{The two versions of the auxiliary network used in
+%   Figure~\ref{fig:fj-auxiliary}; unlabelled edges have weight $1$. Panels (a)--(b) of
+%   Figure~\ref{fig:fj-auxiliary} use $W_{\mathrm{p}}$, panels (c)--(d) use
+%   $W_{\mathrm{a}}$; the prejudiced agent has $\lambda = 0.5$, i.e.\
+%   $\Lambda = \mathrm{diag}(1, 0.5, 1, 1, 1, 1)$ in (a) and
+%   $\Lambda = \mathrm{diag}(1, 1, 1, 1, 0.5, 1)$ in (b)--(d).}
+% % REVISED (2026-10-28, review): the edge convention is already in the caption of Figure 1. Was:
+% %   \caption{The auxiliary network used in Figure~\ref{fig:fj-auxiliary}. An edge
+% %   $i \to j$ means that agent $i$ is influenced by agent $j$. The solid edges have
+% %   weight $1$; when the dashed edge $2 \to 1$ is present, the two edges leaving
+% %   agent~$2$ have weight $1/2$ each.}
+%   \label{fig:fj-aux-network}
+% \end{figure}
 
-Figure~\ref{fig:fj-auxiliary} uses this network with a single prejudiced agent, in four
-configurations: (a) without the dashed edge, agent~$2$ prejudiced; (b) without the
-dashed edge, agent~$5$ prejudiced; (c) as (b), with the dashed edge $2 \to 1$; (d) as
-(c), with $x_2(0) = 1$, hence $u_2 = 1$.
+Figure~\ref{fig:fj-auxiliary} shows the four configurations of
+Figure~\ref{fig:fj-aux-network}; in (d) only the initial opinion of agent~$2$ moves, the
+prejudices being unchanged.
+% REVISED (2026-10-30, cuts): block 3, the list of the four configurations is already in the captions and in Table tab:fj-aux. Was:
+% Figure~\ref{fig:fj-auxiliary} uses the two versions with a single prejudiced agent,
+% in four configurations: (a) $W_{\mathrm{p}}$, agent~$2$ prejudiced; (b)
+% $W_{\mathrm{p}}$, agent~$5$ prejudiced; (c) $W_{\mathrm{a}}$, agent~$5$ prejudiced;
+% (d) as (c), with $x_2(0) = 1$ and the prejudices unchanged, so that only the initial
+% opinion of agent~$2$ moves.
+% REVISED (2026-10-30): the configurations are now named by the matrix they use. Was:
+% "Figure~\ref{fig:fj-auxiliary} uses this network with a single prejudiced agent, in four
+% configurations: (a) without the dashed edge, agent~$2$ prejudiced; (b) without the
+% dashed edge, agent~$5$ prejudiced; (c) as (b), with the dashed edge $2 \to 1$; (d) as
+% (c), with $x_2(0) = 1$ and the prejudices unchanged, so that only the initial
+% opinion of agent~$2$ moves."
+% REVISED (2026-10-29): in (d) the prejudices no longer follow x(0), so the panel now
+% isolates the effect of the initial condition. Was:
+% "(d) as (c), with $x_2(0) = 1$, hence $u_2 = 1$."
 % REVISED (2026-10-28, review): the parameters are in the caption. Was:
 % Figure~\ref{fig:fj-auxiliary} uses the network of Figure~\ref{fig:fj-aux-network} with
 % $x(0) = (0,\, 0.5,\, 1,\, 0.2,\, 0.9,\, 0.6)^\top$, $u = x(0)$, $K = 40$, and a single
@@ -644,13 +1071,229 @@ dashed edge, agent~$5$ prejudiced; (c) as (b), with the dashed edge $2 \to 1$; (
   \centering
   \includegraphics[width=0.94\textwidth]{figures/fj_auxiliary.eps}
   \caption{Opinions $x_i(k)$ in the FJ model on the auxiliary network of
-  Figure~\ref{fig:fj-aux-network}, with $x(0) = (0,\, 0.5,\, 1,\, 0.2,\, 0.9,\,
-  0.6)^\top$, $u = x(0)$, $K = 40$, the prejudiced agent having $\lambda = 0.5$ and
-  every other agent $\lambda_i = 1$. (a) agent~$2$ prejudiced; (b) agent~$5$
-  prejudiced; (c) as (b) with the edge $2 \to 1$ added; (d) as (c) with
-  $x_2(0) = 1$.}
+  Figure~\ref{fig:fj-aux-network}, with $u = (0,\, 0.5,\, 1,\, 0.2,\, 0.9,\, 0.6)^\top$,
+  $K = 40$, the prejudiced agent having $\lambda = 0.5$ and every other agent
+  $\lambda_i = 1$. (a) $W_{\mathrm{p}}$, agent~$2$ prejudiced; (b) $W_{\mathrm{p}}$,
+  agent~$5$ prejudiced; (c) $W_{\mathrm{a}}$, agent~$5$ prejudiced. In (a)--(c)
+  $x(0) = u$; (d) as (c) with $x_2(0) = 1$ and $u$ unchanged.}
+% REVISED (2026-10-30): the panels now name the matrix they use. Was:
+%   "(a) agent~$2$ prejudiced; (b) agent~$5$ prejudiced; (c) as (b) with the edge
+%   $2 \to 1$ added."
+% REVISED (2026-10-29): u is now fixed for the four panels and x(0) = u only in (a)-(c). Was:
+%   \caption{Opinions $x_i(k)$ in the FJ model on the auxiliary network of
+%   Figure~\ref{fig:fj-aux-network}, with $x(0) = (0,\, 0.5,\, 1,\, 0.2,\, 0.9,\,
+%   0.6)^\top$, $u = x(0)$, $K = 40$, the prejudiced agent having $\lambda = 0.5$ and
+%   every other agent $\lambda_i = 1$. (a) agent~$2$ prejudiced; (b) agent~$5$
+%   prejudiced; (c) as (b) with the edge $2 \to 1$ added; (d) as (c) with
+%   $x_2(0) = 1$.}
   \label{fig:fj-auxiliary}
 \end{figure}
+
+% ADDED (2026-10-30): the block decomposition of W_a and the matrix V of the two
+% P-dependent agents, written out.
+Panel (a) is the situation of Figure~\ref{fig:fj-one-prejudiced} again: agent~$2$ is in
+the closed group, every agent is connected by a walk to it ($r = n$), the model is
+asymptotically stable (Corollary~\ref{cor:fj-stable}) and
+$x(\infty) = u_2 \mathbf{1}_6 = 0.5\,\mathbf{1}_6$, although the closed group is
+periodic.
+
+In panels (b)--(d) agent~$5$ is outside the closed group, and agents $1$, $2$, $3$ and
+$6$ are P-independent: by~\eqref{eq:fj-indep} they obey the FDG model with matrix
+$W^{22}$, as if the prejudice did not exist, and their trajectories in
+Figure~\ref{fig:fj-auxiliary} are those of the FDG model on $W_{\mathrm{p}}$ and
+$W_{\mathrm{a}}$. Renumbering the agents as in~\eqref{eq:fj-dep}--\eqref{eq:fj-indep},
+i.e.\ in the order $\sigma = (4, 5 \mid 1, 2, 3, 6)$, means applying the permutation
+matrix $P = [\, e_4\ e_5\ e_1\ e_2\ e_3\ e_6 \,]^\top$, so that agent~$i$ of the new
+numbering is agent~$\sigma(i)$ of the original one; for $W_{\mathrm{a}}$,
+\[
+  \tilde W_{\mathrm{a}} = P\, W_{\mathrm{a}} P^\top =
+  \left[\begin{array}{cc|cccc}
+    0 & 1 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0 & 1\\ \hline
+    0 & 0 & 0 & 1 & 0 & 0\\
+    0 & 0 & \tfrac12 & 0 & \tfrac12 & 0\\
+    0 & 0 & 1 & 0 & 0 & 0\\
+    0 & 0 & 1 & 0 & 0 & 0
+  \end{array}\right]
+  = \begin{bmatrix} W^{11} & W^{12} \\ 0 & W^{22} \end{bmatrix},
+  \qquad
+  \tilde\Lambda = P \Lambda P^\top = \mathrm{diag}(1,\, 0.5 \mid 1,\, 1,\, 1,\, 1),
+\]
+\[
+  W^{11} = \begin{bmatrix} 0&1\\ 0&0 \end{bmatrix},\quad
+  W^{12} = \begin{bmatrix} 0&0&0&0\\ 0&0&0&1 \end{bmatrix},\quad
+  W^{22} = \begin{bmatrix} 0&1&0&0\\ \tfrac12&0&\tfrac12&0\\ 1&0&0&0\\ 1&0&0&0 \end{bmatrix}.
+\]
+The lower-left block is zero because no P-independent agent listens to a P-dependent
+one; with $W_{\mathrm{p}}$ the second row of $W^{22}$ would be $(0, 0, 1, 0)$. By
+Theorem~\ref{thm:fj-general} the FJ model converges if and only if $W^{22}$ is regular,
+and then the P-dependent agents follow~\eqref{eq:fj-V}, with
+$\Lambda^{11} = \mathrm{diag}(1,\, 0.5)$ and
+\[
+  V = (I_2 - \Lambda^{11} W^{11})^{-1}
+      \big[\, I_2 - \Lambda^{11},\ \Lambda^{11} W^{12} \,\big]
+  = \left[\begin{array}{cc|cccc}
+      0 & 0.5 & 0 & 0 & 0 & 0.5\\ 0 & 0.5 & 0 & 0 & 0 & 0.5
+    \end{array}\right],
+\]
+i.e.\ $x_4(\infty) = x_5(\infty) = 0.5\, u_5 + 0.5\, x_6(\infty)$.
+\begin{itemize}
+  \item In (b) the sink $\{1,2,3\}$ of $W^{22}$ is periodic, $W^{22}$ is not regular
+        and the model does not converge: agents $1, 2, 3, 6$ oscillate, and agents
+        $4, 5$, which listen to them, oscillate too.
+  \item In (c) the edge $2 \to 1$ makes the sink aperiodic, $W^{22}$ is regular and the
+        model converges (Corollary~\ref{cor:fj-regular}): agents $1, 2, 3$ reach the
+        FDG consensus $0.4\, x_1(0) + 0.4\, x_2(0) + 0.2\, x_3(0) = 0.4$, weighted by the
+        social power of the closed group, agent~$6$ follows agent~$1$, and agents $4, 5$
+        settle at $0.5 \cdot 0.9 + 0.5 \cdot 0.4 = 0.65$.
+  \item The model of (c) is not asymptotically stable, since not all the agents are
+        P-dependent (Corollary~\ref{cor:fj-stable}): every consensus vector is an
+        equilibrium of~\eqref{eq:fj-indep}, and the initial opinions of the closed group
+        decide which one is reached. In (d), moving only $x_2(0)$ from $0.5$ to $1$
+        moves the consensus of the closed group to $0.6$ and the P-dependent agents to
+        $0.75$, unlike in Figure~\ref{fig:fj-stub-perturbation}, where the
+        asymptotically stable FJ model forgets the change of $x_1(0)$.
+\end{itemize}
+In social terms, a prejudice acts only on the agents that listen, directly or through
+intermediaries, to the prejudiced agent: when it reaches everybody, the FJ model is
+asymptotically stable and the structure of the network does not matter; when it does
+not, the agents it does not reach form an FDG model of their own, which needs
+aperiodicity to converge and remembers their initial opinions.
+Table~\ref{tab:fj-aux} summarizes the four cases.
+% REVISED (2026-10-30, cuts): block 3 reordered and condensed: panel (a) first, then the P-independent agents and Theorem 3.2, then the block partition and V where they are used, then (b)-(d); the second display for x_4, x_5 becomes one line, and the computation of 0.65 is not repeated. Was:
+% In panels (c)--(d) the P-dependent agents are $4$ and $5$ ($r = 2$) and the
+% P-independent ones are $1$, $2$, $3$ and $6$. Renumbering the agents as in the
+% decomposition~\eqref{eq:fj-dep}--\eqref{eq:fj-indep} means listing them in the order
+% $\sigma = (4, 5 \mid 1, 2, 3, 6)$, i.e.\ applying the permutation matrix
+% $P = [\, e_4\ e_5\ e_1\ e_2\ e_3\ e_6 \,]^\top$, so that agent~$i$ of the new numbering is
+% agent~$\sigma(i)$ of the original one. The renumbered matrices are
+% \[
+%   \tilde W_{\mathrm{a}} = P\, W_{\mathrm{a}} P^\top =
+% % REVISED (2026-10-30): the reordered matrix is a permutation of W_a, now named tilde W_a = P W_a P^T, with P written out. Was:
+% % In panels (c)--(d) the P-dependent agents are $4$ and $5$ ($r = 2$) and the
+% % P-independent ones are $1$, $2$, $3$ and $6$. Listing the agents in the order
+% % $4, 5 \mid 1, 2, 3, 6$, as in the decomposition~\eqref{eq:fj-dep}--\eqref{eq:fj-indep},
+% % \[
+% %   W_{\mathrm{a}} =
+%   \left[\begin{array}{cc|cccc}
+%     0 & 1 & 0 & 0 & 0 & 0\\
+%     0 & 0 & 0 & 0 & 0 & 1\\ \hline
+%     0 & 0 & 0 & 1 & 0 & 0\\
+%     0 & 0 & \tfrac12 & 0 & \tfrac12 & 0\\
+%     0 & 0 & 1 & 0 & 0 & 0\\
+%     0 & 0 & 1 & 0 & 0 & 0
+%   \end{array}\right]
+%   = \begin{bmatrix} W^{11} & W^{12} \\ 0 & W^{22} \end{bmatrix},
+%   \qquad
+%   \tilde\Lambda = P \Lambda P^\top = \mathrm{diag}(1,\, 0.5 \mid 1,\, 1,\, 1,\, 1),
+% \]
+% so that $\Lambda^{11} = \mathrm{diag}(1,\, 0.5)$ and $\Lambda^{22} = I_4$, and
+% % REVISED (2026-10-30): Lambda also written as the permuted tilde Lambda. Was:
+% %   = \begin{bmatrix} W^{11} & W^{12} \\ 0 & W^{22} \end{bmatrix},
+% %   \qquad \Lambda^{11} = \mathrm{diag}(1,\, 0.5),
+% % \]
+% \[
+%   W^{11} = \begin{bmatrix} 0&1\\ 0&0 \end{bmatrix},\quad
+%   W^{12} = \begin{bmatrix} 0&0&0&0\\ 0&0&0&1 \end{bmatrix},\quad
+%   W^{22} = \begin{bmatrix} 0&1&0&0\\ \tfrac12&0&\tfrac12&0\\ 1&0&0&0\\ 1&0&0&0 \end{bmatrix}.
+% \]
+% The lower-left block is zero because no P-independent agent listens to a P-dependent
+% one. With $W_{\mathrm{p}}$ the second row of $W^{22}$ would be $(0, 0, 1, 0)$. The
+% matrix $V$ of~\eqref{eq:fj-V} is
+% \[
+%   V = (I_2 - \Lambda^{11} W^{11})^{-1}
+%       \big[\, I_2 - \Lambda^{11},\ \Lambda^{11} W^{12} \,\big]
+%   = \left[\begin{array}{cc|cccc}
+%       0 & 0.5 & 0 & 0 & 0 & 0.5\\ 0 & 0.5 & 0 & 0 & 0 & 0.5
+%     \end{array}\right],
+% \]
+% so that
+% \[
+%   \begin{bmatrix} x_4(\infty)\\ x_5(\infty) \end{bmatrix}
+%   = V \begin{bmatrix} u^1 \\ x^2(\infty) \end{bmatrix}
+%   = \big(0.5\, u_5 + 0.5\, x_6(\infty)\big)\, \mathbf{1}_2 ,
+%   \qquad u^1 = (u_4, u_5)^\top,\quad x^2(\infty) = (x_1, x_2, x_3, x_6)^\top(\infty).
+% \]
+%
+% % DONE (2026-10-30): the TODOs of block 3 below are written here, before the summary table.
+% Panel (a) is the situation of Figure~\ref{fig:fj-one-prejudiced} again: agent~$2$
+% belongs to the closed group, every agent is connected by a walk to it, all agents are
+% P-dependent ($r = n$) and the model is asymptotically stable
+% (Corollary~\ref{cor:fj-stable}), with $V = \mathbf{1}_6 e_2^\top$ and
+% $x(\infty) = u_2 \mathbf{1}_6 = 0.5\,\mathbf{1}_6$. The closed group is a periodic
+% cycle but, since the prejudice reaches every agent, periodicity plays no role.
+%
+% In panels (b)--(d) the prejudiced agent, agent~$5$, is outside the closed group, and
+% agents $1$, $2$, $3$ and $6$ are P-independent: they are not prejudiced and do not
+% listen to any P-dependent agent, so by~\eqref{eq:fj-indep} they obey the FDG model with
+% matrix $W^{22}$, as if the prejudice did not exist. Their trajectories in
+% Figure~\ref{fig:fj-auxiliary} are exactly those of the FDG model on $W_{\mathrm{p}}$
+% and $W_{\mathrm{a}}$, and for them the conditions of the FDG model come back,
+% aperiodicity included. Theorem~\ref{thm:fj-general} turns this into a condition on the
+% whole model: the FJ model converges if and only if $W^{22}$ is regular.
+% \begin{itemize}
+%   \item In (b), $W^{22}$ comes from $W_{\mathrm{p}}$: its sink $\{1,2,3\}$ is periodic,
+%         $W^{22}$ is not regular and the model does not converge. Agents $1, 2, 3$ and
+%         $6$ keep oscillating, and agents $4$ and $5$, which listen to them, oscillate
+%         too.
+%   \item In (c), the edge $2 \to 1$ makes the sink aperiodic, $W^{22}$ is regular and
+%         the model converges (Corollary~\ref{cor:fj-regular}). Agents $1, 2, 3$ reach the
+%         FDG consensus $0.4\, x_1(0) + 0.4\, x_2(0) + 0.2\, x_3(0) = 0.4$, whose weights
+%         are the social power of the closed group, and agent~$6$, which listens to
+%         agent~$1$, follows them. The P-dependent agents combine their prejudices with
+%         the final opinions of the P-independent ones, as in~\eqref{eq:fj-V}:
+%         $x_4(\infty) = x_5(\infty) = 0.5\, u_5 + 0.5\, x_6(\infty) = 0.65$.
+%   \item The model of (c) converges but is not asymptotically stable, since not all the
+%         agents are P-dependent (Corollary~\ref{cor:fj-stable}): $W^{22}$ is
+%         stochastic, every consensus vector is an equilibrium of~\eqref{eq:fj-indep},
+%         and the one that is reached depends on the initial opinions of the closed
+%         group. Panel (d) shows it: moving only $x_2(0)$ from $0.5$ to $1$ moves the
+%         consensus of the closed group to $0.6$, and with it the P-dependent agents to
+%         $0.75$. This is the opposite of Figure~\ref{fig:fj-stub-perturbation}, where the
+%         asymptotically stable FJ model forgets the change of $x_1(0)$.
+% \end{itemize}
+% In social terms, a prejudice acts only on the agents that listen, directly or through
+% intermediaries, to the prejudiced agent. When it reaches everybody, the FJ model is
+% asymptotically stable and the structure of the network does not matter; when it does
+% not, the agents it does not reach form an FDG model of their own, which needs
+% aperiodicity to converge and remembers their initial opinions.
+% Table~\ref{tab:fj-aux} summarizes the four cases.
+% % ADDED (2026-10-30): theory of block 3.
+
+% ADDED (2026-10-30): summary table of the auxiliary-network example (Figure fj-auxiliary).
+\begin{table}[H]
+  \centering
+  \small
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{@{}c c >{\raggedright\arraybackslash}p{2.3cm} c >{\raggedright\arraybackslash}p{3.9cm} >{\raggedright\arraybackslash}p{3.6cm}@{}}
+    \toprule
+    Panel & $W$ & Prejudiced agent & P-dependent & Outcome & What it shows \\
+    \midrule
+    (a) & $W_{\mathrm{p}}$ & $2$, inside the closed group & all ($r = n$)
+        & asymptotically stable (Corollary~\ref{cor:fj-stable}),
+          $x(\infty) = u_2 \mathbf{1}_6 = 0.5\, \mathbf{1}_6$
+        & the periodic cycle plays no role \\
+    \midrule
+    (b) & $W_{\mathrm{p}}$ & $5$, outside the closed group & $4, 5$ ($r = 2$)
+        & $W^{22}$ not regular: not convergent (Theorem~\ref{thm:fj-general})
+        & aperiodicity is needed again, for the P-independent agents \\
+    \midrule
+    (c) & $W_{\mathrm{a}}$ & $5$, outside the closed group & $4, 5$ ($r = 2$)
+        & $W^{22}$ regular: convergent (Theorem~\ref{thm:fj-general}), not
+          asymptotically stable; agents $1,2,3,6$ at $0.4$, agents $4,5$ at $0.65$
+        & convergence without asymptotic stability (Corollary~\ref{cor:fj-regular}) \\
+    \midrule
+    (d) & $W_{\mathrm{a}}$ & as (c), $x_2(0) = 1$, $u$ unchanged & $4, 5$ ($r = 2$)
+        & as (c), but agents $1,2,3,6$ at $0.6$, agents $4,5$ at $0.75$
+        & the limit depends on the initial opinions of the P-independent agents \\
+    \bottomrule
+  \end{tabular}
+  \caption{Summary of Figure~\ref{fig:fj-auxiliary}: a single prejudiced agent with
+  $\lambda = 0.5$ on the two versions of the auxiliary network
+  (Figure~\ref{fig:fj-aux-network}).}
+  \label{tab:fj-aux}
+\end{table}
+% TODO (theory, 2026-10-30): cite Table \ref{tab:fj-aux} at the end of the theory of block 3.
 
 % TODO (theory): use the auxiliary network and the four panels to explain the
 % P-dependent / P-independent split (Definition \ref{def:p-dependent}) and the three
@@ -671,13 +1314,34 @@ dashed edge, agent~$5$ prejudiced; (c) as (b), with the dashed edge $2 \to 1$; (
 %   this is the difference between convergence and asymptotic stability. The
 %   P-independent block {1,2,3} reaches its own FDG consensus 0.4 (left eigenvector
 %   (0.4, 0.4, 0.2) of the sink block {1,2,3} of W^22), agent 6 follows it, and the
-%   P-dependent agents 4 and 5
+%   P-dependent agents 4 and 5 settle at 0.65, between that value and the prejudice
+%   u_5 = 0.9.
 %   REVISED (2026-10-28): was "(0.4, 0.4, 0.2) of W^22" -- the eigenvector belongs to the
 %   sink block {1,2,3}, not to the whole W^22.
-%   settle at 0.65, between that value and the prejudice u_5 = 0.9.
+%   MOVED (2026-10-29): the two REVISED lines above used to sit between "the P-dependent
+%   agents 4 and 5" and "settle at 0.65", interrupting the sentence.
 % - (d) changing only x_2(0) moves the limit to (0.6, 0.6, 0.6, 0.75, 0.75, 0.6): since
 %   the model is not asymptotically stable, the limit still depends on the initial
 %   condition, unlike in (a).
+% ADDED (2026-10-29) -- block 3:
+% - message: a prejudice reaches only the agents that listen to the prejudiced
+%   agent, directly or through intermediaries (P-dependent); the P-independent ones
+%   follow the FDG model with W^22 (Theorem \ref{thm:fj-general}), and for them the
+%   FDG conditions come back, aperiodicity included: in (a) the 3-cycle is periodic
+%   but every agent is P-dependent and the model converges; in (b) the same periodic
+%   3-cycle is P-independent and the model does not converge.
+% - (d) is now "x_2(0) = 1 with u unchanged": agent 2 is P-independent
+%   (lambda_2 = 1), so u_2 has no weight, and the limit moves to
+%   (0.6, 0.6, 0.6, 0.75, 0.75, 0.6): the P-independent agents remember x(0) because
+%   the model is not asymptotically stable. Compare with Figure
+%   \ref{fig:fj-stub-perturbation}, where moving x_1(0) with u fixed leaves the limit
+%   of the asymptotically stable FJ model unchanged. The words "unlike in (a)" above
+%   hold only with u fixed: with u = x(0) the limit of (a) is u_2 = x_2(0).
+% ADDED (2026-10-30): panel (a): V = 1 e_2^T (formula only). Panels (c)-(d): use the
+% block partition and the 2x6 matrix V written above; read the columns of V (weight
+% 0.5 on u_5 and 0.5 on x_6(inf), zero elsewhere) and recover 0.65 in (c) and 0.75
+% in (d). Panel (b): W^22 with second row (0,0,1,0) has a periodic sink, so it is not
+% regular and the model does not converge (Theorem 3.2).
 
 \subsubsection{Prejudices, stubbornness and influence centrality}
 \label{subsubsec:fj-stub-power}

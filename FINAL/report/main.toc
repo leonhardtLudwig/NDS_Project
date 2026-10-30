@@ -30,5 +30,8 @@
 \contentsline {paragraph}{How the perturbation evolves.}{17}{section*.16}%
 \contentsline {paragraph}{The stubborn agent as a prejudice of its neighbours.}{18}{section*.18}%
 \contentsline {subsubsection}{\numberline {3.2.2}Prejudices, stubbornness and convergence}{19}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Prejudices, stubbornness and influence centrality}{21}{subsubsection.3.2.3}%
-\contentsline {section}{\numberline {4}Conclusions}{23}{section.4}%
+\contentsline {paragraph}{A single prejudice.}{19}{section*.20}%
+\contentsline {paragraph}{Every agent prejudiced.}{20}{section*.22}%
+\contentsline {paragraph}{Where the prejudice does not arrive.}{21}{section*.24}%
+\contentsline {subsubsection}{\numberline {3.2.3}Prejudices, stubbornness and influence centrality}{24}{subsubsection.3.2.3}%
+\contentsline {section}{\numberline {4}Conclusions}{26}{section.4}%

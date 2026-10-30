@@ -252,38 +252,112 @@ function make_fj_figures()
     pass = check(pass, d6 == 0, '     MISMATCH, expected exactly 0');
 
     % =================================================================
-    % Figure 4 - one prejudiced agent, three values of the attachment
+    % Figure 4 - one prejudiced agent, attachment 1 - lambda_1 = 1/2
     % =================================================================
-    att = [0, 0.5, 1];                              % attachment 1 - lambda_1
-    Kp  = 40;
+    % REVISED (2026-10-29): only the attachment 1/2 is kept, the one that can be compared
+    % with the middle column of Figure fdg-conv; the two extreme values need no panel
+    % (0 is the FDG model of Figure fdg-conv, 1 is Figure fj-stub-equivalence).  The
+    % heading above was "Figure 4 - one prejudiced agent, three values of the attachment".
+    % Was:
+    %     att = [0, 0.5, 1];                              % attachment 1 - lambda_1
+    %     Kp  = 40;
+    %     aFDG = social_power(self_weight(Wcyc, 0.5)).' * x0;     % FDG consensus at t = 1/2
+    %     fig = new_figure(16, 10);
+    %     tl  = tiledlayout(fig, 2, 3, 'TileSpacing', 'compact', 'Padding', 'compact');
+    %     steps = zeros(1,2);
+    %     for r = 1:2
+    %         W = nets{r,2};
+    %         for c = 1:3
+    %             lam = ones(n,1);  lam(1) = 1 - att(c);
+    %             X   = sim_fj(W, lam, x0, x0, Kp);
+    %             ax  = nexttile(tl);
+    %             if c == 2
+    %                 ref = yline(ax, aFDG, '--', 'FDG, $t = 1/2$', ...
+    %                     'Color', [0.45 0.45 0.45], 'LineWidth', 0.75, ...
+    %                     'Interpreter', 'latex', 'LabelHorizontalAlignment', 'right', ...
+    %                     'LabelVerticalAlignment', 'top');
+    %                 ref.Annotation.LegendInformation.IconDisplayStyle = 'off';
+    %                 hold(ax, 'on');
+    %                 Xl = sim_fj(W, lam, x0, x0, 400);
+    %                 kk = find(max(abs(Xl), [], 1) < tol, 1) - 1;
+    %                 if isempty(kk), kk = NaN; end
+    %                 steps(r) = kk;
+    %             end
+    %             draw_traj(ax, X, Kp, agentColour, n);
+    %             hold(ax, 'off');
+    %             title(ax, sprintf('%s, $1-\\lambda_1 = %s$', nets{r,1}, tex_frac(att(c))), ...
+    %                 'Interpreter', 'latex', 'FontWeight', 'normal');
+    %             ylim(ax, [-0.05, 1.05]);
+    %         end
+    %     end
+    % REVISED (2026-10-30): the figure becomes the fair comparison FDG/FJ at the same
+    % weight 1/2 on agent 1, laid out like Figure 5: columns = models, rows = networks.
+    % The dashed reference line is no longer needed, since the FDG model is now drawn,
+    % and the limits are marked by triangles as in Figure 5.  Was:
+    %     Kp  = 40;
+    %     aFDG = social_power(self_weight(Wcyc, 0.5)).' * x0;     % FDG consensus at t = 1/2
+    %     fig = new_figure(16, 6);
+    %     tl  = tiledlayout(fig, 1, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
+    %     steps = zeros(1,2);
+    %     for r = 1:2
+    %         W   = nets{r,2};
+    %         lam = ones(n,1);  lam(1) = 0.5;             % attachment 1 - lambda_1 = 1/2
+    %         X   = sim_fj(W, lam, x0, x0, Kp);
+    %         ax  = nexttile(tl);
+    %         ref = yline(ax, aFDG, '--', 'FDG, $t = 1/2$', ...
+    %             'Color', [0.45 0.45 0.45], 'LineWidth', 0.75, ...
+    %             'Interpreter', 'latex', 'LabelHorizontalAlignment', 'right', ...
+    %             'LabelVerticalAlignment', 'top');
+    %         ref.Annotation.LegendInformation.IconDisplayStyle = 'off';
+    %         hold(ax, 'on');
+    %         Xl = sim_fj(W, lam, x0, x0, 400);
+    %         kk = find(max(abs(Xl), [], 1) < tol, 1) - 1;
+    %         if isempty(kk), kk = NaN; end
+    %         steps(r) = kk;
+    %         draw_traj(ax, X, Kp, agentColour, n);
+    %         hold(ax, 'off');
+    %         title(ax, sprintf('%s, $1-\\lambda_1 = 1/2$', nets{r,1}), ...
+    %             'Interpreter', 'latex', 'FontWeight', 'normal');
+    %         ylim(ax, [-0.05, 1.05]);
+    %     end
+    Kp  = 60;
     aFDG = social_power(self_weight(Wcyc, 0.5)).' * x0;     % FDG consensus at t = 1/2
     fig = new_figure(16, 10);
-    tl  = tiledlayout(fig, 2, 3, 'TileSpacing', 'compact', 'Padding', 'compact');
+    tl  = tiledlayout(fig, 2, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
     steps = zeros(1,2);
+    Afdg2 = cell(2,1);                              % A(1/2), kept for the checks
     for r = 1:2
         W = nets{r,2};
-        for c = 1:3
-            lam = ones(n,1);  lam(1) = 1 - att(c);
-            X   = sim_fj(W, lam, x0, x0, Kp);
-            ax  = nexttile(tl);
-            if c == 2
-                ref = yline(ax, aFDG, '--', 'FDG, $t = 1/2$', ...
-                    'Color', [0.45 0.45 0.45], 'LineWidth', 0.75, ...
-                    'Interpreter', 'latex', 'LabelHorizontalAlignment', 'right', ...
-                    'LabelVerticalAlignment', 'top');
-                ref.Annotation.LegendInformation.IconDisplayStyle = 'off';
-                hold(ax, 'on');
-                Xl = sim_fj(W, lam, x0, x0, 400);
-                kk = find(max(abs(Xl), [], 1) < tol, 1) - 1;
-                if isempty(kk), kk = NaN; end
-                steps(r) = kk;
-            end
-            draw_traj(ax, X, Kp, agentColour, n);
-            hold(ax, 'off');
-            title(ax, sprintf('%s, $1-\\lambda_1 = %s$', nets{r,1}, tex_frac(att(c))), ...
-                'Interpreter', 'latex', 'FontWeight', 'normal');
-            ylim(ax, [-0.05, 1.05]);
-        end
+        % left: the FDG model, the weight 1/2 going to the CURRENT opinion x_1(k)
+        A  = self_weight(W, 0.5);  Afdg2{r} = A;
+        Xf = sim_fdg(A, x0, Kp);
+        ax = nexttile(tl);
+        draw_traj(ax, Xf, Kp, agentColour, n);
+        hold(ax, 'on');
+        plot(ax, Kp, social_power(A).' * x0, '<', 'Color', [0 0 0], ...
+            'MarkerFaceColor', [0 0 0], 'MarkerSize', 5, 'HandleVisibility', 'off');
+        hold(ax, 'off');
+        xlim(ax, [0, Kp + 1.5]);
+        ylim(ax, [-0.05, 1.05]);
+        title(ax, sprintf('%s, FDG, $t = 1/2$', nets{r,1}), ...
+            'Interpreter', 'latex', 'FontWeight', 'normal');
+        % right: the FJ model, the same weight going to the INITIAL opinion u_1 = x_1(0)
+        lam = ones(n,1);  lam(1) = 0.5;             % attachment 1 - lambda_1 = 1/2
+        X   = sim_fj(W, lam, x0, x0, Kp);
+        Xl  = sim_fj(W, lam, x0, x0, 400);
+        kk  = find(max(abs(Xl), [], 1) < tol, 1) - 1;
+        if isempty(kk), kk = NaN; end
+        steps(r) = kk;
+        ax = nexttile(tl);
+        draw_traj(ax, X, Kp, agentColour, n);
+        hold(ax, 'on');
+        plot(ax, Kp, 0, '<', 'Color', [0 0 0], 'MarkerFaceColor', [0 0 0], ...
+            'MarkerSize', 5, 'HandleVisibility', 'off');     % the limit is u_1 = 0
+        hold(ax, 'off');
+        xlim(ax, [0, Kp + 1.5]);
+        ylim(ax, [-0.05, 1.05]);
+        title(ax, sprintf('%s, FJ, $1-\\lambda_1 = 1/2$', nets{r,1}), ...
+            'Interpreter', 'latex', 'FontWeight', 'normal');
     end
     xlabel(tl, '$k$', 'Interpreter', 'latex');
     ylabel(tl, '$x_i(k)$', 'Interpreter', 'latex');
@@ -307,16 +381,64 @@ function make_fj_figures()
     end
     pass = check(pass, steps(1) == 59, '     MISMATCH, expected 59 steps on the directed cycle');
     pass = check(pass, steps(2) == 83, '     MISMATCH, expected 83 steps on the bidirectional ring');
+    % ADDED (2026-10-30): check on the FDG column, A(1/2).
+    for r = 1:2
+        Xf = sim_fdg(Afdg2{r}, x0, Kp);
+        d60 = max(abs(Xf(:,end) - 3/7));
+        log{end+1} = sprintf('4. %-19s FDG, max |x_i(%d) - 3/7| = %.4f', nets{r,1}, Kp, d60);
+        pass = check(pass, d60 < 0.01, '     MISMATCH, expected within 0.01 of 0.4286 at k = 60');
+    end
 
     % =================================================================
-    % Figure 5 - every agent prejudiced
+    % Figure 5 - every agent gives weight 0.2 to its own opinion: FDG against FJ
     % =================================================================
-    lamAll = 0.8 * ones(n,1);
-    Ka = 25;
-    fig = new_figure(16, 6);
-    tl  = tiledlayout(fig, 1, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
+    % REVISED (2026-10-29): the figure becomes the fair comparison between the two models
+    % at the same weight 0.2 (FDG self-weight a_ii against FJ attachment 1 - lambda_i),
+    % so the two columns are the two models and the two rows the two networks.  The
+    % heading above was "Figure 5 - every agent prejudiced".  Was:
+    %     lamAll = 0.8 * ones(n,1);
+    %     Ka = 25;
+    %     fig = new_figure(16, 6);
+    %     tl  = tiledlayout(fig, 1, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
+    %     for r = 1:2
+    %         W  = nets{r,2};
+    %         X  = sim_fj(W, lamAll, x0, x0, Ka);
+    %         xi = fj_limit(W, lamAll, x0);
+    %         ax = nexttile(tl);
+    %         draw_traj(ax, X, Ka, agentColour, n);
+    %         hold(ax, 'on');
+    %         for i = 1:n
+    %             plot(ax, Ka, xi(i), '<', 'Color', agentColour(i,:), ...
+    %                 'MarkerFaceColor', agentColour(i,:), 'MarkerSize', 5, ...
+    %                 'HandleVisibility', 'off');
+    %         end
+    %         hold(ax, 'off');
+    %         xlim(ax, [0, Ka + 1.5]);
+    %         ylim(ax, [-0.05, 1.05]);
+    %         title(ax, sprintf('%s, $\\lambda_i = 0.8$', nets{r,1}), ...
+    %             'Interpreter', 'latex', 'FontWeight', 'normal');
+    %     end
+    lamAll = 0.8 * ones(n,1);                       % attachment 1 - lambda_i = 0.2
+    Ka = 50;
+    fig = new_figure(16, 10);
+    tl  = tiledlayout(fig, 2, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
+    Afdg = cell(2,1);                               % A = 0.2 I + 0.8 W, kept for the checks
     for r = 1:2
-        W  = nets{r,2};
+        W = nets{r,2};
+        % left: the FDG model, the weight 0.2 going to the CURRENT opinion x_i(k)
+        A  = 0.2 * eye(n) + 0.8 * W;  Afdg{r} = A;
+        Xf = sim_fdg(A, x0, Ka);
+        ax = nexttile(tl);
+        draw_traj(ax, Xf, Ka, agentColour, n);
+        hold(ax, 'on');
+        plot(ax, Ka, mean(x0), '<', 'Color', [0 0 0], 'MarkerFaceColor', [0 0 0], ...
+            'MarkerSize', 5, 'HandleVisibility', 'off');     % the average, one limit for all
+        hold(ax, 'off');
+        xlim(ax, [0, Ka + 1.5]);
+        ylim(ax, [-0.05, 1.05]);
+        title(ax, sprintf('%s, FDG, $a_{ii} = 0.2$', nets{r,1}), ...
+            'Interpreter', 'latex', 'FontWeight', 'normal');
+        % right: the FJ model, the same weight going to the INITIAL opinion u_i = x_i(0)
         X  = sim_fj(W, lamAll, x0, x0, Ka);
         xi = fj_limit(W, lamAll, x0);
         ax = nexttile(tl);
@@ -330,7 +452,7 @@ function make_fj_figures()
         hold(ax, 'off');
         xlim(ax, [0, Ka + 1.5]);
         ylim(ax, [-0.05, 1.05]);
-        title(ax, sprintf('%s, $\\lambda_i = 0.8$', nets{r,1}), ...
+        title(ax, sprintf('%s, FJ, $1-\\lambda_i = 0.2$', nets{r,1}), ...
             'Interpreter', 'latex', 'FontWeight', 'normal');
     end
     xlabel(tl, '$k$', 'Interpreter', 'latex');
@@ -351,6 +473,20 @@ function make_fj_figures()
             nets{r,1}, strjoin(compose('%.3f', V(1,:)), ' '), dr, ds);
         pass = check(pass, dv < tol && dr < tol && ds < 1e-12, '     MISMATCH');
     end
+    % ADDED (2026-10-29): checks on the FDG column, A = 0.2 I + 0.8 W.
+    for r = 1:2
+        A  = Afdg{r};
+        dA = max(max(abs(sum(A,2) - 1)), max(abs(sum(A,1) - 1)));
+        Xf = sim_fdg(A, x0, Ka);
+        d50 = max(abs(Xf(:,end) - mean(x0)));
+        XfL = sim_fdg(A, x0, 4000);
+        dinf = max(abs(XfL(:,end) - mean(x0)));
+        log{end+1} = sprintf('5. %-19s A doubly-stochastic : %.2e | max |x_i(%d) - 0.5| = %.4f | A^4000 x0 vs 0.5 : %.3e', ...
+            nets{r,1}, dA, Ka, d50, dinf);
+        pass = check(pass, dA < 1e-12, '     MISMATCH, A is not doubly-stochastic');
+        pass = check(pass, d50 < 0.02, '     MISMATCH, expected within 0.02 of 0.5 at k = 50');
+        pass = check(pass, dinf < 1e-9, '     MISMATCH, expected A^4000 x0 = 0.5 within 1e-9');
+    end
 
     % =================================================================
     % Figure 6 - auxiliary network, P-dependent and P-independent agents
@@ -362,16 +498,25 @@ function make_fj_figures()
     x0a = [0; 0.5; 1; 0.2; 0.9; 0.6];
     x0d = x0a;  x0d(2) = 1;
     Kx  = 40;
-    cases = { '(a) agent 2 prejudiced',              Wa, 2, x0a; ...
-              '(b) agent 5 prejudiced',              Wa, 5, x0a; ...
-              '(c) edge $2 \to 1$, agent 5 prejudiced', Wb, 5, x0a; ...
-              '(d) as (c) with $x_2(0) = 1$',        Wb, 5, x0d };
+    % REVISED (2026-10-29): a fifth column holds u, so that in (d) only the initial
+    % condition x(0) moves and the prejudices stay at x0a.  Was:
+    %     cases = { '(a) agent 2 prejudiced',              Wa, 2, x0a; ...
+    %               '(b) agent 5 prejudiced',              Wa, 5, x0a; ...
+    %               '(c) edge $2 \to 1$, agent 5 prejudiced', Wb, 5, x0a; ...
+    %               '(d) as (c) with $x_2(0) = 1$',        Wb, 5, x0d };
+    % columns: title, W, prejudiced agent, x(0), u
+    cases = { '(a) agent 2 prejudiced',              Wa, 2, x0a, x0a; ...
+              '(b) agent 5 prejudiced',              Wa, 5, x0a, x0a; ...
+              '(c) edge $2 \to 1$, agent 5 prejudiced', Wb, 5, x0a, x0a; ...
+              '(d) as (c), $x_2(0) = 1$, $u$ unchanged', Wb, 5, x0d, x0a };
     fig = new_figure(16, 10);
     tl  = tiledlayout(fig, 2, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
     for q = 1:4
-        W = cases{q,2};  p = cases{q,3};  xs = cases{q,4};
+        W = cases{q,2};  p = cases{q,3};  xs = cases{q,4};  us = cases{q,5};
         lam = ones(n,1);  lam(p) = 0.5;
-        X   = sim_fj(W, lam, xs, xs, Kx);
+        % REVISED (2026-10-29): was "X = sim_fj(W, lam, xs, xs, Kx)", i.e. u = x(0) in
+        % every case; now u is taken from the fifth column of CASES.
+        X   = sim_fj(W, lam, us, xs, Kx);
         ax  = nexttile(tl);
         draw_traj(ax, X, Kx, agentColour, n);
         title(ax, cases{q,1}, 'Interpreter', 'latex', 'FontWeight', 'normal');
@@ -383,10 +528,11 @@ function make_fj_figures()
     files{8} = export(fig, here, 'fj_auxiliary');
     expLim = {0.5*ones(n,1), [], [0.4;0.4;0.4;0.65;0.65;0.4], [0.6;0.6;0.6;0.75;0.75;0.6]};
     for q = 1:4
-        W = cases{q,2};  p = cases{q,3};  xs = cases{q,4};
+        W = cases{q,2};  p = cases{q,3};  xs = cases{q,4};  us = cases{q,5};
         lam = ones(n,1);  lam(p) = 0.5;
         rho = max(abs(eig(diag(lam)*W)));
-        XL  = sim_fj(W, lam, xs, xs, 4000);
+        % REVISED (2026-10-29): was "XL = sim_fj(W, lam, xs, xs, 4000)", as in the figure.
+        XL  = sim_fj(W, lam, us, xs, 4000);
         conv = max(abs(XL(:,end) - XL(:,end-1))) < 1e-10;
         if isempty(expLim{q})
             log{end+1} = sprintf('6. %-38s rho(Lambda W) = %.4f | converges : %d', ...
