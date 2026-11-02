@@ -95,7 +95,8 @@ augmented graph, in which every prejudice becomes a virtual stubborn agent
 (Figure~\ref{fig:augmented}). In the other direction, an FDG model with stubborn agents
 can be written as an FJ model in two ways: the rewriting
 of~\cite{proskurnikov2017tutorial}, which keeps each stubborn agent as an agent of the FJ
-model, and a rewriting of ours, which removes it and turns it into the prejudice of the
+model, and a second rewriting, which removes it and turns it into the prejudice of the
+% REVISED (2026-11-02): removed "a rewriting of ours" (no citation = ours).
 agents that listen to it. The second one is the augmented graph read backwards. The two
 rewritings are presented in this order.
 % ADDED (2026-10-28): framing paragraph, so that the three translations are not mixed.
@@ -169,7 +170,8 @@ prejudice $u_i = x_i(0)$.
 Figure~\ref{fig:fj-stub-equivalence} simulates the FDG model with $A(1)$ and its FJ
 rewriting on both networks. In the FJ model agent~$1$ is the only prejudiced agent, and
 its attachment $1 - \lambda_1$ takes the place of the self-weight $t$ of
-Section~\ref{subsec:fdg-stub}: this choice of ours makes the two parameters directly
+Section~\ref{subsec:fdg-stub}: this choice makes the two parameters directly
+% REVISED (2026-11-02): removed "of ours" (no citation = ours).
 comparable, both equal to $1$ in the stubborn case.
 % REVISED (2026-10-28, review): the parameters are in the caption; the text keeps only what is compared. Was:
 % Figure~\ref{fig:fj-stub-equivalence} compares two models on each of the two networks.
@@ -263,85 +265,130 @@ forgotten; in the FJ model it is an external input, and the state forgets $x(0)$
 % fig:fj-stub-perturbation.
 
 \paragraph{How the perturbation evolves.}
-Let $x(k)$ and $\tilde x(k)$ be the trajectories of
-Figures~\ref{fig:fj-stub-equivalence} and~\ref{fig:fj-stub-perturbation}, started from
-$x_1(0) = 0$ and $x_1(0) = 0.5$. Figure~\ref{fig:fj-error} shows, for each agent, their
-difference $\delta(k) = \tilde x(k) - x(k)$, with $\delta(0) = 0.5\,e_1$.
-% REVISED (2026-10-28, review): the layout of the panels is in the caption. Was:
-% Let $x(k)$ be the trajectory of Figure~\ref{fig:fj-stub-equivalence}, started from
-% $x_1(0) = 0$, and $\tilde x(k)$ the trajectory of
-% Figure~\ref{fig:fj-stub-perturbation}, started from $x_1(0) = 0.5$, every other
-% quantity being the same in the two cases. Figure~\ref{fig:fj-error} shows, for each
-% agent, their difference $\delta(k) = \tilde x(k) - x(k)$, perturbed minus original.
-% The two rows are the two
-% models, the two columns the two networks; all the parameters are those of the two
-% previous figures, so $\delta(0) = 0.5\,e_1$ in all four panels.
-% REVISED (2026-10-28): was "Figure~\ref{fig:fj-error} shows, for each agent, the
-% difference $e(k) = x(k) - \tilde x(k)$ between the trajectory of
-% Figure~\ref{fig:fj-stub-perturbation}, started from $x_1(0) = 0.5$, and the trajectory
-% of Figure~\ref{fig:fj-stub-equivalence}, started from $x_1(0) = 0$. The two rows are
-% the two models, the two columns the two networks; all the parameters are those of the
-% two previous figures, so $e(0) = 0.5\,e_1$ in all four panels." -- the symbol e(k) was
-% already used with a different meaning in Section 3.1.2, \tilde x was not defined, and
-% the sign of the difference did not match $e(0) = 0.5\,e_1$.
-% REVISED (2026-10-28): removed "The symbol $\delta$ is used instead of $e$ because $e(k)$
-% already denotes, in Section~\ref{subsubsec:fj-conv} and in~\eqref{eq:fj-error}, the
-% deviation of a single trajectory from its own limit, $e(k) = x(k) - x(\infty)$." --
-% the comparison between delta(k) and e(k) is made once, in the paragraph below.
-
-The difference $\delta(k)$ shows where the perturbation of $x_1(0)$ is at each step.
-In the FJ model, subtracting the two equations~\eqref{eq:fj} written for $\tilde x$ and
-for $x$, the term $(I - \Lambda)u$ cancels, since the prejudices are the same, and
-(this computation is ours)
+Figure~\ref{fig:fj-stub-perturbation} perturbs the initial state. Let $x(k)$ and
+$\tilde x(k)$ be the trajectories of Figures~\ref{fig:fj-stub-equivalence}
+and~\ref{fig:fj-stub-perturbation}. In the FJ model the prejudice $u$ is the same in the
+two runs, so their difference obeys
+% NOTE (for the revision): the recursion for delta(k) is our computation.
 \[
-  \delta(k+1) = \Lambda W\, \delta(k).
+  \delta(k+1) = \Lambda W\, \delta(k),
 \]
-This is the same recursion as~\eqref{eq:fj-error}: both $\delta(k)$ and $e(k)$ are
-differences of two solutions with the same $u$, the second one being, for $e(k)$, the
-constant solution $x(\infty)$. The two quantities, however, measure different things:
-$e(k)$ tells how far a single trajectory still is from its limit, $\delta(k)$ how much
-of the perturbation is still present.
+the same recursion as the error~\eqref{eq:fj-error}, although $e(k)$ measures the
+distance of one trajectory from its limit and $\delta(k)$ what is left of the
+perturbation. Since all agents are P-dependent, $\Lambda W$ is Schur stable
+(Corollary~\ref{cor:fj-stable}): $\delta(k) \to 0$ and the two runs reach the same limit
+$Vu$, which is what asymptotic stability means. In the FDG model the same computation
+gives $\delta(k+1) = A\,\delta(k)$ and, by Theorem~\ref{thm:consensus},
+$\delta(k) \to (w^\top \delta(0))\mathbf{1}_6 = 0.5\,\mathbf{1}_6$: the perturbation is
+never forgotten.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.94\textwidth]{figures/fj_error.eps}
-  \caption{Difference $\delta_i(k) = \tilde x_i(k) - x_i(k)$ between the trajectories
-  of Figure~\ref{fig:fj-stub-perturbation} and those of
-  Figure~\ref{fig:fj-stub-equivalence}, i.e.\ the effect of changing $x_1(0)$ from $0$
-  to $0.5$. Top: FDG with $A(1)$; bottom: FJ with $\lambda_1 = 0$. Left: directed
-  cycle, $K = 10$; right: bidirectional ring, $K = 40$. The thin grey line marks
-  $\delta_i = 0$.}
-  % REVISED (2026-10-28): was "Difference $e_i(k)$ between the trajectories of ... The
-  % thin grey line marks $e_i = 0$." -- renamed to $\delta_i(k)$, see the paragraph above.
-  \label{fig:fj-error}
-\end{figure}
-
-% TODO (theory): connect with the error equation of Section 3.1.2 (ours), e(k+1) =
-% Lambda W e(k): in the FJ model the prejudice u cancels out, so the deviation obeys an
-% autonomous system and vanishes (all agents P-dependent). In the FDG model the same
-% computation gives e(k+1) = A e(k) with A row-stochastic (ours), so the deviation does
-% not vanish but is averaged into a new consensus, 0.5. Note that on the directed cycle
-% the FJ deviation is exactly zero from k = 6 on (numerical check): the pulse travels
-% backwards along the cycle and is absorbed by the prejudiced agent.
-% ADDED (2026-10-28), TODO (theory): delta(k) obeys the SAME recursion as eq:fj-error,
-% delta(k+1) = Lambda W delta(k), although it is a different object: it is the difference
-% of two trajectories of the same model with the same prejudice vector u, so the constant
-% term (I - Lambda) u cancels out exactly as x(infinity) does in eq:fj-error (ours). In
-% the FDG model the same computation gives delta(k+1) = A delta(k) (ours). This is why
-% the two rows of the figure can be read with the same equations as Section 3.1.2.
-% DONE (2026-10-28): the two TODOs above are written below.
-
-Since all agents are P-dependent, $\Lambda W$ is
-Schur stable (Corollary~\ref{cor:fj-stable}) and $\delta(k) \to 0$: the perturbation
-is forgotten. On the directed cycle it travels backwards along the cycle, from
-agent~$1$ to agents $6, 5, \dots, 2$, and when it comes back to agent~$1$ it is
-cancelled, since $\lambda_1 = 0$: $\delta(k) = 0$ for $k \geq 6$. On the bidirectional
-ring it is split between the neighbours and fades gradually. In the FDG model there is
-no input to cancel, and the same computation gives $\delta(k+1) = A\,\delta(k)$ (ours).
-Agent~$1$ is the only globally reachable node, with social power $w = e_1$, so by
-Theorem~\ref{thm:consensus} $\delta(k) \to (w^\top \delta(0))\mathbf{1}_6 =
-0.5\,\mathbf{1}_6$: the stubborn agent keeps the perturbation and passes it to
-everybody.
+% NOTE (for the revision): the spectra below are our computation.
+The spectra show where the difference lies. $\Lambda W$ and
+$A(1)$ differ only in the row of agent~$1$, zero in $\Lambda W$ and $e_1^\top$ in
+$A(1)$, and so do their spectra: on the bidirectional ring
+$\operatorname{spec}(\Lambda W) = \{0, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ and
+$\operatorname{spec}(A(1)) = \{1, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ (on
+the directed cycle all the eigenvalues are $0$, except the eigenvalue
+% REVISED (2026-11-02): removed "computed numerically" (no citation = ours).
+$1$ of $A(1)$). The eigenvalue $1$ of $A(1)$ is that of the virtual agent $1'$ of the
+augmented model: in the FDG model the opinion of the stubborn agent is a state, that of
+$1'$, and changing $x_1(0)$ changes it; in the FJ model
+Figure~\ref{fig:fj-stub-perturbation} moves only the real agent~$1$, with
+$x_{1'}(0) = u_1$ unchanged, and the perturbation is forgotten.
+% REVISED (2026-11-02): spectral version, shorter. Was:
+% The augmented model of Section~\ref{subsubsec:fj-final} reconciles the two pictures
+% (our reading). In the augmented model the initial opinion of agent~$1$ and its
+% prejudice are two different states, the real agent~$1$ and the virtual agent $1'$.
+% Figure~\ref{fig:fj-stub-perturbation} moves only the first: a perturbation of a real
+% agent, which the augmented model forgets, as the FJ model does. Moving the virtual
+% agent $1'$, i.e.\ the prejudice $u_1$, would instead be a perturbation along the
+% eigenvalue $1$, never forgotten, and the whole group would follow it. This is what
+% happens in the FDG model, where the stubborn agent plays exactly the role of a virtual
+% agent: an opinion that never changes and that the others listen to. The two panels of
+% Figure~\ref{fig:fj-stub-perturbation} therefore differ not in the dynamics but in what
+% is perturbed: the state of a stubborn agent, i.e.\ of a virtual agent, in the FDG model,
+% and the opinion of a real agent with an unchanged prejudice in the FJ model.
+% REVISED (2026-11-02): delta paragraph shortened and linked to asymptotic stability; Figure fj-error removed. Was:
+% \paragraph{How the perturbation evolves.}
+% Let $x(k)$ and $\tilde x(k)$ be the trajectories of
+% Figures~\ref{fig:fj-stub-equivalence} and~\ref{fig:fj-stub-perturbation}, started from
+% $x_1(0) = 0$ and $x_1(0) = 0.5$. Figure~\ref{fig:fj-error} shows, for each agent, their
+% difference $\delta(k) = \tilde x(k) - x(k)$, with $\delta(0) = 0.5\,e_1$.
+% % REVISED (2026-10-28, review): the layout of the panels is in the caption. Was:
+% % Let $x(k)$ be the trajectory of Figure~\ref{fig:fj-stub-equivalence}, started from
+% % $x_1(0) = 0$, and $\tilde x(k)$ the trajectory of
+% % Figure~\ref{fig:fj-stub-perturbation}, started from $x_1(0) = 0.5$, every other
+% % quantity being the same in the two cases. Figure~\ref{fig:fj-error} shows, for each
+% % agent, their difference $\delta(k) = \tilde x(k) - x(k)$, perturbed minus original.
+% % The two rows are the two
+% % models, the two columns the two networks; all the parameters are those of the two
+% % previous figures, so $\delta(0) = 0.5\,e_1$ in all four panels.
+% % REVISED (2026-10-28): was "Figure~\ref{fig:fj-error} shows, for each agent, the
+% % difference $e(k) = x(k) - \tilde x(k)$ between the trajectory of
+% % Figure~\ref{fig:fj-stub-perturbation}, started from $x_1(0) = 0.5$, and the trajectory
+% % of Figure~\ref{fig:fj-stub-equivalence}, started from $x_1(0) = 0$. The two rows are
+% % the two models, the two columns the two networks; all the parameters are those of the
+% % two previous figures, so $e(0) = 0.5\,e_1$ in all four panels." -- the symbol e(k) was
+% % already used with a different meaning in Section 3.1.2, \tilde x was not defined, and
+% % the sign of the difference did not match $e(0) = 0.5\,e_1$.
+% % REVISED (2026-10-28): removed "The symbol $\delta$ is used instead of $e$ because $e(k)$
+% % already denotes, in Section~\ref{subsubsec:fj-conv} and in~\eqref{eq:fj-error}, the
+% % deviation of a single trajectory from its own limit, $e(k) = x(k) - x(\infty)$." --
+% % the comparison between delta(k) and e(k) is made once, in the paragraph below.
+%
+% The difference $\delta(k)$ shows where the perturbation of $x_1(0)$ is at each step.
+% In the FJ model, subtracting the two equations~\eqref{eq:fj} written for $\tilde x$ and
+% for $x$, the term $(I - \Lambda)u$ cancels, since the prejudices are the same, and
+% (this computation is ours)
+% \[
+%   \delta(k+1) = \Lambda W\, \delta(k).
+% \]
+% This is the same recursion as~\eqref{eq:fj-error}: both $\delta(k)$ and $e(k)$ are
+% differences of two solutions with the same $u$, the second one being, for $e(k)$, the
+% constant solution $x(\infty)$. The two quantities, however, measure different things:
+% $e(k)$ tells how far a single trajectory still is from its limit, $\delta(k)$ how much
+% of the perturbation is still present.
+%
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.94\textwidth]{figures/fj_error.eps}
+%   \caption{Difference $\delta_i(k) = \tilde x_i(k) - x_i(k)$ between the trajectories
+%   of Figure~\ref{fig:fj-stub-perturbation} and those of
+%   Figure~\ref{fig:fj-stub-equivalence}, i.e.\ the effect of changing $x_1(0)$ from $0$
+%   to $0.5$. Top: FDG with $A(1)$; bottom: FJ with $\lambda_1 = 0$. Left: directed
+%   cycle, $K = 10$; right: bidirectional ring, $K = 40$. The thin grey line marks
+%   $\delta_i = 0$.}
+%   % REVISED (2026-10-28): was "Difference $e_i(k)$ between the trajectories of ... The
+%   % thin grey line marks $e_i = 0$." -- renamed to $\delta_i(k)$, see the paragraph above.
+%   \label{fig:fj-error}
+% \end{figure}
+%
+% % TODO (theory): connect with the error equation of Section 3.1.2 (ours), e(k+1) =
+% % Lambda W e(k): in the FJ model the prejudice u cancels out, so the deviation obeys an
+% % autonomous system and vanishes (all agents P-dependent). In the FDG model the same
+% % computation gives e(k+1) = A e(k) with A row-stochastic (ours), so the deviation does
+% % not vanish but is averaged into a new consensus, 0.5. Note that on the directed cycle
+% % the FJ deviation is exactly zero from k = 6 on (numerical check): the pulse travels
+% % backwards along the cycle and is absorbed by the prejudiced agent.
+% % ADDED (2026-10-28), TODO (theory): delta(k) obeys the SAME recursion as eq:fj-error,
+% % delta(k+1) = Lambda W delta(k), although it is a different object: it is the difference
+% % of two trajectories of the same model with the same prejudice vector u, so the constant
+% % term (I - Lambda) u cancels out exactly as x(infinity) does in eq:fj-error (ours). In
+% % the FDG model the same computation gives delta(k+1) = A delta(k) (ours). This is why
+% % the two rows of the figure can be read with the same equations as Section 3.1.2.
+% % DONE (2026-10-28): the two TODOs above are written below.
+%
+% Since all agents are P-dependent, $\Lambda W$ is
+% Schur stable (Corollary~\ref{cor:fj-stable}) and $\delta(k) \to 0$: the perturbation
+% is forgotten. On the directed cycle it travels backwards along the cycle, from
+% agent~$1$ to agents $6, 5, \dots, 2$, and when it comes back to agent~$1$ it is
+% cancelled, since $\lambda_1 = 0$: $\delta(k) = 0$ for $k \geq 6$. On the bidirectional
+% ring it is split between the neighbours and fades gradually. In the FDG model there is
+% no input to cancel, and the same computation gives $\delta(k+1) = A\,\delta(k)$ (ours).
+% Agent~$1$ is the only globally reachable node, with social power $w = e_1$, so by
+% Theorem~\ref{thm:consensus} $\delta(k) \to (w^\top \delta(0))\mathbf{1}_6 =
+% 0.5\,\mathbf{1}_6$: the stubborn agent keeps the perturbation and passes it to
+% everybody.
 
 % PLACEHOLDER (2026-10-28): figure comparing e(k) and delta(k) in the FJ model, to be
 % created with figures/make_fj_figures.m (file figures/fj_delta_vs_error.eps) and
@@ -379,26 +426,45 @@ everybody.
 % % perturbation).
 
 \paragraph{The stubborn agent as a prejudice of its neighbours.}
-The rewriting of~\cite{proskurnikov2017tutorial} keeps the stubborn agent as an agent
-of the FJ model. A different rewriting, which is ours, removes it. Consider the
-bidirectional ring with $t = 1$ (Figure~\ref{fig:fj-stub-reduction}(a)): agent~$1$ is
-stubborn, and agents~$2$ and~$6$ listen to it with weight $1/2$. Since
-$x_1(k) = x_1(0)$ for all $k$, the update of agent~$6$ is
+The second rewriting removes the stubborn agent. If agent~$1$ is stubborn,
+$x_1(k) = x_1(0)$ for all $k$, and an agent $i$ that listens to it with weight
+$a_{i1}$ updates as
 \[
-  x_6(k+1) = \tfrac{1}{2}\, x_5(k) + \tfrac{1}{2}\, x_1(k)
-           = \tfrac{1}{2}\, x_5(k) + \tfrac{1}{2}\, x_1(0),
+  x_i(k+1) = \sum_{j \neq 1} a_{ij}\, x_j(k) + a_{i1}\, x_1(0),
 \]
-which is the update~\eqref{eq:fj} of an agent with $\lambda_6 = 1/2$, prejudice
-$u_6 = x_1(0)$ and influence weight $1$ on agent~$5$; the same holds for agent~$2$.
-Hence agents $2, \dots, 6$ obey an FJ model on five agents
-(Figure~\ref{fig:fj-stub-reduction}(b)), with $\lambda_2 = \lambda_6 = 1/2$,
-$u_2 = u_6 = x_1(0)$ and $\lambda_3 = \lambda_4 = \lambda_5 = 1$, whose trajectories
-coincide with those of the FDG model (bottom-left panel of
-Figure~\ref{fig:fj-stub-equivalence}): the stubborn agent has become the common
-prejudice of the agents that listen to it. Conversely, the augmented graph of this FJ
-model (Section~\ref{subsubsec:fj-final}) has two virtual agents $2'$ and $6'$, both with
-opinion $x_1(0)$; merging them into a single node gives back the FDG model, in which the
-stubborn agent~$1$ plays the role of a virtual agent.
+which is~\eqref{eq:fj-i} with $\lambda_i = 1 - a_{i1}$, $w_{ij} = a_{ij}/\lambda_i$ and
+$u_i = x_1(0)$; the other agents keep $\lambda_i = 1$. The remaining $n - 1$ agents obey
+an FJ model in which the stubborn opinion is the common prejudice of the agents that
+listen to it: the augmented graph read backwards, with the stubborn agent as the
+virtual agent. On the bidirectional ring with $t = 1$, agents $2$ and $6$ become
+prejudiced with $\lambda_2 = \lambda_6 = 1/2$ and $u_2 = u_6 = x_1(0)$
+(Figure~\ref{fig:fj-stub-reduction}), and agents $2, \dots, 6$ follow the bottom-left panel of Figure~\ref{fig:fj-stub-equivalence}.
+Unlike in the rewriting of~\cite{proskurnikov2017tutorial}, the stubborn opinion appears
+only once, as a prejudice, and not also as an initial state: no initial condition of the
+FJ model corresponds to moving the stubborn agent alone, and the two models have the
+same trajectories for every initial condition.
+% REVISED (2026-11-02): paragraph rewritten in general form and shortened; Figure
+% fj-stub-reduction kept; "(our rewriting)" removed from its caption. Was:
+% The rewriting of~\cite{proskurnikov2017tutorial} keeps the stubborn agent as an agent
+% of the FJ model. A different rewriting, which is ours, removes it. Consider the
+% bidirectional ring with $t = 1$ (Figure~\ref{fig:fj-stub-reduction}(a)): agent~$1$ is
+% stubborn, and agents~$2$ and~$6$ listen to it with weight $1/2$. Since
+% $x_1(k) = x_1(0)$ for all $k$, the update of agent~$6$ is
+% \[
+%   x_6(k+1) = \tfrac{1}{2}\, x_5(k) + \tfrac{1}{2}\, x_1(k)
+%            = \tfrac{1}{2}\, x_5(k) + \tfrac{1}{2}\, x_1(0),
+% \]
+% which is the update~\eqref{eq:fj} of an agent with $\lambda_6 = 1/2$, prejudice
+% $u_6 = x_1(0)$ and influence weight $1$ on agent~$5$; the same holds for agent~$2$.
+% Hence agents $2, \dots, 6$ obey an FJ model on five agents
+% (Figure~\ref{fig:fj-stub-reduction}(b)), with $\lambda_2 = \lambda_6 = 1/2$,
+% $u_2 = u_6 = x_1(0)$ and $\lambda_3 = \lambda_4 = \lambda_5 = 1$, whose trajectories
+% coincide with those of the FDG model (bottom-left panel of
+% Figure~\ref{fig:fj-stub-equivalence}): the stubborn agent has become the common
+% prejudice of the agents that listen to it. Conversely, the augmented graph of this FJ
+% model (Section~\ref{subsubsec:fj-final}) has two virtual agents $2'$ and $6'$, both with
+% opinion $x_1(0)$; merging them into a single node gives back the FDG model, in which the
+% stubborn agent~$1$ plays the role of a virtual agent.
 % REVISED (2026-10-28, review): split in two paragraphs: the rewriting before Figure fj-stub-reduction, the comparison of the two rewritings after it; the asymptotic stability is said once. Was:
 % which is the update~\eqref{eq:fj} of an agent with $\lambda_6 = 1/2$, prejudice
 % $u_6 = x_1(0)$ and influence weight $1$ on agent~$5$; the same holds for agent~$2$.
@@ -429,6 +495,54 @@ stubborn agent~$1$ plays the role of a virtual agent.
 % stubborn nodes become inputs, shared by the agents that listen to them"). Checked
 % numerically: the trajectories of agents 2..6 coincide with those of the FDG model on
 % the bidirectional ring with t = 1 (max difference 0); rho(Lambda W) = 0.866.
+
+% [Figure fj-stub-reduction kept, below the paragraph]
+
+% The two rewritings differ in one point. In both of them the FDG model is not
+% asymptotically stable while the FJ model is (all its agents are P-dependent,
+% Corollary~\ref{cor:fj-stable}), because the opinion of the stubborn agent is a state in
+% the first and an input in the second. In the rewriting
+% of~\cite{proskurnikov2017tutorial}, however, this opinion appears twice, and moving the
+% initial state of the stubborn agent alone separates the two models
+% (Figure~\ref{fig:fj-stub-perturbation}). In our rewriting it appears only once, as the
+% prejudice $u_2 = u_6 = x_1(0)$: there is no initial condition of the FJ model that
+% corresponds to moving the stubborn agent alone, and the two models have the same
+% trajectories for every initial condition.
+% ADDED (2026-10-28, review): comparison of the two rewritings moved after the figure.
+
+% REVISED (2026-10-28): the simulation below (paragraph, Figure fj-stub-simulation and
+% its TODO) is commented out: its left panel is the bottom-left panel of Figure
+% fj-stub-equivalence and its right panel has the same curves. Kept as a record.
+% % ADDED (2026-10-28): simulation of the two models of Figure fj-stub-reduction, to show
+% % that the trajectories of agents 2..6 coincide.
+% Figure~\ref{fig:fj-stub-simulation} simulates the two models of
+% Figure~\ref{fig:fj-stub-reduction} on the bidirectional ring, with
+% $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 40$: on the left the FDG
+% model $x(k+1) = A(1)x(k)$ on six agents, whose first row is $e_1^\top$ and whose other
+% rows give weight $1/2$ to each of the two neighbours; on the right the FJ
+% model~\eqref{eq:fj} on the five agents $2, \dots, 6$ alone, with $W'$ the rows of the
+% ring restricted to those agents and renormalised, so that agent~$2$ gives weight $1$ to
+% agent~$3$ and agent~$6$ weight $1$ to agent~$5$, with
+% $\lambda_2 = \lambda_6 = 1/2$, $\lambda_3 = \lambda_4 = \lambda_5 = 1$ and
+% $u_2 = u_6 = x_1(0) = 0$.
+%
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.94\textwidth]{figures/fj_stub_reduction.eps}
+%   \caption{Opinions $x_i(k)$ of the two models of Figure~\ref{fig:fj-stub-reduction} on
+%   the bidirectional ring, with $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and
+%   $K = 40$. Left: the FDG model with $A(1)$, on all six agents. Right: the FJ model on
+%   agents $2, \dots, 6$, with $W'$ the renormalised rows of the ring,
+%   $\lambda_2 = \lambda_6 = 1/2$, $\lambda_3 = \lambda_4 = \lambda_5 = 1$ and
+%   $u_2 = u_6 = x_1(0)$; the black dashed line marks that common prejudice. The colours
+%   are those of the other figures of this section, agent~$1$ black and marked with dots.}
+%   \label{fig:fj-stub-simulation}
+% \end{figure}
+% % TODO (theory): the two panels coincide agent by agent (numerical check: max
+% % difference 0): the stubborn agent of the FDG model has become the common prejudice of
+% % agents 2 and 6; compare with Figure \ref{fig:fj-stub-equivalence}, where the stubborn
+% % agent stays an agent with lambda_1 = 0.
+
 
 \begin{figure}[H]
   \centering
@@ -467,58 +581,13 @@ stubborn agent~$1$ plays the role of a virtual agent.
   \end{tikzpicture}
   \caption{(a)~The FDG model on the bidirectional ring of Figure~\ref{fig:networks}(b)
   with $t = 1$: agent~$1$ is stubborn; unlabelled edges have weight $1/2$. (b)~The FJ
-  model on agents $2, \dots, 6$ obtained by removing agent~$1$ (our rewriting):
+  model on agents $2, \dots, 6$ obtained by removing agent~$1$:
   $\lambda_2 = \lambda_6 = 1/2$, $u_2 = u_6 = x_1(0)$,
   $\lambda_3 = \lambda_4 = \lambda_5 = 1$. The opinion $x_1(0)$ enters agents~$2$
   and~$6$ as their common prejudice, with weight $1 - \lambda_2 = 1 - \lambda_6 = 1/2$;
   every edge between agents has weight $1/2$.}
   \label{fig:fj-stub-reduction}
 \end{figure}
-
-The two rewritings differ in one point. In both of them the FDG model is not
-asymptotically stable while the FJ model is (all its agents are P-dependent,
-Corollary~\ref{cor:fj-stable}), because the opinion of the stubborn agent is a state in
-the first and an input in the second. In the rewriting
-of~\cite{proskurnikov2017tutorial}, however, this opinion appears twice, and moving the
-initial state of the stubborn agent alone separates the two models
-(Figure~\ref{fig:fj-stub-perturbation}). In our rewriting it appears only once, as the
-prejudice $u_2 = u_6 = x_1(0)$: there is no initial condition of the FJ model that
-corresponds to moving the stubborn agent alone, and the two models have the same
-trajectories for every initial condition.
-% ADDED (2026-10-28, review): comparison of the two rewritings moved after the figure.
-
-% REVISED (2026-10-28): the simulation below (paragraph, Figure fj-stub-simulation and
-% its TODO) is commented out: its left panel is the bottom-left panel of Figure
-% fj-stub-equivalence and its right panel has the same curves. Kept as a record.
-% % ADDED (2026-10-28): simulation of the two models of Figure fj-stub-reduction, to show
-% % that the trajectories of agents 2..6 coincide.
-% Figure~\ref{fig:fj-stub-simulation} simulates the two models of
-% Figure~\ref{fig:fj-stub-reduction} on the bidirectional ring, with
-% $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 40$: on the left the FDG
-% model $x(k+1) = A(1)x(k)$ on six agents, whose first row is $e_1^\top$ and whose other
-% rows give weight $1/2$ to each of the two neighbours; on the right the FJ
-% model~\eqref{eq:fj} on the five agents $2, \dots, 6$ alone, with $W'$ the rows of the
-% ring restricted to those agents and renormalised, so that agent~$2$ gives weight $1$ to
-% agent~$3$ and agent~$6$ weight $1$ to agent~$5$, with
-% $\lambda_2 = \lambda_6 = 1/2$, $\lambda_3 = \lambda_4 = \lambda_5 = 1$ and
-% $u_2 = u_6 = x_1(0) = 0$.
-%
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.94\textwidth]{figures/fj_stub_reduction.eps}
-%   \caption{Opinions $x_i(k)$ of the two models of Figure~\ref{fig:fj-stub-reduction} on
-%   the bidirectional ring, with $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and
-%   $K = 40$. Left: the FDG model with $A(1)$, on all six agents. Right: the FJ model on
-%   agents $2, \dots, 6$, with $W'$ the renormalised rows of the ring,
-%   $\lambda_2 = \lambda_6 = 1/2$, $\lambda_3 = \lambda_4 = \lambda_5 = 1$ and
-%   $u_2 = u_6 = x_1(0)$; the black dashed line marks that common prejudice. The colours
-%   are those of the other figures of this section, agent~$1$ black and marked with dots.}
-%   \label{fig:fj-stub-simulation}
-% \end{figure}
-% % TODO (theory): the two panels coincide agent by agent (numerical check: max
-% % difference 0): the stubborn agent of the FDG model has become the common prejudice of
-% % agents 2 and 6; compare with Figure \ref{fig:fj-stub-equivalence}, where the stubborn
-% % agent stays an agent with lambda_1 = 0.
 
 \subsubsection{Prejudices, stubbornness and convergence}
 \label{subsubsec:fj-stub-conv}
@@ -652,14 +721,16 @@ $V$ is zero when $\lambda_j = 1$ (Section~\ref{subsubsec:fj-final}) and $V$ is
 stochastic (Theorem~\ref{thm:fj-general}), $V = \mathbf{1}_6 e_1^\top$ and
 $x(\infty) = u_1 \mathbf{1}_6 = 0$ for every attachment $1 - \lambda_1 > 0$: the group
 reaches a consensus on the prejudice of agent~$1$, and crosses the FDG compromise
-$0.4286$ on its way. The equilibrium shows why (this computation is ours): agents
+$0.4286$ on its way. The equilibrium shows why: agents
+% REVISED (2026-11-02): removed "(this computation is ours)" (no citation = ours).
 $2, \dots, 6$ copy, or average, the agents they listen to, so at an equilibrium they all
 take the value of agent~$1$, whose equation becomes
 $x_1^* = \lambda_1 x_1^* + (1 - \lambda_1) u_1$, i.e.\ $(1 - \lambda_1)(x_1^* - u_1) = 0$.
 The fixed value $u_1$ makes the equilibrium unique, and the attachment only changes how
 fast it is reached; in the FDG model, instead, every consensus is an equilibrium, and the
 initial opinions decide which one is reached. In the augmented graph
-(Section~\ref{subsubsec:fj-final}, our reading) the real agents listen only to the
+(Section~\ref{subsubsec:fj-final}) the real agents listen only to the
+% REVISED (2026-11-02): removed ", our reading" (no citation = ours).
 stubborn virtual agent $1'$, as in Section~\ref{subsubsec:fdg-stub-model}. In social
 terms, a self-weight is inertia, which slows an agent down but lets it follow the group,
 while a prejudice is an anchor: a single anchored agent, however loosely, decides where
@@ -808,15 +879,16 @@ prejudices, and $v_{ij}$ is the weight of $u_j$ in $x_i(\infty)$. No column of $
 zero, so every prejudice enters every final opinion, but with weights that change from
 row to row: the final opinions are closer to each other than the initial ones, but
 different. A consensus requires equal prejudices: since $V$ is invertible and
-$V\mathbf{1}_6 = \mathbf{1}_6$, $Vu = c\,\mathbf{1}_6$ only for $u = c\,\mathbf{1}_6$
-(this remark is ours).
+$V\mathbf{1}_6 = \mathbf{1}_6$, $Vu = c\,\mathbf{1}_6$ only for $u = c\,\mathbf{1}_6$.
+% REVISED (2026-11-02): removed "(this remark is ours)" (no citation = ours).
 
 This is the main difference between the two models. On a strongly connected network the
 FDG model can only reach a consensus or not converge (cases (i)--(ii) of
 Table~\ref{tab:rosetta}), since a disagreement needs at least two closed groups
 (Theorem~\ref{thm:disagreement}); the FJ model disagrees on the same network, so its
 disagreement comes from the prejudices. In the augmented graph
-(Section~\ref{subsubsec:fj-final}, our reading) the six prejudices are six stubborn
+(Section~\ref{subsubsec:fj-final}) the six prejudices are six stubborn
+% REVISED (2026-11-02): removed ", our reading" (no citation = ours).
 virtual agents with different opinions, as in Remark~\ref{rem:many-stubborn}. In social
 terms, inertia gives way in the end, an anchor does not: a group anchored to different
 opinions settles on a persistent disagreement, a cleavage of opinions in the words
@@ -1152,7 +1224,12 @@ i.e.\ $x_4(\infty) = x_5(\infty) = 0.5\, u_5 + 0.5\, x_6(\infty)$.
         decide which one is reached. In (d), moving only $x_2(0)$ from $0.5$ to $1$
         moves the consensus of the closed group to $0.6$ and the P-dependent agents to
         $0.75$, unlike in Figure~\ref{fig:fj-stub-perturbation}, where the
-        asymptotically stable FJ model forgets the change of $x_1(0)$.
+        asymptotically stable FJ model forgets the change of $x_1(0)$. In the augmented
+        model the closed group adds a seventh eigenvalue $1$ to the six of the virtual
+        agents: it keeps its initial opinions as a virtual agent
+% REVISED (2026-11-02): removed "(computed numerically)" (no citation = ours).
+        keeps its prejudice.
+        % ADDED (2026-11-02): spectral half-sentence.
 \end{itemize}
 In social terms, a prejudice acts only on the agents that listen, directly or through
 intermediaries, to the prejudiced agent: when it reaches everybody, the FJ model is
@@ -1362,34 +1439,78 @@ Table~\ref{tab:fj-aux} summarizes the four cases.
 % the social power in the FDG, while it would change the influence centrality in the FJ.
 % Do not draw conclusions before a careful study.
 
-Figure~\ref{fig:fj-centrality} is the FJ counterpart of Figure~\ref{fig:fdg-power}: the
-influence centrality $c_1$ of agent~$1$ and the mean final opinion $c^\top x(0)$
-of~\eqref{eq:influence}, as functions of its attachment $1 - \lambda_1$, with the other
-agents prejudiced ($\lambda_i = 0.8$); the FDG social power $w_1(t)$ and consensus
-value $w(t)^\top x(0)$, with the self-weight $t$ on the same axis, are drawn as a
-reference.
-% REVISED (2026-10-28, review): the parameters are in the caption. Was:
-% Figure~\ref{fig:fj-centrality} mirrors Figure~\ref{fig:fdg-power}. The abscissa is the
-% parameter of agent~$1$ on the grid $(0,1]$ with step $0.01$: the attachment
-% $1 - \lambda_1$ for the FJ model, with $\lambda_i = 0.8$ for $i \neq 1$ and
-% $u = x(0)$, and the self-weight $t$ of~\eqref{eq:self-weight} for the FDG model. The
-% top panel reports the influence centrality $c_1$ of agent~$1$ on the two networks and,
-% as a reference, the social power $w_1(t)$ of the FDG model; the bottom panel reports
-% the mean final opinion $c^\top x(0)$ of~\eqref{eq:influence} on the two networks and,
-% as a reference, the consensus value $w(t)^\top x(0)$ of the FDG model.
+\paragraph{The assumptions behind the influence centrality.}
+% ADDED (2026-10-31): Section 3.2.3 rewritten; Figure fj-centrality removed (see below).
+The influence centrality generalizes French's social
+power~\cite{proskurnikov2017tutorial}: $w_i$ is the share of agent~$i$ in the opinion the
+group agrees on, while $c_i = (n^{-1} V^\top \mathbf{1}_n)_i$, the average of column $i$
+of $V$, tells how much the initial opinion of agent~$i$ weighs, on average, in final
+opinions that may differ. The assumptions, however, are of a different kind. The social
+power only needs what makes it meaningful, a consensus, $A^\infty = \mathbf{1}_n w^\top$.
+The influence centrality needs two further assumptions, which the FJ model does not need
+in order to make sense: $\rho(\Lambda W) < 1$, i.e.\ every agent is reached by some
+prejudice, so that $V$ exists and is stochastic; and $u = x(0)$, traditional in the theory
+of Friedkin and Johnsen~\cite{proskurnikov2017tutorial}, without which $x(\infty) = Vu$
+would not depend on $x(0)$ and the initial opinions would weigh nothing. In return, with $\Lambda = \alpha I$ every agent is a little
+% REVISED (2026-11-02): removed "(this distinction is ours)" (no citation = ours).
+anchored and $\rho(\alpha W) = \alpha < 1$ for every stochastic $W$: $c_\alpha$ exists on
+every network, also where $w$ does not, and PageRank is one of these
+centralities~\cite{proskurnikov2017tutorial}. Since $w$ weighs the initial state of a
+model that remembers $x(0)$, and $c$ the input of a model that forgets it, we do not
+compare them directly, but in parallel.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.94\textwidth]{figures/fj_influence_centrality.eps}
-  \caption{Top: influence centrality $c_1$ of agent~$1$ in the FJ model, as a function
-  of its attachment $1 - \lambda_1 \in (0,1]$, with $\lambda_i = 0.8$ for $i \neq 1$
-  and $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$, on the directed cycle
-  (dots) and on the bidirectional ring (crosses); the grey dashed line is the social
-  power $w_1(t)$ of the FDG model of Figure~\ref{fig:fdg-power}. Bottom: the
-  corresponding mean final opinion $c^\top x(0)$, with the FDG consensus value
-  $w(t)^\top x(0)$ as a grey dashed reference.}
-  \label{fig:fj-centrality}
-\end{figure}
+\paragraph{A single anchored agent.}
+With agent~$1$ as the only prejudiced agent (Figure~\ref{fig:fj-one-prejudiced}),
+$V = \mathbf{1}_6 e_1^\top$ gives $c = e_1$ for every $\lambda_1 < 1$: agent~$1$, however
+loosely anchored, collects all the influence centrality, whereas in the FDG model its
+social power grows gradually with its self-weight, from $1/6$ to $1$
+(Figure~\ref{fig:fdg-power}). Inertia earns influence little by little, an anchor takes it
+all at once.
+
+% NOTE (for the revision): this reading is ours, not in the sources.
+The augmented model explains this value. Section~\ref{subsubsec:fj-centrality}
+observed that the augmented graph has $n$ sinks, so the social power is not defined.
+Here, however, the virtual agents $2', \dots, 6'$ have weight $1 - \lambda_i = 0$:
+nobody listens to them, and removing them does not change the real agents. What
+remains has a single sink, $1'$, aperiodic because of its self-loop and reached by every
+real agent through agent~$1$, so it reaches a consensus (Theorem~\ref{thm:consensus}) and
+its social power is $w = e_{1'}$: with $u = x(0)$, the whole group converges to
+$x_{1'}(0) = x_1(0)$, which is what $c = e_1$ says. With several prejudiced agents, as
+with $\Lambda = \alpha I$ below, several virtual agents are listened to, the augmented
+model stays in case~(iv) and has no social power: $c$, the mean of the rows of $V$,
+takes its place.
+% ADDED (2026-11-02): social power of the augmented model, single prejudice.
+
+\paragraph{Where the two measures meet.}
+% REVISED (2026-10-31): Figure fj-centrality and its paragraph removed: they compared c and w directly on the same plot, which is not a fair comparison (see the paragraph above). Was:
+% Figure~\ref{fig:fj-centrality} is the FJ counterpart of Figure~\ref{fig:fdg-power}: the
+% influence centrality $c_1$ of agent~$1$ and the mean final opinion $c^\top x(0)$
+% of~\eqref{eq:influence}, as functions of its attachment $1 - \lambda_1$, with the other
+% agents prejudiced ($\lambda_i = 0.8$); the FDG social power $w_1(t)$ and consensus
+% value $w(t)^\top x(0)$, with the self-weight $t$ on the same axis, are drawn as a
+% reference.
+% % REVISED (2026-10-28, review): the parameters are in the caption. Was:
+% % Figure~\ref{fig:fj-centrality} mirrors Figure~\ref{fig:fdg-power}. The abscissa is the
+% % parameter of agent~$1$ on the grid $(0,1]$ with step $0.01$: the attachment
+% % $1 - \lambda_1$ for the FJ model, with $\lambda_i = 0.8$ for $i \neq 1$ and
+% % $u = x(0)$, and the self-weight $t$ of~\eqref{eq:self-weight} for the FDG model. The
+% % top panel reports the influence centrality $c_1$ of agent~$1$ on the two networks and,
+% % as a reference, the social power $w_1(t)$ of the FDG model; the bottom panel reports
+% % the mean final opinion $c^\top x(0)$ of~\eqref{eq:influence} on the two networks and,
+% % as a reference, the consensus value $w(t)^\top x(0)$ of the FDG model.
+%
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.94\textwidth]{figures/fj_influence_centrality.eps}
+%   \caption{Top: influence centrality $c_1$ of agent~$1$ in the FJ model, as a function
+%   of its attachment $1 - \lambda_1 \in (0,1]$, with $\lambda_i = 0.8$ for $i \neq 1$
+%   and $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$, on the directed cycle
+%   (dots) and on the bidirectional ring (crosses); the grey dashed line is the social
+%   power $w_1(t)$ of the FDG model of Figure~\ref{fig:fdg-power}. Bottom: the
+%   corresponding mean final opinion $c^\top x(0)$, with the FDG consensus value
+%   $w(t)^\top x(0)$ as a grey dashed reference.}
+%   \label{fig:fj-centrality}
+% \end{figure}
 
 % TODO (theory): comment on the two panels.
 % - For attachment 1 - lambda_1 = 0.2 all the susceptibilities are equal to 0.8, both
@@ -1432,6 +1553,21 @@ matrix.
   value $1/6$.}
   \label{fig:fj-lemma24}
 \end{figure}
+
+For $\alpha = 0$ every agent sticks to its own opinion, $V_0 = I$, and the influence is
+equally shared, $c_0 = \mathbf{1}_n/n$. As $\alpha \to 1$ the agents barely listen to
+their prejudices and the FJ model behaves as the FDG model:
+$V_\alpha = (1 - \alpha)(I - \alpha W)^{-1} \to \mathbf{1}_n w^\top$
+\cite{proskurnikov2017tutorial}, the final opinions approach the FDG consensus, and
+$c_\alpha \to w$, since in a common opinion the mean weight of $x_i(0)$ and its weight in
+the consensus coincide. The limit needs $W$ fully regular, here $A(1/2)$, which is
+primitive (Corollary~\ref{cor:primitive-selfloop}); at $\alpha = 1$, $I - W$ is singular
+and $c$ is not defined, so the two measures meet only as a limit. In
+Figure~\ref{fig:fj-lemma24}, $c_1$ grows from $1/6$ to $w_1 = 2/7$ and $c_2$ decreases to
+$w_2 = 1/7$: as the agents open up to the others, the inertia of agent~$1$ counts more.
+On the directed cycle $c_2$ first goes below $w_2$ (about $0.137$ at $\alpha \approx 0.6$).
+% REVISED (2026-11-02): removed "a numerical observation of ours" (no citation = ours).
+% ADDED (2026-10-31): theory of Figure fj-lemma24.
 
 % TODO (theory): explain Lemma 24 of the tutorial (Lemma \ref{lem:centrality-limit}) on
 % this figure: c_0 = 1/6 (every agent keeps its own initial opinion) and c_alpha tends

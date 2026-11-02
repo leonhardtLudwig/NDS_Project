@@ -228,7 +228,8 @@ Corollary~\ref{cor:fj-stable} can be turned into a criterion of Schur stability 
 substochastic matrices, and~\cite{bullo2024lns} proves the same condition for the FJ
 model through this lemma.
 
-Two observations of ours give an intuition for Corollary~\ref{cor:fj-stable}. First,
+Two observations give an intuition for Corollary~\ref{cor:fj-stable}. First,
+% REVISED (2026-11-02): removed "of ours" (no citation = ours).
 letting $k \to +\infty$ in~\eqref{eq:fj} shows that the limit $x(\infty) = Vu$ is an
 equilibrium, $x(\infty) = \Lambda W x(\infty) + (I - \Lambda)u$. Letting
 $e(k) = x(k) - x(\infty)$ and subtracting this equation from~\eqref{eq:fj} gives
@@ -268,6 +269,26 @@ limit $\lim_{k \to \infty} (\Lambda W)^k$ exists.
 As remarked in~\cite{proskurnikov2017tutorial}, this property is not trivial: a system
 $x(k+1) = A x(k) + B u$ with a regular matrix $A$ may not converge, and may even have
 unbounded solutions, as for $A = B = I$.
+
+The decomposition~\eqref{eq:fj-dep}--\eqref{eq:fj-indep} also explains these results on
+the spectrum. Listing the P-dependent agents first, $\Lambda W$ is
+block triangular,
+\[
+  \Lambda W = \begin{bmatrix} \Lambda^{11} W^{11} & \Lambda^{11} W^{12} \\ 0 & W^{22}
+  \end{bmatrix},
+  \qquad
+  \operatorname{spec}(\Lambda W) = \operatorname{spec}(\Lambda^{11} W^{11}) \cup
+  \operatorname{spec}(W^{22}),
+\]
+and $\rho(\Lambda^{11} W^{11}) < 1$ by Theorem~\ref{thm:fj-general}. Hence the
+eigenvalues on the unit circle, which decide convergence and asymptotic stability
+(Theorem~\ref{thm:spectral-radius}), can only come from $W^{22}$, i.e.\ from the FDG
+model of the P-independent agents: the model is asymptotically stable when there are no
+P-independent agents ($r = n$), and it converges when the eigenvalue $1$ of $W^{22}$ is
+semi-simple and its other eigenvalues lie inside the unit disk, i.e.\ when $W^{22}$ is
+regular.
+% ADDED (2026-11-02): spectral reading of Theorem 3.2 and Corollaries 3.3-3.4.
+% NOTE (for the revision): this spectral reading is ours, not in the sources.
 
 \subsubsection{How the opinions converge: the matrix \texorpdfstring{$V$}{V} and the augmented graph}
 \label{subsubsec:fj-final}
@@ -334,7 +355,8 @@ The limit~\eqref{eq:fj-V-all} has a direct interpretation in terms of the FDG mo
 Following~\cite{proskurnikov2017tutorial}, the FJ model~\eqref{eq:fj} may be
 considered as an augmented FDG model with $n$ virtual stubborn agents, anchored at the
 prejudices: the virtual agent $i'$ associated with agent $i$ keeps the opinion
-$x_{i'}(k) = u_i$ for all $k$. Explicitly (this rewriting is ours), stacking the
+$x_{i'}(k) = u_i$ for all $k$. Explicitly, stacking the
+% REVISED (2026-11-02): removed "(this rewriting is ours)" (no citation = ours).
 opinions $x$ of the real agents and $x'$ of the virtual agents,
 \begin{equation}\label{eq:fj-augmented}
   \begin{bmatrix} x(k+1) \\ x'(k+1) \end{bmatrix}
@@ -408,7 +430,8 @@ agent placed beside it.
 % (option (a) chosen by the user; the change of direction is explained in the text).
 
 The augmented graph also shows, from the side of the FDG model, why consensus is not
-the right notion for the FJ model. This observation is ours. The augmented
+the right notion for the FJ model. The augmented
+% REVISED (2026-11-02): removed "This observation is ours." (no citation = ours).
 model~\eqref{eq:fj-augmented} is an FDG model, so the classification of
 Table~\ref{tab:rosetta} applies to it. Each virtual agent is influenced only by
 itself, so it is a sink of the condensation digraph of the augmented graph, and it is
@@ -435,6 +458,41 @@ Theorem~\ref{thm:fj-general}. The disagreement of case~(iv) concerns all the $2n
 of the augmented model, whose virtual agents keep their different values $u_i$ forever
 ($x'(0) = u$ is part of the initial condition); it does not imply that the final
 opinions of the real agents differ, which, as discussed above, depends on $V$ and $u$.
+
+\paragraph{Two descriptions of the same dynamics.}
+% ADDED (2026-11-02): stability of the FJ model and of its augmented model.
+When all the agents are P-dependent, the FJ model is asymptotically stable
+(Corollary~\ref{cor:fj-stable}), while the augmented model~\eqref{eq:fj-augmented}, whose
+matrix is row-stochastic and has the eigenvalue $1$ (Theorem~\ref{thm:stoch-spectrum}),
+is never asymptotically stable: it converges to the disagreement of case~(iv), which
+depends on the initial opinions $x'(0) = u$ of the virtual agents. The two statements
+describe the same trajectories and do not contradict each other.
+% REVISED (2026-11-02): removed "(this reading is ours)" (no citation = ours).
+The matrix $\bar A$ of~\eqref{eq:fj-augmented} is block triangular, so
+\[
+  \operatorname{spec}(\bar A) = \operatorname{spec}(\Lambda W) \cup
+  \{\underbrace{1, \dots, 1}_{n}\}.
+\]
+The eigenvalues of $\Lambda W$ lie inside the unit disk, and the FJ model, which has only
+these, is asymptotically stable. The augmented model adds the eigenvalue $1$, once for
+each virtual agent and semi-simple by Theorem~\ref{thm:disagreement} applied to the $n$
+aperiodic sinks of the augmented graph: these are the prejudices, which in the
+augmented model are states, and they place it in case~(iv) of
+Table~\ref{tab:rosetta}.
+% REVISED (2026-11-02): spectrum written explicitly. Was:
+% The matrix of~\eqref{eq:fj-augmented} is block triangular, so its eigenvalues are those
+% of $\Lambda W$, inside the unit disk, and the eigenvalue $1$ with multiplicity $n$,
+% semi-simple by Theorem~\ref{thm:disagreement} applied to the $n$ aperiodic sinks of the
+% augmented graph. 
+The difference lies in what is a state. In the FJ model $u$ is an
+input: asymptotic stability concerns the perturbations of $x(0)$ with $u$ fixed, which
+die out as in~\eqref{eq:fj-error}, while changing $u$ is not a perturbation but a
+different input, with a different equilibrium $Vu$. In the augmented model $u$ is part
+of the state: changing it is a perturbation of the initial condition along the
+directions of the eigenvalue $1$, and it is never forgotten; perturbing only the real
+agents, with $x'(0)$ unchanged, the augmented model forgets the perturbation exactly as
+the FJ model. Section~\ref{subsubsec:fj-stub-model} reads the perturbation experiment
+of Figure~\ref{fig:fj-stub-perturbation} in these terms.
 % REVISED (2026-10-28, review): shortened, same content. Was:
 % These two outcomes are exactly the two alternatives of
 % Theorem~\ref{thm:fj-general}. Note that the disagreement of case~(iv) concerns all the
@@ -476,7 +534,8 @@ In the FDG model the social power $w$ is defined only when the group reaches a
 consensus (Section~\ref{subsubsec:consensus}), which is not the relevant notion for the
 FJ model (Section~\ref{subsubsec:fj-final}). Nor does the augmented FDG
 model~\eqref{eq:fj-augmented} help: its graph has at least $n$ sinks, so for $n \geq 2$
-it never reaches a consensus and its social power is not defined (this remark is ours). A different measure is needed,
+it never reaches a consensus and its social power is not defined. A different measure is needed,
+% REVISED (2026-11-02): removed "(this remark is ours)" (no citation = ours).
 and~\cite{proskurnikov2017tutorial} discusses an extension of the social power to the FJ
 model, introduced by Friedkin.
 % REVISED (2026-10-28, review): shortened; the n sinks of the augmented graph are shown in Section 3.1.3. Was:

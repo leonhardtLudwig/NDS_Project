@@ -18,20 +18,24 @@
 \contentsline {subsection}{\numberline {3.1}Introduction to the FJ model}{10}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}The FJ model}{10}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Convergence and stability}{10}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}How the opinions converge: the matrix $V$ and the augmented graph}{12}{subsubsection.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.4}Influence centrality}{14}{subsubsection.3.1.4}%
-\contentsline {paragraph}{Influence centrality.}{14}{section*.8}%
+\contentsline {subsubsection}{\numberline {3.1.3}How the opinions converge: the matrix $V$ and the augmented graph}{13}{subsubsection.3.1.3}%
+\contentsline {paragraph}{Two descriptions of the same dynamics.}{14}{section*.8}%
+\contentsline {subsubsection}{\numberline {3.1.4}Influence centrality}{15}{subsubsection.3.1.4}%
+\contentsline {paragraph}{Influence centrality.}{15}{section*.9}%
 \contentsline {subsection}{\numberline {3.2}Stubbornness and influence centrality in the FJ model}{15}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Modelling stubbornness: prejudices and stubborn agents}{15}{subsubsection.3.2.1}%
-\contentsline {paragraph}{Stubborn agents in the two models.}{15}{section*.9}%
-\contentsline {paragraph}{From one model to the other.}{15}{section*.10}%
-\contentsline {paragraph}{The stubborn agent as an input.}{15}{section*.11}%
-\contentsline {paragraph}{State or input.}{16}{section*.14}%
-\contentsline {paragraph}{How the perturbation evolves.}{17}{section*.16}%
+\contentsline {paragraph}{Stubborn agents in the two models.}{15}{section*.10}%
+\contentsline {paragraph}{From one model to the other.}{16}{section*.11}%
+\contentsline {paragraph}{The stubborn agent as an input.}{16}{section*.12}%
+\contentsline {paragraph}{State or input.}{17}{section*.15}%
+\contentsline {paragraph}{How the perturbation evolves.}{18}{section*.17}%
 \contentsline {paragraph}{The stubborn agent as a prejudice of its neighbours.}{18}{section*.18}%
 \contentsline {subsubsection}{\numberline {3.2.2}Prejudices, stubbornness and convergence}{19}{subsubsection.3.2.2}%
 \contentsline {paragraph}{A single prejudice.}{19}{section*.20}%
 \contentsline {paragraph}{Every agent prejudiced.}{20}{section*.22}%
 \contentsline {paragraph}{Where the prejudice does not arrive.}{21}{section*.24}%
 \contentsline {subsubsection}{\numberline {3.2.3}Prejudices, stubbornness and influence centrality}{24}{subsubsection.3.2.3}%
-\contentsline {section}{\numberline {4}Conclusions}{26}{section.4}%
+\contentsline {paragraph}{The assumptions behind the influence centrality.}{24}{section*.28}%
+\contentsline {paragraph}{A single anchored agent.}{24}{section*.29}%
+\contentsline {paragraph}{Where the two measures meet.}{24}{section*.30}%
+\contentsline {section}{\numberline {4}Conclusions}{25}{section.4}%

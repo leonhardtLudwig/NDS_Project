@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1793356324.93654 "main.aux" "main.bbl" "main" 1793356537.66327 0
+["bibtex main"] 1793637137.21794 "main.aux" "main.bbl" "main" 1793637138.64614 0
   "./references.bib" 1792488521.65121 1627 764eafa3d203ee0504b6a20276709da3 ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1793356537.41851 32311 7f0d26092aa14086aadd22f796a4af2f "pdflatex"
+  "main.aux" 1793637138.314 30676 48a10fbe333e673962177f85d97bc869 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1793356536.37129 "/Users/llp/Desktop/NDS_Project/FINAL/report/main.tex" "main.pdf" "main" 1793356537.66343 0
+["pdflatex"] 1793637137.29579 "/Users/llp/Desktop/NDS_Project/FINAL/report/main.tex" "main.pdf" "main" 1793637138.64627 0
   "/Users/llp/Desktop/NDS_Project/FINAL/report/main.tex" 1793193272.85182 2710 2dc4c328307a9fe60331dc81e4edee16 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
@@ -224,22 +224,20 @@
   "figures/fdg_social_power.eps" 1792656477.33664 130646 9be1f713be74886296c4a052e414de82 ""
   "figures/fj_all_prejudiced.eps" 1793356253.66664 181909 dae14f7ea4651a3023390d8264ce6e9e ""
   "figures/fj_auxiliary.eps" 1793356255.03454 175663 ca096b50fab6275ee6b1eeead29b12df ""
-  "figures/fj_error.eps" 1793356249.06689 156640 6f9aaa0ee7059dd922b93a9f351b6b0a ""
-  "figures/fj_influence_centrality.eps" 1793356256.44815 248251 27a7dcfcbc2a84a55b82958f9569df43 ""
   "figures/fj_lemma24.eps" 1793356257.81942 185836 e470fab7e8e4420cc1824c5d4828657d ""
   "figures/fj_one_prejudiced.eps" 1793356252.10294 183631 d1ba093510456c7e12372b06a9663eda ""
   "figures/fj_stubborn_equivalence.eps" 1793356246.08509 153471 ce6cf6169cbcbaefa92bf08b320d655e ""
   "figures/fj_stubborn_perturbation.eps" 1793356247.5207 153741 3751eb5b7bab692fefc5ac0dffdd335b ""
-  "fj/fj_intro.tex" 1793193006.14565 33599 310cc632add2065183290fea66d59807 ""
+  "fj/fj_intro.tex" 1793637116.80302 37272 5a2324779a4a1ac7552d1e8e9eb8c14c ""
   "fj/fj_main.tex" 1792684165.48802 124 9d2f3047e9ba7cd2f783a5469bb95270 ""
-  "fj/fj_stub_sp.tex" 1793356316.91013 93962 628df7ec81d11878add9c19bf362c9f9 ""
+  "fj/fj_stub_sp.tex" 1793637117.09347 103890 806339b416e5cc3a0b4cdb2fbf14e2a9 ""
   "intro/intro_main.tex" 1792392643.08351 294 bda1aa69bdfd8b52a632fd149db4b8e4 ""
   "intro/intro_preliminaries.tex" 1793193006.47532 11094 90cc3f624284c9fd9ad50ccded0cbdc2 ""
-  "main.aux" 1793356537.41851 32311 7f0d26092aa14086aadd22f796a4af2f "pdflatex"
-  "main.bbl" 1793356325.01969 980 9e1ce0ee52bf1a61d339a0942ef30c5a "bibtex main"
-  "main.out" 1793356537.42047 5422 50bb584286a9f7373fccdc3e57ab4246 "pdflatex"
+  "main.aux" 1793637138.314 30676 48a10fbe333e673962177f85d97bc869 "pdflatex"
+  "main.bbl" 1793637137.29336 970 57e9f52006faf2580a11bd90a55a00e6 "bibtex main"
+  "main.out" 1793637138.31595 5422 50bb584286a9f7373fccdc3e57ab4246 "pdflatex"
   "main.tex" 1793193272.85182 2710 2dc4c328307a9fe60331dc81e4edee16 ""
-  "main.toc" 1793356537.42065 3350 8239d47d32b709d1c91ccf16025a2d1c "pdflatex"
+  "main.toc" 1793637138.31611 3672 3e252cbcaefb52a7e0ff031d9391fa4d "pdflatex"
   (generated)
   "main.aux"
   "main.log"
