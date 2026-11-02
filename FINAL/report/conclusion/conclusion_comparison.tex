@@ -1,0 +1,67 @@
+% ADDED (2026-11-02): comparison table FDG vs FJ (block A of the conclusions).
+Table~\ref{tab:fdg-fj} collects the comparison between the two models developed in
+Sections~\ref{sec:fdg} and~\ref{sec:fj}.
+
+\begin{table}[H]
+  \centering
+  \small
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.9cm}
+                  >{\raggedright\arraybackslash}p{6.5cm}
+                  >{\raggedright\arraybackslash}p{7.1cm}@{}}
+    \toprule
+    & FDG model~\eqref{eq:fdg} & FJ model~\eqref{eq:fj} \\
+    \midrule
+    Resistance to the others
+      & self-weight $a_{ii}$: inertia, a weight on the current opinion
+      & attachment $1 - \lambda_i$ to the prejudice $u_i$: an anchor to a fixed value \\
+    \midrule
+    Stubborn agent (Definition~\ref{def:stubborn})
+      & $a_{ii} = 1$: a condition on the matrix only
+      & $\lambda_i = 0$ and $u_i = x_i(0)$: a condition on the matrix and on the input \\
+    \midrule
+    Opinion of a stubborn agent
+      & a state
+      & an input \\
+    \midrule
+    Convergence
+      & Table~\ref{tab:rosetta}: sinks of $C(G)$ and their aperiodicity
+      & all agents P-dependent (Corollary~\ref{cor:fj-stable}), or $W^{22}$ regular
+        (Theorem~\ref{thm:fj-general}) \\
+    \midrule
+    Asymptotic stability
+      & never: the eigenvalue $1$ lies on the unit circle
+        (Theorem~\ref{thm:stoch-spectrum})
+      & if and only if all agents are P-dependent, i.e.\ $\rho(\Lambda W) < 1$
+        (Corollary~\ref{cor:fj-stable}) \\
+    \midrule
+    Final opinions
+      & consensus $(w^\top x(0))\mathbf{1}_n$ (Theorem~\ref{thm:consensus}), or
+        disagreement with at least two aperiodic sinks
+        (Theorem~\ref{thm:disagreement})
+      & if all agents are P-dependent, $x(\infty) = Vu$~\eqref{eq:fj-V-all}: convex
+        combinations of the prejudices, independent of $x(0)$ \\
+    \midrule
+    Strongly connected network
+      & consensus or no convergence, never disagreement
+      & disagreement whenever the prejudices that count differ \\
+    \midrule
+    Aperiodicity
+      & always needed
+      & needed only for the P-independent agents \\
+    \midrule
+    Measure of power
+      & social power $w$~\eqref{eq:social-power}: requires a consensus
+      & influence centrality $c$~\eqref{eq:influence}: requires $\rho(\Lambda W) < 1$
+        and $u = x(0)$ \\
+    \midrule
+    From one model to the other
+      & with stubborn agents, an FJ model with $\lambda_i = 0$, $u_i = x_i(0)$ for the
+        stubborn agents~\cite{proskurnikov2017tutorial}
+      & an FDG model on the augmented graph~\eqref{eq:fj-augmented}, with $n$ virtual
+        stubborn agents \\
+    \bottomrule
+  \end{tabular}
+  \caption{Comparison between the FDG model and the FJ model.}
+  \label{tab:fdg-fj}
+\end{table}

@@ -39,3 +39,6 @@
 \contentsline {paragraph}{A single anchored agent.}{24}{section*.29}%
 \contentsline {paragraph}{Where the two measures meet.}{24}{section*.30}%
 \contentsline {section}{\numberline {4}Conclusions}{25}{section.4}%
+\contentsline {paragraph}{Inertia and anchor.}{26}{section*.33}%
+\contentsline {paragraph}{State and input.}{27}{section*.34}%
+\contentsline {paragraph}{Social power and influence centrality.}{27}{section*.35}%

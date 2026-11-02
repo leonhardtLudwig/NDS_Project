@@ -1,0 +1,82 @@
+% ADDED (2026-11-02): thread 1 of the conclusions, inertia vs anchor.
+\paragraph{Inertia and anchor.}
+An agent can resist the opinions of the others in two ways, one for each model.
+A self-weight $a_{ii}$ is inertia:
+an agent whose neighbours all hold the opinion $1$ updates as
+$x_i(k+1) = a_{ii}\, x_i(k) + (1 - a_{ii})$ and reaches $1$, only more slowly as $a_{ii}$
+grows. An attachment $1 - \lambda_i$ is an anchor: the same agent updates as
+$x_i(k+1) = \lambda_i + (1 - \lambda_i)\, u_i$ and stops at once between $1$ and its
+prejudice, never reaching the others. This holds for a single agent on any network; the
+effects on the group are shown on the two networks of Figure~\ref{fig:networks}, both
+strongly connected and periodic without self-loops.
+\begin{itemize}
+  \item \emph{Convergence.} In the FDG model the self-weight of agent~$1$ is needed to
+        make the network aperiodic (Section~\ref{subsec:fdg-stub}); in the FJ model a
+        single prejudiced agent reached by everybody makes all agents P-dependent, and
+        the model converges although the network is periodic
+        (Corollary~\ref{cor:fj-stable}).
+  \item \emph{Influence.} The social power of agent~$1$ grows gradually with its
+        self-weight, from $1/6$ to $1$ (Figure~\ref{fig:fdg-power}), and for $t < 1$
+        the consensus still depends on the initial opinions of all agents. A single
+        anchor, however loose, takes the whole influence centrality, $c = e_1$, and the
+        group ends on its prejudice (Figure~\ref{fig:fj-one-prejudiced}).
+  \item \emph{Many agents.} With the same weight $0.2$ for every agent
+        (Figure~\ref{fig:fj-all-prejudiced}), the FDG model reaches a consensus, as on
+        every strongly connected network with a self-loop
+        (Corollary~\ref{cor:primitive-selfloop}), while the FJ model keeps a disagreement
+        as soon as the prejudices differ, on any network.
+\end{itemize}
+In social terms, inertia buys time and a gradual influence, but in the end the agent
+follows the group; an anchor buys permanence: the agent never gives in completely, a
+single anchor takes all the influence, and different anchors keep the group divided.
+
+% ADDED (2026-11-02): thread 2 of the conclusions, memory in the state vs external input.
+\paragraph{State and input.}
+The same opinion can be a state or an input, and this decides the stability. An FDG
+model with stubborn agents and its FJ rewriting~\cite{proskurnikov2017tutorial} have the
+same trajectories, but the FDG model is never asymptotically stable, while the FJ model
+is (Corollary~\ref{cor:fj-stable}): the opinion of a stubborn agent is a state in the
+first and the input $u_i = x_i(0)$ in the second. The spectra show it in one step: the
+stubborn row is $e_i^\top$ in $A$ and zero in $\Lambda W$, so the eigenvalue $1$ of the
+FDG model becomes $0$ in the FJ model. Conversely, the augmented
+model~\eqref{eq:fj-augmented} turns every prejudice back into the state of a virtual
+agent, adds one eigenvalue $1$ for each of them, and loses the asymptotic stability.
+\begin{itemize}
+  \item \emph{What is perturbed.} Moving $x_1(0)$ (Figure~\ref{fig:fj-stub-perturbation})
+        moves a state in the FDG model, which keeps it forever, and only the initial
+        opinion of a real agent in the FJ model, which forgets it and returns to the same
+        limit $Vu$. Moving $u_1$ would change the FJ limit as well.
+  \item \emph{Memory without stubbornness.} A closed group of P-independent agents is
+        a memory inside the real agents (Figure~\ref{fig:fj-auxiliary}): it keeps its
+        initial opinions as a virtual agent keeps its prejudice, so the FJ model converges
+        without being asymptotically stable.
+\end{itemize}
+In social terms, in the FDG model stubbornness is a memory inside the group, which is
+never forgotten; in the FJ model it is an external influence, and the group forgets its
+initial opinions: what the group remembers is what the model counts as its state.
+
+% ADDED (2026-11-02): thread 3 of the conclusions, social power vs influence centrality.
+\paragraph{Social power and influence centrality.}
+Both measures say how much the initial opinion of each agent weighs in the final
+opinions, but under different assumptions. The social power $w$~\eqref{eq:social-power}
+requires a consensus, $A^\infty = \mathbf{1}_n w^\top$. The influence centrality
+$c = n^{-1} V^\top \mathbf{1}_n$~\eqref{eq:influence} requires $\rho(\Lambda W) < 1$ and
+$u = x(0)$, which gives the initial opinions a weight in $x(\infty) = V x(0)$, and it
+averages over the agents, since the rows of $V$ differ.
+\begin{itemize}
+  \item \emph{A single anchor.} With agent~$1$ the only prejudiced agent, $c = e_1$ for
+        every $\lambda_1 < 1$, while in the FDG model $w_1$ grows gradually with the
+        self-weight. The augmented model explains the value: without the virtual agents
+        that nobody listens to, it has a single sink $1'$, reaches a consensus and has
+        social power $e_{1'}$, so with a single prejudice the two measures coincide.
+  \item \emph{Many anchors.} With $\Lambda = \alpha I$ every agent is anchored, the
+        augmented model has $n$ sinks that are listened to and no social power, while
+        $c_\alpha$ exists for every $W$. By Lemma~\ref{lem:centrality-limit},
+        $c_\alpha \to w$ as $\alpha \to 1$ when $W$ is fully regular
+        (Figure~\ref{fig:fj-lemma24}): the influence centrality moves from the uniform
+        value $\mathbf{1}_n/n$, when every agent keeps its own opinion, to the social
+        power, when the anchors vanish.
+\end{itemize}
+In social terms, the social power tells who leads a group that agrees, the influence
+centrality who weighs most in a group that keeps disagreeing; the second becomes the
+first when the anchors are released.
