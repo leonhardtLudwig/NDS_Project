@@ -35,18 +35,34 @@
   weight/.style   = {font=\tiny, inner sep=1pt}
 }
 \usepackage{subcaption}
+% ADDED (2026-11-03, layout): slightly tighter spacing; figures stay [H], in the order of the text.
+\captionsetup{font=small, skip=4pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}  % space around [H] figures and tables (was 12pt)
+\usepackage{enumitem}
+\setlist{topsep=3pt, itemsep=1pt, parsep=0pt, partopsep=0pt}
+\usepackage{etoolbox}
+\apptocmd{\normalsize}{%
+  \setlength{\abovedisplayskip}{7pt plus 2pt minus 3pt}%
+  \setlength{\belowdisplayskip}{7pt plus 2pt minus 3pt}%
+  \setlength{\abovedisplayshortskip}{3pt plus 2pt}%
+  \setlength{\belowdisplayshortskip}{5pt plus 2pt minus 2pt}}{}{}
 \usepackage[hidelinks]{hyperref}
 
 % ---------------------------------------------------------------------------
 % Theorem environments
 % ---------------------------------------------------------------------------
+% REVISED (2026-11-03, layout): same three styles as amsthm (plain, definition, remark), with 6pt above and below.
+\newtheoremstyle{plaintight}{6pt}{6pt}{\itshape}{}{\bfseries}{.}{.5em}{}
+\newtheoremstyle{definitiontight}{6pt}{6pt}{\normalfont}{}{\bfseries}{.}{.5em}{}
+\newtheoremstyle{remarktight}{6pt}{6pt}{\normalfont}{}{\itshape}{.}{.5em}{}
+\theoremstyle{plaintight}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
-\theoremstyle{definition}
+\theoremstyle{definitiontight}
 \newtheorem{definition}[theorem]{Definition}
-\theoremstyle{remark}
+\theoremstyle{remarktight}
 \newtheorem{remark}[theorem]{Remark}
 
 % ---------------------------------------------------------------------------
@@ -84,13 +100,26 @@ input in the FJ model.
 
 \tableofcontents
 \newpage
+% ADDED (2026-11-03, layout): top and bottom margins 1.5cm from here on (the frontespizio keeps
+% 1.8cm); footskip 22pt keeps the page number where it was.
+\newgeometry{left=2cm, right=2cm, top=1.5cm, bottom=1.5cm, footskip=22pt}
+% ADDED (2026-11-03, layout): tighter headings, set after the table of contents so that the
+% frontespizio is unchanged. Same commands as article.cls, with smaller skips.
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}{-2.5ex \@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}{\normalfont\Large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}{-2.2ex\@plus -1ex \@minus -.2ex}{1ex \@plus .2ex}{\normalfont\large\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}{-2ex\@plus -1ex \@minus -.2ex}{.8ex \@plus .2ex}{\normalfont\normalsize\bfseries}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}{1.5ex \@plus .5ex \@minus .2ex}{-1em}{\normalfont\normalsize\bfseries}}
+\makeatother
 
 \input{intro/intro_main}
 \input{fdg/fdg_main}
 \input{fj/fj_main}
 \input{conclusion/conclusion_main}
 
+{\small % ADDED (2026-11-03, layout)
 \bibliographystyle{plain}
 \bibliography{references}
+}
 
 \end{document}

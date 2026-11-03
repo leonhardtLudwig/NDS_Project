@@ -39,10 +39,13 @@ At every step agent $i$ averages the opinions it listens to, exactly as in the F
 model, and mixes this average with its prejudice: the weight $\lambda_i$ goes to the
 others and the complement $1 - \lambda_i$ goes to $u_i$. The two quantities play
 different roles: the prejudice $u_i$ is an opinion and says \emph{where} the agent is
-anchored, while $1 - \lambda_i$ is a weight and says \emph{how strongly}. The model with
-$u = x(0)$ appears in~\cite{bullo2024lns}, where $\lambda_i$ is called the openness
-level of agent $i$ and $1 - \lambda_i$ its attachment to its initial opinion, which
-plays the role of the prejudice.
+anchored, while $1 - \lambda_i$ is a weight and says \emph{how strongly}; we call
+$1 - \lambda_i$ the \emph{attachment} of agent $i$ to its prejudice.
+% REVISED (2026-11-03): reference to Bullo's Exercise E5.24 removed (Bullo is cited only for theory); the term attachment is now defined here. Was:
+% anchored, while $1 - \lambda_i$ is a weight and says \emph{how strongly}. The model with
+% $u = x(0)$ appears in~\cite{bullo2024lns}, where $\lambda_i$ is called the openness
+% level of agent $i$ and $1 - \lambda_i$ its attachment to its initial opinion, which
+% plays the role of the prejudice.
 % REVISED (2026-10-28, review): CORRECTION: the model of the book (Exercise E5.24) has u = x(0), it is not the same model with an independent u. Was:
 % The same
 % model appears in~\cite{bullo2024lns}, where $\lambda_i$ is called the openness level of
@@ -54,7 +57,11 @@ The special cases of~\eqref{eq:fj} are the following~\cite{proskurnikov2017tutor
         model reduces to the FDG model with $A = W$; for this reason we assume
         $\Lambda \neq I$ from now on.
   \item If $\lambda_i < 1$, agent $i$ is called \emph{prejudiced}: it is anchored to its
-        prejudice $u_i$.
+        prejudice $u_i$, and~\cite{proskurnikov2017tutorial} informally calls it
+        ``partially'' stubborn, although its opinion moves.
+% REVISED (2026-11-03, cuts T10): remark moved here from Section 3.2.1. Was:
+%   \item If $\lambda_i < 1$, agent $i$ is called \emph{prejudiced}: it is anchored to its
+%         prejudice $u_i$.
   \item If $\lambda_i = 0$, then $x_i(k) = u_i$ for all $k \geq 1$: the agent ignores
         the others and jumps to its prejudice after one step. Its opinion never changes,
         i.e.\ the agent is stubborn in the sense of Definition~\ref{def:stubborn}, only
@@ -70,7 +77,9 @@ opinion, which never moves.
 
 In the original formulation of Friedkin and Johnsen the prejudices coincide with the
 initial opinions, $u = x(0)$, and the susceptibilities are coupled to the self-weights
-through $1 - \lambda_i = w_{ii}$~\cite{proskurnikov2017tutorial,bullo2024lns}. As
+through $1 - \lambda_i = w_{ii}$~\cite{proskurnikov2017tutorial}. As
+% REVISED (2026-11-03): Bullo citation removed (it came from the note of Exercise E5.24). Was:
+% through $1 - \lambda_i = w_{ii}$~\cite{proskurnikov2017tutorial,bullo2024lns}. As
 in~\cite{proskurnikov2017tutorial}, we do not impose these conditions: $u$ and $x(0)$
 are independent, and so are $\Lambda$ and $W$. The choice $u = x(0)$ will be needed in
 Section~\ref{subsubsec:fj-centrality} to define the influence centrality.
@@ -164,22 +173,32 @@ agents.
         FDG model with $A = W$ (Section~\ref{subsec:fdg-intro}). This is why we assume
         $\Lambda \neq I$, which guarantees $r \geq 1$.
   \item $0 < r < n$. P-dependent and P-independent agents coexist. The P-independent
-        agents follow~\eqref{eq:fj-indep}, which is an FDG model with the
-        row-stochastic matrix $W^{22}$, so the outcomes of Table~\ref{tab:rosetta}
-        apply to them. Denoting by $C^{22}$ the condensation digraph of the subgraph of
-        P-independent agents, whose adjacency matrix is $W^{22}$, they reach
-        \begin{itemize}
-          \item a consensus, if $C^{22}$ has a unique sink, which is aperiodic
-                (cases~(i) and~(iii));
-          \item a disagreement, if $C^{22}$ has several sinks, all aperiodic
-                (case~(iv));
-          \item no convergence, if at least one sink of $C^{22}$ is periodic
-                (cases~(ii) and~(v)).
-        \end{itemize}
-        In the first two cases $W^{22}$ is regular, the model~\eqref{eq:fj} converges
-        and the final opinions of the P-dependent agents are given
-        by~\eqref{eq:fj-V}; in the third case the model~\eqref{eq:fj} does not
-        converge.
+        agents follow~\eqref{eq:fj-indep}, an FDG model with the row-stochastic matrix
+        $W^{22}$, so the outcomes of Table~\ref{tab:rosetta} apply to them, read on the
+        sinks of the condensation digraph $C^{22}$ of their subgraph: consensus or
+        disagreement if all the sinks are aperiodic (cases~(i), (iii) and~(iv)), no
+        convergence otherwise (cases~(ii) and~(v)). In the first two cases $W^{22}$ is
+        regular, the model~\eqref{eq:fj} converges and the final opinions of the
+        P-dependent agents are given by~\eqref{eq:fj-V}; in the third case the
+        model~\eqref{eq:fj} does not converge.
+% REVISED (2026-11-03, cuts T7): nested list of the three FDG outcomes for the P-independent agents in one sentence. Was:
+%   \item $0 < r < n$. P-dependent and P-independent agents coexist. The P-independent
+%         agents follow~\eqref{eq:fj-indep}, which is an FDG model with the
+%         row-stochastic matrix $W^{22}$, so the outcomes of Table~\ref{tab:rosetta}
+%         apply to them. Denoting by $C^{22}$ the condensation digraph of the subgraph of
+%         P-independent agents, whose adjacency matrix is $W^{22}$, they reach
+%         \begin{itemize}
+%           \item a consensus, if $C^{22}$ has a unique sink, which is aperiodic
+%                 (cases~(i) and~(iii));
+%           \item a disagreement, if $C^{22}$ has several sinks, all aperiodic
+%                 (case~(iv));
+%           \item no convergence, if at least one sink of $C^{22}$ is periodic
+%                 (cases~(ii) and~(v)).
+%         \end{itemize}
+%         In the first two cases $W^{22}$ is regular, the model~\eqref{eq:fj} converges
+%         and the final opinions of the P-dependent agents are given
+%         by~\eqref{eq:fj-V}; in the third case the model~\eqref{eq:fj} does not
+%         converge.
   \item $r = n$. There are no P-independent agents, the subsystem~\eqref{eq:fj-dep} is
         the whole model and the model~\eqref{eq:fj} always converges. This case is the
         subject of Corollary~\ref{cor:fj-stable} below.
@@ -225,8 +244,11 @@ influenced, directly or through intermediaries, by a prejudiced agent, i.e.\ all
 agents are P-dependent. This is exactly the condition of
 Corollary~\ref{cor:fj-stable}. Indeed,~\cite{proskurnikov2017tutorial} remarks that
 Corollary~\ref{cor:fj-stable} can be turned into a criterion of Schur stability for
-substochastic matrices, and~\cite{bullo2024lns} proves the same condition for the FJ
-model through this lemma.
+substochastic matrices.
+% REVISED (2026-11-03): removed the reference to the solution of Bullo's Exercise E5.24. Was:
+% Corollary~\ref{cor:fj-stable} can be turned into a criterion of Schur stability for
+% substochastic matrices, and~\cite{bullo2024lns} proves the same condition for the FJ
+% model through this lemma.
 
 Two observations give an intuition for Corollary~\ref{cor:fj-stable}. First,
 % REVISED (2026-11-02): removed "of ours" (no citation = ours).
@@ -319,19 +341,52 @@ for every agent (Theorem~\ref{thm:consensus}); here, the final opinions are weig
 averages of the prejudices, and each agent has its own weights, given by its row of
 $V$.
 
+\paragraph{Consensus and disagreement.}
+% ADDED (2026-11-03, C1 + C5): heading, so that the consensus discussion is one block.
 In the FDG model, consensus is a property of the model: the model reaches a consensus
 if the final opinions coincide for any initial condition
 $x(0)$~\cite{proskurnikov2017tutorial}. In the FJ model with all agents P-dependent,
 the limit $x(\infty) = Vu$ does not depend on $x(0)$
 (equation~\eqref{eq:fj-V-all}): whether the final opinions coincide is decided by the
 prejudices $u$, which are an external input, through the matrix $V$, and no longer by
-the initial opinions. In our
-reading, this is why~\cite{proskurnikov2017tutorial} studies the FJ model in terms of convergence and
-of the form of the limit, and not in terms of consensus.
+the initial opinions. Accordingly,~\cite{proskurnikov2017tutorial} studies the FJ model in
+terms of convergence and of the form of the limit, and not in terms of consensus.
+% NOTE (for the revision): the link between the two facts is our reading.
+% REVISED (2026-11-03): removed the leftover 'In our reading'. Was:
+% the initial opinions. In our
+% reading, this is why~\cite{proskurnikov2017tutorial} studies the FJ model in terms of convergence and
+% of the form of the limit, and not in terms of consensus.
 % REVISED (2026-10-24): was "...decided by the prejudices u, which are an external
 % input, and not by the network" -- false in general: with a single prejudiced agent
 % V = 1 e_1^T (V row-stochastic, zero columns for lambda_j = 1) and the final opinions
 % coincide for every u (Section 3.2.2), so the network matters too.
+
+% ADDED (2026-11-03, C1 + C5, v2): consensus and disagreement for the FJ model, general condition.
+% NOTE (for the revision): the definition for a given u and the condition are ours (equilibrium equation of Section 3.1.2).
+The question whether the final opinions coincide can still be asked, but now it
+concerns the prejudices: for a given $u$, we say that the FJ model reaches a
+\emph{consensus} if $x(\infty) = c\,\mathbf{1}_n$ for some $c \in \mathbb{R}$, and a
+\emph{disagreement} otherwise. The answer comes from the equilibrium equation of
+Section~\ref{subsubsec:fj-conv}. Since $W \mathbf{1}_n = \mathbf{1}_n$, a consensus
+vector $c\,\mathbf{1}_n$ is an equilibrium of~\eqref{eq:fj} if and only if
+\[
+  c\,\mathbf{1}_n = \Lambda W c\,\mathbf{1}_n + (I - \Lambda)\, u
+  \quad\iff\quad
+  (I - \Lambda)\,(c\,\mathbf{1}_n - u) = 0 ,
+\]
+i.e.\ $(1 - \lambda_i)(c - u_i) = 0$ for every agent $i$. For an agent that is not
+prejudiced ($\lambda_i = 1$) the condition is always satisfied; for a prejudiced agent it
+requires $u_i = c$. When all agents are P-dependent, the equilibrium is unique and it is
+the limit $Vu$ (Corollary~\ref{cor:fj-stable}). Hence:
+\begin{quote}
+  \itshape when all agents are P-dependent, the FJ model reaches a consensus if and only
+  if all the prejudiced agents have the same prejudice, and the group agrees on it.
+\end{quote}
+In social terms, the network decides how much each prejudice weighs, through $V$, but the
+group can agree only if its anchored agents agree. Section~\ref{subsubsec:fj-stub-conv}
+shows both cases on the same networks: a single prejudice, on which the group agrees,
+and different prejudices, which keep it divided.
+% REVISED (2026-11-03): v1 of this paragraph (preview of 10:30) had the equilibrium argument inline; now displayed, with the statement on its own line.
 
 The notion of consensus of the FDG model applies again only to the P-independent agents
 ($0 < r < n$), which evolve as an FDG model with matrix $W^{22}$ and whose limit depends
@@ -351,6 +406,8 @@ up at the consensus value of the P-independent agents, even when there is one.
 % the P-independent agents reach a consensus among themselves, the P-dependent agents do
 % not necessarily end up at the same value.
 
+\paragraph{The augmented graph.}
+% ADDED (2026-11-03): heading, to separate the augmented graph from the consensus block.
 The limit~\eqref{eq:fj-V-all} has a direct interpretation in terms of the FDG model.
 Following~\cite{proskurnikov2017tutorial}, the FJ model~\eqref{eq:fj} may be
 considered as an augmented FDG model with $n$ virtual stubborn agents, anchored at the
@@ -388,7 +445,7 @@ agent placed beside it.
 
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}[baseline=(c.base)]
+  \begin{tikzpicture}[baseline=(c.base), scale=0.85]  % REVISED (2026-11-03, layout): scale 0.85
     \foreach \i in {1,...,6} {
       \node[agent] (p\i) at ({90-60*(\i-1)}:1.3) {\i};
     }
@@ -402,7 +459,7 @@ agent placed beside it.
     \node at (0,-2.0) {\small (a) FJ model on the directed cycle};
   \end{tikzpicture}
   \hspace{1.5cm}
-  \begin{tikzpicture}[baseline=(c.base)]
+  \begin{tikzpicture}[baseline=(c.base), scale=0.85]  % REVISED (2026-11-03, layout): scale 0.85
     \foreach \i in {1,...,6} {
       \node[agent] (a\i) at ({90-60*(\i-1)}:1.3) {\i};
     }
@@ -534,7 +591,12 @@ In the FDG model the social power $w$ is defined only when the group reaches a
 consensus (Section~\ref{subsubsec:consensus}), which is not the relevant notion for the
 FJ model (Section~\ref{subsubsec:fj-final}). Nor does the augmented FDG
 model~\eqref{eq:fj-augmented} help: its graph has at least $n$ sinks, so for $n \geq 2$
-it never reaches a consensus and its social power is not defined. A different measure is needed,
+it never reaches a consensus and its social power is not defined
+(Section~\ref{subsubsec:fj-stub-power} discusses the special case of a single
+prejudice). A different measure is needed,
+% REVISED (2026-11-03): C8: Section 3.2.3 shows a special case in which the reduced augmented model has a social power. Was:
+% model~\eqref{eq:fj-augmented} help: its graph has at least $n$ sinks, so for $n \geq 2$
+% it never reaches a consensus and its social power is not defined. A different measure is needed,
 % REVISED (2026-11-02): removed "(this remark is ours)" (no citation = ours).
 and~\cite{proskurnikov2017tutorial} discusses an extension of the social power to the FJ
 model, introduced by Friedkin.
@@ -568,7 +630,10 @@ and $c_i$ is called the \emph{influence centrality} of agent
 $i$~\cite{proskurnikov2017tutorial}. In terms of $V$, $c_i$ is the average of the
 $i$-th column of $V$, whose entries are the weights of $x_i(0)$ in the final opinions
 of the single agents. Since $V$ is stochastic, $c$ is non-negative and $c^\top \mathbf{1}_n = 1$, like $w$
-(Theorem~\ref{thm:consensus}), so the two measures can be compared directly. Similar to
+(Theorem~\ref{thm:consensus}): both distribute a total weight $1$ among the agents.
+Similar to
+% REVISED (2026-11-03): 'so the two measures can be compared directly' contradicted Section 3.2.3, where they are compared in parallel. Was:
+% (Theorem~\ref{thm:consensus}), so the two measures can be compared directly. Similar to
 French's social power, the influence centrality is generated by an opinion formation
 mechanism~\cite{proskurnikov2017tutorial}.
 % REVISED (2026-10-28, review): "sums to 1" was said twice. Was:
@@ -595,7 +660,14 @@ power, corresponding to the FDG model~\eqref{eq:fdg} with $A = W$. Then,
 $w = \lim_{\alpha \to 1-0} c_\alpha$.
 \end{lemma}
 
-The limit cannot be replaced by $\alpha = 1$: for $\Lambda = I$ the FJ model is the
+As $\alpha \to 1$ the agents barely listen to their prejudices and
+$V_\alpha = (1 - \alpha)(I - \alpha W)^{-1} \to \mathbf{1}_n w^\top$
+\cite{proskurnikov2017tutorial}: the final opinions approach the FDG consensus, and
+$c_\alpha \to w$, since in a common opinion the mean weight of $x_i(0)$ and its weight
+in the consensus coincide. The limit cannot be replaced by $\alpha = 1$: for
+$\Lambda = I$ the FJ model is the
+% REVISED (2026-11-03, cuts T8): the explanation of the limit, given in Section 3.2.3, is moved here, next to the lemma. Was:
+% The limit cannot be replaced by $\alpha = 1$: for $\Lambda = I$ the FJ model is the
 FDG model, which is not asymptotically stable, and $I - W$ is singular since
 $1 \in \operatorname{spec}(W)$ (Theorem~\ref{thm:stoch-spectrum}), so $V$ is not
 defined. In social terms, the influence centrality moves from the uniform

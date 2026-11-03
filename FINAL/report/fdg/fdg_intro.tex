@@ -34,21 +34,30 @@ $A$ is row-stochastic (Definition~\ref{def:row-stochastic}). In the terminology
 of~\cite{baggio_dt}, the FDG model is a \emph{DT averaging system}.
 
 Since $x(k) = A^k x(0)$, the asymptotic behaviour of the model is determined by the
-powers of $A$. Three outcomes are possible:
-\begin{itemize}
-  \item \emph{no convergence}: $\lim_{k \to +\infty} x(k)$ does not exist for some
-        $x(0)$; this happens when $A$ is not semi-convergent
-        (Definition~\ref{def:semiconv}), e.g.\ when $A$ has an
-        eigenvalue $\mu \neq 1$ with $|\mu| = 1$;
-  \item \emph{consensus}: for every $x(0)$, $\lim_{k \to +\infty} x(k) = \alpha \mathbf{1}_n$
-        for some $\alpha \in \mathbb{R}$, which depends on
-        $x(0)$~\cite{proskurnikov2017tutorial};
-% REVISED (2026-10-24): "for every x(0)" added to the consensus outcome, as in
-% Definition 14 of the tutorial (consensus is a property of the model); the other two
-% outcomes are unchanged (as in the course slides).
-  \item \emph{disagreement}: $\lim_{k \to +\infty} x(k) = v$ with
-        $v \neq \alpha \mathbf{1}_n$ for every $\alpha \in \mathbb{R}$.
-\end{itemize}
+powers of $A$, and three outcomes are possible: \emph{no convergence}, when
+$\lim_{k \to +\infty} x(k)$ does not exist for some $x(0)$, i.e.\ when $A$ is not
+semi-convergent (Definition~\ref{def:semiconv}); \emph{consensus}, when for every $x(0)$
+the opinions converge to $\alpha \mathbf{1}_n$ for some $\alpha \in \mathbb{R}$, which
+depends on $x(0)$~\cite{proskurnikov2017tutorial}; \emph{disagreement}, when
+$\lim_{k \to +\infty} x(k) = v$ with $v \neq \alpha \mathbf{1}_n$ for every
+$\alpha \in \mathbb{R}$.
+% REVISED (2026-11-03, cuts T3): list turned into one paragraph; the example of an eigenvalue on the unit circle is in Theorem 1.9 and in Table 1. Was:
+% Since $x(k) = A^k x(0)$, the asymptotic behaviour of the model is determined by the
+% powers of $A$. Three outcomes are possible:
+% \begin{itemize}
+%   \item \emph{no convergence}: $\lim_{k \to +\infty} x(k)$ does not exist for some
+%         $x(0)$; this happens when $A$ is not semi-convergent
+%         (Definition~\ref{def:semiconv}), e.g.\ when $A$ has an
+%         eigenvalue $\mu \neq 1$ with $|\mu| = 1$;
+%   \item \emph{consensus}: for every $x(0)$, $\lim_{k \to +\infty} x(k) = \alpha \mathbf{1}_n$
+%         for some $\alpha \in \mathbb{R}$, which depends on
+%         $x(0)$~\cite{proskurnikov2017tutorial};
+% % REVISED (2026-10-24): "for every x(0)" added to the consensus outcome, as in
+% % Definition 14 of the tutorial (consensus is a property of the model); the other two
+% % outcomes are unchanged (as in the course slides).
+%   \item \emph{disagreement}: $\lim_{k \to +\infty} x(k) = v$ with
+%         $v \neq \alpha \mathbf{1}_n$ for every $\alpha \in \mathbb{R}$.
+% \end{itemize}
 
 
 \subsubsection{Consensus and social power}
@@ -141,12 +150,14 @@ depends only on the initial opinions of the globally reachable agents.
 
 Among the globally reachable agents, the social power depends on their position in the
 network, and it can be regarded as a centrality measure~\cite{proskurnikov2017tutorial}.
-For instance, in the model of French with $n = 3$ agents and
-\[
-  A = \begin{bmatrix} 1/2 & 1/2 & 0 \\ 1/3 & 1/3 & 1/3 \\ 0 & 1/2 & 1/2 \end{bmatrix},
-\]
-all agents are globally reachable, but agent~$2$, the only one listened to by all the
-others, has the largest social power, $w = (2/7,\, 3/7,\, 2/7)^\top$~\cite{proskurnikov2017tutorial}.
+% REVISED (2026-11-03, cuts T4): Example 1 of the tutorial (French, n = 3) removed: Baggio asked for one or two FDG examples at most. Was:
+% network, and it can be regarded as a centrality measure~\cite{proskurnikov2017tutorial}.
+% For instance, in the model of French with $n = 3$ agents and
+% \[
+%   A = \begin{bmatrix} 1/2 & 1/2 & 0 \\ 1/3 & 1/3 & 1/3 \\ 0 & 1/2 & 1/2 \end{bmatrix},
+% \]
+% all agents are globally reachable, but agent~$2$, the only one listened to by all the
+% others, has the largest social power, $w = (2/7,\, 3/7,\, 2/7)^\top$~\cite{proskurnikov2017tutorial}.
 % REVISED (2026-10-28, review): shortened (the description of who listens to whom can be read on the matrix). Was:
 % agents~$1$ and~$3$ listen to themselves and to agent~$2$, while agent~$2$ listens to
 % everybody. All agents are globally reachable, but agent~$2$, the only one listened to by
@@ -210,15 +221,25 @@ Table~\ref{tab:rosetta}, the so-called \emph{Rosetta stone}~\cite{baggio_dt},
 summarizes all the possible behaviours of the FDG model: it translates each property
 of the row-stochastic matrix $A$ into a property of the digraph $G$ and into the
 asymptotic outcome, with an example for each case; the translation between $A$ and $G$
-comes from Theorems~\ref{thm:irreducible} and~\ref{thm:primitive} in cases (i)--(ii),
+comes from the characterizations of irreducible and primitive matrices
+(Theorem~\ref{thm:primitive}) in cases (i)--(ii),
+% REVISED (2026-11-03, cuts T2): the theorem on irreducible matrices is now a sentence. Was:
+% comes from Theorems~\ref{thm:irreducible} and~\ref{thm:primitive} in cases (i)--(ii),
 and from Theorems~\ref{thm:consensus} and~\ref{thm:disagreement} in cases
 (iii)--(iv). In case~(i) both agents are
 globally reachable and $A$ is doubly-stochastic, so by Corollary~\ref{cor:average} the
-group agrees on the average of the initial opinions. In case~(iii) agent~$1$ is
-stubborn (Definition~\ref{def:stubborn}) and is the only globally reachable agent:
-$w = (1, 0)^\top$ and the group agrees on $x_1(0)$. In case~(iv) both agents are
-stubborn: each of them is an aperiodic sink of $C(G)$, and every agent keeps its
+group agrees on the average of the initial opinions. In case~(iii) agent~$1$ listens
+only to itself ($a_{11} = 1$, a stubborn agent in the sense of
+Section~\ref{subsubsec:fdg-stub-model}) and is the only globally reachable agent:
+$w = (1, 0)^\top$ and the group agrees on $x_1(0)$. In case~(iv) both agents listen only
+to themselves: each of them is an aperiodic sink of $C(G)$, and every agent keeps its
 initial opinion (Theorem~\ref{thm:disagreement}).
+% REVISED (2026-11-03): C6: the Definition of stubbornness (Section 2.2.1) was cited before being given. Was:
+% group agrees on the average of the initial opinions. In case~(iii) agent~$1$ is
+% stubborn (Definition~\ref{def:stubborn}) and is the only globally reachable agent:
+% $w = (1, 0)^\top$ and the group agrees on $x_1(0)$. In case~(iv) both agents are
+% stubborn: each of them is an aperiodic sink of $C(G)$, and every agent keeps its
+% initial opinion (Theorem~\ref{thm:disagreement}).
 % REVISED (2026-10-28, review): shortened; cases (iii) and (iv) are now read as one and two stubborn agents, the thread of Section 2.2; Theorems 1.12 and 1.13, never cited before, are now cited for cases (i)-(ii). Was:
 % The results of this section, together with the consensus and disagreement theorems
 % above, classify all the possible behaviours of the FDG model. The classification is
@@ -242,7 +263,7 @@ initial opinion (Theorem~\ref{thm:disagreement}).
 \begin{table}[H]
   \centering
   \small
-  \renewcommand{\arraystretch}{1.6}
+  \renewcommand{\arraystretch}{1.35} % REVISED (2026-11-03, layout): was 1.6
   \begin{tabular}{@{}c c c c >{\raggedright\arraybackslash}m{4.4cm} l@{}}
     \toprule
     Case & Example digraph & $A$ & $\operatorname{spec}(A)$ & Property of $A$ / of $G$ & Outcome \\

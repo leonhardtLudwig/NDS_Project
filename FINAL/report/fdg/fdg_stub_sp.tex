@@ -36,7 +36,7 @@ self-weight added to agent~$1$.
 
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}[baseline=(c.base)]
+  \begin{tikzpicture}[baseline=(c.base), scale=0.85]  % REVISED (2026-11-03, layout): scale 0.85
     \foreach \i in {1,...,6} {
       \node[agent] (d\i) at ({90-60*(\i-1)}:1.3) {\i};
     }
@@ -51,7 +51,7 @@ self-weight added to agent~$1$.
     \node at (0,-2.0) {\small (a) directed cycle};
   \end{tikzpicture}
   \hspace{1.5cm}
-  \begin{tikzpicture}[baseline=(c.base)]
+  \begin{tikzpicture}[baseline=(c.base), scale=0.85]  % REVISED (2026-11-03, layout): scale 0.85
     \foreach \i in {1,...,6} {
       \node[agent] (b\i) at ({90-60*(\i-1)}:1.3) {\i};
     }
@@ -83,9 +83,15 @@ self-weight added to agent~$1$.
 \subsubsection{Modelling stubbornness: self-weights and stubborn agents}
 \label{subsubsec:fdg-stub-model}
 
-The self-weight $a_{ii}$ is the weight that agent $i$ gives to its own \emph{current}
-opinion~\cite{bullo2024lns}; it indicates how open the agent is to the opinions of the
-others~\cite{proskurnikov2017tutorial}. An agent with $a_{ii} = 0$ is open-minded and
+The self-weight $a_{ii}$ is the weight that agent $i$ gives to its own
+opinion~\cite{bullo2024lns}, i.e.\ to its \emph{current} opinion $x_i(k)$
+in~\eqref{eq:fdg}; it indicates how open the agent is to the opinions of the
+others~\cite{proskurnikov2017tutorial}.
+% REVISED (2026-11-03): 'current' was attributed to Bullo, who writes only 'its own opinion' (Section 1.1); now it is read off eq. (1). Was:
+% The self-weight $a_{ii}$ is the weight that agent $i$ gives to its own \emph{current}
+% opinion~\cite{bullo2024lns}; it indicates how open the agent is to the opinions of the
+% others~\cite{proskurnikov2017tutorial}.
+ An agent with $a_{ii} = 0$ is open-minded and
 relies completely on the others; an agent with a positive self-weight changes its
 opinion more slowly, but it still moves towards the opinions it listens to. In social
 terms, a self-weight is a form of inertia, not an anchor to a fixed opinion.
@@ -235,7 +241,7 @@ $x_1(0)$ gradually, the neighbours of agent~$1$ first.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.94\textwidth]{figures/fdg_convergence.eps}
+  \includegraphics[width=0.86\textwidth]{figures/fdg_convergence.eps}  % REVISED (2026-11-03, layout): was 0.94
   \caption{Opinions $x_i(k)$ in the two networks of Figure~\ref{fig:networks}
   (top: directed cycle; bottom: bidirectional ring) for three values of the
   self-weight $t$ of agent~$1$ (columns), with
@@ -276,15 +282,36 @@ Theorem~\ref{thm:consensus} describes how it depends on $t$.
 \end{itemize}
 
 Between these two extremes, $w$ is the left eigenvector of $A(t)$ associated with the
-eigenvalue $1$, normalized to sum $1$ (condition~(A2) of Theorem~\ref{thm:consensus});
-Figure~\ref{fig:fdg-power} reports it for $t \in (0,1]$. Numerically, the social power
-of agent~$1$ grows with $t$ towards $1$, while the other agents share the rest equally
-($w_1 \approx 0.286$ and $w_i \approx 0.143$ for $i \neq 1$ when $t = 1/2$), with the
-same values on the two networks. The bottom panel shows where the group converges, the
-consensus value $w^\top x(0)$ (point~(ii) of Theorem~\ref{thm:consensus}): it moves
-from the average $0.5$ of the initial opinions, for small $t$, to $x_1(0) = 0$ for
-$t = 1$, and it is $\approx 0.429$ for $t = 1/2$, the value reached in
-Figure~\ref{fig:fdg-conv}; also this curve is the same on the two networks. In other
+eigenvalue $1$, normalized to sum $1$ (condition~(A2) of Theorem~\ref{thm:consensus}).
+On both networks it is
+\[
+  w(t) = \frac{1}{1 + 5(1-t)}\,\big(1,\ 1-t,\ 1-t,\ 1-t,\ 1-t,\ 1-t\big)^\top ,
+\]
+as one checks by substituting $w = (w_1, b, \dots, b)$ in $w^\top A(t) = w^\top$: in
+both networks agents $2, \dots, 6$ receive the same total weight from the others, and
+the equations reduce to $b = (1-t)\, w_1$. Hence $w_1 = 1/(1 + 5(1-t))$ grows from $1/6$
+to $1$, the other agents share the rest equally ($w_1 = 2/7$ and $w_i = 1/7$ for
+$i \neq 1$ when $t = 1/2$), and the consensus value (point~(ii) of
+Theorem~\ref{thm:consensus}) is
+\[
+  w(t)^\top x(0) = \frac{3(1-t)}{6 - 5t},
+\]
+which moves from the average $0.5$ of the initial opinions, for $t \to 0$, to
+$x_1(0) = 0$ for $t = 1$, and is $3/7 \approx 0.4286$ for $t = 1/2$, the value reached in
+Figure~\ref{fig:fdg-conv}. Figure~\ref{fig:fdg-power} plots the two curves, which are
+the same on the two networks.
+% REVISED (2026-11-03): C2 + C3: exact social power and consensus value (our computation, checked numerically to 1e-15); the numbers 0.286 and 0.143 are 2/7 and 1/7. Was:
+% Between these two extremes, $w$ is the left eigenvector of $A(t)$ associated with the
+% eigenvalue $1$, normalized to sum $1$ (condition~(A2) of Theorem~\ref{thm:consensus});
+% Figure~\ref{fig:fdg-power} reports it for $t \in (0,1]$. Numerically, the social power
+% of agent~$1$ grows with $t$ towards $1$, while the other agents share the rest equally
+% ($w_1 \approx 0.286$ and $w_i \approx 0.143$ for $i \neq 1$ when $t = 1/2$), with the
+% same values on the two networks. The bottom panel shows where the group converges, the
+% consensus value $w^\top x(0)$ (point~(ii) of Theorem~\ref{thm:consensus}): it moves
+% from the average $0.5$ of the initial opinions, for small $t$, to $x_1(0) = 0$ for
+% $t = 1$, and it is $\approx 0.429$ for $t = 1/2$, the value reached in
+% Figure~\ref{fig:fdg-conv}; also this curve is the same on the two networks.
+ In other
 words, on these two networks the self-weight of agent~$1$ changes how the opinions
 converge, which depends on the network, but not where they converge.
 % REVISED (2026-10-28, review): two paragraphs merged and shortened, same content. Was:
@@ -311,7 +338,7 @@ converge, which depends on the network, but not where they converge.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.94\textwidth]{figures/fdg_social_power.eps}
+  \includegraphics[width=0.86\textwidth]{figures/fdg_social_power.eps}  % REVISED (2026-11-03, layout): was 0.94
   \caption{Top: social power of agent~$1$ ($w_1$) and of agent~$2$ ($w_2$) as a
   function of the self-weight $t \in (0,1]$ of agent~$1$. Bottom: consensus value
   $w^\top x(0)$ for $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$; the dashed
@@ -321,12 +348,33 @@ converge, which depends on the network, but not where they converge.
   \label{fig:fdg-power}
 \end{figure}
 
+% MOVED (2026-11-03, C4): Corollary 14 of the tutorial, from Section 3.2.1 (it is a result on the FDG model, Section 3.6 of the tutorial).
+With stubborn agents, the FDG model converges under the following
+condition~\cite{proskurnikov2017tutorial}.
+
+\begin{corollary}[\cite{proskurnikov2017tutorial}]
+\label{cor:fdg-stubborn}
+Let the group have $s \geq 1$ stubborn agents, influencing all other individuals
+(i.e.\ every other node of $G$ is connected by a walk to the set of stubborn nodes).
+Then the FDG model~\eqref{eq:fdg} is convergent.
+\end{corollary}
+% NOTE (2026-10-28): Corollary 14 of the tutorial. Only the edge convention is changed:
+% in the tutorial, edges go from the influencing agent to the influenced one, so the
+% stubborn agents are "source nodes" and "the set of source nodes is connected by walks
+% to all other nodes of G[W]"; with the convention of this report (i -> j means that i
+% listens to j) the walks go from the other nodes to the stubborn ones. "model (2)" of
+% the tutorial is the FDG model eq:fdg.
+
 \begin{remark}[More than one stubborn agent]
 \label{rem:many-stubborn}
 If two or more agents are stubborn, each of them is a sink of $C(G)$ made of a single,
 aperiodic node. If every other agent is influenced, directly or through
-intermediaries, by at least one stubborn agent, these are the only sinks, and by
-Theorem~\ref{thm:disagreement} the group converges, but to a disagreement: every stubborn agent keeps its own initial opinion, and every other
+intermediaries, by at least one stubborn agent, these are the only sinks: the group
+converges (Corollary~\ref{cor:fdg-stubborn}), but by Theorem~\ref{thm:disagreement} to a
+disagreement: every stubborn agent keeps its own initial opinion, and every other
+% REVISED (2026-11-03): C4: convergence now cited from the Corollary placed just above. Was:
+% intermediaries, by at least one stubborn agent, these are the only sinks, and by
+% Theorem~\ref{thm:disagreement} the group converges, but to a disagreement: every stubborn agent keeps its own initial opinion, and every other
 agent converges to a convex combination of the opinions of the stubborn agents it is
 influenced by (see also~\cite{proskurnikov2017tutorial}). Since there is no single
 consensus value, the social power is no longer defined. This situation, in which

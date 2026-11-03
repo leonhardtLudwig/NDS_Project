@@ -29,22 +29,26 @@ Given a weighted digraph $G = (V, E,$ $\{a_{ij}\}_{(i,j) \in E})$ of order $n$ t
 \end{itemize}
 \end{definition}
 
-\begin{definition}[Connectivity of digraphs~\cite{baggio_graph}]
-A directed graph $G = (V, E)$ is
-\begin{itemize}
-  \item[(i)] \emph{strongly connected} if there is a directed walk from any node to any
-             other node;
-  \item[(ii)] \emph{weakly connected} if the undirected version of the graph is
-              connected.
-\end{itemize}
-Moreover, $G$ has a
-\begin{itemize}
-  \item[(iii)] \emph{globally reachable node} if one of its nodes can be reached from
-               any other node through a directed walk;
-  \item[(iv)] \emph{directed spanning tree} if one of its nodes is the root of directed
-              walks to every other node.
-\end{itemize}
-\end{definition}
+A digraph is \emph{strongly connected} if there is a directed walk from any node to any
+other node, and a node is \emph{globally reachable} if it can be reached from any other
+node through a directed walk~\cite{baggio_graph}.
+% REVISED (2026-11-03, cuts T1): the definition had four notions, two of them never used (weakly connected, directed spanning tree). Was:
+% \begin{definition}[Connectivity of digraphs~\cite{baggio_graph}]
+% A directed graph $G = (V, E)$ is
+% \begin{itemize}
+%   \item[(i)] \emph{strongly connected} if there is a directed walk from any node to any
+%              other node;
+%   \item[(ii)] \emph{weakly connected} if the undirected version of the graph is
+%               connected.
+% \end{itemize}
+% Moreover, $G$ has a
+% \begin{itemize}
+%   \item[(iii)] \emph{globally reachable node} if one of its nodes can be reached from
+%                any other node through a directed walk;
+%   \item[(iv)] \emph{directed spanning tree} if one of its nodes is the root of directed
+%               walks to every other node.
+% \end{itemize}
+% \end{definition}
 
 With our convention, a directed walk from $i$ to $j$ means that agent $i$ is
 influenced by agent $j$, either directly or through intermediaries. Hence $G$ is
@@ -168,25 +172,28 @@ A non-negative matrix $A \in \mathbb{R}^{n \times n}$, $n \geq 2$, is
 \end{itemize}
 \end{definition}
 
-The next theorem uses two further notions~\cite{baggio_graph}: $\{I, J\}$ is a
-\emph{partition} of $V = \{1, \dots, n\}$ if $I, J \neq \emptyset$,
-$I \cap J = \emptyset$ and $I \cup J = V$; $P \in \{0,1\}^{n \times n}$ is a
-\emph{permutation matrix} if it has exactly one entry equal to $1$ in every row and
-every column.
-
-\begin{theorem}[Irreducible matrices and digraphs~\cite{baggio_graph}]
-\label{thm:irreducible}
-Let $G = (V, E, \{a_{ij}\}_{(i,j) \in E})$ be a weighted digraph of order $n \geq 2$
-with adjacency matrix $A$. The following statements are equivalent:
-\begin{itemize}
-  \item[(i)] $A$ is irreducible;
-  \item[(ii)] there exists no permutation matrix $P$ such that $PAP^\top$ is block
-              upper triangular;
-  \item[(iii)] $G$ is strongly connected;
-  \item[(iv)] for all partitions $\{I, J\}$ of $V$, there exists $i \in I$ and
-              $j \in J$ such that $(i,j) \in E$.
-\end{itemize}
-\end{theorem}
+A non-negative matrix $A$, $n \geq 2$, is irreducible if and only if its digraph is
+strongly connected~\cite{baggio_graph}.
+% REVISED (2026-11-03, cuts T2): Theorem 'Irreducible matrices and digraphs' (with the notions of partition and permutation matrix) reduced to the only equivalence used. Was:
+% The next theorem uses two further notions~\cite{baggio_graph}: $\{I, J\}$ is a
+% \emph{partition} of $V = \{1, \dots, n\}$ if $I, J \neq \emptyset$,
+% $I \cap J = \emptyset$ and $I \cup J = V$; $P \in \{0,1\}^{n \times n}$ is a
+% \emph{permutation matrix} if it has exactly one entry equal to $1$ in every row and
+% every column.
+% 
+% \begin{theorem}[Irreducible matrices and digraphs~\cite{baggio_graph}]
+% \label{thm:irreducible}
+% Let $G = (V, E, \{a_{ij}\}_{(i,j) \in E})$ be a weighted digraph of order $n \geq 2$
+% with adjacency matrix $A$. The following statements are equivalent:
+% \begin{itemize}
+%   \item[(i)] $A$ is irreducible;
+%   \item[(ii)] there exists no permutation matrix $P$ such that $PAP^\top$ is block
+%               upper triangular;
+%   \item[(iii)] $G$ is strongly connected;
+%   \item[(iv)] for all partitions $\{I, J\}$ of $V$, there exists $i \in I$ and
+%               $j \in J$ such that $(i,j) \in E$.
+% \end{itemize}
+% \end{theorem}
 
 \begin{theorem}[Primitive matrices and digraphs~\cite{baggio_graph}]
 \label{thm:primitive}
