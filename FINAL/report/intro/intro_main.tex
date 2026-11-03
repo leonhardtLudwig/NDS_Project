@@ -3,6 +3,50 @@
 % TODO (note for later): mention briefly the continuous-time models treated in the
 % tutorial (Abelson, Sec. 4; Taylor, Sec. 5), only as an overview, as agreed with
 % prof. Baggio: they are named but not studied.
+% DONE (2026-11-03): mentioned in the third paragraph below.
+% ADDED (2026-11-03): introduction (historical account from the tutorial, Sections 3.2, 4, 5, 6).
+
+How do the opinions of a group evolve when its members listen to each other, and what
+changes when some of them resist? Models of opinion dynamics describe a social network
+as a weighted digraph, whose nodes are the agents and whose edges carry the influence of
+one agent on another, and update the opinions by repeated averaging. This report follows
+the tutorial by Proskurnikov and Tempo~\cite{proskurnikov2017tutorial}, the course
+slides~\cite{baggio_graph,baggio_matrix,baggio_dt} and, as a support, the book by
+Bullo~\cite{bullo2024lns}.
+
+The historical account of~\cite{proskurnikov2017tutorial} explains why the report
+compares two models. The first model of this kind was proposed by French in 1956: every
+agent replaces its opinion with the mean of the opinions displayed to it, and French used
+it to measure the \emph{social power} of each agent, i.e.\ its ability to influence the
+common opinion of the group; his conditions for consensus were proved rigorously by
+Harary in 1959 and 1965. In 1974 DeGroot extended the model to an arbitrary stochastic
+matrix, as a procedure to reach a consensus of subjective probabilities: this is the
+\emph{French--Harary--DeGroot} (FDG) model. In 1964 Abelson had proposed its
+continuous-time counterpart and observed that consensus, the outcome of a very broad
+class of such models, is too strong to be realistic: what must be assumed to explain the
+persistent disagreement observed in real groups? This question, the \emph{community
+cleavage problem}, points to agents that resist the others. In 1968 Taylor extended
+Abelson's model with constant external opinions, the \emph{prejudices}, to which the
+agents remain attached; its discrete-time counterpart came only in the 1990s, with the
+\emph{Friedkin--Johnsen} (FJ) model, in which every agent mixes the average of the
+opinions it listens to with a fixed prejudice, and which has been validated
+experimentally on small and medium-size groups.
+
+The thread of the report is stubbornness: an agent that never changes its opinion, and
+the graded mechanisms of which it is the extreme case, a self-weight in the FDG model and
+a prejudice in the FJ model. We ask how these mechanisms change three things: whether the
+opinions converge, what they converge to, and how much each agent weighs in the result,
+measured by the social power in the FDG model and by the influence centrality in the FJ
+model. The two models are compared on the same small networks, with agent~$1$ as the
+agent that resists, so that every difference comes from the model and not from the data.
+The continuous-time models of Abelson and Taylor are mentioned only as an overview and
+are not studied in this report.
+
+Section~\ref{subsec:prelim} recalls the notions on graphs and non-negative matrices used
+throughout. Section~\ref{sec:fdg} introduces the FDG model and studies stubbornness and
+social power in it; Section~\ref{sec:fj} does the same for the FJ model, from its
+convergence and the augmented graph to the influence centrality;
+Section~\ref{sec:conclusions} compares the two models.
 
 \input{intro/intro_preliminaries.tex}
 
