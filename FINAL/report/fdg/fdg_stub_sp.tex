@@ -5,7 +5,9 @@ In the FDG model the simplest way to account for stubbornness is the self-weight
 $a_{ii}$, i.e.\ the weight of the self-loop of agent $i$. This section studies how
 self-weights, and stubborn agents in particular, affect the two aspects introduced in
 Section~\ref{subsec:fdg-intro}: whether the group reaches an agreement, and how the
-social power is distributed among the agents.
+social power is distributed among the agents. All the simulations were run in MATLAB;
+the code that generates every figure is provided with the report.
+% ADDED (2026-11-04, B8): mention of the code delivered with the report.
 
 All the examples use the two networks of Figure~\ref{fig:networks}, both with $n = 6$
 agents: in the \emph{directed cycle} each agent is influenced only by the next one,
@@ -252,7 +254,10 @@ $x_1(0)$ gradually, the neighbours of agent~$1$ first.
 
 In social terms, a group in which nobody gives weight to its own opinion can keep
 passing opinions around forever; a single agent that gives some weight to its current
-opinion, without being stubborn, is enough for the whole group to agree, and if that
+opinion, without being stubborn, is enough, on a strongly connected network, for the
+whole group to agree, and if that
+% REVISED (2026-11-04, editorial, S5). Was:
+% opinion, without being stubborn, is enough for the whole group to agree, and if that
 agent becomes stubborn the agreement is on its own opinion. The network decides only
 how this happens: by copying along a chain, or by averaging with the neighbours.
 % REVISED (2026-10-28, review): shortened, same content. Was:
@@ -312,8 +317,13 @@ the same on the two networks.
 % $t = 1$, and it is $\approx 0.429$ for $t = 1/2$, the value reached in
 % Figure~\ref{fig:fdg-conv}; also this curve is the same on the two networks.
  In other
-words, on these two networks the self-weight of agent~$1$ changes how the opinions
-converge, which depends on the network, but not where they converge.
+words, the network decides how the opinions converge (Figure~\ref{fig:fdg-conv}), but not
+where: for every $t$, the consensus value is the same on the directed cycle and on the
+bidirectional ring.
+% REVISED (2026-11-04, editorial, M1). Was:
+%  In other
+% words, on these two networks the self-weight of agent~$1$ changes how the opinions
+% converge, which depends on the network, but not where they converge.
 % REVISED (2026-10-28, review): two paragraphs merged and shortened, same content. Was:
 % Between these two extremes, the social power can be computed as the left eigenvector
 % of $A(t)$ associated with the eigenvalue $1$, normalized so that its entries sum to $1$
@@ -369,9 +379,14 @@ Then the FDG model~\eqref{eq:fdg} is convergent.
 \label{rem:many-stubborn}
 If two or more agents are stubborn, each of them is a sink of $C(G)$ made of a single,
 aperiodic node. If every other agent is influenced, directly or through
-intermediaries, by at least one stubborn agent, these are the only sinks: the group
-converges (Corollary~\ref{cor:fdg-stubborn}), but by Theorem~\ref{thm:disagreement} to a
-disagreement: every stubborn agent keeps its own initial opinion, and every other
+intermediaries, by at least one stubborn agent, these are the only sinks, and the group
+converges (Corollary~\ref{cor:fdg-stubborn}) to a disagreement
+(Theorem~\ref{thm:disagreement}): every stubborn agent keeps its own initial opinion, and
+every other
+% REVISED (2026-11-04, editorial, O3). Was:
+% intermediaries, by at least one stubborn agent, these are the only sinks: the group
+% converges (Corollary~\ref{cor:fdg-stubborn}), but by Theorem~\ref{thm:disagreement} to a
+% disagreement: every stubborn agent keeps its own initial opinion, and every other
 % REVISED (2026-11-03): C4: convergence now cited from the Corollary placed just above. Was:
 % intermediaries, by at least one stubborn agent, these are the only sinks, and by
 % Theorem~\ref{thm:disagreement} the group converges, but to a disagreement: every stubborn agent keeps its own initial opinion, and every other

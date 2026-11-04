@@ -1,4 +1,19 @@
 % ADDED (2026-11-02): comparison table FDG vs FJ (block A of the conclusions).
+% ADDED (2026-11-04, editorial, S6).
+The comparison answers the three questions of the introduction. Whether the opinions
+converge: a self-weight makes the FDG model converge only by making the network
+aperiodic, whereas a prejudice that influences every agent makes the FJ model
+asymptotically stable on any network, periodic ones included
+(Figures~\ref{fig:fdg-conv} and~\ref{fig:fj-one-prejudiced}). What they converge to: on a
+strongly connected network with a self-weight the FDG model always reaches a consensus,
+whereas the final opinions of the FJ model are fixed by the prejudices and, when all
+agents are P-dependent, coincide only if all the prejudiced agents share the same
+prejudice (Figures~\ref{fig:fj-one-prejudiced} and~\ref{fig:fj-all-prejudiced}). How
+much each agent weighs: the social power of agent~$1$ grows gradually with its
+self-weight, from $1/6$ to $1$, whereas a single anchor takes the whole influence
+centrality, and the two measures meet in the limit of Lemma~\ref{lem:centrality-limit}
+(Figures~\ref{fig:fdg-power} and~\ref{fig:fj-lemma24}).
+
 Table~\ref{tab:fdg-fj} collects the comparison between the two models developed in
 Sections~\ref{sec:fdg} and~\ref{sec:fj}.
 
@@ -57,7 +72,11 @@ Sections~\ref{sec:fdg} and~\ref{sec:fj}.
     \midrule
     From one model to the other
       & with stubborn agents, an FJ model with $\lambda_i = 0$, $u_i = x_i(0)$ for the
-        stubborn agents~\cite{proskurnikov2017tutorial}
+        stubborn agents~\cite{proskurnikov2017tutorial}, or, removing the stubborn agents,
+        an FJ model in which their opinions are prejudices (Figure~\ref{fig:fj-stub-reduction})
+% REVISED (2026-11-04, editorial, O6). Was:
+%       & with stubborn agents, an FJ model with $\lambda_i = 0$, $u_i = x_i(0)$ for the
+%         stubborn agents~\cite{proskurnikov2017tutorial}
       & an FDG model on the augmented graph~\eqref{eq:fj-augmented}, with $n$ virtual
         stubborn agents \\
     \bottomrule

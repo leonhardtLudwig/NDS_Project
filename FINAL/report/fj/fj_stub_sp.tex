@@ -115,7 +115,12 @@ agents that listen to it, i.e.\ the augmented graph read backwards.
 Following~\cite{proskurnikov2017tutorial}, an FDG model with stubborn agents can be
 rewritten as the FJ model~\eqref{eq:fj}, with $\lambda_i = 0$ and $u_i = x_i(0)$ for
 every stubborn agent and $\lambda_i = 1$, $u_i = 0$ for the others
-(Figure~\ref{fig:fj-fdg-rewriting}). The two models
+(Figure~\ref{fig:fj-fdg-rewriting}); any $u_i$ would do for these agents, since
+$\lambda_i = 1$, and Figures~\ref{fig:fj-stub-equivalence}
+and~\ref{fig:fj-stub-perturbation} use $u = x(0)$. The two models
+% REVISED (2026-11-04, editorial, O1). Was:
+% every stubborn agent and $\lambda_i = 1$, $u_i = 0$ for the others
+% (Figure~\ref{fig:fj-fdg-rewriting}). The two models
 % REVISED (2026-10-28, review): added the reference to the figure of the rewriting, which was never cited in the text. Was:
 % Following~\cite{proskurnikov2017tutorial}, an FDG model with stubborn agents can be
 % rewritten as the FJ model~\eqref{eq:fj}, with $\lambda_i = 0$ and $u_i = x_i(0)$ for
@@ -195,7 +200,7 @@ comparable, both equal to $1$ in the stubborn case.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.86\textwidth]{figures/fj_stubborn_equivalence.eps}  % REVISED (2026-11-03, layout): was 0.94
+  \includegraphics[width=0.74\textwidth]{figures/fj_stubborn_equivalence.eps}  % REVISED (2026-11-04, layout): was 0.86 (0.94 before 2026-11-03)
   \caption{Opinions $x_i(k)$ in the FDG model with $A(1)$ (left) and in the FJ model
   with $\lambda_1 = 0$, $\lambda_i = 1$ for $i \neq 1$ and $u = x(0)$ (right), on the
   directed cycle ($K = 10$, top) and on the bidirectional ring ($K = 40$, bottom), with
@@ -248,7 +253,7 @@ prejudiced but no longer stubborn.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.86\textwidth]{figures/fj_stubborn_perturbation.eps}  % REVISED (2026-11-03, layout): was 0.94
+  \includegraphics[width=0.74\textwidth]{figures/fj_stubborn_perturbation.eps}  % REVISED (2026-11-04, layout): was 0.86 (0.94 before 2026-11-03)
   \caption{The models of Figure~\ref{fig:fj-stub-equivalence} started from
   $x_1(0) = 0.5$, with the other initial opinions and the prejudice vector
   $u = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ unchanged, so $u_1 \neq x_1(0)$.
@@ -279,7 +284,9 @@ forgotten; in the FJ model it is an external input, and the state forgets $x(0)$
 Figure~\ref{fig:fj-stub-perturbation} perturbs the initial state. Let $x(k)$ and
 $\tilde x(k)$ be the trajectories of Figures~\ref{fig:fj-stub-equivalence}
 and~\ref{fig:fj-stub-perturbation}. In the FJ model the prejudice $u$ is the same in the
-two runs, so their difference obeys
+two runs, so their difference $\delta(k) = \tilde x(k) - x(k)$ obeys
+% REVISED (2026-11-04, A6). Was:
+% two runs, so their difference obeys
 % NOTE (for the revision): the recursion for delta(k) is our computation.
 \[
   \delta(k+1) = \Lambda W\, \delta(k),
@@ -301,11 +308,15 @@ $\operatorname{spec}(\Lambda W) = \{0, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ a
 $\operatorname{spec}(A(1)) = \{1, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ (on
 the directed cycle all the eigenvalues are $0$, except the eigenvalue
 % REVISED (2026-11-02): removed "computed numerically" (no citation = ours).
-$1$ of $A(1)$). The eigenvalue $1$ of $A(1)$ is that of the virtual agent $1'$ of the
-augmented model: in the FDG model the opinion of the stubborn agent is a state, that of
-$1'$, and changing $x_1(0)$ changes it; in the FJ model
-Figure~\ref{fig:fj-stub-perturbation} moves only the real agent~$1$, with
-$x_{1'}(0) = u_1$ unchanged, and the perturbation is forgotten.
+$1$ of $A(1)$). The eigenvalue $1$ of $A(1)$ is that of the virtual agent $1'$ of
+Section~\ref{subsubsec:fj-final}, which the FDG model moves together with $x_1(0)$ and
+Figure~\ref{fig:fj-stub-perturbation} leaves unchanged.
+% REVISED (2026-11-04, editorial, S3). Was:
+% $1$ of $A(1)$). The eigenvalue $1$ of $A(1)$ is that of the virtual agent $1'$ of the
+% augmented model: in the FDG model the opinion of the stubborn agent is a state, that of
+% $1'$, and changing $x_1(0)$ changes it; in the FJ model
+% Figure~\ref{fig:fj-stub-perturbation} moves only the real agent~$1$, with
+% $x_{1'}(0) = u_1$ unchanged, and the perturbation is forgotten.
 % REVISED (2026-11-02): spectral version, shorter. Was:
 % The augmented model of Section~\ref{subsubsec:fj-final} reconciles the two pictures
 % (our reading). In the augmented model the initial opinion of agent~$1$ and its
@@ -747,8 +758,12 @@ attachment only changes how
 % The fixed value $u_1$ makes the equilibrium unique, and the attachment only changes how
 fast it is reached; in the FDG model, instead, every consensus is an equilibrium, and the
 initial opinions decide which one is reached. In the augmented graph
-(Section~\ref{subsubsec:fj-final}) the only virtual agent that the real agents reach,
-directly or through intermediaries, is $1'$, which plays the role of the stubborn agent
+(Section~\ref{subsubsec:fj-final}) the only virtual agent that influences the real
+agents, directly or through intermediaries, is $1'$,
+% REVISED (2026-11-04, editorial, S1). Was:
+% (Section~\ref{subsubsec:fj-final}) the only virtual agent that the real agents reach,
+% directly or through intermediaries, is $1'$,
+ which plays the role of the stubborn agent
 of Section~\ref{subsubsec:fdg-stub-model}: the whole group converges to its value $u_1$.
 % REVISED (2026-11-02): removed ", our reading" (no citation = ours).
 % REVISED (2026-11-03): the real agents do not all listen to 1' (only agent 1 does): they reach it through agent 1. Was:
@@ -758,8 +773,11 @@ of Section~\ref{subsubsec:fdg-stub-model}: the whole group converges to its valu
 % stubborn virtual agent $1'$, as in Section~\ref{subsubsec:fdg-stub-model}.
  In social
 terms, a self-weight is inertia, which slows an agent down but lets it follow the group,
-while a prejudice is an anchor: a single anchored agent, however loosely, decides where
-the whole group ends.
+while a prejudice is an anchor: a single anchored agent that influences everybody decides
+where the whole group ends, however weak its attachment.
+% REVISED (2026-11-04, editorial, S5). Was:
+% while a prejudice is an anchor: a single anchored agent, however loosely, decides where
+% the whole group ends.
 % REVISED (2026-10-30, cuts): block 1, theory condensed: the comparison 'current vs initial opinion' is already in the matrix paragraph above, and the three readings (equilibrium, augmented graph, social) are kept in one sentence each. Was:
 % Both networks are strongly connected, so every agent is connected by a walk to
 % agent~$1$: all the agents are P-dependent and, by Corollary~\ref{cor:fj-stable} in its
@@ -900,11 +918,20 @@ prevent the consensus. In the FJ model every agent is prejudiced ($\Lambda < I_6
 the model is asymptotically stable (Corollary~\ref{cor:fj-stable}) and $x(\infty) = Vu$,
 with $V = 0.2\,(I - 0.8\,W)^{-1}$. The matrix $V$ is stochastic
 (Theorem~\ref{thm:fj-general}): every final opinion is a convex combination of the
-prejudices, and $v_{ij}$ is the weight of $u_j$ in $x_i(\infty)$. No column of $V$ is
-zero, so every prejudice enters every final opinion, but with weights that change from
-row to row: the final opinions are closer to each other than the initial ones, but
-different: the prejudices differ, so by Section~\ref{subsubsec:fj-final} no consensus
-is possible.
+prejudices, and $v_{ij}$ is the weight of $u_j$ in $x_i(\infty)$. All the entries of $V$
+are positive, since $W$ is irreducible, so every prejudice enters every final opinion,
+% REVISED (2026-11-04, A7). Was:
+% prejudices, and $v_{ij}$ is the weight of $u_j$ in $x_i(\infty)$. No column of $V$ is
+% zero, so every prejudice enters every final opinion,
+ but with weights that change from
+row to row. The final opinions are therefore closer to each other than the initial ones,
+but not equal: the prejudices differ, so by Section~\ref{subsubsec:fj-final} no
+consensus is possible.
+% REVISED (2026-11-04, editorial, O3). Was:
+%  but with weights that change from
+% row to row: the final opinions are closer to each other than the initial ones, but
+% different: the prejudices differ, so by Section~\ref{subsubsec:fj-final} no consensus
+% is possible.
 % REVISED (2026-11-03): C1: the argument 'V invertible' is replaced by the general condition of Section 3.1.3. Was:
 % different. A consensus requires equal prejudices: since $V$ is invertible and
 % $V\mathbf{1}_6 = \mathbf{1}_6$, $Vu = c\,\mathbf{1}_6$ only for $u = c\,\mathbf{1}_6$.
@@ -959,10 +986,21 @@ of~\cite{proskurnikov2017tutorial}.
 
 \paragraph{Where the prejudice does not arrive.}
 % ADDED (2026-10-30): theory of block 2 above and heading of block 3.
-On the two networks of Figure~\ref{fig:networks} a single prejudiced agent reaches every
-other agent. To show what happens when it does not, Figure~\ref{fig:fj-aux-network}
-introduces an auxiliary network: agents~$1$, $2$ and $3$ form a closed group, and
-agents~$4$, $5$ and~$6$ a chain that feeds into it. The closed group is a periodic cycle
+On the two networks of Figure~\ref{fig:networks} a single prejudiced agent influences
+every other agent.
+% REVISED (2026-11-04, editorial, S1). Was:
+% On the two networks of Figure~\ref{fig:networks} a single prejudiced agent reaches every
+% other agent.
+ To show what happens when it does not, Figure~\ref{fig:fj-aux-network}
+introduces an auxiliary network, in which agents~$1$, $2$ and $3$ form a closed group and
+agents~$4$, $5$ and~$6$ a chain that listens to it (agent~$6$ listens to agent~$1$,
+agent~$5$ to agent~$6$ and agent~$4$ to agent~$5$). The closed group is a periodic cycle
+% REVISED (2026-11-04, editorial, O3). Was:
+% introduces an auxiliary network: agents~$1$, $2$ and $3$ form a closed group, and
+% agents~$4$, $5$ and~$6$ a chain that listens to it: agent~$6$ listens to agent~$1$,
+% agent~$5$ to agent~$6$ and agent~$4$ to agent~$5$. The closed group is a periodic cycle
+% REVISED (2026-11-04, A1). Was:
+% agents~$4$, $5$ and~$6$ a chain that feeds into it. The closed group is a periodic cycle
 in $W_{\mathrm{p}}$, and becomes aperiodic in $W_{\mathrm{a}}$, where agent~$2$ also
 listens to agent~$1$.
 % REVISED (2026-10-30, cuts): block 3, introduction shortened (the details are in the caption of the figure). Was:
@@ -1508,11 +1546,17 @@ all at once.
 
 % NOTE (for the revision): this reading is ours, not in the sources.
 The augmented model explains this value. Section~\ref{subsubsec:fj-centrality}
-observed that the augmented graph has $n$ sinks, so the social power is not defined.
+observed that the augmented graph has at least $n$ sinks, so the social power is not defined.
+% REVISED (2026-11-04, B4: as in Section 3.1.4). Was:
+% observed that the augmented graph has $n$ sinks, so the social power is not defined.
 Here, however, the virtual agents $2', \dots, 6'$ have weight $1 - \lambda_i = 0$:
 nobody listens to them, and removing them does not change the real agents. What
-remains has a single sink, $1'$, aperiodic because of its self-loop and reached by every
-real agent through agent~$1$, so it reaches a consensus (Theorem~\ref{thm:consensus}) and
+remains has a single sink, $1'$, aperiodic because of its self-loop and influencing every
+real agent through agent~$1$,
+% REVISED (2026-11-04, editorial, S1). Was:
+% remains has a single sink, $1'$, aperiodic because of its self-loop and reached by every
+% real agent through agent~$1$,
+ so it reaches a consensus (Theorem~\ref{thm:consensus}) and
 its social power is $w = e_{1'}$: with $u = x(0)$, the whole group converges to
 $x_{1'}(0) = x_1(0)$, which is what $c = e_1$ says. With several prejudiced agents, as
 with $\Lambda = \alpha I$ below, several virtual agents are listened to, the augmented
@@ -1566,13 +1610,21 @@ takes its place.
 % - Compare explicitly with Figure \ref{fig:fdg-power}.
 
 Figure~\ref{fig:fj-lemma24} illustrates Lemma~\ref{lem:centrality-limit}. Since the
-lemma requires $W$ fully regular, here $W = A(1/2)$, the network of
+lemma requires $W$ fully regular, we take $W = A(1/2)$, the network of
 Figure~\ref{fig:networks} with the self-weight $t = 1/2$, which is primitive
-(Corollary~\ref{cor:primitive-selfloop}) and hence fully regular, and the susceptibility is the
+(Corollary~\ref{cor:primitive-selfloop}) and hence fully regular, and the same
+susceptibility for every agent, $\Lambda = \alpha I$.
+% REVISED (2026-11-04, editorial, O3). Was:
+% Figure~\ref{fig:fj-lemma24} illustrates Lemma~\ref{lem:centrality-limit}. Since the
+% lemma requires $W$ fully regular, here $W = A(1/2)$, the network of
+% Figure~\ref{fig:networks} with the self-weight $t = 1/2$, which is primitive
+% (Corollary~\ref{cor:primitive-selfloop}) and hence fully regular, and the susceptibility is the
 % REVISED (2026-11-03, cuts T8): why A(1/2) is fully regular, from the paragraph after the figure. Was:
 % lemma requires $W$ fully regular, here $W = A(1/2)$, the network of
 % Figure~\ref{fig:networks} with the self-weight $t = 1/2$, and the susceptibility is the
-same for every agent, $\Lambda = \alpha I$; the figure compares $c_1(\alpha)$ and
+The figure compares $c_1(\alpha)$ and
+% REVISED (2026-11-04, editorial, O3). Was:
+% same for every agent, $\Lambda = \alpha I$; the figure compares $c_1(\alpha)$ and
 $c_2(\alpha)$ with the social power $w_1$ and $w_2$ of the FDG model with the same
 matrix.
 % REVISED (2026-10-28, review): the parameters are in the caption; one clause says why W = A(1/2). Was:
@@ -1587,7 +1639,7 @@ matrix.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.86\textwidth]{figures/fj_lemma24.eps}  % REVISED (2026-11-03, layout): was 0.94
+  \includegraphics[width=0.74\textwidth]{figures/fj_lemma24.eps}  % REVISED (2026-11-04, layout): was 0.86 (0.94 before 2026-11-03)
   \caption{Influence centrality $c_1$ and $c_2$ in the FJ model with
   $W = A(1/2)$ and $\Lambda = \alpha I$, $\alpha \in [0, 0.995]$, and
   $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$, on the directed cycle (dots)
@@ -1610,7 +1662,9 @@ In
 % and $c$ is not defined, so the two measures meet only as a limit. In
 Figure~\ref{fig:fj-lemma24}, $c_1$ grows from $1/6$ to $w_1 = 2/7$ and $c_2$ decreases to
 $w_2 = 1/7$: as the agents open up to the others, the inertia of agent~$1$ counts more.
-On the directed cycle $c_2$ first goes below $w_2$ (about $0.137$ at $\alpha \approx 0.6$).
+On the directed cycle $c_2$ first goes below $w_2$ (about $0.137$ at $\alpha \approx 0.65$).
+% REVISED (2026-11-04, A3: minimum at alpha = 0.653). Was:
+% (about $0.137$ at $\alpha \approx 0.6$).
 % REVISED (2026-11-02): removed "a numerical observation of ours" (no citation = ours).
 % ADDED (2026-10-31): theory of Figure fj-lemma24.
 

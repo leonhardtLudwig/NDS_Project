@@ -177,10 +177,15 @@ agents.
         $W^{22}$, so the outcomes of Table~\ref{tab:rosetta} apply to them, read on the
         sinks of the condensation digraph $C^{22}$ of their subgraph: consensus or
         disagreement if all the sinks are aperiodic (cases~(i), (iii) and~(iv)), no
-        convergence otherwise (cases~(ii) and~(v)). In the first two cases $W^{22}$ is
-        regular, the model~\eqref{eq:fj} converges and the final opinions of the
-        P-dependent agents are given by~\eqref{eq:fj-V}; in the third case the
+        convergence otherwise (cases~(ii) and~(v)). If all the sinks are aperiodic,
+        $W^{22}$ is regular, the model~\eqref{eq:fj} converges and the final opinions of
+        the P-dependent agents are given by~\eqref{eq:fj-V}; otherwise the
         model~\eqref{eq:fj} does not converge.
+% REVISED (2026-11-04, B6: "first two cases" could be read as cases (i) and (iii)). Was:
+%         convergence otherwise (cases~(ii) and~(v)). In the first two cases $W^{22}$ is
+%         regular, the model~\eqref{eq:fj} converges and the final opinions of the
+%         P-dependent agents are given by~\eqref{eq:fj-V}; in the third case the
+%         model~\eqref{eq:fj} does not converge.
 % REVISED (2026-11-03, cuts T7): nested list of the three FDG outcomes for the P-independent agents in one sentence. Was:
 %   \item $0 < r < n$. P-dependent and P-independent agents coexist. The P-independent
 %         agents follow~\eqref{eq:fj-indep}, which is an FDG model with the
@@ -252,8 +257,11 @@ substochastic matrices.
 
 Two observations give an intuition for Corollary~\ref{cor:fj-stable}. First,
 % REVISED (2026-11-02): removed "of ours" (no citation = ours).
-letting $k \to +\infty$ in~\eqref{eq:fj} shows that the limit $x(\infty) = Vu$ is an
-equilibrium, $x(\infty) = \Lambda W x(\infty) + (I - \Lambda)u$. Letting
+the limit $x(\infty) = Vu$ is an equilibrium of~\eqref{eq:fj}: since
+$(I - \Lambda W)V = I - \Lambda$, it satisfies $x(\infty) = \Lambda W x(\infty) + (I - \Lambda)u$. Letting
+% REVISED (2026-11-04, A5: no assumption that the limit exists). Was:
+% letting $k \to +\infty$ in~\eqref{eq:fj} shows that the limit $x(\infty) = Vu$ is an
+% equilibrium, $x(\infty) = \Lambda W x(\infty) + (I - \Lambda)u$. Letting
 $e(k) = x(k) - x(\infty)$ and subtracting this equation from~\eqref{eq:fj} gives
 \begin{equation}\label{eq:fj-error}
   e(k+1) = \Lambda W\, e(k),
@@ -272,11 +280,16 @@ through intermediaries, by one of them, i.e.\ all agents are P-dependent. A grou
 agents that is not influenced, even indirectly, by any prejudiced agent loses no
 deviation and behaves as an FDG model, as in~\eqref{eq:fj-indep}.
 
-In social terms, the group converges, for every initial opinion, as soon as every agent
-that is not anchored to a prejudice listens, directly or through intermediaries, to
-someone who is. On a strongly connected network, such as the two networks of
-Figure~\ref{fig:networks}, a single prejudiced agent is enough. Note that this does not
-require aperiodicity, unlike the FDG model of Section~\ref{subsec:fdg-stub}.
+In social terms, on a strongly connected network, such as the two networks of
+Figure~\ref{fig:networks}, a single prejudiced agent is enough for the whole group to
+converge, whatever its initial opinions, and no aperiodicity is required, unlike in the
+FDG model of Section~\ref{subsec:fdg-stub}.
+% REVISED (2026-11-04, editorial, S2). Was:
+% In social terms, the group converges, for every initial opinion, as soon as every agent
+% that is not anchored to a prejudice listens, directly or through intermediaries, to
+% someone who is. On a strongly connected network, such as the two networks of
+% Figure~\ref{fig:networks}, a single prejudiced agent is enough. Note that this does not
+% require aperiodicity, unlike the FDG model of Section~\ref{subsec:fdg-stub}.
 
 If some agents are P-independent, the model is not asymptotically stable, but it may
 still converge. Theorem~\ref{thm:fj-general} gives the condition in terms
@@ -312,7 +325,9 @@ regular.
 % ADDED (2026-11-02): spectral reading of Theorem 3.2 and Corollaries 3.3-3.4.
 % NOTE (for the revision): this spectral reading is ours, not in the sources.
 
-\subsubsection{How the opinions converge: the matrix \texorpdfstring{$V$}{V} and the augmented graph}
+\subsubsection{What the opinions converge to: the matrix \texorpdfstring{$V$}{V} and the augmented graph}
+% REVISED (2026-11-04, editorial, O2). Was:
+% \subsubsection{How the opinions converge: the matrix \texorpdfstring{$V$}{V} and the augmented graph}
 \label{subsubsec:fj-final}
 % RENAMED (2026-10-24): was "Final opinions: consensus or disagreement" -- the tutorial
 % does not use consensus/disagreement for the FJ model (Section 6); consensus
@@ -365,18 +380,32 @@ terms of convergence and of the form of the limit, and not in terms of consensus
 % NOTE (for the revision): the definition for a given u and the condition are ours (equilibrium equation of Section 3.1.2).
 The question whether the final opinions coincide can still be asked, but now it
 concerns the prejudices: for a given $u$, we say that the FJ model reaches a
-\emph{consensus} if $x(\infty) = c\,\mathbf{1}_n$ for some $c \in \mathbb{R}$, and a
+\emph{consensus} if $x(\infty) = \gamma\,\mathbf{1}_n$ for some $\gamma \in \mathbb{R}$, and a
 \emph{disagreement} otherwise. The answer comes from the equilibrium equation of
 Section~\ref{subsubsec:fj-conv}. Since $W \mathbf{1}_n = \mathbf{1}_n$, a consensus
-vector $c\,\mathbf{1}_n$ is an equilibrium of~\eqref{eq:fj} if and only if
+vector $\gamma\,\mathbf{1}_n$ is an equilibrium of~\eqref{eq:fj} if and only if
 \[
-  c\,\mathbf{1}_n = \Lambda W c\,\mathbf{1}_n + (I - \Lambda)\, u
+  \gamma\,\mathbf{1}_n = \Lambda W \gamma\,\mathbf{1}_n + (I - \Lambda)\, u
   \quad\iff\quad
-  (I - \Lambda)\,(c\,\mathbf{1}_n - u) = 0 ,
+  (I - \Lambda)\,(\gamma\,\mathbf{1}_n - u) = 0 ,
 \]
-i.e.\ $(1 - \lambda_i)(c - u_i) = 0$ for every agent $i$. For an agent that is not
+i.e.\ $(1 - \lambda_i)(\gamma - u_i) = 0$ for every agent $i$. For an agent that is not
 prejudiced ($\lambda_i = 1$) the condition is always satisfied; for a prejudiced agent it
-requires $u_i = c$. When all agents are P-dependent, the equilibrium is unique and it is
+requires $u_i = \gamma$.
+% REVISED (2026-11-04, A2: gamma instead of c, which is the influence centrality in (12)). Was:
+% \emph{consensus} if $x(\infty) = c\,\mathbf{1}_n$ for some $c \in \mathbb{R}$, and a
+% \emph{disagreement} otherwise. The answer comes from the equilibrium equation of
+% Section~\ref{subsubsec:fj-conv}. Since $W \mathbf{1}_n = \mathbf{1}_n$, a consensus
+% vector $c\,\mathbf{1}_n$ is an equilibrium of~\eqref{eq:fj} if and only if
+% \[
+%   c\,\mathbf{1}_n = \Lambda W c\,\mathbf{1}_n + (I - \Lambda)\, u
+%   \quad\iff\quad
+%   (I - \Lambda)\,(c\,\mathbf{1}_n - u) = 0 ,
+% \]
+% i.e.\ $(1 - \lambda_i)(c - u_i) = 0$ for every agent $i$. For an agent that is not
+% prejudiced ($\lambda_i = 1$) the condition is always satisfied; for a prejudiced agent it
+% requires $u_i = c$.
+ When all agents are P-dependent, the equilibrium is unique and it is
 the limit $Vu$ (Corollary~\ref{cor:fj-stable}). Hence:
 \begin{quote}
   \itshape when all agents are P-dependent, the FJ model reaches a consensus if and only
@@ -486,8 +515,13 @@ agent placed beside it.
 % the prejudice as an input arrow entering agent 1 and (b) the augmented graph
 % (option (a) chosen by the user; the change of direction is explained in the text).
 
-The augmented graph also shows, from the side of the FDG model, why consensus is not
-the right notion for the FJ model. The augmented
+The augmented graph also shows, from the side of the FDG model, why consensus,
+understood as a property of the model as in the FDG model, is not the right notion for
+the FJ model.
+% REVISED (2026-11-04, editorial, M2). Was:
+% The augmented graph also shows, from the side of the FDG model, why consensus is not
+% the right notion for the FJ model.
+ The augmented
 % REVISED (2026-11-02): removed "This observation is ours." (no citation = ours).
 model~\eqref{eq:fj-augmented} is an FDG model, so the classification of
 Table~\ref{tab:rosetta} applies to it. Each virtual agent is influenced only by
@@ -588,8 +622,12 @@ of Figure~\ref{fig:fj-stub-perturbation} in these terms.
 % PageRank (not about social networks) and the reading of c on the augmented graph.
 
 In the FDG model the social power $w$ is defined only when the group reaches a
-consensus (Section~\ref{subsubsec:consensus}), which is not the relevant notion for the
-FJ model (Section~\ref{subsubsec:fj-final}). Nor does the augmented FDG
+consensus (Section~\ref{subsubsec:consensus}), which in the FJ model is not a property of
+the model but depends on the prejudices (Section~\ref{subsubsec:fj-final}).
+% REVISED (2026-11-04, editorial, M2). Was:
+% consensus (Section~\ref{subsubsec:consensus}), which is not the relevant notion for the
+% FJ model (Section~\ref{subsubsec:fj-final}).
+ Nor does the augmented FDG
 model~\eqref{eq:fj-augmented} help: its graph has at least $n$ sinks, so for $n \geq 2$
 it never reaches a consensus and its social power is not defined
 (Section~\ref{subsubsec:fj-stub-power} discusses the special case of a single
@@ -647,7 +685,9 @@ The relation with the social power is made precise in~\cite{proskurnikov2017tuto
 The convergence and the consensus of the FDG model are equivalent, respectively, to
 the regularity and the full regularity of the stochastic matrix
 $A$~\cite{proskurnikov2017tutorial} (Definition~\ref{def:regular}). For a fixed $W$,
-let $\Lambda = \alpha I_n$ with $\alpha \in (0,1)$, i.e.\ the same susceptibility for
+let $\Lambda = \alpha I_n$ with $\alpha \in [0,1)$, i.e.\ the same susceptibility for
+% REVISED (2026-11-04, B3: alpha = 0 is used just below and in Figure 13). Was:
+% let $\Lambda = \alpha I_n$ with $\alpha \in (0,1)$, i.e.\ the same susceptibility for
 all agents, and consider the corresponding matrix $V_\alpha$ and vector $c_\alpha$.
 For $\alpha = 0$, i.e.\ $\Lambda = 0$, every agent keeps its initial opinion, $V = I$
 and $c_0 = n^{-1} \mathbf{1}_n$: the social power is uniformly distributed between all

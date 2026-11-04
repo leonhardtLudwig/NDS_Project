@@ -12,13 +12,19 @@ strongly connected and periodic without self-loops.
 \begin{itemize}
   \item \emph{Convergence.} In the FDG model the self-weight of agent~$1$ is needed to
         make the network aperiodic (Section~\ref{subsec:fdg-stub}); in the FJ model a
-        single prejudiced agent reached by everybody makes all agents P-dependent, and
+        single prejudiced agent that influences everybody makes all agents P-dependent, and
+% REVISED (2026-11-04, editorial, S1). Was:
+%         single prejudiced agent reached by everybody makes all agents P-dependent, and
         the model converges although the network is periodic
         (Corollary~\ref{cor:fj-stable}).
   \item \emph{Influence.} The social power of agent~$1$ grows gradually with its
         self-weight, from $1/6$ to $1$ (Figure~\ref{fig:fdg-power}), and for $t < 1$
         the consensus still depends on the initial opinions of all agents. A single
-        anchor, however loose, takes the whole influence centrality, $c = e_1$, and the
+        anchor, even a weak one, takes the whole influence centrality,
+% REVISED (2026-11-04, editorial, O5). Was:
+% A single
+%         anchor, however loose, takes the whole influence centrality,
+ $c = e_1$, and the
         group ends on its prejudice (Figure~\ref{fig:fj-one-prejudiced}).
   \item \emph{Many agents.} With the same weight $0.2$ for every agent
         (Figure~\ref{fig:fj-all-prejudiced}), the FDG model reaches a consensus, as on
@@ -35,7 +41,12 @@ single anchor takes all the influence, and different anchors keep the group divi
 The same opinion can be a state or an input, and this decides the stability. An FDG
 model with stubborn agents and its FJ rewriting~\cite{proskurnikov2017tutorial} have the
 same trajectories, but the FDG model is never asymptotically stable, while the FJ model
-is (Corollary~\ref{cor:fj-stable}): the opinion of a stubborn agent is a state in the
+is asymptotically stable whenever the stubborn agents influence all the others
+(Corollaries~\ref{cor:fdg-stubborn} and~\ref{cor:fj-stable}): the opinion
+% REVISED (2026-11-04, A4). Was:
+% same trajectories, but the FDG model is never asymptotically stable, while the FJ model
+% is (Corollary~\ref{cor:fj-stable}): the opinion
+ of a stubborn agent is a state in the
 first and the input $u_i = x_i(0)$ in the second. The spectra show it in one step: the
 stubborn row is $e_i^\top$ in $A$ and zero in $\Lambda W$, so the eigenvalue $1$ of the
 FDG model becomes $0$ in the FJ model. Conversely, the augmented
@@ -51,18 +62,27 @@ agent, adds one eigenvalue $1$ for each of them, and loses the asymptotic stabil
         initial opinions as a virtual agent keeps its prejudice, so the FJ model converges
         without being asymptotically stable.
 \end{itemize}
-In social terms, in the FDG model stubbornness is a memory inside the group, which is
-never forgotten; in the FJ model it is an external influence, and the group forgets its
-initial opinions: what the group remembers is what the model counts as its state.
+In social terms, what a group remembers is what the model counts as its state: the
+opinion of a stubborn agent in the FDG model, the initial opinions of a closed group of
+P-independent agents in the FJ model, but never the initial opinions of the agents that a
+prejudice reaches.
+% REVISED (2026-11-04, editorial, S3). Was:
+% In social terms, in the FDG model stubbornness is a memory inside the group, which is
+% never forgotten; in the FJ model it is an external influence, and the group forgets its
+% initial opinions: what the group remembers is what the model counts as its state.
 
 % ADDED (2026-11-02): thread 3 of the conclusions, social power vs influence centrality.
 \paragraph{Social power and influence centrality.}
 Both measures say how much the initial opinion of each agent weighs in the final
-opinions, but under different assumptions. The social power $w$~\eqref{eq:social-power}
-requires a consensus, $A^\infty = \mathbf{1}_n w^\top$. The influence centrality
-$c = n^{-1} V^\top \mathbf{1}_n$~\eqref{eq:influence} requires $\rho(\Lambda W) < 1$ and
-$u = x(0)$, which gives the initial opinions a weight in $x(\infty) = V x(0)$, and it
-averages over the agents, since the rows of $V$ differ.
+opinions, under the different assumptions listed in Table~\ref{tab:fdg-fj}; the influence
+centrality also averages over the agents, since the rows of $V$ differ.
+% REVISED (2026-11-04, editorial, S4). Was:
+% Both measures say how much the initial opinion of each agent weighs in the final
+% opinions, but under different assumptions. The social power $w$~\eqref{eq:social-power}
+% requires a consensus, $A^\infty = \mathbf{1}_n w^\top$. The influence centrality
+% $c = n^{-1} V^\top \mathbf{1}_n$~\eqref{eq:influence} requires $\rho(\Lambda W) < 1$ and
+% $u = x(0)$, which gives the initial opinions a weight in $x(\infty) = V x(0)$, and it
+% averages over the agents, since the rows of $V$ differ.
 \begin{itemize}
   \item \emph{A single anchor.} With agent~$1$ the only prejudiced agent, $c = e_1$ for
         every $\lambda_1 < 1$, while in the FDG model $w_1$ grows gradually with the
@@ -84,7 +104,12 @@ first when the anchors are released.
 % ADDED (2026-11-03): part C of the conclusions, what is left out.
 \paragraph{What is left out.}
 In Section~\ref{subsec:fj-stub} the prejudices are the initial opinions, $u = x(0)$, as in
-the original theory of Friedkin and Johnsen, while~\cite{proskurnikov2017tutorial}
+the original theory of Friedkin and Johnsen, apart from the perturbations of $x(0)$ in
+Figures~\ref{fig:fj-stub-perturbation} and~\ref{fig:fj-auxiliary}(d),
+% REVISED (2026-11-04, B5: Figures 7 and 12(d) have u different from x(0)). Was:
+% In Section~\ref{subsec:fj-stub} the prejudices are the initial opinions, $u = x(0)$, as in
+% the original theory of Friedkin and Johnsen,
+ while~\cite{proskurnikov2017tutorial}
 treats $u$ and $x(0)$ as independent: the examples could be repeated with
 $u \neq x(0)$, for instance by perturbing all the prejudices slightly.
 \cite{proskurnikov2017tutorial} also reads the final opinions of the FJ model as a Nash
