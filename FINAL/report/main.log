@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.6)  4 NOV 2026 14:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.6)  5 NOV 2026 10:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -692,9 +692,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [3])) (./fdg/fdg_main.tex (./fdg/fdg_intro.tex
 
-[4])
+[4{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-[5] (./fdg/fdg_stub_sp.tex
+[5]) (./fdg/fdg_stub_sp.tex
 
 [6]
 Package epstopdf Info: Source file: <figures/fdg_convergence.eps>
@@ -704,16 +704,16 @@ Package epstopdf Info: Source file: <figures/fdg_convergence.eps>
 (epstopdf)                    date: 2026-10-29 16:29:04
 (epstopdf)                    size: 20148 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fdg_convergence-eps-converted-to.pdf figures/fdg_convergence.eps>
-(epstopdf)             \includegraphics on input line 246.
+(epstopdf)             \includegraphics on input line 278.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdg_convergence-eps-converted-to.pdf, id=307, 445.665pt x 271.0125pt>
+<figures/fdg_convergence-eps-converted-to.pdf, id=311, 445.665pt x 271.0125pt>
 File: figures/fdg_convergence-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdg_convergence-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fdg_convergence-eps-converted-to.pdf  used on input line 246.
-(pdftex.def)             Requested size: 415.9796pt x 252.96118pt.
+Package pdftex.def Info: figures/fdg_convergence-eps-converted-to.pdf  used on input line 278.
+(pdftex.def)             Requested size: 386.95897pt x 235.3158pt.
 
 
-[7{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+[7]
 Package epstopdf Info: Source file: <figures/fdg_social_power.eps>
 (epstopdf)                    date: 2026-10-22 10:07:57
 (epstopdf)                    size: 130646 bytes
@@ -721,13 +721,13 @@ Package epstopdf Info: Source file: <figures/fdg_social_power.eps>
 (epstopdf)                    date: 2026-10-29 16:29:05
 (epstopdf)                    size: 17331 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fdg_social_power-eps-converted-to.pdf figures/fdg_social_power.eps>
-(epstopdf)             \includegraphics on input line 351.
+(epstopdf)             \includegraphics on input line 383.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdg_social_power-eps-converted-to.pdf, id=327, 426.59375pt x 269.005pt>
+<figures/fdg_social_power-eps-converted-to.pdf, id=330, 426.59375pt x 269.005pt>
 File: figures/fdg_social_power-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdg_social_power-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fdg_social_power-eps-converted-to.pdf  used on input line 351.
-(pdftex.def)             Requested size: 415.9796pt x 262.33011pt.
+Package pdftex.def Info: figures/fdg_social_power-eps-converted-to.pdf  used on input line 383.
+(pdftex.def)             Requested size: 386.95897pt x 244.02734pt.
 
 
 [8 <./figures/fdg_convergence-eps-converted-to.pdf>])) (./fj/fj_main.tex (./fj/fj_intro.tex
@@ -752,12 +752,12 @@ Package epstopdf Info: Source file: <figures/fj_stubborn_equivalence.eps>
 (epstopdf)                    date: 2026-10-30 11:31:48
 (epstopdf)                    size: 15011 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fj_stubborn_equivalence-eps-converted-to.pdf figures/fj_stubborn_equivalence.eps>
-(epstopdf)             \includegraphics on input line 203.
+(epstopdf)             \includegraphics on input line 210.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fj_stubborn_equivalence-eps-converted-to.pdf, id=565, 445.665pt x 270.00874pt>
+<figures/fj_stubborn_equivalence-eps-converted-to.pdf, id=573, 445.665pt x 270.00874pt>
 File: figures/fj_stubborn_equivalence-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fj_stubborn_equivalence-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fj_stubborn_equivalence-eps-converted-to.pdf  used on input line 203.
+Package pdftex.def Info: figures/fj_stubborn_equivalence-eps-converted-to.pdf  used on input line 210.
 (pdftex.def)             Requested size: 357.93834pt x 216.8601pt.
 Package epstopdf Info: Source file: <figures/fj_stubborn_perturbation.eps>
 (epstopdf)                    date: 2026-10-30 11:30:47
@@ -766,12 +766,12 @@ Package epstopdf Info: Source file: <figures/fj_stubborn_perturbation.eps>
 (epstopdf)                    date: 2026-10-30 11:31:48
 (epstopdf)                    size: 15401 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fj_stubborn_perturbation-eps-converted-to.pdf figures/fj_stubborn_perturbation.eps>
-(epstopdf)             \includegraphics on input line 256.
+(epstopdf)             \includegraphics on input line 263.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fj_stubborn_perturbation-eps-converted-to.pdf, id=573, 445.665pt x 270.00874pt>
+<figures/fj_stubborn_perturbation-eps-converted-to.pdf, id=581, 445.665pt x 270.00874pt>
 File: figures/fj_stubborn_perturbation-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fj_stubborn_perturbation-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fj_stubborn_perturbation-eps-converted-to.pdf  used on input line 256.
+Package pdftex.def Info: figures/fj_stubborn_perturbation-eps-converted-to.pdf  used on input line 263.
 (pdftex.def)             Requested size: 357.93834pt x 216.8601pt.
 
 
@@ -783,13 +783,13 @@ Package epstopdf Info: Source file: <figures/fj_one_prejudiced.eps>
 (epstopdf)                    date: 2026-10-30 11:31:49
 (epstopdf)                    size: 22137 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fj_one_prejudiced-eps-converted-to.pdf figures/fj_one_prejudiced.eps>
-(epstopdf)             \includegraphics on input line 645.
+(epstopdf)             \includegraphics on input line 673.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fj_one_prejudiced-eps-converted-to.pdf, id=630, 445.665pt x 270.00874pt>
+<figures/fj_one_prejudiced-eps-converted-to.pdf, id=641, 445.665pt x 270.00874pt>
 File: figures/fj_one_prejudiced-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fj_one_prejudiced-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fj_one_prejudiced-eps-converted-to.pdf  used on input line 645.
-(pdftex.def)             Requested size: 377.28296pt x 228.5815pt.
+Package pdftex.def Info: figures/fj_one_prejudiced-eps-converted-to.pdf  used on input line 673.
+(pdftex.def)             Requested size: 357.93834pt x 216.8601pt.
 
 
 [17]
@@ -802,15 +802,15 @@ Package epstopdf Info: Source file: <figures/fj_all_prejudiced.eps>
 (epstopdf)                    date: 2026-10-30 11:31:49
 (epstopdf)                    size: 21069 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fj_all_prejudiced-eps-converted-to.pdf figures/fj_all_prejudiced.eps>
-(epstopdf)             \includegraphics on input line 862.
+(epstopdf)             \includegraphics on input line 896.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fj_all_prejudiced-eps-converted-to.pdf, id=676, 445.665pt x 270.00874pt>
+<figures/fj_all_prejudiced-eps-converted-to.pdf, id=687, 445.665pt x 270.00874pt>
 File: figures/fj_all_prejudiced-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fj_all_prejudiced-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fj_all_prejudiced-eps-converted-to.pdf  used on input line 862.
-(pdftex.def)             Requested size: 415.9796pt x 252.02428pt.
+Package pdftex.def Info: figures/fj_all_prejudiced-eps-converted-to.pdf  used on input line 896.
+(pdftex.def)             Requested size: 386.95897pt x 234.44426pt.
 
-Underfull \hbox (badness 1789) in paragraph at lines 869--869
+Underfull \hbox (badness 1789) in paragraph at lines 903--903
 []\T1/cmr/m/n/10 Figure 10: |Opin-ions $\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 k\OT1/cmr/m/n/10 )$ \T1/cmr/m/n/10 when ev-ery agent gives weight $\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2$ \T1/cmr/m/n/10 to its own opin-ion, with $\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (0) =
  []
 
@@ -824,15 +824,15 @@ Package epstopdf Info: Source file: <figures/fj_auxiliary.eps>
 (epstopdf)                    date: 2026-10-30 11:31:49
 (epstopdf)                    size: 16900 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fj_auxiliary-eps-converted-to.pdf figures/fj_auxiliary.eps>
-(epstopdf)             \includegraphics on input line 1210.
+(epstopdf)             \includegraphics on input line 1244.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fj_auxiliary-eps-converted-to.pdf, id=725, 445.665pt x 271.0125pt>
+<figures/fj_auxiliary-eps-converted-to.pdf, id=736, 445.665pt x 271.0125pt>
 File: figures/fj_auxiliary-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fj_auxiliary-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fj_auxiliary-eps-converted-to.pdf  used on input line 1210.
-(pdftex.def)             Requested size: 415.9796pt x 252.96118pt.
+Package pdftex.def Info: figures/fj_auxiliary-eps-converted-to.pdf  used on input line 1244.
+(pdftex.def)             Requested size: 386.95897pt x 235.3158pt.
 
-Underfull \hbox (badness 1917) in paragraph at lines 1216--1216
+Underfull \hbox (badness 1917) in paragraph at lines 1250--1250
 []\T1/cmr/m/n/10 Figure 12: |Opin-ions $\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 k\OT1/cmr/m/n/10 )$ \T1/cmr/m/n/10 in the FJ model on the aux-il-iary net-work of Fig-ure []11[], with $\OML/cmm/m/it/10 u \OT1/cmr/m/n/10 =
  []
 
@@ -848,21 +848,16 @@ Package epstopdf Info: Source file: <figures/fj_lemma24.eps>
 (epstopdf)                    date: 2026-10-30 11:31:49
 (epstopdf)                    size: 20119 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fj_lemma24-eps-converted-to.pdf figures/fj_lemma24.eps>
-(epstopdf)             \includegraphics on input line 1642.
+(epstopdf)             \includegraphics on input line 1693.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fj_lemma24-eps-converted-to.pdf, id=789, 386.44376pt x 186.6975pt>
+<figures/fj_lemma24-eps-converted-to.pdf, id=800, 386.44376pt x 186.6975pt>
 File: figures/fj_lemma24-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fj_lemma24-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fj_lemma24-eps-converted-to.pdf  used on input line 1642.
-(pdftex.def)             Requested size: 357.93834pt x 172.92607pt.
+Package pdftex.def Info: figures/fj_lemma24-eps-converted-to.pdf  used on input line 1693.
+(pdftex.def)             Requested size: 328.91032pt x 158.90158pt.
 )) (./conclusion/conclusion_main.tex (./conclusion/conclusion_comparison.tex
 
-[22 <./figures/fj_lemma24-eps-converted-to.pdf>]
-Overfull \hbox (9.77359pt too wide) in paragraph at lines 24--84
- [][] 
- []
-
-) (./conclusion/conclusion_threads.tex
+[22 <./figures/fj_lemma24-eps-converted-to.pdf>]) (./conclusion/conclusion_threads.tex
 
 [23])) (./main.bbl)
 
@@ -875,18 +870,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 3402B39A649EB4CA8ED92E7A654A40EC;5445.
  ) 
 Here is how much of TeX's memory you used:
- 25294 strings out of 473190
- 468585 string characters out of 5715801
- 885875 words of memory out of 5000000
- 47967 multiletter control sequences out of 15000+600000
+ 25296 strings out of 473190
+ 468613 string characters out of 5715801
+ 886094 words of memory out of 5000000
+ 47968 multiletter control sequences out of 15000+600000
  581391 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,15n,91p,793b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,15n,91p,810b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on main.pdf (24 pages, 728568 bytes).
+Output written on main.pdf (24 pages, 733556 bytes).
 PDF statistics:
- 1056 PDF objects out of 1200 (max. 8388607)
- 876 compressed objects within 9 object streams
- 130 named destinations out of 1000 (max. 500000)
+ 1066 PDF objects out of 1200 (max. 8388607)
+ 885 compressed objects within 9 object streams
+ 131 named destinations out of 1000 (max. 500000)
  253 words of extra memory for PDF output out of 10000 (max. 10000000)
 

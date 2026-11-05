@@ -1,8 +1,12 @@
 \subsection{Stubbornness and social power in the FDG model}
 \label{subsec:fdg-stub}
 
-In the FDG model the simplest way to account for stubbornness is the self-weight
-$a_{ii}$, i.e.\ the weight of the self-loop of agent $i$. This section studies how
+In the FDG model, stubbornness is modelled through the self-weight $a_{ii}$, i.e.\ the
+weight of the self-loop of agent $i$.
+% REVISED (2026-11-05, review, R3: "the simplest way" suggested alternatives not treated). Was:
+% In the FDG model the simplest way to account for stubbornness is the self-weight
+% $a_{ii}$, i.e.\ the weight of the self-loop of agent $i$.
+ This section studies how
 self-weights, and stubborn agents in particular, affect the two aspects introduced in
 Section~\ref{subsec:fdg-intro}: whether the group reaches an agreement, and how the
 social power is distributed among the agents. All the simulations were run in MATLAB;
@@ -129,10 +133,16 @@ Figure~\ref{fig:networks}, we replace its first row by
 \begin{equation}\label{eq:self-weight}
   a_1(t)^\top = (1-t)\, a_1^\top + t\, e_1^\top, \qquad t \in [0,1],
 \end{equation}
-where $e_1$ is the first vector of the canonical basis, leaving the other rows
-unchanged: agent~$1$ gives weight $t$ to itself and splits the remaining weight $1-t$
-among the agents it listened to before, in the same proportions, as marked in
-Figure~\ref{fig:networks}. Thus $t = a_{11}$: $t = 0$ is the original network and
+leaving the other rows unchanged, and we call $A(t)$ the resulting matrix: agent~$1$
+gives weight $t$ to itself and splits the remaining weight $1-t$ among the agents it
+listened to before, in the same proportions, as marked in Figure~\ref{fig:networks}.
+Thus $t = a_{11}$:
+% REVISED (2026-11-05, review, R4: A(t) named; e_1 defined in the Preliminaries). Was:
+% where $e_1$ is the first vector of the canonical basis, leaving the other rows
+% unchanged: agent~$1$ gives weight $t$ to itself and splits the remaining weight $1-t$
+% among the agents it listened to before, in the same proportions, as marked in
+% Figure~\ref{fig:networks}. Thus $t = a_{11}$:
+ $t = 0$ is the original network and
 $t = 1$ makes agent~$1$ stubborn. In the following we consider $t = 0$, $1/2$ and $1$.
 % REVISED (2026-10-28, review): shortened; the explicit first rows are now written on Figure 1. Was:
 % where $e_1$ is the first vector of the canonical basis, and leave the other rows
@@ -169,15 +179,37 @@ The three values of $t$ correspond to three different cases of the Rosetta stone
 %         opinion $x_1(0)$ (case~(iii)).
 \end{itemize}
 
-The same picture can be read on the spectrum of $A(t)$. For $t = 0$ the spectrum is the
-set of the sixth roots of unity for the directed cycle and
-$\{1, \frac{1}{2}, \frac{1}{2}, -\frac{1}{2}, -\frac{1}{2}, -1\}$ for the bidirectional
-ring: in both cases some eigenvalues different from $1$ lie on the unit circle, and
-they cause the oscillations. For $t > 0$ all the eigenvalues different from $1$ lie
-strictly inside the unit disk, and the group converges; for $t = 1/2$ the largest of
-their moduli is $\approx 0.92$ on the directed cycle and $\approx 0.90$ on the
-bidirectional ring. For $t = 1$ the directed cycle is left with the eigenvalue $0$, of
-multiplicity $5$, which is why its consensus is reached in a finite number of steps.
+The same picture can be read on the spectrum of $A(t)$. For $t = 0$ the matrix of the
+directed cycle is a permutation matrix with $A^6 = I$, so its spectrum is the set of the
+sixth roots of unity; the matrix of the bidirectional ring is circulant, with eigenvalues
+$\cos(2\pi k/6)$, $k = 0, \dots, 5$, i.e.\
+$\{1, \frac{1}{2}, \frac{1}{2}, -\frac{1}{2}, -\frac{1}{2}, -1\}$. In both cases some
+eigenvalues different from $1$ lie on the unit circle, and they cause the oscillations.
+For $t > 0$ all the eigenvalues different from $1$ lie strictly inside the unit disk, and
+the group converges; for $t = 1/2$ the largest of their moduli, computed numerically,
+is $\approx 0.92$ on the directed cycle, where the characteristic polynomial of $A(1/2)$
+is $\lambda^5(\lambda - \tfrac12) - \tfrac12$, and $\approx 0.90$ on the bidirectional
+ring. For $t = 1$, listing
+% REVISED (2026-11-05, review, R21: origin of 0.92 and 0.90). Was:
+% the group converges; for $t = 1/2$ the largest of their moduli is $\approx 0.92$ on the
+% directed cycle and $\approx 0.90$ on the bidirectional ring. For $t = 1$, listing
+agent~$1$ first, the matrix of the directed cycle is block lower triangular,
+$A(1) = \left[\begin{smallmatrix} 1 & 0 \\ b & N \end{smallmatrix}\right]$, where
+$b = (0, 0, 0, 0, 1)^\top$ records that agent~$6$ listens to agent~$1$, and the block $N$
+of agents $2, \dots, 6$ is strictly upper triangular, since agent~$i$ copies
+agent~$i+1$. Hence $N^5 = 0$, the eigenvalue $0$ has multiplicity $5$, and
+$A(1)^5 = \mathbf{1}_6 e_1^\top$: after five steps every agent holds $x_1(0)$, which is why
+the consensus is reached in a finite number of steps.
+% REVISED (2026-11-05, review, R5: origin of the spectra and of the multiplicity 5). Was:
+% The same picture can be read on the spectrum of $A(t)$. For $t = 0$ the spectrum is the
+% set of the sixth roots of unity for the directed cycle and
+% $\{1, \frac{1}{2}, \frac{1}{2}, -\frac{1}{2}, -\frac{1}{2}, -1\}$ for the bidirectional
+% ring: in both cases some eigenvalues different from $1$ lie on the unit circle, and
+% they cause the oscillations. For $t > 0$ all the eigenvalues different from $1$ lie
+% strictly inside the unit disk, and the group converges; for $t = 1/2$ the largest of
+% their moduli is $\approx 0.92$ on the directed cycle and $\approx 0.90$ on the
+% bidirectional ring. For $t = 1$ the directed cycle is left with the eigenvalue $0$, of
+% multiplicity $5$, which is why its consensus is reached in a finite number of steps.
 % REVISED (2026-10-28, review): the characteristic polynomials and the lists of eigenvalues are summarized (FDG part to be kept essential); the moduli 0.92 and 0.90 are those of the removed lists for t = 1/2. Was:
 % The same picture can be read on the spectrum of the matrix. For the directed cycle the
 % characteristic polynomial is
@@ -243,7 +275,7 @@ $x_1(0)$ gradually, the neighbours of agent~$1$ first.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.86\textwidth]{figures/fdg_convergence.eps}  % REVISED (2026-11-03, layout): was 0.94
+  \includegraphics[width=0.80\textwidth]{figures/fdg_convergence.eps}  % REVISED (2026-11-05, layout): was 0.86 (0.94 before 2026-11-03)
   \caption{Opinions $x_i(k)$ in the two networks of Figure~\ref{fig:networks}
   (top: directed cycle; bottom: bidirectional ring) for three values of the
   self-weight $t$ of agent~$1$ (columns), with
@@ -348,9 +380,13 @@ bidirectional ring.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.86\textwidth]{figures/fdg_social_power.eps}  % REVISED (2026-11-03, layout): was 0.94
-  \caption{Top: social power of agent~$1$ ($w_1$) and of agent~$2$ ($w_2$) as a
-  function of the self-weight $t \in (0,1]$ of agent~$1$. Bottom: consensus value
+  \includegraphics[width=0.80\textwidth]{figures/fdg_social_power.eps}  % REVISED (2026-11-05, layout): was 0.86 (0.94 before 2026-11-03)
+  \caption{Top: social power of agent~$1$ ($w_1$) and of agent~$2$ ($w_2$), which
+  agents $3, \dots, 6$ share, as a function
+% REVISED (2026-11-05, review, R6). Was:
+%   \caption{Top: social power of agent~$1$ ($w_1$) and of agent~$2$ ($w_2$) as a
+%   function
+ of the self-weight $t \in (0,1]$ of agent~$1$. Bottom: consensus value
   $w^\top x(0)$ for $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$; the dashed
   lines mark the average of $x(0)$ and $x_1(0)$. Both panels are computed numerically
   in the directed cycle (dots) and in the bidirectional ring (crosses); the two networks

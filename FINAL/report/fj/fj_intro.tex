@@ -6,7 +6,11 @@
 
 In the FDG model every agent keeps averaging the opinions it listens to, and a
 persistent disagreement can only come from the structure of the network, i.e.\ from
-several closed groups (Theorem~\ref{thm:disagreement}). The Friedkin--Johnsen (FJ)
+two or more sinks of $C(G)$ (Theorem~\ref{thm:disagreement}).
+% REVISED (2026-11-05, review, R8: term already defined). Was:
+% persistent disagreement can only come from the structure of the network, i.e.\ from
+% several closed groups (Theorem~\ref{thm:disagreement}).
+ The Friedkin--Johnsen (FJ)
 model adds a second ingredient: each agent can also be tied to a fixed opinion of its own,
 called its \emph{prejudice}. Following~\cite{proskurnikov2017tutorial}, the model reads
 \begin{equation}\label{eq:fj}
@@ -174,8 +178,12 @@ agents.
         $\Lambda \neq I$, which guarantees $r \geq 1$.
   \item $0 < r < n$. P-dependent and P-independent agents coexist. The P-independent
         agents follow~\eqref{eq:fj-indep}, an FDG model with the row-stochastic matrix
-        $W^{22}$, so the outcomes of Table~\ref{tab:rosetta} apply to them, read on the
-        sinks of the condensation digraph $C^{22}$ of their subgraph: consensus or
+        $W^{22}$, so the outcomes of Table~\ref{tab:rosetta} apply to them. They are read
+        on the sinks of $C^{22}$, the condensation digraph of the subgraph of the
+        P-independent agents (whose adjacency matrix is $W^{22}$): consensus or
+% REVISED (2026-11-05, review, R9: C^22 defined explicitly). Was:
+%         $W^{22}$, so the outcomes of Table~\ref{tab:rosetta} apply to them, read on the
+%         sinks of the condensation digraph $C^{22}$ of their subgraph: consensus or
         disagreement if all the sinks are aperiodic (cases~(i), (iii) and~(iv)), no
         convergence otherwise (cases~(ii) and~(v)). If all the sinks are aperiodic,
         $W^{22}$ is regular, the model~\eqref{eq:fj} converges and the final opinions of
@@ -270,8 +278,15 @@ an autonomous linear system in which the prejudice $u$ does not appear: $\Lambda
 decides whether the opinions converge, $u$ decides where.
 
 Second, the linear system~\eqref{eq:fj-error} shows the role of the P-dependent
-agents. At each step, agent $i$ keeps a fraction $\lambda_i$ of the weighted average
-of the deviations of the agents it listens to. An agent that is not prejudiced
+agents. Call $e_i(k) = x_i(k) - x_i(\infty)$ the deviation of agent~$i$ from its final
+opinion. By~\eqref{eq:fj-error}, $e_i(k+1) = \lambda_i \sum_{j=1}^{n} w_{ij}\, e_j(k)$: at
+each step, agent $i$ keeps a fraction $\lambda_i$ of the weighted average of the
+deviations of the agents it listens to.
+% REVISED (2026-11-05, review, R10: deviation defined). Was:
+% Second, the linear system~\eqref{eq:fj-error} shows the role of the P-dependent
+% agents. At each step, agent $i$ keeps a fraction $\lambda_i$ of the weighted average
+% of the deviations of the agents it listens to.
+ An agent that is not prejudiced
 ($\lambda_i = 1$) only averages the deviations, while a prejudiced agent loses a
 fraction $1-\lambda_i$ of them (in~\eqref{eq:fj}, this fraction is replaced by the
 agent's fixed prejudice). The deviations therefore leave the group only through the
@@ -350,9 +365,13 @@ Three facts follow.
   \item Every final opinion lies between the smallest and the largest prejudice of the
         prejudiced agents.
 \end{itemize}
-The comparison with the FDG model is instructive. There, the consensus value
+The comparison with the FDG model is instructive. In the FDG model, the consensus value
+% REVISED (2026-11-05, review, R11). Was:
+% The comparison with the FDG model is instructive. There, the consensus value
 $w^\top x(0)$ is a weighted average of the initial opinions, with the same weights $w$
-for every agent (Theorem~\ref{thm:consensus}); here, the final opinions are weighted
+for every agent (Theorem~\ref{thm:consensus}); in the FJ model, the final opinions are weighted
+% REVISED (2026-11-05, review, R11). Was:
+% for every agent (Theorem~\ref{thm:consensus}); here, the final opinions are weighted
 averages of the prejudices, and each agent has its own weights, given by its row of
 $V$.
 
@@ -439,8 +458,12 @@ up at the consensus value of the P-independent agents, even when there is one.
 % ADDED (2026-11-03): heading, to separate the augmented graph from the consensus block.
 The limit~\eqref{eq:fj-V-all} has a direct interpretation in terms of the FDG model.
 Following~\cite{proskurnikov2017tutorial}, the FJ model~\eqref{eq:fj} may be
-considered as an augmented FDG model with $n$ virtual stubborn agents, anchored at the
-prejudices: the virtual agent $i'$ associated with agent $i$ keeps the opinion
+considered as an augmented FDG model with $n$ virtual stubborn agents, one for each of
+the $n$ agents of the network, anchored at the prejudices:
+% REVISED (2026-11-05, review, R12: meaning of n). Was:
+% considered as an augmented FDG model with $n$ virtual stubborn agents, anchored at the
+% prejudices:
+ the virtual agent $i'$ associated with agent $i$ keeps the opinion
 $x_{i'}(k) = u_i$ for all $k$. Explicitly, stacking the
 % REVISED (2026-11-02): removed "(this rewriting is ours)" (no citation = ours).
 opinions $x$ of the real agents and $x'$ of the virtual agents,
@@ -450,9 +473,15 @@ opinions $x$ of the real agents and $x'$ of the virtual agents,
     \begin{bmatrix} x(k) \\ x'(k) \end{bmatrix},
   \qquad x'(0) = u .
 \end{equation}
-Row $i$ of the matrix in~\eqref{eq:fj-augmented} sums to $\lambda_i + (1-\lambda_i) = 1$,
-and row $i'$ sums to $1$; hence the matrix is row-stochastic
-and~\eqref{eq:fj-augmented} is an FDG model on $2n$ agents. In its digraph, which we
+Row $i$ of the matrix $\bar A$ in~\eqref{eq:fj-augmented} sums to
+$\lambda_i + (1-\lambda_i) = 1$, and row $i'$ sums to $1$; hence $\bar A$ is
+row-stochastic and~\eqref{eq:fj-augmented}, which we call the \emph{augmented model}, is
+an FDG model on $2n$ agents.
+% REVISED (2026-11-05, review, R12: names of the augmented model and of its matrix). Was:
+% Row $i$ of the matrix in~\eqref{eq:fj-augmented} sums to $\lambda_i + (1-\lambda_i) = 1$,
+% and row $i'$ sums to $1$; hence the matrix is row-stochastic
+% and~\eqref{eq:fj-augmented} is an FDG model on $2n$ agents.
+ In its digraph, which we
 call the \emph{augmented graph}:
 \begin{itemize}
   \item a real agent $i$ is influenced by a real agent $j$ with weight
@@ -539,7 +568,11 @@ remain.
         agent converges to a convex combination of the opinions of the stubborn
         virtual agents, i.e.\ of the prejudices, which is
         exactly~\eqref{eq:fj-V-all}. If some agents are P-independent, the sinks of
-        $C^{22}$ are further sinks of the augmented graph, and all of them are
+        $C^{22}$ (Section~\ref{subsubsec:fj-conv}), i.e.\ the closed groups of
+        P-independent agents, are further sinks of the augmented graph, and all of them are
+% REVISED (2026-11-05, review, R9). Was:
+% exactly~\eqref{eq:fj-V-all}. If some agents are P-independent, the sinks of
+%         $C^{22}$ are further sinks of the augmented graph, and all of them are
         aperiodic if and only if $W^{22}$ is regular.
   \item \emph{No convergence} (case~(v)), when at least one sink of $C^{22}$ is
         periodic, i.e.\ when $W^{22}$ is not regular.
@@ -627,8 +660,12 @@ the model but depends on the prejudices (Section~\ref{subsubsec:fj-final}).
 % REVISED (2026-11-04, editorial, M2). Was:
 % consensus (Section~\ref{subsubsec:consensus}), which is not the relevant notion for the
 % FJ model (Section~\ref{subsubsec:fj-final}).
- Nor does the augmented FDG
-model~\eqref{eq:fj-augmented} help: its graph has at least $n$ sinks, so for $n \geq 2$
+ Nor does the augmented
+model~\eqref{eq:fj-augmented} help:
+% REVISED (2026-11-05, review, R12: one name for the augmented model). Was:
+%  Nor does the augmented FDG
+% model~\eqref{eq:fj-augmented} help:
+ its graph has at least $n$ sinks, so for $n \geq 2$
 it never reaches a consensus and its social power is not defined
 (Section~\ref{subsubsec:fj-stub-power} discusses the special case of a single
 prejudice). A different measure is needed,

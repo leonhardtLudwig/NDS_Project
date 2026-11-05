@@ -34,13 +34,40 @@ $A$ is row-stochastic (Definition~\ref{def:row-stochastic}). In the terminology
 of~\cite{baggio_dt}, the FDG model is a \emph{DT averaging system}.
 
 Since $x(k) = A^k x(0)$, the asymptotic behaviour of the model is determined by the
-powers of $A$, and three outcomes are possible: \emph{no convergence}, when
-$\lim_{k \to +\infty} x(k)$ does not exist for some $x(0)$, i.e.\ when $A$ is not
-semi-convergent (Definition~\ref{def:semiconv}); \emph{consensus}, when for every $x(0)$
-the opinions converge to $\alpha \mathbf{1}_n$ for some $\alpha \in \mathbb{R}$, which
-depends on $x(0)$~\cite{proskurnikov2017tutorial}; \emph{disagreement}, when
-$\lim_{k \to +\infty} x(k) = v$ with $v \neq \alpha \mathbf{1}_n$ for every
-$\alpha \in \mathbb{R}$.
+powers of $A$. Convergence and consensus are defined as follows.
+
+\begin{definition}[Convergence~\cite{proskurnikov2017tutorial}]
+\label{def:convergence}
+The FDG model~\eqref{eq:fdg} is convergent if for any initial condition $x(0)$ the limit
+exists
+\[
+  x(\infty) = \lim_{k \to \infty} x(k) = \lim_{k \to \infty} A^k x(0).
+\]
+A convergent model reaches a consensus if $x_1(\infty) = \dots = x_n(\infty)$ for any
+initial opinion vector $x(0)$.
+\end{definition}
+
+Accordingly, three outcomes are possible.
+\begin{itemize}
+  \item \emph{No convergence}: the model is not convergent, i.e.\ $\lim_{k \to +\infty}
+        x(k)$ does not exist for some $x(0)$; equivalently, $A$ is not semi-convergent
+        (Definition~\ref{def:semiconv}).
+  \item \emph{Consensus}: the model reaches a consensus, i.e.\ for every $x(0)$ the
+        opinions converge to $\alpha \mathbf{1}_n$ for some $\alpha \in \mathbb{R}$,
+        which depends on $x(0)$.
+  \item \emph{Disagreement}: the model is convergent but does not reach a consensus,
+        i.e.\ for some $x(0)$ the limit $x(\infty)$ is not of the form
+        $\alpha \mathbf{1}_n$.
+\end{itemize}
+% REVISED (2026-11-05, review, R1: the three outcomes separated; Definition 14 of the tutorial). Was:
+% Since $x(k) = A^k x(0)$, the asymptotic behaviour of the model is determined by the
+% powers of $A$, and three outcomes are possible: \emph{no convergence}, when
+% $\lim_{k \to +\infty} x(k)$ does not exist for some $x(0)$, i.e.\ when $A$ is not
+% semi-convergent (Definition~\ref{def:semiconv}); \emph{consensus}, when for every $x(0)$
+% the opinions converge to $\alpha \mathbf{1}_n$ for some $\alpha \in \mathbb{R}$, which
+% depends on $x(0)$~\cite{proskurnikov2017tutorial}; \emph{disagreement}, when
+% $\lim_{k \to +\infty} x(k) = v$ with $v \neq \alpha \mathbf{1}_n$ for every
+% $\alpha \in \mathbb{R}$.
 % REVISED (2026-11-03, cuts T3): list turned into one paragraph; the example of an eigenvalue on the unit circle is in Theorem 1.9 and in Table 1. Was:
 % Since $x(k) = A^k x(0)$, the asymptotic behaviour of the model is determined by the
 % powers of $A$. Three outcomes are possible:
@@ -149,7 +176,10 @@ depends only on the initial opinions of the globally reachable agents.
 % agents.
 
 Among the globally reachable agents, the social power depends on their position in the
-network, and it can be regarded as a centrality measure~\cite{proskurnikov2017tutorial}.
+network, and it can be regarded as a centrality measure~\cite{proskurnikov2017tutorial};
+Section~\ref{subsubsec:fj-centrality} extends this point of view to the FJ model.
+% REVISED (2026-11-05, review, R2: function of the citation). Was:
+% network, and it can be regarded as a centrality measure~\cite{proskurnikov2017tutorial}.
 % REVISED (2026-11-03, cuts T4): Example 1 of the tutorial (French, n = 3) removed: Baggio asked for one or two FDG examples at most. Was:
 % network, and it can be regarded as a centrality measure~\cite{proskurnikov2017tutorial}.
 % For instance, in the model of French with $n = 3$ agents and

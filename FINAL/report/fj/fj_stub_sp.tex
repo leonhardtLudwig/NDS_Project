@@ -12,7 +12,14 @@ $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ of Section~\ref{subsec:fdg-st
 and prejudices equal to the initial opinions, $u = x(0)$, as is traditional in the
 Friedkin--Johnsen theory (see~\cite{proskurnikov2017tutorial}). This choice compares the
 two models on the same data, and it is required by the influence centrality of
-Section~\ref{subsubsec:fj-centrality}; each figure states its own exceptions.
+Section~\ref{subsubsec:fj-centrality}; each figure states its own exceptions. Since
+$u = x(0)$, the prejudice of each agent is the initial value of its curve, and the
+prejudices are not drawn separately; when $x(0)$ is perturbed
+(Figures~\ref{fig:fj-stub-perturbation} and~\ref{fig:fj-auxiliary}(d)), $u$ is that of
+the unperturbed run, given in the caption. In the figures, $K$ is the number of steps
+shown.
+% REVISED (2026-11-05, review, R13: why the prejudices are not drawn; K defined). Was:
+% Section~\ref{subsubsec:fj-centrality}; each figure states its own exceptions.
 % REVISED (2026-10-28, review): shortened; the list of exceptions was no longer complete (the reduction of Figure fj-stub-reduction and the auxiliary network are also exceptions), so each figure now states its own; the reference for the influence centrality now points to Section 3.1.4, where it is defined. Was:
 % All the examples of this section use the two networks of Figure~\ref{fig:networks},
 % with $n = 6$ agents and the initial opinions
@@ -297,18 +304,34 @@ perturbation. Since all agents are P-dependent, $\Lambda W$ is Schur stable
 (Corollary~\ref{cor:fj-stable}): $\delta(k) \to 0$ and the two runs reach the same limit
 $Vu$, which is what asymptotic stability means. In the FDG model the same computation
 gives $\delta(k+1) = A\,\delta(k)$ and, by Theorem~\ref{thm:consensus},
-$\delta(k) \to (w^\top \delta(0))\mathbf{1}_6 = 0.5\,\mathbf{1}_6$: the perturbation is
+$\delta(k) \to (w^\top \delta(0))\mathbf{1}_6 = 0.5\,\mathbf{1}_6$, since $w = e_1$ and
+$\delta(0) = 0.5\, e_1$: the perturbation is
+% REVISED (2026-11-05, review, R22: origin of 0.5). Was:
+% $\delta(k) \to (w^\top \delta(0))\mathbf{1}_6 = 0.5\,\mathbf{1}_6$: the perturbation is
 never forgotten.
 
 % NOTE (for the revision): the spectra below are our computation.
 The spectra show where the difference lies. $\Lambda W$ and
 $A(1)$ differ only in the row of agent~$1$, zero in $\Lambda W$ and $e_1^\top$ in
-$A(1)$, and so do their spectra: on the bidirectional ring
+$A(1)$, and so do their spectra. Listing agent~$1$ first, both matrices are block lower
+triangular, with the diagonal entry $0$ in $\Lambda W$ and $1$ in $A(1)$ for agent~$1$
+and the same block for agents $2, \dots, 6$. On the bidirectional ring this block is the
+matrix of a path of five agents with weights $1/2$, whose eigenvalues are
+$\cos(k\pi/6)$, $k = 1, \dots, 5$, so
 $\operatorname{spec}(\Lambda W) = \{0, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ and
-$\operatorname{spec}(A(1)) = \{1, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ (on
-the directed cycle all the eigenvalues are $0$, except the eigenvalue
+$\operatorname{spec}(A(1)) = \{1, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$; on the
+directed cycle it is the nilpotent block $N$ of
+Section~\ref{subsubsec:fdg-stub-conv}, and all the eigenvalues are $0$, except the
+eigenvalue $1$ of $A(1)$.
 % REVISED (2026-11-02): removed "computed numerically" (no citation = ours).
-$1$ of $A(1)$). The eigenvalue $1$ of $A(1)$ is that of the virtual agent $1'$ of
+% REVISED (2026-11-05, review, R23: origin of the spectra). Was:
+% $A(1)$, and so do their spectra: on the bidirectional ring
+% $\operatorname{spec}(\Lambda W) = \{0, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ and
+% $\operatorname{spec}(A(1)) = \{1, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ (on
+% the directed cycle all the eigenvalues are $0$, except the eigenvalue
+% % REVISED (2026-11-02): removed "computed numerically" (no citation = ours).
+% $1$ of $A(1)$).
+ The eigenvalue $1$ of $A(1)$ is that of the virtual agent $1'$ of
 Section~\ref{subsubsec:fj-final}, which the FDG model moves together with $x_1(0)$ and
 Figure~\ref{fig:fj-stub-perturbation} leaves unchanged.
 % REVISED (2026-11-04, editorial, S3). Was:
@@ -447,7 +470,9 @@ Figure~\ref{fig:fj-stub-perturbation} leaves unchanged.
 % % but measure different things (distance from the limit vs. residual of the
 % % perturbation).
 
-\paragraph{The stubborn agent as a prejudice of its neighbours.}
+\paragraph{The stubborn agent as a prejudice of the agents that listen to it.}
+% REVISED (2026-11-05, review, R14: "neighbours" is ambiguous with our edge convention). Was:
+% \paragraph{The stubborn agent as a prejudice of its neighbours.}
 The second rewriting removes the stubborn agent. If agent~$1$ is stubborn,
 $x_1(k) = x_1(0)$ for all $k$, and an agent $i$ that listens to it with weight
 $a_{i1}$ updates as
@@ -607,7 +632,10 @@ same trajectories for every initial condition.
   $\lambda_2 = \lambda_6 = 1/2$, $u_2 = u_6 = x_1(0)$,
   $\lambda_3 = \lambda_4 = \lambda_5 = 1$. The opinion $x_1(0)$ enters agents~$2$
   and~$6$ as their common prejudice, with weight $1 - \lambda_2 = 1 - \lambda_6 = 1/2$;
-  every edge between agents has weight $1/2$.}
+  as in Figure~\ref{fig:augmented}(a), the edges carry the weights of $\Lambda W$ (e.g.\
+  $\lambda_2 w_{23} = 1/2$), so every edge between agents has weight $1/2$.}
+% REVISED (2026-11-05, review, R14). Was:
+%   every edge between agents has weight $1/2$.}
   \label{fig:fj-stub-reduction}
 \end{figure}
 
@@ -642,13 +670,15 @@ Figure~\ref{fig:fj-stub-equivalence}.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.78\textwidth]{figures/fj_one_prejudiced.eps}  % REVISED (2026-11-03, layout): was 0.94 (0.78 so that it fits after its introduction)
+  \includegraphics[width=0.74\textwidth]{figures/fj_one_prejudiced.eps}  % REVISED (2026-11-05, layout): was 0.78 (0.94 before 2026-11-03)
   \caption{Opinions $x_i(k)$ with the same weight $1/2$ on agent~$1$, with
   $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 60$. Left: FDG model with
   self-weight $t = 1/2$ (matrix $A(1/2)$, current opinion); right: FJ model with
   $\lambda_1 = 1/2$, $\lambda_i = 1$ for $i \neq 1$ and $u = x(0)$ (attachment
   $1 - \lambda_1 = 1/2$, initial opinion). Top: directed cycle; bottom: bidirectional
-  ring. The triangles mark the limits: the consensus value $\approx 0.4286$ of the FDG
+  ring. The triangles mark the limits: the consensus value $3/7$ of the FDG
+% REVISED (2026-11-05, review, R16). Was:
+%   ring. The triangles mark the limits: the consensus value $\approx 0.4286$ of the FDG
   model and $u_1 = 0$ for the FJ model.}
 % REVISED (2026-10-30): the figure now has four panels, two models by two networks. Was:
 %   \caption{Opinions $x_i(k)$ in the FJ model with a single prejudiced agent, agent~$1$,
@@ -746,7 +776,11 @@ $V$ is zero when $\lambda_j = 1$ (Section~\ref{subsubsec:fj-final}) and $V$ is
 stochastic (Theorem~\ref{thm:fj-general}), $V = \mathbf{1}_6 e_1^\top$ and
 $x(\infty) = u_1 \mathbf{1}_6 = 0$ for every attachment $1 - \lambda_1 > 0$: the group
 reaches a consensus on the prejudice of agent~$1$, and crosses the FDG compromise
-$0.4286$ on its way. This is the condition of Section~\ref{subsubsec:fj-final} with a
+$3/7$ on its way.
+% REVISED (2026-11-05, review, R16). Was:
+% reaches a consensus on the prejudice of agent~$1$, and crosses the FDG compromise
+% $0.4286$ on its way.
+ This is the condition of Section~\ref{subsubsec:fj-final} with a
 single prejudiced agent: the fixed value $u_1$ makes the equilibrium unique, and the
 attachment only changes how
 % REVISED (2026-11-03): C1: the equilibrium argument is now stated once, in general, in Section 3.1.3. Was:
@@ -859,7 +893,7 @@ $\Lambda W$ sums to $0.8$.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.86\textwidth]{figures/fj_all_prejudiced.eps}  % REVISED (2026-11-03, layout): was 0.94
+  \includegraphics[width=0.80\textwidth]{figures/fj_all_prejudiced.eps}  % REVISED (2026-11-05, layout): was 0.86 (0.94 before 2026-11-03)
   \caption{Opinions $x_i(k)$ when every agent gives weight $0.2$ to its own opinion, with
   $x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$ and $K = 50$. Left: FDG model with
   $A = 0.2\, I + 0.8\, W$ (self-weight $a_{ii} = 0.2$, current opinion); right: FJ
@@ -1207,7 +1241,7 @@ prejudices being unchanged.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.86\textwidth]{figures/fj_auxiliary.eps}  % REVISED (2026-11-03, layout): was 0.94
+  \includegraphics[width=0.80\textwidth]{figures/fj_auxiliary.eps}  % REVISED (2026-11-05, layout): was 0.86 (0.94 before 2026-11-03)
   \caption{Opinions $x_i(k)$ in the FJ model on the auxiliary network of
   Figure~\ref{fig:fj-aux-network}, with $u = (0,\, 0.5,\, 1,\, 0.2,\, 0.9,\, 0.6)^\top$,
   $K = 40$, the prejudiced agent having $\lambda = 0.5$ and every other agent
@@ -1282,14 +1316,22 @@ i.e.\ $x_4(\infty) = x_5(\infty) = 0.5\, u_5 + 0.5\, x_6(\infty)$.
   \item In (c) the edge $2 \to 1$ makes the sink aperiodic, $W^{22}$ is regular and the
         model converges (Corollary~\ref{cor:fj-regular}): agents $1, 2, 3$ reach the
         FDG consensus $0.4\, x_1(0) + 0.4\, x_2(0) + 0.2\, x_3(0) = 0.4$, weighted by the
-        social power of the closed group, agent~$6$ follows agent~$1$, and agents $4, 5$
+        social power $(0.4, 0.4, 0.2)$ of the closed group (Theorem~\ref{thm:consensus}
+        applied to its block of $W^{22}$), agent~$6$ follows agent~$1$, and agents $4, 5$
+% REVISED (2026-11-05, review, R24: origin of 0.4, 0.4, 0.2). Was:
+%         FDG consensus $0.4\, x_1(0) + 0.4\, x_2(0) + 0.2\, x_3(0) = 0.4$, weighted by the
+%         social power of the closed group, agent~$6$ follows agent~$1$, and agents $4, 5$
         settle at $0.5 \cdot 0.9 + 0.5 \cdot 0.4 = 0.65$.
   \item The model of (c) is not asymptotically stable, since not all the agents are
         P-dependent (Corollary~\ref{cor:fj-stable}): every consensus vector is an
         equilibrium of~\eqref{eq:fj-indep}, and the initial opinions of the closed group
         decide which one is reached. In (d), moving only $x_2(0)$ from $0.5$ to $1$
-        moves the consensus of the closed group to $0.6$ and the P-dependent agents to
-        $0.75$, unlike in Figure~\ref{fig:fj-stub-perturbation}, where the
+        moves the consensus of the closed group to $0.4 \cdot 1 + 0.2 \cdot 1 = 0.6$ and the
+        P-dependent agents to $0.5 \cdot 0.9 + 0.5 \cdot 0.6 = 0.75$, unlike in
+        Figure~\ref{fig:fj-stub-perturbation}, where the
+% REVISED (2026-11-05, review, R25: origin of 0.6 and 0.75). Was:
+%         moves the consensus of the closed group to $0.6$ and the P-dependent agents to
+%         $0.75$, unlike in Figure~\ref{fig:fj-stub-perturbation}, where the
         asymptotically stable FJ model forgets the change of $x_1(0)$. In the augmented
         model the closed group adds a seventh eigenvalue $1$ to the six of the virtual
         agents: it keeps its initial opinions as a virtual agent
@@ -1531,8 +1573,11 @@ model does not need in order to make sense.
  In return, with $\Lambda = \alpha I$ every agent is a little
 % REVISED (2026-11-02): removed "(this distinction is ours)" (no citation = ours).
 anchored and $\rho(\alpha W) = \alpha < 1$ for every stochastic $W$: $c_\alpha$ exists on
-every network, also where $w$ does not, and PageRank is one of these
-centralities~\cite{proskurnikov2017tutorial}. Since $w$ weighs the initial state of a
+every network, also where $w$ does not. Since
+% REVISED (2026-11-05, review, R15: PageRank had no role in the report). Was:
+% every network, also where $w$ does not, and PageRank is one of these
+% centralities~\cite{proskurnikov2017tutorial}. Since
+ $w$ weighs the initial state of a
 model that remembers $x(0)$, and $c$ the input of a model that forgets it, we do not
 compare them directly, but in parallel.
 
@@ -1622,11 +1667,17 @@ susceptibility for every agent, $\Lambda = \alpha I$.
 % REVISED (2026-11-03, cuts T8): why A(1/2) is fully regular, from the paragraph after the figure. Was:
 % lemma requires $W$ fully regular, here $W = A(1/2)$, the network of
 % Figure~\ref{fig:networks} with the self-weight $t = 1/2$, and the susceptibility is the
-The figure compares $c_1(\alpha)$ and
+The figure compares the influence centralities $c_1(\alpha)$ and
+% REVISED (2026-11-05, review, R17). Was:
+% The figure compares $c_1(\alpha)$ and
 % REVISED (2026-11-04, editorial, O3). Was:
 % same for every agent, $\Lambda = \alpha I$; the figure compares $c_1(\alpha)$ and
-$c_2(\alpha)$ with the social power $w_1$ and $w_2$ of the FDG model with the same
-matrix.
+$c_2(\alpha)$ of agents~$1$ and~$2$, i.e.\ the first two entries of $c_\alpha$, with their
+social power $w_1 = 2/7$ and $w_2 = 1/7$ in the FDG model with the same matrix
+(Section~\ref{subsubsec:fdg-stub-power}), which agents $3, \dots, 6$ share with agent~$2$.
+% REVISED (2026-11-05, review, R17: meaning of c_1, c_2, w_1, w_2). Was:
+% $c_2(\alpha)$ with the social power $w_1$ and $w_2$ of the FDG model with the same
+% matrix.
 % REVISED (2026-10-28, review): the parameters are in the caption; one clause says why W = A(1/2). Was:
 % Figure~\ref{fig:fj-lemma24} illustrates Lemma~\ref{lem:centrality-limit}. Here the
 % matrix of social influences is $W = A(1/2)$, i.e.\ the network of
@@ -1639,9 +1690,12 @@ matrix.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.74\textwidth]{figures/fj_lemma24.eps}  % REVISED (2026-11-04, layout): was 0.86 (0.94 before 2026-11-03)
+  \includegraphics[width=0.68\textwidth]{figures/fj_lemma24.eps}  % REVISED (2026-11-05, layout): was 0.74 (0.86 before 2026-11-04, 0.94 before 2026-11-03)
   \caption{Influence centrality $c_1$ and $c_2$ in the FJ model with
-  $W = A(1/2)$ and $\Lambda = \alpha I$, $\alpha \in [0, 0.995]$, and
+  $W = A(1/2)$ and $\Lambda = \alpha I$, $\alpha \in [0, 0.995]$ (the lemma takes
+  $\alpha < 1$), and
+% REVISED (2026-11-05, review, R26: why 0.995). Was:
+%   $W = A(1/2)$ and $\Lambda = \alpha I$, $\alpha \in [0, 0.995]$, and
   $u = x(0) = (0,\, 0.2,\, 0.4,\, 0.6,\, 0.8,\, 1)^\top$, on the directed cycle (dots)
   and on the bidirectional ring (crosses). The dashed lines mark the social power $w_1$
   and $w_2$ of the FDG model with the same matrix $A(1/2)$, the dotted line the uniform
@@ -1660,9 +1714,15 @@ In
 % the consensus coincide. The limit needs $W$ fully regular, here $A(1/2)$, which is
 % primitive (Corollary~\ref{cor:primitive-selfloop}); at $\alpha = 1$, $I - W$ is singular
 % and $c$ is not defined, so the two measures meet only as a limit. In
-Figure~\ref{fig:fj-lemma24}, $c_1$ grows from $1/6$ to $w_1 = 2/7$ and $c_2$ decreases to
+Figure~\ref{fig:fj-lemma24}, $c_1$ grows from $1/6$ (for $\alpha = 0$, $V = I$) to
+$w_1 = 2/7$ and $c_2$ decreases to
 $w_2 = 1/7$: as the agents open up to the others, the inertia of agent~$1$ counts more.
-On the directed cycle $c_2$ first goes below $w_2$ (about $0.137$ at $\alpha \approx 0.65$).
+On the directed cycle $c_2$ first goes below $w_2$ (its computed minimum is about $0.137$,
+at $\alpha \approx 0.65$).
+% REVISED (2026-11-05, review, R27: origin of 1/6 and of 0.137). Was:
+% Figure~\ref{fig:fj-lemma24}, $c_1$ grows from $1/6$ to $w_1 = 2/7$ and $c_2$ decreases to
+% $w_2 = 1/7$: as the agents open up to the others, the inertia of agent~$1$ counts more.
+% On the directed cycle $c_2$ first goes below $w_2$ (about $0.137$ at $\alpha \approx 0.65$).
 % REVISED (2026-11-04, A3: minimum at alpha = 0.653). Was:
 % (about $0.137$ at $\alpha \approx 0.6$).
 % REVISED (2026-11-02): removed "a numerical observation of ours" (no citation = ours).

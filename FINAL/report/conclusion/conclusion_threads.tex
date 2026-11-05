@@ -1,10 +1,14 @@
 % ADDED (2026-11-02): thread 1 of the conclusions, inertia vs anchor.
 \paragraph{Inertia and anchor.}
 An agent can resist the opinions of the others in two ways, one for each model.
-A self-weight $a_{ii}$ is inertia:
+In the FDG model, a self-weight $a_{ii}$ is inertia:
+% REVISED (2026-11-05, review, R19). Was:
+% A self-weight $a_{ii}$ is inertia:
 an agent whose neighbours all hold the opinion $1$ updates as
 $x_i(k+1) = a_{ii}\, x_i(k) + (1 - a_{ii})$ and reaches $1$, only more slowly as $a_{ii}$
-grows. An attachment $1 - \lambda_i$ is an anchor: the same agent updates as
+grows. In the FJ model, an attachment $1 - \lambda_i$ is an anchor: the same agent updates as
+% REVISED (2026-11-05, review, R19). Was:
+% grows. An attachment $1 - \lambda_i$ is an anchor: the same agent updates as
 $x_i(k+1) = \lambda_i + (1 - \lambda_i)\, u_i$ and stops at once between $1$ and its
 prejudice, never reaching the others. This holds for a single agent on any network; the
 effects on the group are shown on the two networks of Figure~\ref{fig:networks}, both
@@ -17,10 +21,16 @@ strongly connected and periodic without self-loops.
 %         single prejudiced agent reached by everybody makes all agents P-dependent, and
         the model converges although the network is periodic
         (Corollary~\ref{cor:fj-stable}).
-  \item \emph{Influence.} The social power of agent~$1$ grows gradually with its
+  \item \emph{Influence.} In the FDG model, the social power of agent~$1$ grows gradually with its
+% REVISED (2026-11-05, review, R19). Was:
+%   \item \emph{Influence.} The social power of agent~$1$ grows gradually with its
         self-weight, from $1/6$ to $1$ (Figure~\ref{fig:fdg-power}), and for $t < 1$
-        the consensus still depends on the initial opinions of all agents. A single
-        anchor, even a weak one, takes the whole influence centrality,
+        the consensus still depends on the initial opinions of all agents. In the FJ
+        model, a single anchor, even a weak one,
+% REVISED (2026-11-05, review, R19). Was:
+% the consensus still depends on the initial opinions of all agents. A single
+%         anchor, even a weak one,
+ takes the whole influence centrality,
 % REVISED (2026-11-04, editorial, O5). Was:
 % A single
 %         anchor, however loose, takes the whole influence centrality,
