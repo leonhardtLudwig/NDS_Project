@@ -315,9 +315,14 @@ The spectra show where the difference lies. $\Lambda W$ and
 $A(1)$ differ only in the row of agent~$1$, zero in $\Lambda W$ and $e_1^\top$ in
 $A(1)$, and so do their spectra. Listing agent~$1$ first, both matrices are block lower
 triangular, with the diagonal entry $0$ in $\Lambda W$ and $1$ in $A(1)$ for agent~$1$
-and the same block for agents $2, \dots, 6$. On the bidirectional ring this block is the
-matrix of a path of five agents with weights $1/2$, whose eigenvalues are
-$\cos(k\pi/6)$, $k = 1, \dots, 5$, so
+and the same block for agents $2, \dots, 6$. On the bidirectional ring this block is
+$\tfrac12$ times the adjacency matrix of the path graph on five nodes, whose spectrum is
+$\{2\cos(k\pi/6) \mid k = 1, \dots, 5\}$~\cite{bullo2024lns}, so
+% REVISED (2026-11-05, review, R23b: path spectrum cited from Bullo, Table 4.1, ed. 1.7). Was:
+% triangular, with the diagonal entry $0$ in $\Lambda W$ and $1$ in $A(1)$ for agent~$1$
+% and the same block for agents $2, \dots, 6$. On the bidirectional ring this block is the
+% matrix of a path of five agents with weights $1/2$, whose eigenvalues are
+% $\cos(k\pi/6)$, $k = 1, \dots, 5$, so
 $\operatorname{spec}(\Lambda W) = \{0, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$ and
 $\operatorname{spec}(A(1)) = \{1, 0, \pm\tfrac12, \pm\tfrac{\sqrt3}{2}\}$; on the
 directed cycle it is the nilpotent block $N$ of
