@@ -1,0 +1,97 @@
+{
+ "oldpres": "../../presentation_v6/main",
+ "oldnote": "canovaccio del 17/11 (prima di queste note) e presentazione del 16/11.",
+ "intro": "Solo le slide cambiate, nel nuovo ordine. La parte FJ diventa: The FJ model, Convergence in the FJ model, Convergence with P-independent agents, Final opinions and the augmented graph, Back to the question, Influence centrality, FDG and FJ on the same networks, Stubborn agent: state or input, poi gli esempi. In tutto 30 slide (prima 28).",
+ "slides": [
+  {
+   "title": "Slide \\fr{m-fdg-why} \\textperiodcentered\\ Why the same social power",
+   "note": "Tolta la colonna «Check (report, Section 2.2.3)». Resta il bilancio, detto per intero: se tutti passano la stessa quantità $b$, tutti raccolgono $b$; quindi $w_j = b$ per gli agenti 2--6 e $w_1 = t\\,w_1 + b$ per l'agente 1. L'algebra resta nel backup «Derivation», dal pulsante della slide precedente.",
+   "old": [
+    "m-fdg-why"
+   ],
+   "new": [
+    "m-fdg-why"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-fj-conv}--\\fr{m-fj-conv2} \\textperiodcentered\\ Convergence in the FJ model",
+   "note": "Divisa in due. La prima: definizioni, P-dependent, condizione di stabilità asintotica e l'intuizione scritta sulla slide, $e(k+1) = \\Lambda W\\, e(k)$. La seconda: il caso generale con agenti P-independent, con il significato di $W^{22}$ scritto sulla slide.",
+   "tag": "split",
+   "old": [
+    "m-fj-conv"
+   ],
+   "new": [
+    "m-fj-conv",
+    "m-fj-conv2"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-back-question} \\textperiodcentered\\ Back to the question",
+   "note": "Spostata subito dopo «Final opinions and the augmented graph». In alto la domanda ripetuta; la risposta parte dal modello augmented letto al contrario. Due passi: prima la riscrittura, poi la risposta.",
+   "tag": "moved",
+   "old": [
+    "m-back-question"
+   ],
+   "new": [
+    "m-back-question<1>",
+    "m-back-question<2>"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-fj-centrality} \\textperiodcentered\\ Influence centrality",
+   "note": "Resta solo la definizione: il caso $\\alpha = 0$ e il Lemma 3.5 passano su «Centrality meets social power», dove si usano.",
+   "old": [
+    "m-fj-centrality"
+   ],
+   "new": [
+    "m-fj-centrality"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-fj-networks} \\textperiodcentered\\ FDG and FJ on the same networks",
+   "note": "Prima degli esempi: su quali reti lavoriamo ($W = A(0)$, $u = x(0)$) e come si mette lo stesso peso nei due modelli, in tre righe (agente 1 stubborn; solo l'agente 1 con peso $t$; tutti con peso 0.2). Nella seconda riga le due equazioni differiscono solo per $x_1(k)$ al posto di $u_1$.",
+   "tag": "new",
+   "old": [],
+   "new": [
+    "m-fj-networks"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-all-prej} \\textperiodcentered\\ Every agent prejudiced",
+   "note": "Solo la didascalia: lo stesso attachment per tutti, prejudice diversi.",
+   "old": [
+    "m-all-prej"
+   ],
+   "new": [
+    "m-all-prej"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-aux} \\textperiodcentered\\ Where no prejudice arrives",
+   "note": "Passo 1: la rete e tre esempi, ognuno con cosa ci aspettiamo. Passo 2: i risultati, con lo stesso nome degli esempi.",
+   "old": [
+    "m-aux<1>",
+    "m-aux<2>"
+   ],
+   "new": [
+    "m-aux<1>",
+    "m-aux<2>"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-lemma} \\textperiodcentered\\ Centrality meets social power",
+   "note": "Due passi. Passo 1: le due misure, perché si confrontano in parallelo, il Lemma 3.5 (spostato qui) e cosa ci aspettiamo. Passo 2: il grafico.",
+   "old": [
+    "m-lemma"
+   ],
+   "new": [
+    "m-lemma<1>",
+    "m-lemma<2>"
+   ]
+  }
+ ],
+ "extra": [
+  "Backup: il pulsante di ritorno di «Convergence and spectrum» porta ora a «Convergence with P-independent agents», quello di «Influence centrality» a «Centrality meets social power». Gli enunciati sono gli stessi della versione precedente (il Teorema 3.2 cambia solo l'impaginazione)."
+ ],
+ "intro_canovaccio": "Il canovaccio nuovo segue il nuovo ordine delle slide. Regole applicate ovunque: niente numeri di teoremi, corollari o casi (si dice il contenuto o il nome); si dice solo ciò che è sulla slide; termini in inglese come sulle slide (consensus, disagreement, prejudice, susceptibility, attachment, augmented)."
+}

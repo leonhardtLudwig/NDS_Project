@@ -1,0 +1,30 @@
+{
+ "oldpres": "../../presentation_v9/main",
+ "oldnote": "presentazione e canovaccio applicati il 19/11 (v9).",
+ "intro": "Solo le slide cambiate. Il numero di slide non cambia (33).",
+ "slides": [
+  {
+   "title": "Slide \\fr{m-fdg-sp} \\textperiodcentered\\ Social power grows gradually",
+   "note": "Una sola precisazione: il valore di consensus è scritto per la nostra condizione iniziale, $x(0) = (0, 0.2, \\dots, 1)^\\top$. $w(t)$ non dipende da $x(0)$; il valore di consensus sì.",
+   "old": ["m-fdg-sp"],
+   "new": ["m-fdg-sp"]
+  },
+  {
+   "title": "Slide \\fr{m-fdg-why}, passo 1 \\textperiodcentered\\ Why the same social power",
+   "note": "Il tuo punto 1. Primo riquadro: da (A2), il limite delle potenze di $A(t)$ è $\\mathbf{1}_6 w(t)^\\top$; non c'è $x(0)$, quindi $w(t)$ dipende solo da $A(t)$, e $x(0)$ entra solo nel valore di consensus (le due reti partono dalla stessa $x(0)$). Secondo riquadro, da Bullo [4] (§5.3.1, Lemma 5.3): per $0 < t < 1$, $A(t)^k = \\mathbf{1}_6 w(t)^\\top + (A(t) - \\mathbf{1}_6 w(t)^\\top)^k$; il secondo termine ha gli autovalori di $A(t)$ tranne l'1 e va a zero alla velocità del modulo massimo degli autovalori $\\neq 1$. Poi gli spettri diversi del report (0.92 e 0.90 a $t = 1/2$): velocità diversa, stesso limite. In fondo: stesso limite vuol dire stesso autovettore sinistro $w(t)$.",
+   "old": ["m-fdg-why<1>"],
+   "new": ["m-fdg-why<1>"]
+  },
+  {
+   "title": "Slide \\fr{m-fdg-why}, passo 2 \\textperiodcentered\\ Why the same social power",
+   "note": "Il tuo punto 2. A sinistra le righe (stessa regola per l'agente 1, le altre righe uguali) e le colonne ($1 + t$ per la colonna 1, $1 - t\\,a_{1j}$ per le altre: il ciclo perde tutto $t$ sulla colonna 2, l'anello $t/2$ sulle colonne 2 e 6). A destra perché le somme di colonna, che sono diverse, danno lo stesso $w(t)$: $w(t) \\propto (1-t)\\mathbf{1}_6 + t\\,e_1$; la parte uguale legge le somme di colonna, il $t$ in più dell'agente 1 restituisce attraverso la sua riga esattamente quello che manca. Sotto, i numeri a $t = 1/2$. Il conto del report con $b$ resta solo nel backup «Derivation».",
+   "old": ["m-fdg-why<2>"],
+   "new": ["m-fdg-why<2>"]
+  }
+ ],
+ "extra": [
+  "\\textbf{domande.tex.} Due domande nuove: da dove viene la scomposizione di $A(t)^k$ (Lemma 5.3 di Bullo; la versione con le potenze è un passaggio nostro, per induzione) e se $w(t)$ è uguale per via delle condizioni iniziali (no). Aggiornata la riga della slide \\fr{m-fdg-why} in «Cose nostre».",
+  "\\textbf{Termine da evitare.} Bullo chiama $x(k) - (w^\\top x(0))\\mathbf{1}$ «disagreement vector»: sulle slide e a voce non lo usiamo, perché per noi disagreement è l'esito del Theorem 2.4."
+ ],
+ "intro_canovaccio": "Cambiano: il valore di consensus di «Social power grows gradually», detto per la nostra $x(0)$; il blocco di «Why the same social power», rifatto con i due passi nuovi. Tempi per parte aggiornati: in tutto 29:25."
+}

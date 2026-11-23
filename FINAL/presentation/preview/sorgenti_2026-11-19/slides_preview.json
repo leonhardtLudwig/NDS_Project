@@ -1,0 +1,71 @@
+{
+ "oldpres": "../../presentation_v8/main",
+ "oldnote": "presentazione e canovaccio applicati il 18/11 (v8).",
+ "intro": "Solo le slide cambiate, nel nuovo ordine. In tutto 33 slide (prima 31): sono nuove «All agents P-dependent» e «Example networks: bidirectional ring». Le note del 19/11 sono tutte qui, tranne le slide sulla social power, che non ho toccato (vedi in fondo).",
+ "slides": [
+  {
+   "title": "Slide \\fr{m-fdg-rosetta} \\textperiodcentered\\ Which outcome: the Rosetta stone",
+   "tag": "moved",
+   "note": "Spostata dopo «Disagreement and stubbornness», come nel report (§2.1.4). Ora l'ordine è: The FDG model, Consensus and social power, Disagreement and stubbornness, Rosetta stone, Two networks. Tolta la riga «Focus of this work…»; al suo posto la frase del report: la traduzione fra $A$ e $G$ viene dal Theorem 1.11 nei casi (i)--(ii) e dai Theorems 2.2 e 2.4 nei casi (iii)--(iv). Corollary 1.12 più stretto, per non finire sotto i pulsanti. Nuovo pulsante «Theorem 1.11», che porta al backup con il teorema; da lì si torna alla Rosetta stone. La frase sul focus va nel discorso di «Consensus and social power»: su quella slide non c'è spazio.",
+   "old": ["m-fdg-rosetta"],
+   "new": ["m-fdg-rosetta"]
+  },
+  {
+   "title": "Slide \\fr{m-networks} \\textperiodcentered\\ Two networks, one agent",
+   "note": "Due passi. Passo 1: le reti; la parametrizzazione con la frase concordata («Agent 1 gives weight $t$ to itself and scales its original weights by $1-t$ … with $a_1^\\top$ the row of agent 1 at $t = 0$. The other rows do not change»); la riga dell'agente 1 scritta per le due reti; $x(0)$. Passo 2: il caso $t = 0$ e la tabella. Didascalia: «Unlabelled edges: weight 1 in (a), 1/2 in (b)»: sull'anello 2 e 6 ascoltano l'agente 1 con peso 1/2 per ogni $t$. Il self-loop tratteggiato dell'agente 1 è più largo: prima si vedeva appena. Colonna destra in \\texttt{footnotesize} e un po' più larga, per farci stare tutto.",
+   "old": ["m-networks"],
+   "new": ["m-networks<1>", "m-networks<2>"]
+  },
+  {
+   "title": "Slide \\fr{m-fj-conv}--\\fr{m-fj-conv2} \\textperiodcentered\\ Convergence in the FJ model; Convergence with P-independent agents",
+   "note": "Ordine del report (§3.1.2): $V$ non compare più prima di essere definita. Slide \\fr{m-fj-conv}: definizioni, Definition 3.1, poi la decomposizione (6)--(7) con $W^{21} = 0$, $\\Lambda^{22} = I$ e il significato di $W^{22}$: è row-stochastic, quindi (7) è un modello FDG fra i P-independent. Slide \\fr{m-fj-conv2}: solo il Theorem 3.2, che definisce $V$ in generale. Nel riquadro una frase in più, dal report: (7) converge se e solo se tutti i sink del condensation digraph dei P-independent sono aperiodici. Così si vede dove serve l'aperiodicità.",
+   "old": ["m-fj-conv", "m-fj-conv2"],
+   "new": ["m-fj-conv", "m-fj-conv2"]
+  },
+  {
+   "title": "Slide \\fr{m-fj-conv3} \\textperiodcentered\\ All agents P-dependent",
+   "tag": "new",
+   "note": "Il Corollary 3.3 come caso $r = n$ del Theorem 3.2, poi $x(\\infty) = Vu$ (9) e l'intuizione del report: $Vu$ è un equilibrio, $e(k+1) = \\Lambda W e(k)$ (10), «No aperiodicity is needed». Il pulsante «Stability» è qui, e il backup torna qui.",
+   "old": [],
+   "new": ["m-fj-conv3"]
+  },
+  {
+   "title": "Slide \\fr{m-fj-final} \\textperiodcentered\\ Final opinions and the augmented graph",
+   "note": "Tolta la frase sul disagreement (caso (iv), Theorem 2.4, limite (9)): la figura ha un solo prejudice, e il teorema del disagreement passa nel discorso di «Back to the question». Resta il fatto che serve subito dopo, per la influence centrality (il modello augmented ha almeno $n$ sink): «Each virtual agent is stubborn: a sink of the augmented graph, aperiodic because of its self-loop». Che i grafi sono semplificati (12 nodi, 7 disegnati) è detto solo nel canovaccio.",
+   "old": ["m-fj-final"],
+   "new": ["m-fj-final"]
+  },
+  {
+   "title": "Slide \\fr{m-fj-graphs} \\textperiodcentered\\ Example networks: directed cycle",
+   "note": "Il titolo dice la rete e sta su una riga (prima «The networks of the examples»). Tolto «the bidirectional ring in the same way» dalla didascalia. Self-loop tratteggiato di (a) più largo.",
+   "old": ["m-fj-graphs"],
+   "new": ["m-fj-graphs"]
+  },
+  {
+   "title": "Slide \\fr{m-fj-graphs-ring} \\textperiodcentered\\ Example networks: bidirectional ring",
+   "tag": "new",
+   "note": "Le stesse quattro reti sull'anello. (a)--(b): l'agente 1 ascolta 2 e 6 con $\\frac{1-t}{2}$ ciascuno, con self-loop $t$ in (a) e ingresso $t$ da $u_1$ in (b); tutti gli altri archi pesano $1/2$, anche quelli con cui 2 e 6 ascoltano l'agente 1. (c)--(d): self-loop o prejudice $0.2$, ogni arco $0.4$.",
+   "old": [],
+   "new": ["m-fj-graphs-ring"]
+  },
+  {
+   "title": "Slide \\fr{m-fj-networks} \\textperiodcentered\\ FDG and FJ on the same networks",
+   "note": "Seconda riga scritta per le due reti. Ciclo: $x_1(k+1) = t\\,x_1(k) + (1-t)\\,x_2(k)$; anello: $t\\,x_1(k) + (1-t)\\,(x_2(k)+x_6(k))/2$. Nel FJ lo stesso, con $t\\,u_1$ al posto di $t\\,x_1(k)$. Sotto la tabella: nella terza riga ogni arco pesa 0.8 sul ciclo e 0.4 sull'anello.",
+   "old": ["m-fj-networks"],
+   "new": ["m-fj-networks"]
+  },
+  {
+   "title": "Slide \\fr{m-state-input}, passo 2 \\textperiodcentered\\ Stubborn agent: state or input",
+   "note": "Qui il significato di $x(\\infty) = Vu$, sulla perturbazione. Nel FDG il limite $x_1(0)\\mathbf{1}_6$ diventa $0.5\\,\\mathbf{1}_6$; nel FJ $Vu$ non contiene $x(0)$, quindi il limite non cambia. Nel canovaccio c'è anche la ricorsione $\\delta(k+1) = \\Lambda W\\,\\delta(k)$ del report.",
+   "old": ["m-state-input<2>"],
+   "new": ["m-state-input<2>"]
+  }
+ ],
+ "extra": [
+  "\\textbf{Invariate.} «Consensus and social power»: la frase sul focus è solo nel discorso. Le slide sulla social power («Social power grows gradually», «Why the same social power»): non le ho toccate. Dimmi cosa non ti convince e le rifaccio.",
+  "\\textbf{Backup.} «Asymptotic stability» torna alla slide \\fr{m-fj-conv3}. «Primitive, substochastic» ha anche il pulsante «Back to the Rosetta stone».",
+  "\\textbf{Una nota sul report.} La frase sulla Rosetta stone attribuisce al Theorem 1.11 anche la caratterizzazione delle matrici irriducibili. Nel report quella è l'enunciato prima del teorema: il Theorem 1.11 riguarda solo le primitive. Sulla slide ho lasciato la frase come nel report; la risposta pronta è in domande.tex.",
+  "\\textbf{domande.tex.} Aggiornati i numeri di slide: Stability e intuizione su \\fr{m-fj-conv3}; la lettura del modello augmented come caso (iv) su \\fr{m-back-question} e \\fr{m-six-sinks}. Aggiunta la domanda sul Theorem 1.11."
+ ],
+ "intro_canovaccio": "Cambiano: le transizioni alla fine di «The FDG model» e di «Disagreement and stubbornness»; la Rosetta stone dopo il disagreement, come riassunto di tutti i casi; il focus sul consensus nel discorso di «Consensus and social power»; «Two networks, one agent» in due passi; la convergenza FJ in tre blocchi; «Final opinions» senza il teorema del disagreement, che passa a «Back to the question», e con i grafi semplificati detti a voce; il blocco nuovo dell'anello; la tabella per le due reti; il significato di $Vu$ in «State or input». Tempi per parte aggiornati: in tutto 29:05."
+}

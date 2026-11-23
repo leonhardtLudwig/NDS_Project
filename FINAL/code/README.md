@@ -60,6 +60,7 @@ convention.
 | `directed_cycle(n)` | row-stochastic matrix of the directed cycle, `a_{i,i+1} = 1` |
 | `bidirectional_ring(n)` | row-stochastic matrix of the ring, `a_{i,i±1} = 1/2` |
 | `self_weight(A, t)` | row 1 of `A` replaced by `(1-t) a_1' + t e_1'` |
+| `row_stochastic(A)` | `W = D^{-1} A`, the row-normalised matrix |
 | `is_row_stochastic(W)` | predicate |
 | **models** | |
 | `sim_degroot(W, x0, K)` | trajectory of `x(k+1) = W x(k)` |

@@ -1,0 +1,87 @@
+{
+ "oldpres": "../../presentation_v7/main",
+ "oldnote": "presentazione e canovaccio applicati il 17/11.",
+ "intro": "Solo le slide cambiate, nel nuovo ordine. Nella parte FJ ora si va: Final opinions and the augmented graph, Influence centrality, Back to the question, The networks of the examples (nuova), FDG and FJ on the same networks, poi gli esempi. In tutto 31 slide (prima 30).",
+ "slides": [
+  {
+   "title": "Slide \\fr{m-fdg-conv} \\textperiodcentered\\ One self-weight brings agreement",
+   "note": "Solo l'ultimo punto: «all eigenvalues $\\neq 1$ strictly inside the unit disk», perché l'autovalore 1 resta sul cerchio. Il perché del consensus è nel canovaccio, non sulla slide.",
+   "old": [
+    "m-fdg-conv"
+   ],
+   "new": [
+    "m-fdg-conv"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-bridge} \\textperiodcentered\\ Two stubborn agents",
+   "note": "Grafo più grande (scala 0.62 invece di 0.52): fra due agenti vicini restavano 2 mm di freccia. Le etichette dei self-loop sono a destra, così la slide non si allunga.",
+   "old": [
+    "m-bridge"
+   ],
+   "new": [
+    "m-bridge"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-fj-final} \\textperiodcentered\\ Final opinions and the augmented graph",
+   "note": "Grafi più grandi (scala 0.63 invece di 0.55); $u_1$ e $1'$ un po' più in basso, così i pulsanti restano sotto il riquadro verde.",
+   "old": [
+    "m-fj-final"
+   ],
+   "new": [
+    "m-fj-final"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-fj-centrality}--\\fr{m-back-question} \\textperiodcentered\\ Influence centrality, Back to the question",
+   "note": "Ordine scambiato, contenuto invariato: prima la definizione, che chiude la teoria; poi la risposta alla domanda, che porta dritta agli esempi.",
+   "tag": "moved",
+   "old": [
+    "m-back-question<1>",
+    "m-fj-centrality"
+   ],
+   "new": [
+    "m-fj-centrality",
+    "m-back-question<1>"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-fj-graphs} \\textperiodcentered\\ The networks of the examples",
+   "note": "Le reti degli esempi disegnate, prima della tabella: (a)--(b) un solo agente, (c)--(d) tutti gli agenti. Stessi archi e stessi pesi: il self-loop del FDG diventa nel FJ la freccia di un prejudice. Scritto esplicitamente che non è una riscrittura di un modello nell'altro, tranne per $t = 1$. La rete (d) ha la stessa disposizione del grafo augmented di «Six prejudices, six sinks».",
+   "tag": "new",
+   "old": [],
+   "new": [
+    "m-fj-graphs"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-one-prej} \\textperiodcentered\\ A single prejudice",
+   "note": "Aggiunta la riga sotto la didascalia, come nel report: perché non c'è una figura per gli altri due valori dell'attachment. $1 - \\lambda_1 = 0$ è il FDG con $A(0)$ (Figure 2, $t = 0$), $1 - \\lambda_1 = 1$ è l'agente 1 stubborn (Figure 6). Il punto «$x(\\infty) = u_1\\mathbf{1}_6$ for every attachment $1 - \\lambda_1 > 0$» copriva già $1 - \\lambda_1 = 1$.",
+   "old": [
+    "m-one-prej"
+   ],
+   "new": [
+    "m-one-prej"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-six-sinks} \\textperiodcentered\\ Six prejudices, six sinks",
+   "note": "Il grafo augmented ha una colonna sua: prima gli agenti reali stavano su un cerchio di raggio 0.57 cm e le frecce non avevano spazio. Stessa disposizione della rete (d). Il testo va a destra, in tre passi: i sink con il condensation digraph; le conseguenze; le dodici traiettorie.",
+   "old": [
+    "m-six-sinks<1>",
+    "m-six-sinks<2>"
+   ],
+   "new": [
+    "m-six-sinks<1>",
+    "m-six-sinks<2>",
+    "m-six-sinks<3>"
+   ]
+  }
+ ],
+ "extra": [
+  "«Why the same social power»: invariata, con una nota nel sorgente: da rifare e rilavorare.",
+  "«Two networks, one agent» (tabella): invariata, è corretta per entrambe le reti. Il perché di periodicità, aperiodicità e consensus è nel canovaccio delle slide \\fr{m-networks} e \\fr{m-fdg-conv}."
+ ],
+ "intro_canovaccio": "Cambiano: le spiegazioni delle slide \\fr{m-networks} e \\fr{m-fdg-conv} (periodiche, aperiodiche, perché il consensus, con la condizione sul grafo del teorema del consensus); «Final opinions and the augmented graph» (cosa chiede il teorema del disagreement e cosa dà); l'ordine di Influence centrality e Back to the question, con i passaggi; il blocco nuovo delle reti; i due valori estremi dell'attachment in «A single prejudice»; «Six prejudices, six sinks» in tre passi. Tempi per parte aggiornati: in tutto 26:05."
+}

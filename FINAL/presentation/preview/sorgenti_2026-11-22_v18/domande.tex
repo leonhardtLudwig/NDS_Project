@@ -1,0 +1,185 @@
+%% =====================================================================
+%% Preparazione alle domande della discussione NDS (26/11/2026)
+%% Domande probabili, termini da evitare, cose nostre.
+%% I numeri di slide (\fr{label}) vengono da ../main.aux: ricompilare
+%% prima main.tex, poi questo file (pdflatex domande.tex, due volte).
+%% =====================================================================
+\documentclass[a4paper,10pt]{article}
+\usepackage[T1]{fontenc}
+% babel in italiano: con TeX Live completo usa italian.ldf, altrimenti il file .ini di babel
+\IfFileExists{italian.ldf}{\usepackage[italian]{babel}}%
+  {\usepackage{babel}\babelprovide[import,main]{italian}}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=1.5cm,top=1.4cm,bottom=1.7cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{array,tabularx,booktabs}
+\usepackage{refcount}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\externaldocument[P-]{../main}  % legge ../main.aux
+\pdfsuppresswarningpagegroup=1
+
+% ---------------------------------------------------------------------
+% Riferimenti alla presentazione
+\newcommand{\presentazione}{../main.pdf}
+\newcommand{\pg}[1]{\getpagerefnumber{P-#1}}  % pagina del PDF
+\newcommand{\fr}[1]{\getrefnumber{P-#1}}      % numero della slide
+\newcommand{\uno}{\mathbf{1}}
+
+% ---------------------------------------------------------------------
+% Impaginazione
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist{nosep,leftmargin=1.2em}
+\raggedbottom
+\definecolor{unipd}{RGB}{155,0,20}
+
+\newcommand{\mini}[1]{{\setlength{\fboxsep}{0pt}%
+  \fbox{\includegraphics[page=#1,width=\dimexpr\linewidth-2\fboxrule\relax]{\presentazione}}}}
+\newcommand{\testata}[4]{% numero, pagine, titolo, tempo
+  {\color{unipd}\bfseries Slide #1 \textperiodcentered\ #3}\hfill{\small\itshape #4}\par
+  {\scriptsize\color{gray} pagina #2 del PDF}\par\smallskip}
+\newcommand{\chiave}{\ {\scriptsize[momento chiave]}}
+
+% Blocco di una slide: miniatura a sinistra, testo a destra
+\newenvironment{slide}[3]{%
+  \par\addvspace{12pt}\noindent
+  \begin{minipage}[t]{0.36\textwidth}\vspace{0pt}\mini{\pg{#1}}\end{minipage}\hfill
+  \begin{minipage}[t]{0.61\textwidth}\vspace{0pt}%
+  \testata{\fr{#1}}{\pg{#1}}{#2}{#3}}%
+ {\end{minipage}\par}
+% Frame a due passi: le due miniature una sotto l'altra
+\newenvironment{slidedue}[3]{%
+  \par\addvspace{12pt}\noindent
+  \begin{minipage}[t]{0.36\textwidth}\vspace{0pt}\mini{\pg{#1<1>}}\par\smallskip
+    \mini{\pg{#1<2>}}\end{minipage}\hfill
+  \begin{minipage}[t]{0.61\textwidth}\vspace{0pt}%
+  \testata{\fr{#1}, due passi}{\pg{#1<1>}--\pg{#1<2>}}{#2}{#3}}%
+ {\end{minipage}\par}
+% Pagine senza label: si indica la pagina del PDF
+\newenvironment{slidepag}[3]{%
+  \par\addvspace{12pt}\noindent
+  \begin{minipage}[t]{0.36\textwidth}\vspace{0pt}\mini{#1}\end{minipage}\hfill
+  \begin{minipage}[t]{0.61\textwidth}\vspace{0pt}%
+  {\color{unipd}\bfseries #2}\hfill{\small\itshape #3}\par
+  {\scriptsize\color{gray} pagina #1 del PDF}\par\smallskip}%
+ {\end{minipage}\par}
+
+% Testo dei blocchi
+\newcommand{\resta}[1]{\textbf{Deve restare:} #1\par}
+\newenvironment{dire}[1][]{\textbf{Cosa dire#1:}\begin{itemize}}{\end{itemize}}
+\newcommand{\frase}[1]{\textbf{Frase:} \textit{«#1»}\par}
+\newcommand{\passaggio}[1]{\textbf{Passaggio:} \textit{«#1»}\par}
+\newcommand{\sechiede}[1]{\textbf{Se chiede} #1\par}
+\newcommand{\nota}[1]{\textbf{Nota:} #1\par}
+\newcommand{\attenzione}[1]{\textbf{Attenzione:} #1\par}
+\newcommand{\parte}[2]{\section*{#1\hfill{\normalsize\itshape #2}}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Preparazione alle domande}\\[3pt]
+  {\large Stubbornness and Social Power in Opinion Dynamics}\\[2pt]
+  {\small\color{gray} Versione del \today}
+\end{center}
+
+\section*{Domande probabili}
+
+Risposte brevi, con il pulsante da usare e il numero della slide di backup. Le prime sono sui punti in cui è facile sbagliare un termine; le altre sui ragionamenti nostri.
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
+  \item \textbf{«A $t=0$ la social power vale $1/6$?»} No. A $t=0$ le reti sono periodiche: nessuna convergenza (caso ii), quindi nessun consenso e nessuna social power. $1/6$ è il limite di $w_1(t)$ per $t\to0$; a $t=0$, $\uno/6$ è solo l'autovettore sinistro di $A(0)$ per l'autovalore 1. Pulsante «Derivation» della slide \fr{m-fdg-sp} (backup \fr{bk-socialpower}).
+  \item \textbf{«Perché a $t=1$ la rete non è fortemente connessa, e perché c'è consenso?»} L'agente 1 non ascolta nessun altro, quindi da 1 non parte nessun cammino; la periodicità non è definita (Definizione 1.2). Il consenso viene dalla (A3) del Teorema 2.2: 1 è l'unico nodo globally reachable e $\{1\}$ è aperiodico per il self-loop (caso iii). Sul ciclo $A(1)^5=\uno e_1^\top$. Pulsante «Spectra» della slide \fr{m-fdg-conv} (backup \fr{bk-spectra}).
+  \item \textbf{«Due stubborn con la stessa opinione iniziale: c'è disaccordo?»} Sì, come proprietà del modello: convergente e, per qualche $x(0)$, limite non della forma $\alpha\uno$. Con $x_1(0)=x_4(0)$ quel limite è un consenso, ma con altre condizioni iniziali no. Il «$v\neq\alpha\uno$» del Teorema 2.4 vale per qualche $x(0)$, non per tutte.
+  \item \textbf{«Perché su una rete fortemente connessa il FDG non è mai in disaccordo?»} $C(G)$ ha un solo nodo, quindi un solo sink: caso (i) o (ii), consenso o nessuna convergenza.
+  \item \textbf{«Perché il FJ converge su una rete periodica e il FDG no?»} L'errore evolve come $e(k+1)=\Lambda W\,e(k)$, e $\Lambda W$ è row-substochastic: le righe degli agenti prejudiced sommano a $\lambda_i<1$. Per il Lemma 1.14 è convergente se e solo se da ogni agente con out-degree 1 parte un cammino verso uno con out-degree minore di 1, cioè se tutti sono P-dependent. La periodicità non entra. Pulsante «Stability» della slide \fr{m-fj-conv3} (backup \fr{bk-fj-stab}).
+  % ADDED (2026-11-19): la frase del report sulla Rosetta stone, ora sulla slide.
+  \item \textbf{«Il Teorema 1.11 caratterizza anche le matrici irriducibili?»} No: il Teorema 1.11 dice solo che $A$ è primitiva se e solo se $G$ è fortemente connesso e aperiodico. Che $A$ ($n\ge2$) sia irriducibile se e solo se $G$ è fortemente connesso è l'enunciato subito prima, nelle slide del corso [2] (preliminari, slide \fr{m-prelim}). Nella frase del report sulla Rosetta stone, «(Theorem 1.11)» copre solo la parte sulle matrici primitive; quella sulle irriducibili è l'enunciato che lo precede. Pulsante «Theorem 1.11» della slide \fr{m-fdg-rosetta} (backup \fr{bk-prelim2}).
+  % ADDED (2026-11-21)
+  \item \textbf{«$w(t)$ è lo stesso anche per via delle condizioni iniziali?»} No: $w(t)$ è l'autovettore sinistro di $A(t)$ per l'autovalore 1, una proprietà della sola matrice; nel limite $\uno w(t)^\top$ delle potenze non c'è $x(0)$. Da $x(0)$ dipende solo il valore di consensus $w(t)^\top x(0)$: è uguale sulle due reti perché $w(t)$ è uguale e partiamo dalla stessa $x(0)$.
+  % ADDED (2026-11-22)
+  \item \textbf{«Perché negli esempi $W$ non ha il self-loop, mentre nel FJ originale $1-\lambda_i=w_{ii}$?»} Nel FJ originale l'attachment è accoppiato al self-weight, $1-\lambda_i=w_{ii}$, e $u=x(0)$; come il tutorial, non imponiamo l'accoppiamento (report, §3.1.1: «As in [5], we do not impose these conditions»). Negli esempi $W=A(0)$, senza self-loop, e il peso $t$ che il FDG mette sull'opinione attuale va sul prejudice, $1-\lambda_1=t$ (§3.2.1): così ogni modello ha un solo meccanismo e i due parametri si confrontano direttamente, tutti e due 1 nel caso stubborn. Con il self-loop in $W$ l'agente 1 avrebbe sia un self-weight sia un attachment.
+  \item \textbf{«Nei grafi del FJ, $1-t$ è un peso di $W$?»} No: gli archi portano i pesi di $\Lambda W$, $\lambda_i w_{ij}$, come nelle figure del report (Figure 5, 8, 11). L'arco $1\to2$ ha $w_{12}=1$ in $W$ e $\lambda_1 w_{12}=1-t$ in $\Lambda W$; le frecce da $u_i$, di peso $1-\lambda_i$, non sono archi di $G$.
+  \item \textbf{«Il FJ può non convergere?»} Sì: se non tutti sono P-dependent e $W^{22}$ non è regular (Teorema 3.2), come nel caso (b) della rete ausiliaria (slide \fr{m-aux}).
+  \item \textbf{«Stesse traiettorie e stabilità diversa: come è possibile?»} La stabilità asintotica è una proprietà del sistema (dimenticare la condizione iniziale), non di una traiettoria. Nel FDG l'opinione dello stubborn è uno stato: riga $e_1^\top$, autovalore 1. Nel FJ è l'ingresso $u$: la riga di $\Lambda W$ è zero e l'autovalore diventa 0. Pulsante «Spectra» della slide \fr{m-state-input} (backup \fr{bk-state-input}).
+  % ADDED (2026-11-22)
+  \item \textbf{«Cambiando $\lambda_1$ si converge sempre allo stesso equilibrio?»} Sì, con il solo agente 1 prejudiced: per ogni $\lambda_1\in[0,1)$ il limite è $u_1\uno$ ($=0\cdot\uno$ con $u=x(0)$), indipendente da $\lambda_1$ e da $x(0)$ (report, §3.2.2: «$x(\infty)=u_1\mathbf 1_6=0$ for every attachment $1-\lambda_1>0$»). (1) Tutti P-dependent (rete fortemente connessa), quindi per il Corollario 3.3 il limite è l'unico equilibrio. (2) $u_1\uno$ è un equilibrio per ogni $\lambda_1$: gli agenti $i\neq1$ hanno $\lambda_i=1$ e $W$ è row-stochastic, quindi $\sum_j w_{ij}u_1=u_1$; l'agente 1 ha $\lambda_1u_1+(1-\lambda_1)u_1=u_1$. (3) Quindi è il limite. $\lambda_1$ cambia solo la velocità. Precisazioni: $\lambda_1=1$ escluso (nessun prejudice: è il FDG con $A(0)$, non converge); è speciale perché c'è un solo prejudice: in generale $x(\infty)=Vu$ dipende da $\Lambda$ (es. «Centrality meets social power»). Contrasto: nel FDG il consensus $w(t)^\top x(0)$ dipende da $t$ e da $x(0)$; a $t=1$ è $x_1(0)\uno$ (slide \fr{m-state-input}).
+  % ADDED (2026-11-22)
+  \item \textbf{«Dopo la perturbazione l'agente 1 è ancora stubborn?»} Nel FJ no: la stubbornness chiede insieme $\lambda_1=0$ e $u_1=x_1(0)$; qui $\lambda_1=0$ ma $u_1=0\neq x_1(0)=0.5$, quindi è un agente prejudiced che al primo passo salta su $u_1$. Per restare stubborn bisogna cambiare insieme $x_1(0)$ e $u_1$: allora il FJ va a $0.5\,\uno$, come il FDG. L'esperimento del report cambia solo lo stato, con $u$ fisso, per mostrare che il limite $Vu$ non contiene $x(0)$.
+  \item \textbf{«Il report dice che nel FJ lo stato dimentica $x(0)$: senza perturbazione cosa dimentica?»} Niente: senza perturbazione $u_1=x_1(0)$ e le traiettorie sono le stesse del FDG. La frase del report (§3.2.2) si riferisce alla Figure 7: il limite $x(\infty)=Vu$ non contiene $x(0)$, quindi una perturbazione dello stato iniziale si perde. Per questo il riquadro «In social terms» con quella frase è stato tolto dalla slide.
+  % ADDED (2026-11-22)
+  \item \textbf{«Perché l'esempio con tutti gli agenti a peso 0.2?»} (1) È la differenza principale fra i due modelli (report, §3.2.2: «This is the main difference between the two models»): su una rete fortemente connessa il FDG può solo andare al consensus o non convergere (casi (i)–(ii) della Rosetta stone), il FJ sulla stessa rete va in disaccordo, e il disaccordo viene dai prejudice, il «cleavage of opinions» di [5]. Con un solo prejudice il FJ va al consensus $u_1\uno$: servono prejudice diversi. (2) Chiude la sequenza del §3.2.2: uno stubborn, un prejudiced, tutti prejudiced, sempre con lo stesso peso nei due modelli. (3) $\Lambda=\alpha I$, «same susceptibility for all agents», è il caso del Lemma 3.5 del tutorial, che serve per l'influence centrality. Il valore 0.2 è una scelta nostra: con ogni peso in $(0,1)$ il risultato qualitativo è lo stesso.
+  % ADDED (2026-11-22)
+  \item \textbf{«Perché nella figura ci sono solo gli agenti 1 e 2?»} Gli agenti da 3 a 6 si comportano in modo simile all'agente 2: scendono da $1/6$ verso $1/7$ ($w_2=\dots=w_6=1/7$). Disegnarli avrebbe riempito troppo il grafico. Se insiste: i valori non sono identici a quelli dell'agente 2, l'andamento sì.
+  \item \textbf{«Il modello aumentato è asintoticamente stabile?»} No: è un FDG, row-stochastic, quindi ha l'autovalore 1 (Teorema 1.6). $\bar A$ è triangolare a blocchi: $\operatorname{spec}(\bar A)=\operatorname{spec}(\Lambda W)$ più $n$ volte 1; con tutti P-dependent l'autovalore 1 è semi-semplice, uno per agente virtuale (Teorema 2.4). Perturbare un agente virtuale, cioè $u$, cambia il limite. Pulsanti «Augmented» e «Two descriptions» (backup \fr{bk-augmented}--\fr{bk-augmented2}).
+  \item \textbf{«Da dove viene la condizione di consenso del FJ?»} È nostra, dall'equilibrio: $\gamma\uno$ è un equilibrio se e solo se $(1-\lambda_i)(\gamma-u_i)=0$ per ogni $i$. Con tutti P-dependent l'equilibrio è unico, perché $I-\Lambda W$ è invertibile. Il tutorial non classifica gli esiti del FJ in consenso e disaccordo. Pulsante «Consensus» della slide \fr{m-fj-final} (backup \fr{bk-fj-consensus}).
+  \item \textbf{«La seconda riscrittura è del tutorial?»} No, è nostra (Figura 8 del report). Il tutorial tiene lo stubborn come agente, con $\lambda_i=0$ e $u_i=x_i(0)$. La nostra lo toglie: $\lambda_i=1-a_{i1}$, $w_{ij}=a_{ij}/\lambda_i$, $u_i=x_1(0)$, e l'opinione stubborn compare una volta sola, come pregiudizio. Pulsante «Figure 8» della slide \fr{m-back-question} (backup \fr{bk-rewritings2}).
+  \item \textbf{«Perché $c=e_1$ per ogni $\lambda_1<1$, mentre $w_1$ cresce gradualmente?»} $V=\uno e_1^\top$, perché le colonne degli agenti con $\lambda_j=1$ sono nulle e $V$ è stocastica. Nel modello aumentato nessuno ascolta $2',\dots,6'$; il resto ha un solo sink, $1'$. Nel FDG, per $0<t<1$ ogni agente resta globally reachable e ha $w_i>0$. Pulsante «Matrices» della slide \fr{m-one-prej} (backup \fr{bk-one-prej}).
+  \item \textbf{«Perché la influence centrality richiede $u=x(0)$?»} Con tutti P-dependent $x(\infty)=Vu$ non dipende da $x(0)$: senza $u=x(0)$ non c'è un peso delle opinioni iniziali da misurare.
+  \item \textbf{«Perché nel Lemma 3.5 $\alpha\to1$ e non $\alpha=1$?»} Con $\Lambda=I$ il FJ è il FDG, che non è asintoticamente stabile, e $I-W$ è singolare ($1\in\operatorname{spec}(W)$, Teorema 1.6): $V$ non è definita. Pulsante «Lemma 3.5» della slide \fr{m-fj-centrality} (backup \fr{bk-centrality}).
+  \item \textbf{«Perché $c_2$ scende sotto $w_2$ sul ciclo?»} Non è nel report: è un'intuizione nostra, solo a voce. $V_\alpha=(1-\alpha)\sum_k\alpha^kW^k$, quindi $c_\alpha$ è una media con pesi geometrici, sulle lunghezze $k$ dei cammini, del peso totale di ogni opinione iniziale dopo $k$ passi. Sul ciclo solo l'agente 1 ascolta il 2, con peso 1/2: il peso totale di $x_2(0)$ va $1,\ 0.5,\ 0.75,\ 0.875,\dots$ verso $6/7$. Per $\alpha$ intermedi pesano i cammini corti, e $c_2$ scende sotto $1/7$ (minimo $\approx0.137$ a $\alpha\approx0.65$). Sull'anello il 2 è ascoltato da 1 e 3 ($1,\ 0.75,\ 0.875,\dots$) e il calo non c'è. Pulsante «Numbers» della slide \fr{m-lemma} (backup \fr{bk-lemma-numbers}).
+  \item \textbf{«P-dependent vuol dire che tutti raggiungono lo stesso agente prejudiced?»} No: ogni agente non prejudiced deve raggiungerne almeno uno, non necessariamente lo stesso.
+  \item \textbf{«$\lambda_i=0$ vuol dire stubborn?»} No: l'agente salta su $u_i$ al primo passo e resta lì; è stubborn solo se anche $u_i=x_i(0)$.
+\end{enumerate}
+
+% =====================================================================
+\section*{Termini: cosa non dire}
+
+Le espressioni che Baggio può contestare, con la forma giusta e il motivo.
+
+\smallskip
+{\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.33\textwidth}>{\raggedright\arraybackslash}X}
+  \toprule
+  Non dire & Dì invece & Perché \\
+  \midrule
+  «il FDG è stabile» & «convergente, ma mai asintoticamente stabile» & $1\in\operatorname{spec}(A)$ sempre (Teorema 1.6) \\
+  «$A$ è convergente», nel FDG & «$A$ è semi-convergente», o «regular» & per una matrice «convergente» vuol dire Schur stabile, con limite 0 \\
+  «a $t=0$ la social power vale $1/6$» & «$1/6$ è il limite per $t\to0$» & a $t=0$ non c'è consenso \\
+  «per $t<1$» & «per $0<t<1$» & a $t=0$ le reti sono periodiche e non c'è convergenza \\
+  «a $t=1$ la rete è aperiodica» & «a $t=1$ non è fortemente connessa» & la periodicità è definita solo per digrafi fortemente connessi \\
+  «$\lambda_i=0$: stubborn» & «$\lambda_i=0$ e $u_i=x_i(0)$: stubborn» & con $u_i\neq x_i(0)$ l'agente salta su $u_i$ \\
+  «il FJ raggiunge il consenso» & «con tutti P-dependent e un dato $u$, consenso se e solo se i prejudiced hanno lo stesso pregiudizio» & nel FJ il consenso dipende da $u$ \\
+  «agente pregiudicato» & «agente prejudiced», o «con un pregiudizio» & in italiano «pregiudicato» vuol dire un'altra cosa \\
+  «source» per uno stubborn & «un sink di $C(G)$» & nelle slide del corso «source» vuol dire $d_{\mathrm{in}}=0$ \\
+  «$\alpha=1$» nel Lemma 3.5 & «$\alpha\to1$» & $I-W$ è singolare \\
+  «il reciproco di $\lambda_i$» & «il complemento $1-\lambda_i$» & $1-\lambda_i$ è l'attaccamento \\
+  «disaccordo: gli agenti non sono d'accordo» & «convergente, ma per qualche $x(0)$ non un consenso» & il disaccordo è una proprietà del modello \\
+  «$i\to j$: $i$ influenza $j$» & «$i$ è influenzato da $j$» & convenzione del corso; il tutorial disegna al contrario \\
+  «il FJ risolve questa domanda», alla slide \fr{m-bridge} & «ora il secondo modello» & il FJ non nasce per rispondere alla domanda; il collegamento si vede alla slide \fr{m-back-question} \\
+  \bottomrule
+\end{tabularx}}
+
+% =====================================================================
+\section*{Cose nostre: da dichiarare se chiede la fonte}
+
+Sono passaggi verificati ma senza riferimento nelle tre fonti: se Baggio chiede da dove vengono, si dice che sono nostri.
+
+\smallskip
+{\small
+\begin{tabularx}{\textwidth}{c>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+  \toprule
+  Slide & Cosa & Da dove viene \\
+  \midrule
+  % REVISED (2026-11-21): slide «Why the same social power» rifatta. Era:
+  % \fr{m-fdg-why} & il bilancio di $w^\top A(t)=w^\top$ & lettura nostra del conto del report (§2.2.3) \\
+  \fr{m-fdg-why} & la catena «stessa social power, stesso limite, cosa hanno in comune» & lettura nostra del Teorema 2.2 e dei §2.2.2–2.2.3 del report \\
+  \fr{m-bridge} & l'esempio dei due stubborn e i suoi numeri & non è nel report; applica il Teorema 2.4 e il Remark 2.7 \\
+  \fr{m-fj-conv3} & l'errore $e(k+1)=\Lambda W\,e(k)$ come intuizione del Corollario 3.3 & deduzione nostra, nel report (§3.1.2) \\
+  \fr{m-back-question}, \fr{m-six-sinks} & il modello aumentato letto come caso (iv) & il modello è del tutorial; la lettura è nostra \\
+  \fr{m-fj-final} & la condizione di consenso del FJ & ricavata da noi dall'equilibrio \\
+  \fr{m-back-question} & la seconda riscrittura & nostra (Figura 8 del report) \\
+  % ADDED (2026-11-22)
+  \fr{m-fj-matrices} & $A=\Lambda W+(I-\Lambda)$ nei tre casi & riscrittura nostra del §3.2.2 del report: il peso tolto agli altri va sulla diagonale di $A$ nel FDG, fuori dalla matrice, sull'input $(1-\lambda_1)u_1$, nel FJ \\
+  \fr{m-six-sinks} & la spiegazione delle dodici traiettorie & nostra \\
+  % ADDED (2026-11-22)
+  \fr{m-lemma} & passi 3--4: $V_\alpha$ e $c_\alpha$ in forma chiusa sulle due reti & calcolati da noi dalla formula del report $V_\alpha=(1-\alpha)(I-\alpha W)^{-1}$ (§3.1.4) e dalla (12); verificati con calcolo simbolico \\
+  \fr{m-lemma} & perché $c_2$ scende sotto $w_2$ sul ciclo & solo a voce: non è nel report \\
+  \bottomrule
+\end{tabularx}}
+
+\end{document}

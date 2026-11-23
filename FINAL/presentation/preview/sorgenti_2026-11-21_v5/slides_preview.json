@@ -1,0 +1,46 @@
+{
+ "oldpres": "../../presentation_v9/main",
+ "oldnote": "presentazione e canovaccio applicati il 19/11 (v9).",
+ "intro": "Solo le slide cambiate. Il numero di slide non cambia (33).",
+ "slides": [
+  {
+   "title": "Slide \\fr{m-networks} \\textperiodcentered\\ Two networks, one agent",
+   "note": "Passo 1: la regola, «with the same rule on both networks», scritta per esteso: $a_1(t)^\\top = (1-t)\\,a_1(0)^\\top + t\\,e_1^\\top$, con $a_1(0)^\\top$ la riga dell'agente 1 nella rete originale (nel report $a_1^\\top$), $e_1^\\top = (1, 0, \\dots, 0)$ e $a_1(t)^\\top$ la riga dell'agente 1 di $A(t)$. Sotto, una tabellina con $a_1(0)^\\top$ e $a_1(t)^\\top$ per le due reti. Passo 2: la regola richiamata in una riga, il caso $t = 0$ e la tabella.",
+   "old": [
+    "m-networks<1>",
+    "m-networks<2>"
+   ],
+   "new": [
+    "m-networks<1>",
+    "m-networks<2>"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-fdg-sp} \\textperiodcentered\\ Social power grows gradually",
+   "note": "Il valore di consensus è scritto per la nostra $x(0) = (0, 0.2, \\dots, 1)^\\top$: $w(t)$ non dipende da $x(0)$, il valore di consensus sì.",
+   "old": [
+    "m-fdg-sp"
+   ],
+   "new": [
+    "m-fdg-sp"
+   ]
+  },
+  {
+   "title": "Slide \\fr{m-fdg-why} \\textperiodcentered\\ Why the same social power",
+   "note": "Tre passi, solo cose del report, in ordine. Passo 1: il fatto (stessa social power vuol dire stesso limite $\\mathbf{1}_6 w(t)^\\top$, senza $x(0)$) e il problema (matrici diverse, spettri diversi: niente numeri). Passo 2: da cosa dipende il limite (solo da $w(t)$); lo stesso punto di partenza (ogni agente ascoltato con peso totale 1, tutti contano uguale); la stessa modifica. Passo 3, il collegamento che mancava: l'agente 1 tiene $t$ e riceve $b$ dagli altri, quindi $b = (1-t)\\,w_1$ (l'equazione del report, §2.2.3): conta $1/(1-t)$ volte di più e ascolta gli altri $1-t$ volte di meno, i due fattori si compensano; quindi gli agenti 2--6 restano uguali e $w(t)$ è lo stesso sulle due reti.",
+   "old": [
+    "m-fdg-why<1>",
+    "m-fdg-why<2>"
+   ],
+   "new": [
+    "m-fdg-why<1>",
+    "m-fdg-why<2>",
+    "m-fdg-why<3>"
+   ]
+  }
+ ],
+ "extra": [
+  "\\textbf{domande.tex.} Aggiunta la domanda su $w(t)$ e le condizioni iniziali; aggiornata la riga della slide \\fr{m-fdg-why} in «Cose nostre»."
+ ],
+ "intro_canovaccio": "Cambiano: in «Two networks, one agent» la scrittura delle righe e la tabellina; il valore di consensus di «Social power grows gradually», detto per la nostra $x(0)$; «Why the same social power» in tre passi, come catena. Tempi per parte aggiornati: in tutto 29:05."
+}

@@ -1,0 +1,24 @@
+{
+ "oldpres": "../../presentation_v9/main",
+ "oldnote": "presentazione e canovaccio applicati il 19/11 (v9).",
+ "intro": "Solo le slide cambiate. Il numero di slide non cambia (33); la slide 13 passa da due pagine a una.",
+ "slides": [
+  {
+   "title": "Slide \\fr{m-fdg-sp} \\textperiodcentered\\ Social power grows gradually",
+   "note": "Il valore di consensus è scritto per la nostra condizione iniziale, $x(0) = (0, 0.2, \\dots, 1)^\\top$: $w(t)$ non dipende da $x(0)$, il valore di consensus sì.",
+   "old": ["m-fdg-sp"],
+   "new": ["m-fdg-sp"]
+  },
+  {
+   "title": "Slide \\fr{m-fdg-why} \\textperiodcentered\\ Why the same social power",
+   "note": "Una sola pagina, solo cose già nel report. Stessa social power vuol dire stesso limite delle potenze, $\\mathbf{1}_6 w(t)^\\top$ (Theorem 2.2), senza $x(0)$; ma le matrici e gli spettri sono diversi (§2.2.2). Cosa hanno in comune: row-stochastic; per $t > 0$ autovalore 1 semplice e gli altri dentro il disco, quindi il limite dipende solo da $w(t)$; a $t = 0$ doubly-stochastic, autovettore sinistro $\\frac16\\mathbf{1}_6$; la stessa modifica della riga dell'agente 1. Quindi lo stesso $w(t)$ (verifica del report, §2.2.3, pulsante «Derivation») e lo stesso limite. Tolte righe e colonne, Bullo e la tabella.",
+   "old": ["m-fdg-why<1>", "m-fdg-why<2>"],
+   "new": ["m-fdg-why"]
+  }
+ ],
+ "extra": [
+  "\\textbf{Backup.} «Social power $w(t)$» (Derivation) ha anche il ritorno alla slide \\fr{m-fdg-why}.",
+  "\\textbf{domande.tex.} Aggiunta la domanda su $w(t)$ e le condizioni iniziali; aggiornata la riga della slide \\fr{m-fdg-why} in «Cose nostre»."
+ ],
+ "intro_canovaccio": "Cambiano: il valore di consensus di «Social power grows gradually», detto per la nostra $x(0)$; il blocco di «Why the same social power», ora una catena breve. Tempi per parte aggiornati: in tutto 28:45."
+}

@@ -1,0 +1,2719 @@
+Stubbornness and Social Power in Opinion Dynamics:
+the French–Harary–DeGroot and Friedkin–Johnsen Models
+Leonardo Luigi Pepe
+November 2026
+Abstract
+A stubborn agent, which never changes its opinion, is the extreme case of two different mechanisms of resistance to social influence: a self-weight in the French–Harary–DeGroot (FDG) model
+and an attachment to a fixed prejudice in the Friedkin–Johnsen (FJ) model. Following the tutorial
+by Proskurnikov and Tempo, this report compares the two models on the same small networks and
+studies how these mechanisms affect convergence, the final opinions and the influence of each agent,
+measured by the social power and by the influence centrality. A self-weight acts as inertia: it ties
+an agent to its current opinion, which still follows the others, and on a strongly connected network
+it does not prevent a consensus. A prejudice acts as an anchor: it ties an agent to a fixed opinion;
+when every agent is influenced by a prejudiced agent, the FJ model is asymptotically stable on any
+network, and the group agrees only if all the prejudiced agents share the same prejudice. Writing
+the FJ model as an FDG model on an augmented graph, with the prejudices as virtual stubborn
+agents, shows that the two models differ in what is a state: the opinion of a stubborn agent is part
+of the state in the FDG model and an external input in the FJ model.
+
+Contents
+1 Introduction
+1.1 Preliminaries . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.1.1 Graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.1.2 Matrices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+2
+2
+2
+3
+
+2 The French–Harary–DeGroot model
+2.1 Introduction to the FDG model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.1.1 The FDG model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.1.2 Consensus and social power . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.1.3 Disagreement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.1.4 Rosetta stone . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.2 Stubbornness and social power in the FDG model . . . . . . . . . . . . . . . . . . . . .
+2.2.1 Modelling stubbornness: self-weights and stubborn agents . . . . . . . . . . . .
+2.2.2 Self-weights, stubbornness and convergence . . . . . . . . . . . . . . . . . . . .
+2.2.3 Self-weights, stubbornness and social power . . . . . . . . . . . . . . . . . . . .
+
+4
+4
+4
+4
+5
+5
+6
+7
+7
+8
+
+3 The Friedkin–Johnsen model
+3.1 Introduction to the FJ model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.1.1 The FJ model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.1.2 Convergence and stability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.1.3 What the opinions converge to: the matrix V and the augmented graph . . . .
+3.1.4 Influence centrality . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.2 Stubbornness and influence centrality in the FJ model . . . . . . . . . . . . . . . . . .
+3.2.1 Modelling stubbornness: prejudices and stubborn agents . . . . . . . . . . . . .
+3.2.2 Prejudices, stubbornness and convergence . . . . . . . . . . . . . . . . . . . . .
+3.2.3 Prejudices, stubbornness and influence centrality . . . . . . . . . . . . . . . . .
+
+9
+9
+9
+10
+12
+14
+15
+15
+17
+22
+
+4 Conclusions
+
+22
+1
+
+1
+
+Introduction
+
+How do the opinions of a group evolve when its members listen to each other, and what changes when
+some of them resist? Models of opinion dynamics describe a social network as a weighted digraph,
+whose nodes are the agents and whose edges carry the influence of one agent on another, and update
+the opinions by repeated averaging. This report follows the tutorial by Proskurnikov and Tempo [5],
+the course slides [2, 3, 1] and, as a support, the book by Bullo [4].
+The historical account of [5] explains why the report compares two models. The first model of this
+kind was proposed by French in 1956: every agent replaces its opinion with the mean of the opinions
+displayed to it, and French used it to measure the social power of each agent, i.e. its ability to influence
+the common opinion of the group; his conditions for consensus were proved rigorously by Harary in
+1959 and 1965. In 1974 DeGroot extended the model to an arbitrary stochastic matrix, as a procedure
+to reach a consensus of subjective probabilities: this is the French–Harary–DeGroot (FDG) model. In
+1964 Abelson had proposed its continuous-time counterpart and observed that consensus, the outcome
+of a very broad class of such models, is too strong to be realistic: what must be assumed to explain
+the persistent disagreement observed in real groups? This question, the community cleavage problem,
+points to agents that resist the others. In 1968 Taylor extended Abelson’s model with constant external
+opinions, the prejudices, to which the agents remain attached; its discrete-time counterpart came only
+in the 1990s, with the Friedkin–Johnsen (FJ) model, in which every agent mixes the average of the
+opinions it listens to with a fixed prejudice, and which has been validated experimentally on small and
+medium-size groups.
+The thread of the report is stubbornness: an agent that never changes its opinion, and the graded
+mechanisms of which it is the extreme case, a self-weight in the FDG model and a prejudice in the FJ
+model. We ask how these mechanisms change three things: whether the opinions converge, what they
+converge to, and how much each agent weighs in the result, measured by the social power in the FDG
+model and by the influence centrality in the FJ model. The two models are compared on the same
+small networks and with the same resisting agents, agent 1 in most examples, so that every difference
+comes from the model and not from the data; an auxiliary network, used only for the FJ model, shows
+what happens when a prejudice does not reach every agent. The continuous-time models of Abelson
+and Taylor are mentioned only as an overview and are not studied in this report.
+Section 1.1 recalls the notions on graphs and non-negative matrices used throughout. Section 2
+introduces the FDG model and studies stubbornness and social power in it; Section 3 does the same
+for the FJ model, from its convergence and the augmented graph to the influence centrality; Section 4
+compares the two models.
+
+1.1
+
+Preliminaries
+
+This subsection collects the notions on graphs and non-negative matrices used for both models, following the course slides [2, 3, 1].
+1.1.1
+
+Graphs
+
+A weighted digraph G = (V, E, {aij }(i,j)∈E ) has node set V = {1, 2, . . . , n}, edge set E ⊆ V × V and a
+weight aij > 0 for each edge (i, j) ∈ E; an edge (i, i) is a self-loop. Throughout the report the nodes
+are agents, and an edge (i, j) means that agent i is influenced by agent j. This is the convention of the
+course slides [1]; the tutorial by Proskurnikov and Tempo draws the edges in the opposite direction [5].
+Definition 1.1 (Weighted adjacency matrix [2]). Given a weighted digraph G = (V, E, {aij }(i,j)∈E )
+of order n the (weighted) adjacency matrix of G is the n × n matrix A in which:
+(i) for each edge (i, j) ∈ E the (i, j) entry of A is equal to the edge weight aij ,
+(ii) all other entries of A are equal to zero.
+A digraph is strongly connected if there is a directed walk from any node to any other node, and a
+node is globally reachable if it can be reached from any other node through a directed walk [2].
+With our convention, a directed walk from i to j means that agent i is influenced by agent j, either
+directly or through intermediaries. Hence G is strongly connected when every agent influences every
+other agent, at least indirectly, and a globally reachable node is an agent that influences the whole
+group.
+2
+
+Definition 1.2 (Periodic digraph [2]). A strongly connected digraph G = (V, E) is periodic if there
+exists an integer k > 1 (the period) that divides the length of every simple cycle of the digraph.
+A strongly connected digraph that is not periodic is called aperiodic; in particular, a strongly
+connected digraph with a self-loop is aperiodic, since the self-loop is a cycle of length 1.
+Definition 1.3 (Strongly connected component [1]). Given a (weighted) digraph G. A subgraph S is
+a strongly connected component of G if S is strongly connected and any other subgraph of G strictly
+containing S is not strongly connected.
+Definition 1.4 (Condensation digraph [1]). The condensation digraph C(G) of a (weighted) digraph
+G is obtained by collapsing each strongly connected component of G into a single node. For any two
+distinct strongly connected components Sk and Sh there is an edge (Sk , Sh ) in C(G) iff there exists an
+edge (i, j) in G with i ∈ Sk and j ∈ Sh .
+A node with no outgoing edges is called a sink [2]. A sink of C(G) is a group of agents that are
+influenced only by members of the group itself: no agent outside the group can change their opinions.
+If G contains a globally reachable node, then C(G) has a unique sink [1].
+1.1.2
+
+Matrices
+
+Throughout, 1n is the vector of n ones, ei the i-th vector of the canonical basis, spec(A) the set of
+eigenvalues of a matrix A, and inequalities between vectors or matrices hold entrywise.
+Definition 1.5 (Non-negative and stochastic matrices [3]). A matrix A = [aij ] ∈ Rn×n is
+(i) non-negative (positive) if aij ≥ 0 (aij > 0, resp.) for all i, j ∈ {1, . . . , n};
+(ii) row-stochastic if it is non-negative and A1n = 1n ;
+(iii) column-stochastic if it is non-negative and A⊤ 1n = 1n ;
+(iv) doubly-stochastic if it is row- and column-stochastic.
+Theorem 1.6 (Spectral properties of row-stochastic matrices [3]). For a row-stochastic matrix A ∈
+Rn×n
+(i) 1 ∈ spec(A);
+(ii) spec(A) is a subset of the unit disk and ρ(A) = 1.
+Definition 1.7 (Semi-convergent and convergent matrices [3]). A matrix A ∈ Rn×n is
+(i) semi-convergent if limk→+∞ Ak exists (finite);
+(ii) convergent (or Schur stable) if it is semi-convergent and limk→+∞ Ak = 0n×n .
+Theorem 1.8 (Convergence and spectral radius [3]). Consider a matrix A ∈ Rn×n and let ρ(A) :=
+max{|λ| | λ ∈ spec(A)} (spectral radius of A). Then:
+(i) A convergent ⇐⇒ ρ(A) < 1;
+(ii) A semi-convergent and not convergent ⇐⇒ 1 is a semisimple eigenvalue of A and all the other
+eigenvalues have modulus strictly less than 1.
+Definition 1.9 (Regularity [5]). We call the matrix A regular if the limit A∞ = limk→∞ Ak exists
+and fully regular if, additionally, the rows of A∞ are identical (that is, A∞ = 1n w⊤ for some w ∈ Rn ).
+In the terminology of the course slides, a matrix is regular if and only if it is semi-convergent
+(Definition 1.7).
+Definition 1.10 (Irreducible and primitive matrices [3]). A non-negative matrix A ∈ Rn×n , n ≥ 2, is
+P
+k
+(i) irreducible if n−1
+k=0 A is a positive matrix;
+(ii) primitive if there exists k ∈ N such that Ak is positive;
+(iii) reducible if it is not irreducible.
+A non-negative matrix A, n ≥ 2, is irreducible if and only if its digraph is strongly connected [2].
+Theorem 1.11 (Primitive matrices and digraphs [2]). Let G = (V, E, {aij }(i,j)∈E ) be a weighted
+digraph of order n ≥ 2 with adjacency matrix A. The following statements are equivalent:
+(i) A is primitive,
+(ii) G is strongly connected and aperiodic.
+3
+
+Corollary 1.12 (Primitive matrices and digraphs with self-loops [2]). Let G = (V, E, {aij }(i,j)∈E )
+be a weighted digraph of order n ≥ 2 with adjacency matrix A. If G has at least one self-loop and is
+strongly connected, then A is primitive.
+Given a weightedPdigraph G with weighted adjacency matrix A, the weighted out-degree of node i
+is the i-th row sum nj=1 aij of A [2]. A row-stochastic matrix has all weighted out-degrees equal to
+1; when some of them are smaller than 1, the following notions apply.
+Definition 1.13 (Row-substochastic matrix [1]). A non-negative matrix A ∈ Rn×n is row-substochastic
+if its row-sums are at most 1 and at least one row-sum is strictly less than 1. That is:
+A1n ≤ 1n
+
+and ∃ i ∈ {1, . . . , n} s.t. e⊤
+i A1n < 1.
+
+Lemma 1.14 (Convergent row-substochastic matrices [1]). Let G be a weighted digraph with rowsubstochastic adjacency matrix A. Then, A is convergent if and only if G contains directed walks from
+each node with (weighted) out-degree 1 to a node with (weighted) out-degree strictly less than 1.
+
+2
+
+The French–Harary–DeGroot model
+
+2.1
+
+Introduction to the FDG model
+
+2.1.1
+
+The FDG model
+
+Consider a group of agents V = {1, 2, . . . , n}, where xi ∈ R is the opinion of agent i on a given topic,
+and a weighted digraph G = (V, E, {aij }(i,j)∈E ) describing who influences whom, with the convention
+of Section 1.1. In the French–Harary–DeGroot (FDG) model [1], called French–DeGroot model in [5],
+the new opinion of each agent is a weighted average of the opinions of the agents it is influenced by,
+xi (k + 1) =
+
+n
+X
+
+aij xj (k),
+
+j=1
+
+n
+X
+
+aij = 1,
+
+(1)
+
+j=1
+
+or, in vector form, x(k + 1) = Ax(k), where A is the weighted adjacency matrix of G (Definition 1.1).
+The constraint on the weights means that A is row-stochastic (Definition 1.5). In the terminology
+of [1], the FDG model is a DT averaging system.
+Since x(k) = Ak x(0), the asymptotic behaviour of the model is determined by the powers of A.
+Convergence and consensus are defined as follows.
+Definition 2.1 (Convergence [5]). The FDG model (1) is convergent if for any initial condition x(0)
+the limit exists
+x(∞) = lim x(k) = lim Ak x(0).
+k→∞
+
+k→∞
+
+A convergent model reaches a consensus if x1 (∞) = · · · = xn (∞) for any initial opinion vector x(0).
+Accordingly, three outcomes are possible.
+• No convergence: the model is not convergent, i.e. limk→+∞ x(k) does not exist for some x(0);
+equivalently, A is not semi-convergent (Definition 1.7).
+• Consensus: the model reaches a consensus, i.e. for every x(0) the opinions converge to α1n for
+some α ∈ R, which depends on x(0).
+• Disagreement: the model is convergent but does not reach a consensus, i.e. for some x(0) the
+limit x(∞) is not of the form α1n .
+2.1.2
+
+Consensus and social power
+
+The following theorem characterizes when the FDG model reaches a consensus. Its condition (A3)
+involves the subgraph of globally reachable nodes, which is always strongly connected [1], so that its
+periodicity is well defined (Definition 1.2).
+Theorem 2.2 (Consensus in DT averaging systems [1]). Let G be a weighted digraph with rowstochastic adjacency matrix A. The following statements are equivalent:
+(A1) the eigenvalue 1 is simple and all other eigenvalues µ satisfy |µ| < 1;
+(A2) A is semi-convergent and limk→∞ Ak = 1n w⊤ where w ∈ Rn satisfies w ≥ 0, 1⊤
+n w = 1, and
+⊤
+⊤
+w A=w ;
+4
+
+(A3) G contains a globally reachable node and the subgraph of globally reachable nodes is aperiodic.
+If any, and therefore all, of the previous conditions are satisfied, then
+(i) w is the left dominant eigenvector of A and wi > 0 iff node i is globally reachable;
+
+(ii) the solution of the DT averaging system satisfies limk→∞ x(k) = w⊤ x(0) 1n .
+Corollary 2.3 (Average
+consensus
+[1]). If A is doubly-stochastic and (A3) holds, then w = n1 1n and
+
+1 Pn
+limk→+∞ x(k) = n i=1 xi (0) 1n .
+In Theorem 2.2, the left dominant eigenvector is the left eigenvector associated with the dominant
+eigenvalue ρ(A) = 1 (Theorem 1.6) [3].
+Social power. The entry wi is called the social power of agent i: it is the weight of the initial opinion
+xi (0) in the final opinion of the group, i.e. in the consensus value [5]
+lim xi (k) = w⊤ x(0) =
+
+k→∞
+
+n
+X
+
+wj xj (0)
+
+for every agent i.
+
+(2)
+
+j=1
+
+This definition requires a consensus: by (A2), all the rows of limk→∞ Ak = 1n w⊤ are equal to w⊤ , so
+a single vector describes the whole group. Without a consensus, as in Theorem 2.4, the rows of the
+limit matrix differ, each agent ends at its own weighted average of the initial opinions, and no single
+vector plays the role of w.
+Point (i) has a direct social interpretation: the consensus value is the same for every agent, so the
+initial opinion of agent i can enter it only if it reaches all the agents, i.e. if i is globally reachable.
+Hence the consensus value depends only on the initial opinions of the globally reachable agents.
+Among the globally reachable agents, the social power depends on their position in the network,
+and it can be regarded as a centrality measure [5]; Section 3.1.4 extends this point of view to the FJ
+model.
+2.1.3
+
+Disagreement
+
+Theorem 2.2 requires a single globally reachable group, i.e. a unique sink in the condensation digraph
+C(G). We now consider the case in which C(G) has ns ≥ 2 sinks. Each sink is a strongly connected
+component, so its periodicity is well defined (Definition 1.2).
+Theorem 2.4 (Disagreement in DT averaging systems [1]). Let G be a weighted digraph with rowstochastic adjacency matrix A. Assume that the condensation digraph C(G) has ns ≥ 2 sinks. The
+following statements are equivalent:
+(A1) the eigenvalue 1 is semi-simple with multiplicity ns and all other eigenvalues µ satisfy |µ| < 1;
+(A2) A is semi-convergent;
+(A3) each sink of C(G) is aperiodic.
+If any, and therefore all, of the previous conditions are satisfied, then the solution of the DT averaging
+system satisfies
+lim x(k) = v ̸= α1n ,
+
+k→∞
+
+α ∈ R.
+
+The final opinions can be described group by group. The agents of a sink are not influenced by
+anyone outside it, so each sink evolves as an FDG model on its own and, being aperiodic, reaches an
+internal consensus that depends only on the initial opinions of its members; every agent outside the
+sinks converges to a convex combination of the consensus values of the sinks [1]. In social terms, a
+sink is a closed group that listens only to itself, and the agents in between settle on an intermediate
+opinion: the disagreement is bounded by the smallest and the largest consensus value of the sinks.
+2.1.4
+
+Rosetta stone
+
+Table 1, the so-called Rosetta stone [1], summarizes all the possible behaviours of the FDG model:
+it translates each property of the row-stochastic matrix A into a property of the digraph G and into
+the asymptotic outcome, with an example for each case; the translation between A and G comes from
+the characterizations of irreducible and primitive matrices (Theorem 1.11) in cases (i)–(ii), and from
+Theorems 2.2 and 2.4 in cases (iii)–(iv). In case (i) both agents are globally reachable and A is doublystochastic, so by Corollary 2.3 the group agrees on the average of the initial opinions. In case (iii)
+5
+
+agent 1 listens only to itself (a11 = 1, a stubborn agent in the sense of Section 2.2.1) and is the only
+globally reachable agent: w = (1, 0)⊤ and the group agrees on x1 (0). In case (iv) both agents listen
+only to themselves: each of them is an aperiodic sink of C(G), and every agent keeps its initial opinion
+(Theorem 2.4).
+Case
+
+A
+
+Example digraph
+1/2
+
+Property of A / of G
+
+Outcome
+
+{1, 0}
+
+A primitive / G strongly
+connected and aperiodic
+
+consensus
+
+{1, −1}
+
+A irreducible, not primitive
+/ G strongly connected and
+periodic
+
+no convergence
+
+{1, 1/2}
+
+1 simple and strictly
+dominant, A not primitive /
+C(G) has a unique sink,
+which is aperiodic
+
+consensus
+
+{1, 1}
+
+1 semi-simple but not
+simple, strictly dominant /
+C(G) has at least two sinks,
+all aperiodic
+
+disagreement
+
+{1, 1, −1}
+
+1 not strictly dominant / G
+not strongly connected, at
+least one sink of C(G) is
+periodic
+
+no convergence
+
+1/2
+1/2
+
+(i)
+
+spec(A)
+
+1
+
+h
+
+2
+
+1/2 1/2
+1/2 1/2
+
+i
+
+1/2
+
+(ii)
+
+1
+
+[ 01 10 ]
+
+2
+
+1/2
+
+(iii)
+
+1
+
+(iv)
+
+(v)
+
+1/2
+
+1
+
+1
+
+ 1
+
+2
+
+1/2 1/2
+
+[ 10 01 ]
+
+2
+
+2
+
+
+0
+
+h0 1 0i
+
+3
+
+100
+001
+
+Table 1: Rosetta stone of the FDG model x(k + 1) = Ax(k), with A row-stochastic: for each case, an example
+digraph (unlabelled edges have weight 1), its matrix A, the spectrum of A, the general property of A and of G,
+and the outcome. Cases (i)–(iv) and the examples follow [1]; the properties of case (v), left blank in the slides,
+follow from [5].
+
+2.2
+
+Stubbornness and social power in the FDG model
+
+In the FDG model, stubbornness is modelled through the self-weight aii , i.e. the weight of the self-loop
+of agent i. This section studies how self-weights, and stubborn agents in particular, affect the two
+aspects introduced in Section 2.1: whether the group reaches an agreement, and how the social power
+is distributed among the agents. All the simulations were run in MATLAB; the code that generates
+every figure is provided with the report.
+All the examples use the two networks of Figure 1, both with n = 6 agents: in the directed cycle each
+agent is influenced only by the next one, ai,i+1 = 1; in the bidirectional ring by its two neighbours,
+ai,i−1 = ai,i+1 = 1/2 (indices modulo 6). Socially, in the first network everyone listens to a single
+person, in the second to the two people next to them. Without self-loops both digraphs are strongly
+connected and periodic, with period 6 for the directed cycle and 2 for the bidirectional ring, whose
+cycles all have even length: neither network reaches an agreement (case (ii) of Table 1). Both matrices
+are doubly-stochastic, so w = 61 16 is the left eigenvector associated with the eigenvalue 1: no agent is
+favoured by the structure of the network, and any asymmetry in the social power will be due only to
+the self-weight added to agent 1.
+t
+
+1
+
+t
+1−t
+2
+
+1−t
+
+1
+
+1−t
+2
+
+6
+
+2
+
+6
+
+2
+
+5
+
+3
+
+5
+
+3
+
+4
+
+4
+
+(a) directed cycle
+
+(b) bidirectional ring
+
+Figure 1: The two networks used in Sections 2.2 and 3. An edge i → j means that agent i is influenced by agent
+j. In (a) all edges have weight 1, in (b) all edges have weight 1/2. The dashed self-loop of agent 1, of weight t,
+is the only modification considered: the other edges of agent 1 are scaled by 1 − t, as marked (equation (3)).
+
+6
+
+2.2.1
+
+Modelling stubbornness: self-weights and stubborn agents
+
+The self-weight aii is the weight that agent i gives to its own opinion [4], i.e. to its current opinion
+xi (k) in (1); it indicates how open the agent is to the opinions of the others [5]. An agent with aii = 0
+is open-minded and relies completely on the others; an agent with a positive self-weight changes its
+opinion more slowly, but it still moves towards the opinions it listens to. In social terms, a self-weight
+is a form of inertia, not an anchor to a fixed opinion.
+Definition 2.5 (Stubbornness [5]). An agent is said to be stubborn if its opinion remains unchanged
+independent of the others’ opinions.
+If the opinions obey the FDG model, then agent i is stubborn, xi (k) ≡ xi (0), if and only if aii = 1 [5]
+(and hence aij = 0 for all j ̸= i, since A is row-stochastic).
+Stubbornness is therefore the extreme case of the self-weight, and there is no intermediate degree
+of it: an agent with 0 < aii < 1 is not stubborn, it only has a positive self-weight.
+In the digraph, a stubborn agent has no edges towards the other agents: it is influenced by nobody,
+while the agents that listen to it keep doing so. Hence it forms a strongly connected component made
+of a single node, which is a sink of C(G) and is aperiodic because of its self-loop. If, in addition,
+every agent is influenced by the stubborn agent i, directly or through intermediaries, then i is the
+only globally reachable node, and Theorem 2.2 gives w = ei : the whole group converges to the initial
+opinion of the stubborn agent (see also [5]).
+To move continuously from no self-weight to stubbornness, we modify only the row of agent 1.
+Given a row-stochastic matrix A with a11 = 0, as in both networks of Figure 1, we replace its first row
+by
+⊤
+a1 (t)⊤ = (1 − t) a⊤
+1 + t e1 ,
+
+t ∈ [0, 1],
+
+(3)
+
+leaving the other rows unchanged, and we call A(t) the resulting matrix: agent 1 gives weight t to itself
+and splits the remaining weight 1 − t among the agents it listened to before, in the same proportions,
+as marked in Figure 1. Thus t = a11 : t = 0 is the original network and t = 1 makes agent 1 stubborn.
+In the following we consider t = 0, 1/2 and 1.
+2.2.2
+
+Self-weights, stubbornness and convergence
+
+The three values of t correspond to three different cases of the Rosetta stone.
+• t = 0: both digraphs are strongly connected and periodic, so neither network converges (case (ii)).
+• 0 < t < 1: agent 1 still listens to its neighbours with total weight 1 − t > 0, so the digraph stays
+strongly connected, and the self-loop of agent 1 is a cycle of length 1, so the digraph becomes
+aperiodic. By Corollary 1.12 the matrix is primitive, and the group reaches a consensus (case (i)).
+• t = 1: agent 1 is stubborn and influences every other agent through the cycle, so it is the only
+globally reachable node (Section 2.2.1) and the group reaches a consensus on x1 (0) (case (iii)).
+The same picture can be read on the spectrum of A(t). For t = 0 the matrix of the directed cycle is
+a permutation matrix with A6 = I, so its spectrum is the set of the sixth roots of unity; the matrix of
+the bidirectional ring is circulant, with eigenvalues cos(2πk/6), k = 0, . . . , 5, i.e. {1, 12 , 12 , − 12 , − 12 , −1}.
+In both cases some eigenvalues different from 1 lie on the unit circle, and they cause the oscillations.
+For t > 0 all the eigenvalues different from 1 lie strictly inside the unit disk, and the group converges;
+for t = 1/2 the largest of their moduli, computed numerically, is ≈ 0.92 on the directed cycle, where the
+characteristic polynomial of A(1/2) is λ5 (λ − 12 ) − 12 , and ≈ 0.90 on the bidirectional ring.
+ For
+ t = 1,
+listing agent 1 first, the matrix of the directed cycle is block lower triangular, A(1) = 1b N0 , where
+b = (0, 0, 0, 0, 1)⊤ records that agent 6 listens to agent 1, and the block N of agents 2, . . . , 6 is strictly
+upper triangular, since agent i copies agent i + 1. Hence N 5 = 0, the eigenvalue 0 has multiplicity 5,
+and A(1)5 = 16 e⊤
+1 : after five steps every agent holds x1 (0), which is why the consensus is reached in
+a finite number of steps.
+Figure 2 shows the opinions xi (k) in the six cases. For t = 0 the opinions keep rotating along
+the directed cycle and oscillating between two configurations on the bidirectional ring. For t = 1/2
+both networks reach a consensus on a weighted average of all the initial opinions (Section 2.2.3).
+For t = 1 both reach x1 (0), in different ways: in the directed cycle the opinion of agent 1 is copied
+backwards along the chain, one agent per step, and the consensus is reached after n − 1 = 5 steps; in
+the bidirectional ring the opinions approach x1 (0) gradually, the neighbours of agent 1 first.
+7
+
+xi (k)
+
+Directed cycle, t = 0
+
+Directed cycle, t = 1/2
+
+Directed cycle, t = 1
+
+1
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0.2
+
+0
+0
+
+0
+0
+
+0
+0
+
+20
+
+40
+
+Bidirectional ring, t = 0
+
+20
+
+40
+
+Bidirectional ring, t = 1/2
+
+1
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0.2
+
+0
+0
+
+20
+
+40
+
+0
+0
+
+20
+
+20
+
+40
+
+Bidirectional ring, t = 1
+
+40
+
+0
+0
+
+20
+
+x1
+x2
+x3
+x4
+x5
+x6
+
+40
+
+k
+Figure 2: Opinions xi (k) in the two networks of Figure 1 (top: directed cycle; bottom: bidirectional ring) for
+three values of the self-weight t of agent 1 (columns), with x(0) = (0, 0.2, 0.4, 0.6, 0.8, 1)⊤ . Agent 1 is marked
+with dots.
+
+In social terms, a group in which nobody gives weight to its own opinion can keep passing opinions
+around forever; a single agent that gives some weight to its current opinion, without being stubborn,
+is enough, on a strongly connected network, for the whole group to agree, and if that agent becomes
+stubborn the agreement is on its own opinion. The network decides only how this happens: by copying
+along a chain, or by averaging with the neighbours.
+2.2.3
+
+Self-weights, stubbornness and social power
+
+For t > 0 both networks reach a consensus (Section 2.2.2), so the social power w of Section 2.1.2 is
+well defined, and Theorem 2.2 describes how it depends on t.
+• 0 < t < 1: the digraph is strongly connected, so every agent is globally reachable and, by point (i)
+of Theorem 2.2, every agent has a positive social power. Agent 1 gives weight to its own opinion,
+but it does not take all the influence: the initial opinion of every agent enters the consensus
+value.
+• t = 1: agent 1 is stubborn and is the only globally reachable node, so w = e1 : the stubborn
+agent takes all the social power, and the initial opinions of the other agents have no effect on the
+final opinion of the group.
+Between these two extremes, w is the left eigenvector of A(t) associated with the eigenvalue 1,
+normalized to sum 1 (condition (A2) of Theorem 2.2). On both networks it is
+⊤
+1
+w(t) =
+1, 1 − t, 1 − t, 1 − t, 1 − t, 1 − t ,
+1 + 5(1 − t)
+as one checks by substituting w = (w1 , b, . . . , b) in w⊤ A(t) = w⊤ : in both networks agents 2, . . . , 6
+receive the same total weight from the others, and the equations reduce to b = (1 − t) w1 . Hence
+w1 = 1/(1 + 5(1 − t)) grows from 1/6 to 1, the other agents share the rest equally (w1 = 2/7 and
+wi = 1/7 for i ̸= 1 when t = 1/2), and the consensus value (point (ii) of Theorem 2.2) is
+w(t)⊤ x(0) =
+
+3(1 − t)
+,
+6 − 5t
+
+which moves from the average 0.5 of the initial opinions, for t → 0, to x1 (0) = 0 for t = 1, and
+is 3/7 ≈ 0.4286 for t = 1/2, the value reached in Figure 2. Figure 3 plots the two curves, which
+are the same on the two networks. In other words, the network decides how the opinions converge
+(Figure 2), but not where: for every t, the consensus value is the same on the directed cycle and on
+the bidirectional ring.
+
+8
+
+1
+w1 , directed cycle
+w1 , bidirectional ring
+w2 , directed cycle
+w2 , bidirectional ring
+
+social power
+
+0.8
+0.6
+0.4
+0.2
+0
+0.6
+
+average of x(0)
+
+consensus value
+
+0.5
+
+directed cycle
+bidirectional ring
+
+0.4
+0.3
+0.2
+0.1
+
+x1 (0)
+
+0
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+self-weight t of agent 1
+
+Figure 3: Top: social power of agent 1 (w1 ) and of agent 2 (w2 ), which agents 3, . . . , 6 share, as a function of
+the self-weight t ∈ (0, 1] of agent 1. Bottom: consensus value w⊤ x(0) for x(0) = (0, 0.2, 0.4, 0.6, 0.8, 1)⊤ ; the
+dashed lines mark the average of x(0) and x1 (0). Both panels are computed numerically in the directed cycle
+(dots) and in the bidirectional ring (crosses); the two networks give the same values.
+
+With stubborn agents, the FDG model converges under the following condition [5].
+Corollary 2.6 ([5]). Let the group have s ≥ 1 stubborn agents, influencing all other individuals (i.e.
+every other node of G is connected by a walk to the set of stubborn nodes). Then the FDG model (1)
+is convergent.
+Remark 2.7 (More than one stubborn agent). If two or more agents are stubborn, each of them is a
+sink of C(G) made of a single, aperiodic node. If every other agent is influenced, directly or through
+intermediaries, by at least one stubborn agent, these are the only sinks, and the group converges
+(Corollary 2.6) to a disagreement (Theorem 2.4): every stubborn agent keeps its own initial opinion,
+and every other agent converges to a convex combination of the opinions of the stubborn agents it
+is influenced by (see also [5]). Since there is no single consensus value, the social power is no longer
+defined. This situation, in which several agents are anchored to different fixed opinions, is the starting
+point of the Friedkin–Johnsen model of Section 3.
+
+3
+
+The Friedkin–Johnsen model
+
+3.1
+
+Introduction to the FJ model
+
+3.1.1
+
+The FJ model
+
+In the FDG model every agent keeps averaging the opinions it listens to, and a persistent disagreement
+can only come from the structure of the network, i.e. from two or more sinks of C(G) (Theorem 2.4).
+The Friedkin–Johnsen (FJ) model adds a second ingredient: each agent can also be tied to a fixed
+opinion of its own, called its prejudice. Following [5], the model reads
+x(k + 1) = ΛW x(k) + (I − Λ) u,
+
+(4)
+
+where
+• W ∈ Rn×n is a row-stochastic matrix, the matrix of social influences, i.e. the weighted adjacency
+matrix of the influence digraph G (Definition 1.1), which plays the role of A in the FDG model;
+• Λ = diag(λ1 , . . . , λn ), with λi ∈ [0, 1] the susceptibility of agent i to social influence;
+• u ∈ Rn is a constant vector collecting the agents’ prejudices.
+Componentwise,
+xi (k + 1) = λi
+
+n
+X
+
+wij xj (k) + (1 − λi ) ui .
+
+j=1
+
+9
+
+(5)
+
+At every step agent i averages the opinions it listens to, exactly as in the FDG model, and mixes this
+average with its prejudice: the weight λi goes to the others and the complement 1 − λi goes to ui . The
+two quantities play different roles: the prejudice ui is an opinion and says where the agent is anchored,
+while 1 − λi is a weight and says how strongly; we call 1 − λi the attachment of agent i to its prejudice.
+The special cases of (4) are the following [5].
+• If λi = 1, agent i follows the FDG rule. If Λ = I, the FJ model reduces to the FDG model with
+A = W ; for this reason we assume Λ ̸= I from now on.
+• If λi < 1, agent i is called prejudiced : it is anchored to its prejudice ui , and [5] informally calls
+it “partially” stubborn, although its opinion moves.
+• If λi = 0, then xi (k) = ui for all k ≥ 1: the agent ignores the others and jumps to its prejudice
+after one step. Its opinion never changes, i.e. the agent is stubborn in the sense of Definition 2.5,
+only if in addition ui = xi (0). A stubborn agent of the FJ model is therefore an agent with
+λi = 0 and ui = xi (0).
+In social terms, the self-weight of the FDG model and the prejudice of the FJ model are two
+different forms of resistance to influence. A self-weight ties an agent to its current opinion, which still
+moves towards the others (Section 2.2.1); a prejudice ties it to a fixed opinion, which never moves.
+In the original formulation of Friedkin and Johnsen the prejudices coincide with the initial opinions,
+u = x(0), and the susceptibilities are coupled to the self-weights through 1 − λi = wii [5]. As in [5],
+we do not impose these conditions: u and x(0) are independent, and so are Λ and W . The choice
+u = x(0) will be needed in Section 3.1.4 to define the influence centrality.
+3.1.2
+
+Convergence and stability
+
+The FJ model (4) is a linear system with the constant input u. Following [5], we say that it converges
+if the limit x(∞) = limk→+∞ x(k) exists for every initial condition x(0), and that it is asymptotically
+stable if ΛW is convergent, i.e. ρ(ΛW ) < 1 (Definition 1.7 and Theorem 1.8). Regular matrices are
+recalled in Definition 1.9.
+Both properties are characterized by distinguishing the agents that are reached by the prejudices
+from those that are not.
+Definition 3.1 (P-dependent agents [5]). Agent i is P-dependent if it is prejudiced or influenced by
+some prejudiced agent j, that is, a walk from i to j in the graph G exists. Otherwise, the agent is
+P-independent.
+The walk goes from the agent to the prejudiced agent because of our convention on the edges; in [5],
+where the edges are drawn in the opposite direction, the same walk goes from the prejudiced agent to
+the agent. In social terms, an agent is P-dependent if at least one prejudice reaches it.
+A P-independent agent i is not prejudiced, so λi = 1, and it is not influenced by any P-dependent
+agent: if wij > 0 with j P-dependent, there would be a walk from i to a prejudiced agent through j,
+and i would be P-dependent. Since Λ ̸= I, there is at least one prejudiced agent, hence at least one
+P-dependent agent. Renumbering the agents so that agents 1, . . . , r, with r ≥ 1, are P-dependent and
+agents r + 1, . . . , n are P-independent, and splitting x = [x1 ; x2 ], u = [u1 ; u2 ], W and Λ accordingly,
+we have W 21 = 0 and Λ22 = I, and the model (4) decomposes as [5]
+
+
+x1 (k + 1) = Λ11 W 11 x1 (k) + W 12 x2 (k) + (I − Λ11 ) u1 ,
+(6)
+(7)
+
+x2 (k + 1) = W 22 x2 (k),
+
+where W 22 is row-stochastic, since W is row-stochastic and W 21 = 0. The P-independent agents
+therefore follow an FDG model among themselves, with A = W 22 , and no prejudice reaches them; the
+P-dependent agents receive the opinions of the P-independent ones as an additional input.
+Theorem 3.2 ([5]). Let the community have r ≥ 1 P-dependent agents and n − r ≥ 0 P-independent
+ones. Then, the subsystem (6) is asymptotically stable, i.e. Λ11 W 11 is Schur stable ρ(Λ11 W 11 ) < 1.
+The model (4) is convergent if and only if r = n or (7) is convergent, i.e. W 22 is regular. In this case
+ 1 
+
+
+u
+x1 (∞) = V 2
+,
+V ≜ (Ir − Λ11 W 11 )−1 Ir − Λ11 Λ11 W 12 .
+(8)
+x (∞)
+The matrix V is stochastic, i.e. the final opinion of any agent is a convex combination of the prejudices
+and final opinions of P-independent agents.
+10
+
+In [5], stochastic stands for row-stochastic in the sense of Definition 1.5.
+Theorem 3.2 can be read according to the number r of P-dependent agents.
+• r = 0. This case is not covered by Theorem 3.2: no agent is prejudiced, i.e. Λ = I, and the FJ
+model (4) reduces to the FDG model with A = W (Section 2.1). This is why we assume Λ ̸= I,
+which guarantees r ≥ 1.
+• 0 < r < n. P-dependent and P-independent agents coexist. The P-independent agents follow (7),
+an FDG model with the row-stochastic matrix W 22 , so the outcomes of Table 1 apply to them.
+They are read on the sinks of C 22 , the condensation digraph of the subgraph of the P-independent
+agents (whose adjacency matrix is W 22 ): consensus or disagreement if all the sinks are aperiodic
+(cases (i), (iii) and (iv)), no convergence otherwise (cases (ii) and (v)). If all the sinks are
+aperiodic, W 22 is regular, the model (4) converges and the final opinions of the P-dependent
+agents are given by (8); otherwise the model (4) does not converge.
+• r = n. There are no P-independent agents, the subsystem (6) is the whole model and the
+model (4) always converges. This case is the subject of Corollary 3.3 below.
+In social terms, the P-dependent agents settle on a compromise between the prejudices and the opinions
+of the P-independent agents they listen to whenever these opinions settle; whether the whole group
+settles is decided only by the P-independent agents.
+Corollary 3.3 ([5]). The Friedkin–Johnsen model (4) is asymptotically stable if and only if all agents
+are P-dependent. Then, V = (I − ΛW )−1 (I − Λ). This holds, in particular, if Λ < In or Λ ̸= In and
+G is strongly connected (W is irreducible).
+With r = n, (8) gives, for every x(0),
+x(∞) = V u,
+
+(9)
+
+with V as in Corollary 3.3.
+The condition of Corollary 3.3 can also be read on the matrix ΛW with the tools of the course.
+The matrix ΛW is no longer row-stochastic: since W is row-stochastic, the i-th row of ΛW sums to
+λi . Rows of agents that are not prejudiced sum to 1, rows of prejudiced agents sum to less than 1,
+and since Λ ̸= I at least one such row exists. Hence ΛW is row-substochastic (Definition 1.13) and
+Lemma 1.14 applies.
+For the matrix ΛW , the weighted out-degree of agent i is λi : the nodes with out-degree 1 are the
+agents that are not prejudiced, and the nodes with out-degree less than 1 are the prejudiced agents.
+The condition of Lemma 1.14 therefore reads: every agent that is not prejudiced is influenced, directly
+or through intermediaries, by a prejudiced agent, i.e. all the agents are P-dependent. This is exactly
+the condition of Corollary 3.3. Indeed, [5] remarks that Corollary 3.3 can be turned into a criterion of
+Schur stability for substochastic matrices.
+Two observations give an intuition for Corollary 3.3. First, the limit x(∞) = V u is an equilibrium
+of (4): since (I − ΛW )V = I − Λ, it satisfies x(∞) = ΛW x(∞) + (I − Λ)u. Letting e(k) = x(k) − x(∞)
+and subtracting this equation from (4) gives
+e(k + 1) = ΛW e(k),
+
+(10)
+
+an autonomous linear system in which the prejudice u does not appear: ΛW decides whether the
+opinions converge, u decides where.
+Second, the linear system (10) shows the role of the P-dependent agents.
+PnCall ei (k) = xi (k)−xi (∞)
+the deviation of agent i from its final opinion. By (10), ei (k + 1) = λi j=1 wij ej (k): at each step,
+agent i keeps a fraction λi of the weighted average of the deviations of the agents it listens to. An agent
+that is not prejudiced (λi = 1) only averages the deviations, while a prejudiced agent loses a fraction
+1 − λi of them (in (4), this fraction is replaced by the agent’s fixed prejudice). The deviations therefore
+leave the group only through the prejudiced agents, and they vanish only if every agent is influenced,
+directly or through intermediaries, by one of them, i.e. all agents are P-dependent. A group of agents
+that is not influenced, even indirectly, by any prejudiced agent loses no deviation and behaves as an
+FDG model, as in (7).
+In social terms, on a strongly connected network, such as the two networks of Figure 1, a single
+prejudiced agent is enough for the whole group to converge, whatever its initial opinions, and no
+aperiodicity is required, unlike in the FDG model of Section 2.2.
+11
+
+If some agents are P-independent, the model is not asymptotically stable, but it may still converge.
+Theorem 3.2 gives the condition in terms of W 22 ; in terms of the whole matrix ΛW it reads as follows.
+Corollary 3.4 ([5]). The model (4) converges if and only if ΛW is regular, i.e. the limit limk→∞ (ΛW )k
+exists.
+As remarked in [5], this property is not trivial: a system x(k + 1) = Ax(k) + Bu with a regular
+matrix A may not converge, and may even have unbounded solutions, as for A = B = I.
+The decomposition (6)–(7) also explains these results on the spectrum. Listing the P-dependent
+agents first, ΛW is block triangular,
+ 11 11
+
+Λ W
+Λ11 W 12
+ΛW =
+,
+spec(ΛW ) = spec(Λ11 W 11 ) ∪ spec(W 22 ),
+0
+W 22
+and ρ(Λ11 W 11 ) < 1 by Theorem 3.2. Hence the eigenvalues on the unit circle, which decide convergence
+and asymptotic stability (Theorem 1.8), can only come from W 22 , i.e. from the FDG model of the
+P-independent agents: the model is asymptotically stable when there are no P-independent agents
+(r = n), and it converges when the eigenvalue 1 of W 22 is semi-simple and its other eigenvalues lie
+inside the unit disk, i.e. when W 22 is regular.
+3.1.3
+
+What the opinions converge to: the matrix V and the augmented graph
+
+When all agents are P-dependent, the final opinions are given by (9), and the convex combination of
+Theorem 3.2 involves only the prejudices:
+xi (∞) =
+
+n
+X
+
+vij uj .
+
+j=1
+
+Three facts follow.
+• The initial opinions are forgotten: x(0) does not appear in x(∞).
+• Only the prejudices of prejudiced agents count: if λj = 1, the j-th column of I − Λ is zero, hence
+so is the j-th column of V , and uj has no weight in any final opinion.
+• Every final opinion lies between the smallest and the largest prejudice of the prejudiced agents.
+The comparison with the FDG model is instructive. In the FDG model, the consensus value w⊤ x(0)
+is a weighted average of the initial opinions, with the same weights w for every agent (Theorem 2.2);
+in the FJ model, the final opinions are weighted averages of the prejudices, and each agent has its own
+weights, given by its row of V .
+Consensus and disagreement. In the FDG model, consensus is a property of the model: the model
+reaches a consensus if the final opinions coincide for any initial condition x(0) [5]. In the FJ model
+with all agents P-dependent, the limit x(∞) = V u does not depend on x(0) (equation (9)): whether
+the final opinions coincide is decided by the prejudices u, which are an external input, through the
+matrix V , and no longer by the initial opinions. Accordingly, [5] studies the FJ model in terms of
+convergence and of the form of the limit, and not in terms of consensus.
+The question whether the final opinions coincide can still be asked, but now it concerns the prejudices: for a given u, we say that the FJ model reaches a consensus if x(∞) = γ 1n for some γ ∈ R, and
+a disagreement otherwise. The answer comes from the equilibrium equation of Section 3.1.2. Since
+W 1n = 1n , a consensus vector γ 1n is an equilibrium of (4) if and only if
+γ 1n = ΛW γ 1n + (I − Λ) u
+
+⇐⇒
+
+(I − Λ) (γ 1n − u) = 0,
+
+i.e. (1 − λi )(γ − ui ) = 0 for every agent i. For an agent that is not prejudiced (λi = 1) the condition
+is always satisfied; for a prejudiced agent it requires ui = γ. When all agents are P-dependent, the
+equilibrium is unique and it is the limit V u (Corollary 3.3). Hence:
+when all agents are P-dependent, the FJ model reaches a consensus if and only if all the
+prejudiced agents have the same prejudice, and the group agrees on it.
+In social terms, the network decides how much each prejudice weighs, through V , but the group can
+agree only if its anchored agents agree. Section 3.2.2 shows both cases on the same networks: a single
+prejudice, on which the group agrees, and different prejudices, which keep it divided.
+12
+
+The notion of consensus of the FDG model applies again only to the P-independent agents (0 < r <
+n), which evolve as an FDG model with matrix W 22 and whose limit depends on their initial opinions
+x2 (0) (Section 3.1.2). The P-dependent agents converge to convex combinations of the prejudices and
+of the final opinions of the P-independent agents (Theorem 3.2), so they do not necessarily end up at
+the consensus value of the P-independent agents, even when there is one.
+The augmented graph. The limit (9) has a direct interpretation in terms of the FDG model.
+Following [5], the FJ model (4) may be considered as an augmented FDG model with n virtual
+stubborn agents, one for each of the n agents of the network, anchored at the prejudices: the virtual
+agent i′ associated with agent i keeps the opinion xi′ (k) = ui for all k. Explicitly, stacking the opinions
+x of the real agents and x′ of the virtual agents,
+
+ 
+
+
+x(k + 1)
+ΛW I − Λ x(k)
+=
+,
+x′ (0) = u.
+(11)
+x′ (k + 1)
+0
+I
+x′ (k)
+Row i of the matrix Ā in (11) sums to λi + (1 − λi ) = 1, and row i′ sums to 1; hence Ā is row-stochastic
+and (11), which we call the augmented model, is an FDG model on 2n agents. In its digraph, which
+we call the augmented graph:
+• a real agent i is influenced by a real agent j with weight λi wij ;
+• a real agent i is influenced by its virtual agent i′ with weight 1 − λi , so this edge exists only if
+agent i is prejudiced;
+• a virtual agent i′ is influenced only by itself, with weight 1, so its opinion never changes: it is
+stubborn (Definition 2.5).
+Figure 4 shows the FJ model on the directed cycle of Figure 1(a) when agent 1 is the only prejudiced
+agent, and the corresponding augmented graph. In panel (a) the prejudice is drawn as an input entering
+agent 1, since it is not an agent of the network but an external piece of information; in panel (b) it
+becomes the virtual agent 1′ , and the edge follows our convention: it goes from 1 to 1′ , because agent 1
+listens to 1′ . In social terms, a prejudice behaves as an additional agent that never changes its opinion:
+a prejudiced agent keeps listening to the others, and also listens to this stubborn agent placed beside
+it.
+1
+
+u1
+
+1′
+
+1 − λ1
+
+1
+
+1 − λ1
+
+1
+
+λ1
+
+λ1
+
+6
+
+2
+
+6
+
+2
+
+5
+
+3
+
+5
+
+3
+
+4
+
+4
+
+(a) FJ model on the directed cycle
+
+(b) augmented graph
+
+Figure 4: The FJ model on the directed cycle of Figure 1(a) when agent 1 is the only prejudiced agent (λ1 < 1,
+λi = 1 for i ̸= 1), and its augmented graph. Unlabelled edges have weight 1. (a) The prejudice u1 enters agent 1
+as an external input, with weight 1 − λ1 ; this arrow is not an edge of G. (b) The input becomes the virtual
+agent 1′ (dashed), which is stubborn and keeps the opinion u1 . The virtual agents 2′ , . . . , 6′ are stubborn agents
+that nobody listens to, and are not drawn.
+
+The augmented graph also shows, from the side of the FDG model, why consensus, understood
+as a property of the model as in the FDG model, is not the right notion for the FJ model. The
+augmented model (11) is an FDG model, so the classification of Table 1 applies to it. Each virtual
+agent is influenced only by itself, so it is a sink of the condensation digraph of the augmented graph,
+and it is aperiodic because of its self-loop. Hence the augmented graph has at least n sinks and it is
+not strongly connected; for n ≥ 2, the consensus cases (i) and (iii) of Table 1 never occur, and neither
+does case (ii). Only two outcomes remain.
+• Disagreement (case (iv)), when all the sinks are aperiodic. If all agents are P-dependent, the
+only sinks are the n virtual agents, since every real agent is influenced, directly or through intermediaries, by some prejudiced agent j, and hence by j ′ . This is the situation of Remark 2.7: by
+13
+
+Theorem 2.4, every real agent converges to a convex combination of the opinions of the stubborn
+virtual agents, i.e. of the prejudices, which is exactly (9). If some agents are P-independent, the
+sinks of C 22 (Section 3.1.2), i.e. the closed groups of P-independent agents, are further sinks of
+the augmented graph, and all of them are aperiodic if and only if W 22 is regular.
+• No convergence (case (v)), when at least one sink of C 22 is periodic, i.e. when W 22 is not regular.
+These two outcomes are exactly the two alternatives of Theorem 3.2. The disagreement of case (iv)
+concerns all the 2n agents of the augmented model, whose virtual agents keep their different values ui
+forever (x′ (0) = u is part of the initial condition); it does not imply that the final opinions of the real
+agents differ, which, as discussed above, depends on V and u.
+Two descriptions of the same dynamics. When all the agents are P-dependent, the FJ model is
+asymptotically stable (Corollary 3.3), while the augmented model (11), whose matrix is row-stochastic
+and has the eigenvalue 1 (Theorem 1.6), is never asymptotically stable: it converges to the disagreement
+of case (iv), which depends on the initial opinions x′ (0) = u of the virtual agents. The two statements
+describe the same trajectories and do not contradict each other. The matrix Ā of (11) is block
+triangular, so
+spec(Ā) = spec(ΛW ) ∪ {1, . . . , 1}.
+| {z }
+n
+
+The eigenvalues of ΛW lie inside the unit disk, and the FJ model, which has only these, is asymptotically stable. The augmented model adds the eigenvalue 1, once for each virtual agent and semi-simple
+by Theorem 2.4 applied to the n aperiodic sinks of the augmented graph: these are the prejudices,
+which in the augmented model are states, and they place it in case (iv) of Table 1. The difference lies
+in what is a state. In the FJ model u is an input: asymptotic stability concerns the perturbations
+of x(0) with u fixed, which die out as in (10), while changing u is not a perturbation but a different
+input, with a different equilibrium V u. In the augmented model u is part of the state: changing it is a
+perturbation of the initial condition along the directions of the eigenvalue 1, and it is never forgotten;
+perturbing only the real agents, with x′ (0) unchanged, the augmented model forgets the perturbation
+exactly as the FJ model. Section 3.2.1 reads the perturbation experiment of Figure 7 in these terms.
+3.1.4
+
+Influence centrality
+
+In the FDG model the social power w is defined only when the group reaches a consensus (Section 2.1.2),
+which in the FJ model is not a property of the model but depends on the prejudices (Section 3.1.3).
+Nor does the augmented model (11) help: its graph has at least n sinks, so for n ≥ 2 it never reaches
+a consensus and its social power is not defined (Section 3.2.3 discusses the special case of a single
+prejudice). A different measure is needed, and [5] discusses an extension of the social power to the FJ
+model, introduced by Friedkin.
+Influence centrality. As in [5], we confine ourselves to the asymptotically stable FJ model with u =
+x(0), the traditional assumption of the Friedkin–Johnsen theory (Section 3.1.1); then x(∞) = V x(0)
+by (9). The assumption u = x(0) is what gives the initial opinions a role: in general x(∞) = V u does
+not depend on x(0), so the initial opinions would have no weight in the final opinions. The social power
+of agent i is generalized as the mean weight of its initial opinion in determining the group members’
+final opinions [5]. These mean weights are the elements of the non-negative vector c such that
+n
+
+c=n
+
+−1
+
+⊤
+
+V 1n ,
+
+1X
+1
+x̄ =
+xi (∞) = 1⊤
+V x(0) = c⊤ x(0),
+n
+n n
+
+(12)
+
+i=1
+
+and ci is called the influence centrality of agent i [5]. In terms of V , ci is the average of the i-th
+column of V , whose entries are the weights of xi (0) in the final opinions of the single agents. Since V
+is stochastic, c is non-negative and c⊤ 1n = 1, like w (Theorem 2.2): both distribute a total weight 1
+among the agents. Similar to French’s social power, the influence centrality is generated by an opinion
+formation mechanism [5].
+The relation with the social power is made precise in [5]. The convergence and the consensus of
+the FDG model are equivalent, respectively, to the regularity and the full regularity of the stochastic
+matrix A [5] (Definition 1.9). For a fixed W , let Λ = αIn with α ∈ [0, 1), i.e. the same susceptibility for
+all agents, and consider the corresponding matrix Vα and vector cα . For α = 0, i.e. Λ = 0, every agent
+14
+
+keeps its initial opinion, V = I and c0 = n−1 1n : the social power is uniformly distributed between all
+agents [5].
+Lemma 3.5 ([5]). Let W be a fully regular matrix and w stand for the vector of French’s social power,
+corresponding to the FDG model (1) with A = W . Then, w = limα→1−0 cα .
+As α → 1 the agents barely listen to their prejudices and Vα = (1 − α)(I − αW )−1 → 1n w⊤ [5]:
+the final opinions approach the FDG consensus, and cα → w, since in a common opinion the mean
+weight of xi (0) and its weight in the consensus coincide. The limit cannot be replaced by α = 1: for
+Λ = I the FJ model is the FDG model, which is not asymptotically stable, and I − W is singular since
+1 ∈ spec(W ) (Theorem 1.6), so V is not defined. In social terms, the influence centrality moves from
+the uniform distribution, when every agent is anchored to its own initial opinion, to French’s social
+power, when the weight of the prejudices vanishes.
+
+3.2
+
+Stubbornness and influence centrality in the FJ model
+
+Unless stated otherwise, the examples of this section use as matrix W the two networks of Figure 1
+without self-loops, the initial opinions x(0) = (0, 0.2, 0.4, 0.6, 0.8, 1)⊤ of Section 2.2, and prejudices
+equal to the initial opinions, u = x(0), as is traditional in the Friedkin–Johnsen theory (see [5]). This
+choice compares the two models on the same data, and it is required by the influence centrality of
+Section 3.1.4; each figure states its own exceptions. Since u = x(0), the prejudice of each agent is
+the initial value of its curve, and the prejudices are not drawn separately; when x(0) is perturbed
+(Figures 7 and 12(d)), u is that of the unperturbed run, given in the caption. In the figures, K is the
+number of steps shown.
+3.2.1
+
+Modelling stubbornness: prejudices and stubborn agents
+
+From one model to the other. The FJ model is an FDG model on the augmented graph of
+Section 3.1.3, in which every prejudice becomes a virtual stubborn agent (Figure 4) [5]. Conversely,
+an FDG model with stubborn agents can be written as an FJ model in two ways: the rewriting of [5],
+which keeps each stubborn agent as an agent of the FJ model, and a second rewriting, which removes it
+and turns it into the prejudice of the agents that listen to it, i.e. the augmented graph read backwards.
+The stubborn agent as an input. Following [5], an FDG model with stubborn agents can be
+rewritten as the FJ model (4), with λi = 0 and ui = xi (0) for every stubborn agent and λi = 1, ui = 0
+for the others (Figure 5); any ui would do for these agents, since λi = 1, and Figures 6 and 7 use
+u = x(0). The two models produce the same trajectories: for a stubborn agent, xi (k + 1) = xi (k) in
+the FDG model and xi (k + 1) = ui = xi (0) in the FJ model; every other agent has λi = 1 and the
+same row of the matrix in both models. The row of W of a stubborn agent plays no role, since it is
+multiplied by λi = 0; this is why the FJ model of Figure 6 can use the network without the self-loop.
+The rewriting turns the stubborn agent from a state into an input: in the FJ model its opinion is the
+constant prejudice ui . Note that in this rewriting the opinion of the stubborn agent appears twice: as
+its initial state xi (0) and as its prejudice ui = xi (0).
+u1 = x1 (0)
+1 − λ1 = 1
+
+1
+
+1
+
+1
+
+λ1 = 0
+
+6
+
+2
+
+6
+
+2
+
+5
+
+3
+
+5
+
+3
+
+4
+
+4
+
+(a) FDG model, a11 = 1
+
+(b) FJ model, λ1 = 0
+
+Figure 5: (a) The FDG model on the directed cycle of Figure 1(a) with t = 1: agent 1 is stubborn and has
+only its self-loop. (b) The FJ model obtained from it with the rewriting of [5]: λ1 = 0, u1 = x1 (0), λi = 1 for
+i ̸= 1. Unlabelled edges have weight 1. In (b) the edge 1 → 2 is still an edge of G, but its weight in ΛW is
+λ1 = 0 (dashed); the opinion of agent 1 enters as the external input u1 = x1 (0), with weight 1 − λ1 = 1, as the
+prejudice in Figure 4(a).
+
+15
+
+Figure 6 simulates the FDG model with A(1) and its FJ rewriting on both networks. In the FJ
+model agent 1 is the only prejudiced agent, and its attachment 1 − λ1 takes the place of the self-weight
+t of Section 2.2: this choice makes the two parameters directly comparable, both equal to 1 in the
+stubborn case.
+directed cycle, FDG with A(1)
+
+directed cycle, FJ with λ1 = 0
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+xi (k)
+
+0
+
+0
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+0
+
+bidirectional ring, FDG with A(1)
+
+2
+
+4
+
+6
+
+8
+
+10
+
+bidirectional ring, FJ with λ1 = 0
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+x1
+x2
+x3
+x4
+x5
+x6
+
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+0
+
+10
+
+20
+
+30
+
+40
+
+k
+Figure 6: Opinions xi (k) in the FDG model with A(1) (left) and in the FJ model with λ1 = 0, λi = 1 for i ̸= 1
+and u = x(0) (right), on the directed cycle (K = 10, top) and on the bidirectional ring (K = 40, bottom), with
+x(0) = (0, 0.2, 0.4, 0.6, 0.8, 1)⊤ . Agent 1 is black and marked with dots.
+
+State or input. The two models of Figure 6 have the same trajectories, but not the same stability.
+Under the assumption of Corollary 2.6, every agent of the FJ model obtained by the rewriting is
+prejudiced or influenced by a prejudiced agent, so the FJ model is asymptotically stable (Corollary 3.3),
+whereas the FDG model is convergent but not asymptotically stable, since a row-stochastic matrix
+always has the eigenvalue 1 (Theorem 1.6, see also [5]). The explanation given in [5] is that changing
+the initial condition x(0) of the FJ model leaves the prejudice vector u unchanged, while in the FDG
+model the prejudice is part of the state vector.
+Figure 7 starts the two models again from x1 (0) = 0.5, leaving u unchanged: now u1 = 0 ̸= x1 (0),
+and agent 1 of the FJ model is prejudiced but no longer stubborn.
+directed cycle, FDG with A(1)
+
+directed cycle, FJ with λ1 = 0
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+xi (k)
+
+0
+
+0
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+0
+
+bidirectional ring, FDG with A(1)
+
+2
+
+4
+
+6
+
+8
+
+10
+
+bidirectional ring, FJ with λ1 = 0
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+x1
+x2
+x3
+x4
+x5
+x6
+
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+0
+
+10
+
+20
+
+30
+
+40
+
+k
+Figure 7: The models of Figure 6 started from x1 (0) = 0.5, with the other initial opinions and the prejudice
+vector u = (0, 0.2, 0.4, 0.6, 0.8, 1)⊤ unchanged, so u1 ̸= x1 (0). Left: FDG with A(1); right: FJ with λ1 = 0.
+Top: directed cycle, K = 10; bottom: bidirectional ring, K = 40.
+
+Figure 7 shows this difference. Moving x1 (0) from 0 to 0.5 moves the stubborn agent of the FDG
+model, which keeps the new value forever, and the whole group follows it to 0.5. In the FJ model the
+same change does not touch u1 = 0: agent 1 goes back to u1 at the first step, and the group converges
+16
+
+to the same limit V u as before. In social terms, in the FDG model stubbornness is a memory inside
+the state, which is never forgotten; in the FJ model it is an external input, and the state forgets x(0).
+How the perturbation evolves. Figure 7 perturbs the initial state. Let x(k) and x̃(k) be the
+trajectories of Figures 6 and 7. In the FJ model the prejudice u is the same in the two runs, so their
+difference δ(k) = x̃(k) − x(k) obeys
+δ(k + 1) = ΛW δ(k),
+the same recursion as the error (10), although e(k) measures the distance of one trajectory from
+its limit and δ(k) what is left of the perturbation. Since all agents are P-dependent, ΛW is Schur
+stable (Corollary 3.3): δ(k) → 0 and the two runs reach the same limit V u, which is what asymptotic
+stability means. In the FDG model the same computation gives δ(k +1) = A δ(k) and, by Theorem 2.2,
+δ(k) → (w⊤ δ(0))16 = 0.5 16 , since w = e1 and δ(0) = 0.5 e1 : the perturbation is never forgotten.
+The spectra show where the difference lies. ΛW and A(1) differ only in the row of agent 1, zero
+in ΛW and e⊤
+1 in A(1), and so do their spectra. Listing agent 1 first, both matrices are block lower
+triangular, with the diagonal entry 0 in ΛW and 1 in A(1) for agent 1 and the same block for agents
+2, . . . , 6. On the bidirectional ring this block is 21 times the adjacency matrix of the path graph on
+five nodes; since this adjacency matrix has spectrum {2 cos(kπ/6)
+| k = 1, . . . , 5} [4], the block√has
+√
+3
+1
+eigenvalues cos(kπ/6), k = 1, . . . , 5, so spec(ΛW ) = {0, 0, ± 2 , ± 2 } and spec(A(1)) = {1, 0, ± 12 , ± 23 };
+on the directed cycle it is the nilpotent block N of Section 2.2.2, and all the eigenvalues are 0, except
+the eigenvalue 1 of A(1). The eigenvalue 1 of A(1) is that of the virtual agent 1′ of Section 3.1.3, which
+the FDG model moves together with x1 (0) and Figure 7 leaves unchanged.
+The stubborn agent as a prejudice of the agents that listen to it. The second rewriting
+removes the stubborn agent. If agent 1 is stubborn, x1 (k) = x1 (0) for all k, and an agent i that listens
+to it with weight ai1 updates as
+X
+xi (k + 1) =
+aij xj (k) + ai1 x1 (0),
+j̸=1
+
+which is (5) with λi = 1−ai1 , wij = aij /λi and ui = x1 (0); the other agents keep λi = 1. The remaining
+n − 1 agents obey an FJ model in which the stubborn opinion is the common prejudice of the agents
+that listen to it: the augmented graph read backwards, with the stubborn agent as the virtual agent.
+On the bidirectional ring with t = 1, agents 2 and 6 become prejudiced with λ2 = λ6 = 1/2 and
+u2 = u6 = x1 (0) (Figure 8), and agents 2, . . . , 6 follow the bottom-left panel of Figure 6. Unlike in
+the rewriting of [5], the stubborn opinion appears only once, as a prejudice, and not also as an initial
+state: no initial condition of the FJ model corresponds to moving the stubborn agent alone, and the
+two models have the same trajectories for every initial condition.
+1
+
+1
+6
+
+1 − λ6
+
+2
+
+x1 (0)
+
+6
+
+1 − λ2
+
+2
+
+λ6
+
+5
+
+3
+
+λ2
+
+5
+
+3
+
+4
+
+4
+
+(a) FDG model, agent 1 stubborn
+
+(b) FJ model on agents 2, . . . , 6
+
+Figure 8: (a) The FDG model on the bidirectional ring of Figure 1(b) with t = 1: agent 1 is stubborn; unlabelled
+edges have weight 1/2. (b) The FJ model on agents 2, . . . , 6 obtained by removing agent 1: λ2 = λ6 = 1/2,
+u2 = u6 = x1 (0), λ3 = λ4 = λ5 = 1. The opinion x1 (0) enters agents 2 and 6 as their common prejudice, with
+weight 1 − λ2 = 1 − λ6 = 1/2; as in Figure 4(a), the edges carry the weights of ΛW (e.g. λ2 w23 = 1/2), so every
+edge between agents has weight 1/2.
+
+3.2.2
+
+Prejudices, stubbornness and convergence
+
+A single prejudice. Figure 9 compares, with the same weight 1/2 on agent 1, the FDG model with
+self-weight t = 1/2 (left, as in the middle column of Figure 2) and the FJ model in which agent 1 is
+the only prejudiced agent, with attachment 1 − λ1 = 1/2 (right); the triangles mark the limits. The
+other two values need no new figure: for 1 − λ1 = 0 the FJ model is the FDG model of the left column
+of Figure 2, and for 1 − λ1 = 1 agent 1 is stubborn, as in Figure 6.
+17
+
+directed cycle, FDG, t = 1/2
+
+directed cycle, FJ, 1 − λ1 = 1/2
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+xi (k)
+
+0
+
+0
+0
+
+20
+
+40
+
+60
+
+0
+
+bidirectional ring, FDG, t = 1/2
+
+20
+
+40
+
+60
+
+bidirectional ring, FJ, 1 − λ1 = 1/2
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+x1
+x2
+x3
+x4
+x5
+x6
+
+0
+0
+
+20
+
+40
+
+60
+
+0
+
+20
+
+40
+
+60
+
+k
+Figure 9: Opinions xi (k) with the same weight 1/2 on agent 1, with x(0) = (0, 0.2, 0.4, 0.6, 0.8, 1)⊤ and
+K = 60. Left: FDG model with self-weight t = 1/2 (matrix A(1/2), current opinion); right: FJ model with
+λ1 = 1/2, λi = 1 for i ̸= 1 and u = x(0) (attachment 1 − λ1 = 1/2, initial opinion). Top: directed cycle; bottom:
+bidirectional ring. The triangles mark the limits: the consensus value 3/7 of the FDG model and u1 = 0 for the
+FJ model.
+
+On the directed cycle the two update matrices are
+
+
+1 1
+ 1
+0 2 0 0 0 0
+2 2 0 0 0 0
+ 0 0 1 0 0 0
+0 0 1 0 0 0
+
+
+
+
+ 0 0 0 1 0 0
+0 0 0 1 0 0
+1
+
+:
+
+
+A( 2 ) = 
+ΛW = 
+,
+
+ 0 0 0 0 1 0
+0 0 0 0 1 0
+ 0 0 0 0 0 1
+0 0 0 0 0 1
+1 0 0 0 0 0
+1 0 0 0 0 0
+the weight 1/2 that agent 1 takes off the agent it listens to goes, in A(1/2), to the diagonal, i.e. to its
+current opinion, and, in the FJ model, out of the matrix, to the input (1 − λ1 )u1 . The first row of ΛW
+sums to 1/2, so ΛW is row-substochastic (Definition 1.13).
+Both networks are strongly connected, so every agent is connected by a walk to agent 1: all the
+agents are P-dependent and, by Corollary 3.3 (case Λ ̸= In , W irreducible), the model is asymptotically
+stable, although the same networks oscillate forever in the FDG model without self-loops. Since
+column j of V is zero when λj = 1 (Section 3.1.3) and V is stochastic (Theorem 3.2), V = 16 e⊤
+1 and
+x(∞) = u1 16 = 0 for every attachment 1 − λ1 > 0: the group reaches a consensus on the prejudice
+of agent 1, and crosses the FDG compromise 3/7 on its way. This is the condition of Section 3.1.3
+with a single prejudiced agent: the fixed value u1 makes the equilibrium unique, and the attachment
+only changes how fast it is reached; in the FDG model, instead, every consensus is an equilibrium,
+and the initial opinions decide which one is reached. In the augmented graph (Section 3.1.3) the only
+virtual agent that influences the real agents, directly or through intermediaries, is 1′ , which plays the
+role of the stubborn agent of Section 2.2.1: the whole group converges to its value u1 . In social terms,
+a self-weight is inertia, which slows an agent down but lets it follow the group, while a prejudice is
+an anchor: a single anchored agent that influences everybody decides where the whole group ends,
+however weak its attachment.
+Every agent prejudiced. In Figure 10 every agent resists the influence of the others with the
+same weight 0.2, in both models: in the FDG model (left) as a self-weight on its current opinion,
+A = 0.2 I + 0.8 W ; in the FJ model (right) as an attachment to its initial opinion, Λ = 0.8 I and
+u = x(0). The triangles mark the limits.
+
+18
+
+On the directed cycle,
+
+
+0.2 0.8 0 0 0 0
+ 0 0.2 0.8 0 0 0 
+
+
+ 0 0 0.2 0.8 0 0 
+
+A = 0.2 I + 0.8 W = 
+ 0 0 0 0.2 0.8 0  ,
+
+
+ 0 0 0 0 0.2 0.8
+0.8 0 0 0 0 0.2
+
+
+0 0.8 0 0 0 0
+ 0 0 0.8 0 0 0 
+
+
+ 0 0 0 0.8 0 0 
+
+ΛW = 0.8 W = 
+ 0 0 0 0 0.8 0  :
+
+
+ 0 0 0 0 0 0.8
+0.8 0 0 0 0 0
+
+
+A is row- and column-stochastic, with a positive diagonal, while every row of ΛW sums to 0.8.
+directed cycle, FDG, aii = 0.2
+
+directed cycle, FJ, 1 − λi = 0.2
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+0
+
+xi (k)
+
+1
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+0
+
+bidirectional ring, FDG, aii = 0.2
+
+10
+
+20
+
+30
+
+40
+
+50
+
+bidirectional ring, FJ, 1 − λi = 0.2
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+x1
+x2
+x3
+x4
+x5
+x6
+
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+k
+Figure 10: Opinions xi (k) when every agent gives weight 0.2 to its own opinion, with x(0) =
+(0, 0.2, 0.4, 0.6, 0.8, 1)⊤ and K = 50. Left: FDG model with A = 0.2 I + 0.8 W (self-weight aii = 0.2,
+current opinion); right: FJ model with Λ = 0.8 I and u = x(0) (attachment 1 − λi = 0.2, initial opinion). Top:
+directed cycle; bottom: bidirectional ring. The triangles mark the limits: the average 0.5 of the initial opinions
+for the FDG model, and V u of (9) for the FJ model.
+
+In the FDG model, A is primitive (Corollary 1.12) and doubly-stochastic, so the group agrees on
+the average 0.5 of the initial opinions (Corollary 2.3): the self-weights slow the convergence down, but
+do not prevent the consensus. In the FJ model every agent is prejudiced (Λ < I6 ), so the model is
+asymptotically stable (Corollary 3.3) and x(∞) = V u, with V = 0.2 (I − 0.8 W )−1 . The matrix V is
+stochastic (Theorem 3.2): every final opinion is a convex combination of the prejudices, and vij is the
+weight of uj in xi (∞). All the entries of V are positive, since W is irreducible, so every prejudice enters
+every final opinion, but with weights that change from row to row. The final opinions are therefore
+closer to each other than the initial ones, but not equal: the prejudices differ, so by Section 3.1.3 no
+consensus is possible.
+This is the main difference between the two models. On a strongly connected network the FDG
+model can only reach a consensus or not converge (cases (i)–(ii) of Table 1), since a disagreement
+needs at least two closed groups (Theorem 2.4); the FJ model disagrees on the same network, so its
+disagreement comes from the prejudices. In the augmented graph (Section 3.1.3) the six prejudices
+are six stubborn virtual agents with different opinions, as in Remark 2.7. In social terms, inertia gives
+way in the end, an anchor does not: a group anchored to different opinions settles on a persistent
+disagreement, a cleavage of opinions in the words of [5].
+Where the prejudice does not arrive. On the two networks of Figure 1 a single prejudiced agent
+influences every other agent. To show what happens when it does not, Figure 11 introduces an auxiliary
+network, in which agents 1, 2 and 3 form a closed group and agents 4, 5 and 6 a chain that listens to it
+(agent 6 listens to agent 1, agent 5 to agent 6 and agent 4 to agent 5). The closed group is a periodic
+cycle in Wp , and becomes aperiodic in Wa , where agent 2 also listens to agent 1.
+
+19
+
+u5
+
+
+
+0 1 0 0 0 0
+0 0 1 0 0 0
+
+
+1 0 0 0 0 0
+
+
+Wp = 
+
+0
+0
+0
+0
+1
+0
+
+
+0 0 0 0 0 1
+1 0 0 0 0 0
+
+0.5
+
+1
+
+6
+
+5
+
+4
+1
+
+2
+
+0.5
+
+0.5
+
+6
+
+5
+
+4
+
+3
+2
+
+3
+
+0.5
+
+u2
+
+(a) Wp , agent 2 prejudiced
+
+(b) Wp , agent 5 prejudiced
+
+
+
+u5
+u5
+0.5
+0.5
+
+1
+1
+
+6
+
+0.5
+
+5
+
+6
+
+0.5
+
+5
+
+4
+
+4
+1/2
+
+1/2
+
+2
+2
+
+1/2
+
+1/2
+
+
+0 1 0 0 0 0
+ 1 0 1 0 0 0
+2
+2
+
+ 1 0 0 0 0 0
+
+Wa = 
+ 0 0 0 0 1 0
+
+
+ 0 0 0 0 0 1
+
+3
+
+1 0 0 0 0 0
+
+x2 (0) = 1
+
+3
+
+(c) Wa , agent 5 prejudiced
+
+(d) as (c), with x2 (0) = 1
+
+Figure 11: The four configurations of Figure 12 on the auxiliary network, in its two versions Wp (top, the closed
+group {1, 2, 3} is a periodic cycle of length 3) and Wa (bottom, the edge 2 → 1 adds a cycle of length 2 and
+makes it aperiodic). As in Figure 4(a), the prejudice ui enters the prejudiced agent as an external input with
+weight 1 − λi = 0.5; the edges carry the weights of ΛW , and unlabelled edges have weight 1. The P-dependent
+agents are shaded.
+
+Figure 12 shows the four configurations of Figure 11; in (d) only the initial opinion of agent 2
+moves, the prejudices being unchanged.
+(a) agent 2 prejudiced
+
+(b) agent 5 prejudiced
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+0
+
+xi (k)
+
+1
+
+0
+
+10
+
+20
+
+30
+
+40
+
+0
+
+(c) edge 2 → 1, agent 5 prejudiced
+
+10
+
+20
+
+30
+
+40
+
+(d) as (c), x2 (0) = 1, u unchanged
+
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+x1
+x2
+x3
+x4
+x5
+x6
+
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+0
+
+10
+
+20
+
+30
+
+40
+
+k
+Figure 12: Opinions xi (k) in the FJ model on the auxiliary network of Figure 11, with u =
+(0, 0.5, 1, 0.2, 0.9, 0.6)⊤ , K = 40, the prejudiced agent having λ = 0.5 and every other agent λi = 1. (a)
+Wp , agent 2 prejudiced; (b) Wp , agent 5 prejudiced; (c) Wa , agent 5 prejudiced. In (a)–(c) x(0) = u; (d) as (c)
+with x2 (0) = 1 and u unchanged.
+
+Panel (a) is the situation of Figure 9 again: agent 2 is in the closed group, every agent is connected
+by a walk to it (r = n), the model is asymptotically stable (Corollary 3.3) and x(∞) = u2 16 = 0.5 16 ,
+although the closed group is periodic.
+In panels (b)–(d) agent 5 is outside the closed group, and agents 1, 2, 3 and 6 are P-independent:
+by (7) they obey the FDG model with matrix W 22 , as if the prejudice did not exist, and their trajectories in Figure 12 are those of the FDG model on Wp and Wa . Renumbering the agents as in (6)–(7),
+i.e. in the order σ = (4, 5 | 1, 2, 3, 6), means applying the permutation matrix P = [ e4 e5 e1 e2 e3 e6 ]⊤ ,
+
+20
+
+so that agent i of the new numbering is agent σ(i) of the original one; for Wa ,
+
+
+0 1 0 0 0 0
+ 0 0 0 0 0 1 
+
+  11
+
+ 0 0 0 1 0 0 
+W
+W 12
+⊤
+
+
+W̃a = P Wa P = 
+,
+Λ̃ = P ΛP ⊤ = diag(1, 0.5 | 1, 1, 1, 1),
+1
+1
+=
+0
+W 22
+ 0 0 2 0 2 0 
+ 0 0 1 0 0 0 
+0 0 1 0 0 0
+
+
+0 1 0 0
+
+
+
+
+ 1 0 1 0
+0 1
+0 0 0 0
+2
+2
+
+W 11 =
+, W 12 =
+, W 22 = 
+ 1 0 0 0 .
+0 0
+0 0 0 1
+1 0 0 0
+The lower-left block is zero because no P-independent agent listens to a P-dependent one; with Wp the
+second row of W 22 would be (0, 0, 1, 0). By Theorem 3.2 the FJ model converges if and only if W 22 is
+regular, and then the P-dependent agents follow (8), with Λ11 = diag(1, 0.5) and
+
+
+
+
+0 0.5 0 0 0 0.5
+11
+11 −1
+11
+11
+12
+,
+V = (I2 − Λ W )
+I2 − Λ , Λ W
+=
+0 0.5 0 0 0 0.5
+i.e. x4 (∞) = x5 (∞) = 0.5 u5 + 0.5 x6 (∞).
+• In (b) the sink {1, 2, 3} of W 22 is periodic, W 22 is not regular and the model does not converge:
+agents 1, 2, 3, 6 oscillate, and agents 4, 5, which listen to them, oscillate too.
+• In (c) the edge 2 → 1 makes the sink aperiodic, W 22 is regular and the model converges (Corollary 3.4): agents 1, 2, 3 reach the FDG consensus 0.4 x1 (0) + 0.4 x2 (0) + 0.2 x3 (0) = 0.4, weighted
+by the social power (0.4, 0.4, 0.2) of the closed group (Theorem 2.2 applied to its block of W 22 ),
+agent 6 follows agent 1, and agents 4, 5 settle at 0.5 · 0.9 + 0.5 · 0.4 = 0.65.
+• The model of (c) is not asymptotically stable, since not all the agents are P-dependent (Corollary 3.3): every consensus vector is an equilibrium of (7), and the initial opinions of the closed
+group decide which one is reached. In (d), moving only x2 (0) from 0.5 to 1 moves the consensus
+of the closed group to 0.4·1+0.2·1 = 0.6 and the P-dependent agents to 0.5·0.9+0.5·0.6 = 0.75,
+unlike in Figure 7, where the asymptotically stable FJ model forgets the change of x1 (0). In the
+augmented model the closed group adds a seventh eigenvalue 1 to the six of the virtual agents:
+it keeps its initial opinions as a virtual agent keeps its prejudice.
+In social terms, a prejudice acts only on the agents that listen, directly or through intermediaries,
+to the prejudiced agent: when it reaches everybody, the FJ model is asymptotically stable and the
+structure of the network does not matter; when it does not, the agents it does not reach form an FDG
+model of their own, which needs aperiodicity to converge and remembers their initial opinions. Table 2
+summarizes the four cases.
+Panel
+
+W
+
+Prejudiced agent
+
+P-dependent
+
+Outcome
+
+What it shows
+
+(a)
+
+Wp
+
+2, inside the
+closed group
+
+all (r = n)
+
+asymptotically stable
+(Corollary 3.3),
+x(∞) = u2 16 = 0.5 16
+
+the periodic cycle plays no
+role
+
+(b)
+
+Wp
+
+5, outside the
+closed group
+
+4, 5 (r = 2)
+
+W 22 not regular: not
+convergent (Theorem 3.2)
+
+aperiodicity is needed
+again, for the
+P-independent agents
+
+(c)
+
+Wa
+
+5, outside the
+closed group
+
+4, 5 (r = 2)
+
+W 22 regular: convergent
+(Theorem 3.2), not
+asymptotically stable; agents
+1, 2, 3, 6 at 0.4, agents 4, 5 at
+0.65
+
+convergence without
+asymptotic stability
+(Corollary 3.4)
+
+(d)
+
+Wa
+
+as (c),
+x2 (0) = 1, u
+unchanged
+
+4, 5 (r = 2)
+
+as (c), but agents 1, 2, 3, 6 at
+0.6, agents 4, 5 at 0.75
+
+the limit depends on the
+initial opinions of the
+P-independent agents
+
+Table 2: Summary of Figure 12: a single prejudiced agent with λ = 0.5 on the two versions of the auxiliary
+network (Figure 11).
+
+21
+
+3.2.3
+
+Prejudices, stubbornness and influence centrality
+
+The assumptions behind the influence centrality. The influence centrality generalizes French’s
+social power [5]: wi is the share of agent i in the opinion the group agrees on, while ci tells how much
+the initial opinion of agent i weighs, on average, in final opinions that may differ. The assumptions,
+however, are of a different kind. The social power only needs what makes it meaningful, a consensus,
+A∞ = 1n w⊤ . The influence centrality needs the two assumptions of Section 3.1.4, ρ(ΛW ) < 1 and
+u = x(0), which the FJ model does not need in order to make sense. In return, with Λ = αI every
+agent is a little anchored and ρ(αW ) = α < 1 for every stochastic W : cα exists on every network, also
+where w does not. Since w weighs the initial state of a model that remembers x(0), and c the input of
+a model that forgets it, we do not compare them directly, but in parallel.
+A single anchored agent. With agent 1 as the only prejudiced agent (Figure 9), V = 16 e⊤
+1 gives
+c = e1 for every λ1 < 1: agent 1, however loosely anchored, collects all the influence centrality, whereas
+in the FDG model its social power grows gradually with its self-weight, from 1/6 to 1 (Figure 3).
+Inertia earns influence little by little, an anchor takes it all at once.
+The augmented model explains this value. Section 3.1.4 observed that the augmented graph has
+at least n sinks, so the social power is not defined. Here, however, the virtual agents 2′ , . . . , 6′ have
+weight 1 − λi = 0: nobody listens to them, and removing them does not change the real agents. What
+remains has a single sink, 1′ , aperiodic because of its self-loop and influencing every real agent through
+agent 1, so it reaches a consensus (Theorem 2.2) and its social power is w = e1′ : with u = x(0), the
+whole group converges to x1′ (0) = x1 (0), which is what c = e1 says. With several prejudiced agents,
+as with Λ = αI below, several virtual agents are listened to, the augmented model stays in case (iv)
+and has no social power: c, the mean of the rows of V , takes its place.
+Where the two measures meet. Figure 13 illustrates Lemma 3.5. Since the lemma requires W
+fully regular, we take W = A(1/2), the network of Figure 1 with the self-weight t = 1/2, which is
+primitive (Corollary 1.12) and hence fully regular, and the same susceptibility for every agent, Λ = αI.
+The figure compares the influence centralities c1 (α) and c2 (α) of agents 1 and 2, i.e. the first two
+entries of cα , with their social power w1 = 2/7 and w2 = 1/7 in the FDG model with the same matrix
+(Section 2.2.3), which agents 3, . . . , 6 share with agent 2.
+0.35
+c1 , directed cycle
+c1 , bidirectional ring
+c2 , directed cycle
+c2 , bidirectional ring
+
+inﬂuence centrality
+
+0.3
+
+w1 = 0.2857
+
+0.25
+
+0.2
+
+1/6
+
+0.15
+
+w2 = 0.1429
+0.1
+
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+susceptibility α (Λ = αI)
+
+Figure 13: Influence centrality c1 and c2 in the FJ model with W = A(1/2) and Λ = αI, α ∈ [0, 0.995]
+(the lemma takes α < 1), and u = x(0) = (0, 0.2, 0.4, 0.6, 0.8, 1)⊤ , on the directed cycle (dots) and on the
+bidirectional ring (crosses). The dashed lines mark the social power w1 and w2 of the FDG model with the
+same matrix A(1/2), the dotted line the uniform value 1/6.
+
+In Figure 13, c1 grows from 1/6 (for α = 0, V = I) to w1 = 2/7 and c2 decreases to w2 = 1/7:
+as the agents open up to the others, the inertia of agent 1 counts more. On the directed cycle c2 first
+goes below w2 (its computed minimum is about 0.137, at α ≈ 0.65).
+
+4
+
+Conclusions
+
+The comparison of the two models, collected in Table 3, answers the three questions of the introduction:
+whether the opinions converge, what they converge to, and how much each agent weighs.
+In the FDG model, a self-weight ties an agent to its current opinion. On a strongly connected
+network, a single self-weight 0 < aii < 1 makes the network aperiodic, and the group reaches a
+22
+
+consensus (Figure 2); a disagreement requires at least two sinks of C(G), whatever the self-weights.
+The social power of the agent grows gradually with its self-weight, from 1/6 to 1 on the networks of
+Figure 1 (Figure 3).
+In the FJ model, a prejudice ties an agent to a fixed opinion. When every agent is influenced
+by a prejudiced agent, the model is asymptotically stable on any network, periodic ones included
+(Figure 9), and its final opinions are convex combinations of the prejudices, which coincide only if all
+the prejudiced agents share the same prejudice (Figures 9 and 10). A single prejudiced agent takes the
+whole influence centrality; with a common susceptibility, the influence centrality tends to the social
+power as the prejudices lose weight (Lemma 3.5, Figure 13).
+FDG model (1)
+
+FJ model (4)
+
+Resistance to the
+others
+
+self-weight aii : inertia, a weight on the
+current opinion
+
+attachment 1 − λi to the prejudice ui : an
+anchor to a fixed value
+
+Stubborn agent
+(Definition 2.5)
+
+aii = 1: a condition on the matrix only
+
+λi = 0 and ui = xi (0): a condition on the
+matrix and on the input
+
+Opinion of a
+stubborn agent
+
+a state
+
+an input
+
+Convergence
+
+Table 1: sinks of C(G) and their
+aperiodicity
+
+all agents P-dependent (Corollary 3.3), or
+W 22 regular (Theorem 3.2)
+
+Asymptotic
+stability
+
+never: the eigenvalue 1 lies on the unit
+circle (Theorem 1.6)
+
+if and only if all agents are P-dependent,
+i.e. ρ(ΛW ) < 1 (Corollary 3.3)
+
+Final opinions
+
+consensus (w⊤ x(0))1n (Theorem 2.2), or
+disagreement with at least two aperiodic
+sinks (Theorem 2.4)
+
+if all agents are P-dependent,
+x(∞) = V u (9): convex combinations of the
+prejudices, independent of x(0)
+
+Strongly
+connected network
+
+consensus or no convergence, never
+disagreement
+
+disagreement whenever the prejudices that
+count differ
+
+Aperiodicity
+
+always needed
+
+needed only for the P-independent agents
+
+Measure of power
+
+social power w (2): requires a consensus
+
+influence centrality c (12): requires
+ρ(ΛW ) < 1 and u = x(0)
+
+From one model
+to the other
+
+with stubborn agents, an FJ model with
+λi = 0, ui = xi (0) for the stubborn
+agents [5], or, removing the stubborn
+agents, an FJ model in which their
+opinions are prejudices (Figure 8)
+
+an FDG model on the augmented
+graph (11), with n virtual stubborn agents
+
+Table 3: Comparison between the FDG model and the FJ model.
+
+Inertia and anchor. An agent can resist the opinions of the others in two ways, one for each model.
+In the FDG model, a self-weight aii is inertia: an agent whose neighbours all hold the opinion 1 updates
+as xi (k + 1) = aii xi (k) + (1 − aii ) and reaches 1, only more slowly as aii grows. In the FJ model,
+an attachment 1 − λi is an anchor: the same agent updates as xi (k + 1) = λi + (1 − λi ) ui and stops
+at once between 1 and its prejudice, never reaching the others. This holds for a single agent on any
+network; the effects on the group are shown on the two networks of Figure 1, both strongly connected
+and periodic without self-loops.
+• Convergence. In the FDG model the self-weight of agent 1 is needed to make the network
+aperiodic (Section 2.2); in the FJ model a single prejudiced agent that influences everybody makes
+all agents P-dependent, and the model converges although the network is periodic (Corollary 3.3).
+• Influence. In the FDG model, the social power of agent 1 grows gradually with its self-weight,
+from 1/6 to 1 (Figure 3), and for t < 1 the consensus still depends on the initial opinions of all
+agents. In the FJ model, a single anchor, even a weak one, takes the whole influence centrality,
+c = e1 , and the group ends on its prejudice (Figure 9).
+• Many agents. With the same weight 0.2 for every agent (Figure 10), the FDG model reaches a
+consensus, as on every strongly connected network with a self-loop (Corollary 1.12), while the
+FJ model keeps a disagreement as soon as the prejudices differ, on any network.
+23
+
+In social terms, inertia buys time and a gradual influence, but in the end the agent follows the group;
+an anchor buys permanence: the agent never gives in completely, a single anchor takes all the influence,
+and different anchors keep the group divided.
+State and input. The same opinion can be a state or an input, and this decides the stability.
+An FDG model with stubborn agents and its FJ rewriting [5] have the same trajectories, but the
+FDG model is never asymptotically stable, while the FJ model is asymptotically stable whenever the
+stubborn agents influence all the others (Corollaries 2.6 and 3.3): the opinion of a stubborn agent is a
+state in the first and the input ui = xi (0) in the second. The spectra show it in one step: the stubborn
+row is e⊤
+i in A and zero in ΛW , so the eigenvalue 1 of the FDG model becomes 0 in the FJ model.
+Conversely, the augmented model (11) turns every prejudice back into the state of a virtual agent,
+adds one eigenvalue 1 for each of them, and loses the asymptotic stability.
+• What is perturbed. Moving x1 (0) (Figure 7) moves a state in the FDG model, which keeps it
+forever, and only the initial opinion of a real agent in the FJ model, which forgets it and returns
+to the same limit V u. Moving u1 would change the FJ limit as well.
+• Memory without stubbornness. A closed group of P-independent agents is a memory inside the
+real agents (Figure 12): it keeps its initial opinions as a virtual agent keeps its prejudice, so the
+FJ model converges without being asymptotically stable.
+In social terms, what a group remembers is what the model counts as its state: the opinion of a
+stubborn agent in the FDG model, the initial opinions of a closed group of P-independent agents in
+the FJ model, but never the initial opinions of the agents that a prejudice reaches.
+Social power and influence centrality. Both measures say how much the initial opinion of each
+agent weighs in the final opinions, under the different assumptions listed in Table 3; the influence
+centrality also averages over the agents, since the rows of V differ.
+• A single anchor. With agent 1 the only prejudiced agent, c = e1 for every λ1 < 1, while in the
+FDG model w1 grows gradually with the self-weight. The augmented model explains the value:
+without the virtual agents that nobody listens to, it has a single sink 1′ , reaches a consensus and
+has social power e1′ , so with a single prejudice the two measures coincide.
+• Many anchors. With Λ = αI every agent is anchored, the augmented model has n sinks that are
+listened to and no social power, while cα exists for every W . By Lemma 3.5, cα → w as α → 1
+when W is fully regular (Figure 13): the influence centrality moves from the uniform value 1n /n,
+when every agent keeps its own opinion, to the social power, when the anchors vanish.
+In social terms, the social power tells who leads a group that agrees, the influence centrality who weighs
+most in a group that keeps disagreeing; the second becomes the first when the anchors are released.
+What is left out. In Section 3.2 the prejudices are the initial opinions, u = x(0), as in the original
+theory of Friedkin and Johnsen, apart from the perturbations of x(0) in Figures 7 and 12(d), while [5]
+treats u and x(0) as independent: the examples could be repeated with u ̸= x(0), for instance by
+perturbing all the prejudices slightly. [5] also reads the final opinions of the FJ model as a Nash
+equilibrium of a game in which each agent balances its distance from the others and from its prejudice,
+and discusses the continuous-time models of Abelson and Taylor; both are beyond the scope of this
+report.
+
+References
+[1] Giacomo Baggio. DT averaging systems. Lecture slides, Network Dynamical Systems, University of Padova,
+2025.
+[2] Giacomo Baggio. Elements of Graph Theory. Lecture slides, Network Dynamical Systems, University of
+Padova, 2025.
+[3] Giacomo Baggio. Elements of Matrix Theory. Lecture slides, Network Dynamical Systems, University of
+Padova, 2025.
+[4] Francesco Bullo. Lectures on Network Systems. Kindle Direct Publishing, 1.7 edition, 2024. With contributions by J. Cortés, F. Dörfler, and S. Martínez.
+[5] Anton V. Proskurnikov and Roberto Tempo. A tutorial on modeling and analysis of dynamic social networks.
+Part I. Annual Reviews in Control, 43:65–79, 2017.
+
+24
+
+

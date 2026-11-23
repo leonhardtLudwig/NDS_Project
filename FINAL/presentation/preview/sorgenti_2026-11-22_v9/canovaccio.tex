@@ -1,0 +1,608 @@
+%% =====================================================================
+%% Canovaccio della discussione NDS (prof. Baggio), 26/11/2026, ore 9:30
+%% Solo il discorso: per ogni slide le frasi da dire, nell'ordine della slide.
+%% =====================================================================
+%% COME SI AGGIORNA
+%% 1. Ogni slide e' un blocco
+%%       \begin{slide}{<label del frame>}{<titolo>}{<tempo>}
+%%         \begin{discorso}
+%%           \item prima frase
+%%           \item seconda frase
+%%         \end{discorso}
+%%       \end{slide}
+%%    La <label> e' quella del frame in main.tex, es. [label=m-bridge].
+%%    Frame a due passi: \begin{slidedue}{...}{...}{...}; \clic segna il passo 2.
+%%    Pagine senza label (titolo, outline, Thank you): \begin{slidepag}{<pagina>}{...}{...}.
+%% 2. Miniature, numeri di slide e di pagina NON si scrivono a mano: vengono
+%%    da ../main.pdf e ../main.aux. Se cambi la presentazione, ricompila prima
+%%    main.tex e poi questo file (pdflatex canovaccio.tex, due volte).
+%% 3. Nel testo: \fr{label} = numero della slide; \pg{label} = pagina del PDF.
+%% 4. Regole del discorso: niente numeri di teoremi, corollari o casi (si dice il
+%%    contenuto o il nome); si dice solo cio' che e' sulla slide; termini tecnici in
+%%    inglese come sulle slide (consensus, disagreement, prejudice, susceptibility,
+%%    attachment, augmented, social power, influence centrality, ...).
+%% 5. Domande probabili, termini da evitare e cose nostre: file domande.tex.
+%% =====================================================================
+\documentclass[a4paper,10pt]{article}
+\usepackage[T1]{fontenc}
+% babel in italiano: con TeX Live completo usa italian.ldf, altrimenti il file .ini di babel
+\IfFileExists{italian.ldf}{\usepackage[italian]{babel}}%
+  {\usepackage{babel}\babelprovide[import,main]{italian}}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=1.5cm,top=1.4cm,bottom=1.7cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{refcount}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\externaldocument[P-]{../main}  % legge ../main.aux
+\pdfsuppresswarningpagegroup=1
+
+% ---------------------------------------------------------------------
+% Riferimenti alla presentazione
+\newcommand{\presentazione}{../main.pdf}
+\newcommand{\pg}[1]{\getpagerefnumber{P-#1}}  % pagina del PDF
+\newcommand{\fr}[1]{\getrefnumber{P-#1}}      % numero della slide
+\newcommand{\uno}{\mathbf{1}}
+
+% ---------------------------------------------------------------------
+% Impaginazione
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\raggedbottom
+\definecolor{unipd}{RGB}{155,0,20}
+
+\newcommand{\mini}[1]{{\setlength{\fboxsep}{0pt}%
+  \fbox{\includegraphics[page=#1,width=\dimexpr\linewidth-2\fboxrule\relax]{\presentazione}}}}
+\newcommand{\testata}[4]{% numero, pagine, titolo, tempo
+  {\color{unipd}\bfseries Slide #1 \textperiodcentered\ #3}\hfill{\small\itshape #4}\par
+  {\scriptsize\color{gray} pagina #2 del PDF}\par\smallskip}
+
+% Blocco di una slide: miniatura a sinistra, discorso a destra
+\newenvironment{slide}[3]{%
+  \par\addvspace{12pt}\noindent
+  \begin{minipage}[t]{0.36\textwidth}\vspace{0pt}\mini{\pg{#1}}\end{minipage}\hfill
+  \begin{minipage}[t]{0.61\textwidth}\vspace{0pt}%
+  \testata{\fr{#1}}{\pg{#1}}{#2}{#3}}%
+ {\end{minipage}\par}
+% Frame a due passi: le due miniature una sotto l'altra
+\newenvironment{slidedue}[3]{%
+  \par\addvspace{12pt}\noindent
+  \begin{minipage}[t]{0.36\textwidth}\vspace{0pt}\mini{\pg{#1<1>}}\par\smallskip
+    \mini{\pg{#1<2>}}\end{minipage}\hfill
+  \begin{minipage}[t]{0.61\textwidth}\vspace{0pt}%
+  \testata{\fr{#1}}{\pg{#1<1>}--\pg{#1<2>}}{#2}{#3}}%
+ {\end{minipage}\par}
+% ADDED (2026-11-18): slide con tre passi
+\newenvironment{slidetre}[3]{%
+  \par\addvspace{12pt}\noindent
+  \begin{minipage}[t]{0.36\textwidth}\vspace{0pt}\mini{\pg{#1<1>}}\par\smallskip
+    \mini{\pg{#1<2>}}\par\smallskip\mini{\pg{#1<3>}}\end{minipage}\hfill
+  \begin{minipage}[t]{0.61\textwidth}\vspace{0pt}%
+  \testata{\fr{#1}}{\pg{#1<1>}--\pg{#1<3>}}{#2}{#3}}%
+ {\end{minipage}\par}
+% Pagine senza label: si indica la pagina del PDF
+\newenvironment{slidepag}[3]{%
+  \par\addvspace{12pt}\noindent
+  \begin{minipage}[t]{0.36\textwidth}\vspace{0pt}\mini{#1}\end{minipage}\hfill
+  \begin{minipage}[t]{0.61\textwidth}\vspace{0pt}%
+  {\color{unipd}\bfseries #2}\hfill{\small\itshape #3}\par
+  {\scriptsize\color{gray} pagina #1 del PDF}\par\smallskip}%
+ {\end{minipage}\par}
+
+% Il discorso: una frase (o due) per punto
+\newenvironment{discorso}{\begin{itemize}[nosep,leftmargin=1em,label={\color{gray}\textbullet},itemsep=2pt]}{\end{itemize}}
+\newcommand{\clic}{{\color{unipd}\scriptsize[passo 2]}\ }
+\newcommand{\parte}[2]{\section*{#1\hfill{\normalsize\itshape #2}}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Canovaccio della discussione}\\[3pt]
+  {\large Stubbornness and Social Power in Opinion Dynamics}\\[2pt]
+  Network Dynamical Systems, prof.\ Giacomo Baggio \textperiodcentered\ giovedì 26 novembre 2026, ore 9:30\\[2pt]
+  {\small\color{gray} Versione del \today}
+\end{center}
+
+% =====================================================================
+\parte{Parte 1 — Introduzione}{3:00}
+
+\begin{slidepag}{1}{Titolo}{0:15}
+  \begin{discorso}
+    \item Buongiorno. Presento il mio progetto su stubbornness e social power nella dinamica delle opinioni.
+    \item Studio due modelli, il modello di French–Harary–DeGroot e il modello di Friedkin–Johnsen: come cambia il loro comportamento quando gli agenti resistono agli altri, e quanto pesa ciascun agente nelle opinioni finali.
+  \end{discorso}
+\end{slidepag}
+
+\begin{slidepag}{2}{Slide 2 \textperiodcentered\ Outline}{0:15}
+  \begin{discorso}
+    \item La presentazione ha quattro parti: introduzione, modello FDG, modello FJ, conclusioni.
+    \item Alcune slide hanno dei pulsanti in basso a destra: aprono le slide di backup, con definizioni e derivazioni. Le uso solo se vuole entrare nel dettaglio.
+  \end{discorso}
+\end{slidepag}
+
+\begin{slide}{m-question}{Stubbornness}{1:00}
+  \begin{discorso}
+    \item Una rete sociale è un digrafo pesato: gli agenti sono i nodi, gli archi portano l'influenza, e ogni agente aggiorna la sua opinione facendo la media delle opinioni che ascolta.
+    \item Un agente è stubborn se la sua opinione resta invariata indipendentemente dalle opinioni degli altri: è la definizione del tutorial di Proskurnikov e Tempo.
+    \item È il caso estremo di due modi graduati di resistere agli altri: dare peso alla propria opinione attuale, oppure restare attaccati a un'opinione fissa propria, un prejudice.
+    \item Il primo è il modo del modello FDG, il secondo del modello FJ: li introduco tra poco.
+    \item A entrambi i modelli, sulle stesse reti, faccio tre domande. Le opinioni convergono? Convergono alla stessa opinione per tutti, il consensus, o a opinioni diverse, il disagreement? E quanto pesa l'opinione iniziale di ciascun agente in quelle finali?
+    \item Prima di tutto, da dove vengono i due modelli.
+  \end{discorso}
+\end{slide}
+
+\begin{slide}{m-models}{Models of opinion dynamics}{0:40}
+  \begin{discorso}
+    \item Il quadro storico è quello del tutorial di Proskurnikov e Tempo, la fonte principale del lavoro, insieme alle slide del corso e al libro di Bullo.
+    \item A sinistra i modelli che fanno solo medie: in tempo discreto il modello di French, Harary e DeGroot; in tempo continuo quello di Abelson.
+    \item Per i gruppi reali il consensus è una previsione troppo forte: spesso restano divisi.
+    \item Per questo il modello di Friedkin e Johnsen, negli anni Novanta, aggiunge alle medie opinioni esterne costanti; è stato validato sperimentalmente su gruppi piccoli e medi. In tempo continuo il corrispondente è il modello di Taylor.
+    \item In questo lavoro tratto il modello FDG, visto nel corso, e il modello FJ, che è nuovo; Abelson e Taylor restano solo nella panoramica.
+    \item Richiamo solo le nozioni del corso che mi servono.
+  \end{discorso}
+\end{slide}
+
+\begin{slide}{m-prelim}{Preliminaries}{0:50}
+  \begin{discorso}
+    \item Sono nozioni del corso, quindi solo i punti che userò.
+    \item Un arco da $i$ a $j$, con peso $a_{ij}$, vuol dire che l'agente $i$ è influenzato dall'agente $j$: è la convenzione del corso; il tutorial disegna gli archi al contrario.
+    \item Un digrafo fortemente connesso è periodico se un intero maggiore di uno divide la lunghezza di ogni ciclo semplice; un self-loop lo rende aperiodico.
+    \item Nel condensation digraph ogni componente fortemente connessa diventa un nodo; un sink è un gruppo influenzato solo da sé stesso. Saranno i sink a decidere l'esito.
+    \item Per le matrici: semi-convergente vuol dire che il limite delle potenze esiste; convergente, o Schur stabile, che il limite è zero, cioè raggio spettrale minore di uno.
+    \item Infine: irriducibile equivale a fortemente connesso, primitiva a fortemente connesso e aperiodico.
+    \item Ora il primo modello.
+  \end{discorso}
+\end{slide}
+
+% =====================================================================
+\parte{Parte 2 — Il modello FDG}{8:40}
+
+\begin{slide}{m-fdg-model}{The FDG model}{0:50}
+  \begin{discorso}
+    \item Nel modello FDG ogni agente sostituisce la sua opinione con una media pesata delle opinioni che ascolta.
+    \item In forma vettoriale $x(k+1)=Ax(k)$, con $A$ la matrice di adiacenza pesata, row-stochastic: è un sistema di media a tempo discreto.
+    \item Iterando, $x(k)=A^kx(0)$: il comportamento nel lungo periodo dipende dalle potenze di $A$. Una matrice row-stochastic ha sempre l'autovalore 1, e raggio spettrale 1.
+    \item A destra la definizione: il modello è convergente se, per ogni condizione iniziale, il limite esiste; raggiunge un consensus se, per ogni condizione iniziale, le opinioni finali sono tutte uguali.
+    \item Gli esiti possibili sono quindi tre: nessuna convergenza, cioè $A$ non semi-convergente; consensus; e disagreement, cioè il modello converge ma per qualche condizione iniziale le opinioni finali non sono tutte uguali.
+    \item Quale dei tre si ha lo dicono due teoremi del corso, uno per il consensus e uno per il disagreement. Comincio dal consensus.
+  \end{discorso}
+\end{slide}
+
+\begin{slide}{m-fdg-consensus}{Consensus and social power}{0:55}
+  \begin{discorso}
+    \item Il teorema del consensus del corso dà tre condizioni equivalenti.
+    \item Sullo spettro: l'autovalore 1 è semplice e gli altri hanno modulo minore di uno. Sulla matrice: le potenze di $A$ convergono a $\uno w^\top$. Sul grafo: esiste un nodo globally reachable, e il sottografo dei nodi globally reachable è aperiodico.
+    \item In questo caso $w$ è l'autovettore sinistro dominante di $A$, con $w_i$ positivo se e solo se il nodo $i$ è globally reachable, e il valore di consensus è $w^\top x(0)$.
+    \item A destra: $w_i$ è la social power dell'agente $i$, il peso della sua opinione iniziale nel valore di consensus.
+    \item Richiede il consensus, perché solo allora le righe del limite di $A^k$ sono tutte uguali a $w^\top$.
+    \item Per questo il lavoro si concentra sul consensus: è il caso in cui il peso di ciascun agente si può misurare.
+    \item Sotto, l'average consensus: se $A$ è doubly-stochastic e vale la condizione sul grafo, $w$ è uniforme e il consensus è la media delle opinioni iniziali.
+    \item Nei termini del tutorial: il modello converge se e solo se $A$ è regular, e raggiunge il consensus se e solo se $A$ è fully regular.
+    \item E se il consensus non c'è?
+  \end{discorso}
+\end{slide}
+
+\begin{slide}{m-fdg-disagreement}{Disagreement and stubbornness}{0:40}
+  \begin{discorso}
+    \item Se il condensation digraph ha almeno due sink, il teorema del disagreement dà tre condizioni equivalenti: l'autovalore 1 è semi-semplice, con molteplicità pari al numero di sink; $A$ è semi-convergente; ogni sink è aperiodico.
+    \item Allora ogni sink raggiunge un consensus al suo interno, e ogni agente fuori dai sink converge a una combinazione convessa dei valori dei sink.
+    \item Le righe del limite di $A^k$ sono diverse: nessun vettore fa la parte di $w$, e la social power non è definita.
+    \item A destra la definizione di stubborn del tutorial. Nel modello FDG l'agente $i$ è stubborn se e solo se $a_{ii}=1$: è un sink fatto di un solo nodo, aperiodico grazie al self-loop.
+    \item Se tutti gli agenti sono influenzati da lui, direttamente o attraverso altri, è l'unico nodo globally reachable, e la sua social power è 1.
+    \item Riassumo tutti i casi nella Rosetta stone.
+  \end{discorso}
+\end{slide}
+
+% MOVED (2026-11-19, note del 19/11): la Rosetta stone dopo il disagreement, come nel
+% report; il discorso diventa un riassunto di tutti i casi.
+\begin{slide}{m-fdg-rosetta}{Which outcome: the Rosetta stone}{0:45}
+  \begin{discorso}
+    \item L'esito si legge sullo spettro di $A$, sulla matrice o sul digrafo: la Rosetta stone del corso collega i tre punti di vista e riassume tutti i casi, uno per riga.
+    \item Nelle prime due righe il digrafo è fortemente connesso. Se è anche aperiodico, $A$ è primitiva e si ha consensus; se è periodico, nessuna convergenza. Qui la traduzione fra matrice e digrafo viene dalla caratterizzazione delle matrici irriducibili e primitive.
+    \item Nella terza e nella quarta riga il digrafo non è fortemente connesso, e la traduzione viene dai due teoremi appena visti. Un solo sink, aperiodico: consensus. Almeno due sink, tutti aperiodici: disagreement.
+    \item L'ultima riga, lasciata vuota nelle slide del corso, viene dal tutorial: se almeno un sink è periodico, il modello non converge.
+    \item In basso il fatto che mi servirà di più: se il digrafo ha almeno due nodi, è fortemente connesso e ha almeno un self-loop, $A$ è primitiva.
+    \item Ora le due reti su cui confronto i due modelli.
+  \end{discorso}
+\end{slide}
+
+% REVISED (2026-11-19, note del 19/11): prima le reti e come sono parametrizzate, poi i
+% casi di t, al secondo passo.
+\begin{slidedue}{m-networks}{Two networks, one agent}{1:15}
+  \begin{discorso}
+    \item Uso due reti di sei agenti: un ciclo diretto, in cui ogni agente ascolta solo il successivo, e un anello bidirezionale, in cui ogni agente ascolta i due vicini con peso un mezzo.
+    \item In entrambe cambio solo la riga dell'agente 1, con un parametro $t$ fra 0 e 1. L'agente 1 dà peso $t$ a se stesso, cioè alla propria opinione attuale, e moltiplica per $1-t$ i pesi che dava agli altri nella rete originale. Le altre righe non cambiano. La regola è la stessa per tutte e due le reti. Nella formula $a_1(t)^\top$ è la riga dell'agente 1 nella matrice $A(t)$, $a_1(0)^\top$ la stessa riga nella rete originale, ed $e_1^\top$ il vettore con 1 al primo posto e 0 altrove.
+    \item Nella tabellina le due righe. Sul ciclo la riga originale dell'agente 1 ha 1 sull'agente 2, quindi diventa $t$ su se stesso e $1-t$ sull'agente 2. Sull'anello la riga originale ha un mezzo sugli agenti 2 e 6, quindi diventa $t$ su se stesso e $\frac{1-t}{2}$ su ciascuno dei due. Le righe sono diverse, la regola è la stessa: cambia solo la riga di partenza.
+    \item Nei grafi gli archi senza etichetta pesano 1 sul ciclo e un mezzo sull'anello. In particolare, sull'anello gli agenti 2 e 6 ascoltano l'agente 1 con peso un mezzo per ogni $t$: le loro righe non cambiano.
+    \item Quindi $t$ è il self-weight dell'agente 1: con $t=0$ ho le reti originali, con $t=1$ l'agente 1 è stubborn.
+    \item La condizione iniziale, salvo dove lo dico, è la stessa: opinioni da 0 a 1 con passo 0.2, dall'agente 1 all'agente 6.
+    \item \clic Ora i casi di $t$. La tabella in basso vale per entrambe le reti.
+    \item Per $t=0$ entrambe sono fortemente connesse e periodiche: sul ciclo l'unico ciclo ha lunghezza 6, sull'anello ogni ciclo ha lunghezza pari, quindi periodo 6 e periodo 2. E sono doubly-stochastic: l'autovettore sinistro dell'autovalore 1 è uniforme, nessun agente è favorito.
+    \item Per $t$ fra 0 e 1 restano fortemente connesse, perché l'agente 1 ascolta ancora i suoi vicini. Il self-loop dell'agente 1 è un ciclo di lunghezza 1: nessun intero maggiore di 1 divide tutte le lunghezze dei cicli, quindi sono aperiodiche. E non sono più doubly-stochastic: la colonna dell'agente 1 somma a $1+t$.
+    \item Per $t=1$ l'agente 1 ascolta solo se stesso: l'unico arco che esce da lui è il self-loop, quindi da lui non parte nessun cammino verso gli altri, e le reti non sono più fortemente connesse. La periodicità è definita solo per un grafo fortemente connesso, per questo nella tabella c'è un trattino: per $t=1$ conta il sink, lo vediamo nella prossima slide.
+    \item Vediamo cosa succede alle opinioni.
+  \end{discorso}
+\end{slidedue}
+
+\begin{slide}{m-fdg-conv}{One self-weight brings agreement}{1:10}
+  \begin{discorso}
+    \item Le colonne sono $t=0$, un mezzo e 1; sopra il ciclo, sotto l'anello.
+    \item Per capire perché, uso il teorema del consensus. Ha tre condizioni equivalenti; qui la più comoda è quella sul grafo: esiste un nodo globally reachable, e il sottografo dei nodi globally reachable è aperiodico.
+    \item Per $t=0$ ogni nodo è globally reachable, ma il sottografo è tutta la rete, che è periodica: la condizione non vale. È il caso della Rosetta stone di una rete fortemente connessa e periodica: le opinioni oscillano per sempre, nessuna convergenza. Sullo spettro ci sono autovalori diversi da 1 sul cerchio unitario.
+    \item Basta un self-weight $t$ positivo, di un solo agente, e il gruppo raggiunge il consensus.
+    \item Per $t$ fra 0 e 1 ogni nodo è ancora globally reachable, e la rete, con il self-loop dell'agente 1, è aperiodica: la condizione vale, consensus. È il caso della rete fortemente connessa e aperiodica: $A(t)$ è primitiva.
+    \item Per $t=1$ l'agente 1 è stubborn ed è l'unico nodo globally reachable. Sul ciclo gli altri formano una catena che finisce in lui; sull'anello gli agenti da 2 a 6 si ascoltano tra loro, e il 2 e il 6 ascoltano l'agente 1. Il sottografo del solo agente 1 ha il self-loop, quindi è aperiodico: la condizione vale ancora.
+    \item Detto con il condensation digraph: un solo sink, l'agente 1, aperiodico. È il caso della Rosetta stone con un unico sink aperiodico: tutti finiscono sulla sua opinione iniziale, zero.
+    \item Lo spettro dice la stessa cosa: per ogni $t$ positivo gli autovalori diversi da 1 sono strettamente dentro il disco unitario.
+    \item Questo è il primo punto del lavoro: la testardaggine ribalta la dinamica. Un agente che dà peso alla propria opinione attuale, senza essere stubborn, basta perché su una rete fortemente connessa tutto il gruppo si metta d'accordo.
+    \item Con il consensus possiamo misurare il peso di ciascun agente.
+  \end{discorso}
+\end{slide}
+
+\begin{slide}{m-fdg-sp}{Social power grows gradually}{0:45}
+  \begin{discorso}
+    \item Per $t$ in $(0,1]$ c'è consensus, e la social power ha la forma chiusa a destra, la stessa sulle due reti.
+    \item In alto: la social power dell'agente 1 cresce gradualmente con il suo self-weight, da $1/6$, che è il limite per $t$ che tende a 0, fino a 1 per $t=1$. A $t=\tfrac12$ vale $2/7$, e ogni altro agente $1/7$.
+    \item In basso il valore di consensus, per la nostra condizione iniziale, opinioni da 0 a 1 con passo 0.2: $3(1-t)/(6-5t)$, da 0.5 nel limite per $t$ che tende a 0, fino a $x_1(0)=0$; a $t=\tfrac12$ vale $3/7$.
+    \item I valori sono gli stessi sulle due reti: la rete decide come le opinioni convergono, non dove.
+    \item In termini sociali: l'inerzia guadagna influenza poco alla volta, e per $t$ fra 0 e 1 ogni opinione iniziale entra ancora nel consensus.
+    \item Perché la stessa social power su due reti così diverse?
+  \end{discorso}
+\end{slide}
+
+% TODO (2026-11-18, note di Leonardo): la slide «Why the same social power» è da rifare
+% e rilavorare; quando sarà rifatta, va riscritto anche questo blocco.
+% REVISED (2026-11-18): discorso rifatto con la slide (regola, intuizione, verifica).
+% DONE (2026-11-18): il TODO sopra è fatto.
+% REVISED (2026-11-21, note del 21/11): slide rifatta come catena breve, solo con cose
+% del report: stessa social power = stesso limite; cosa hanno in comune; quindi stesso w(t).
+\begin{slidetre}{m-fdg-why}{Why the same social power}{1:20}
+  \begin{discorso}
+    \item Il fatto: stessa social power sulle due reti vuol dire stesso limite delle potenze di $A(t)$. Per il teorema del consensus il limite è $\uno w(t)^\top$.
+    \item In questo limite non c'è $x(0)$: $w(t)$ dipende solo dalla matrice; $x(0)$ entra solo nel valore di consensus.
+    \item Il problema: le due matrici sono diverse. Sul ciclo ogni agente ascolta un solo agente, sull'anello due. E anche i loro spettri sono diversi.
+    \item Allora che cosa hanno in comune, che dà lo stesso limite?
+    \item \clic Primo: da cosa dipende il limite. Per $t$ positivo l'autovalore 1 è semplice e gli altri sono strettamente dentro il disco unitario, quindi per il teorema del consensus il limite è $\uno w(t)^\top$, con $w(t)$ l'autovettore sinistro dell'autovalore 1. Gli altri autovalori non entrano: stesso limite vuol dire stesso $w(t)$.
+    \item Secondo: lo stesso punto di partenza. A $t=0$ le due matrici sono doubly-stochastic: ogni agente è ascoltato con peso totale 1, e $w$ è uniforme: tutti gli agenti contano uguale.
+    \item Terzo: la stessa modifica. Per $t$ positivo cambia solo la riga dell'agente 1, con la stessa regola: tiene $t$ per sé e ascolta gli altri con i pesi di prima moltiplicati per $1-t$.
+    \item \clic Quarto: l'equazione di $w(t)$. La colonna $j$ di $w(t)^\top A(t)=w(t)^\top$ dice che $w_j$ è la somma, sugli agenti $i$, di $w_i$ per il peso con cui $i$ ascolta $j$. Suppongo che gli agenti da 2 a 6 abbiano la stessa social power $b$, come a $t=0$.
+    \item Colonna 1: l'agente 1 ascolta se stesso con peso $t$, e gli altri lo ascoltano con peso totale 1, come a $t=0$. Quindi $w_1=t\,w_1+b$, cioè $b=(1-t)\,w_1$: è l'equazione del report.
+    \item Colonna $j$ diversa da 1: l'agente 1 ascolta $j$ con peso $(1-t)\,a_{1j}(0)$; moltiplicato per $w_1=b/(1-t)$ dà $b\,a_{1j}(0)$, lo stesso termine di $t=0$, quando l'agente 1 aveva la stessa social power $b$ degli altri. Quindi ogni colonna diversa dalla prima è come a $t=0$ e dà $w_j=b$: la supposizione regge, sulle due reti, che l'agente 1 ascolti un agente o due.
+    \item Quinto: quindi lo stesso $w(t)$, proporzionale a $(1,1-t,\dots,1-t)$, unico perché l'autovalore 1 è semplice. Stesso limite, stessa social power.
+    \item Quello che le due reti hanno di diverso decide come le opinioni convergono, non dove.
+    \item Finora al massimo un agente stubborn. Vediamo cosa succede con due.
+  \end{discorso}
+\end{slidetre}
+
+\begin{slide}{m-bridge}{Two stubborn agents}{1:00}
+  \begin{discorso}
+    \item Come nell'esempio con $t=1$, l'agente 1 è stubborn; ora sull'anello lo è anche l'agente 4, quello opposto.
+    \item Il condensation digraph ha due sink, $\{1\}$ e $\{4\}$, aperiodici per i self-loop.
+    \item Per il teorema del disagreement il gruppo converge a un disagreement: gli agenti 2, 3, 5 e 6 finiscono su combinazioni convesse delle opinioni iniziali di 1 e di 4.
+    \item Le righe del limite di $A^k$ sono diverse, quindi la social power non è definita.
+    \item Qui mi fermo con il modello FDG, per due motivi: è già visto nel corso, e la social power, che è ciò che mi interessa, richiede il consensus.
+    \item Però lascio aperta una domanda. Gli agenti 1 e 4 non cambiano mai opinione: sono membri del gruppo, o sono opinioni fisse, esterne, che gli altri ascoltano?
+    \item E in generale: un agente la cui opinione resta invariata indipendentemente dalle opinioni degli altri è un membro del gruppo, o un'opinione fissa esterna che gli altri ascoltano?
+    \item Ci torno più avanti. Ora il secondo modello, il modello di Friedkin–Johnsen.
+  \end{discorso}
+\end{slide}
+
+% =====================================================================
+\parte{Parte 3 — Il modello FJ, teoria}{7:20}
+
+\begin{slide}{m-fj-model}{The FJ model}{1:00}
+  \begin{discorso}
+    \item Nel modello FJ ogni agente pesa con $\lambda_i$ la media delle opinioni che ascolta, e con il complemento $1-\lambda_i$ il suo prejudice $u_i$.
+    \item $W$ è row-stochastic, la matrice delle influenze sociali: ha il ruolo che $A$ aveva nel FDG.
+    \item $\lambda_i$ è la susceptibility dell'agente $i$ all'influenza sociale; $u$ è il vettore costante dei prejudice, opinioni fisse che gli agenti ascoltano; $1-\lambda_i$ è l'attachment dell'agente al proprio prejudice.
+    \item A destra i casi estremi di $\lambda_i$. Con $\lambda_i=1$ l'agente non è attaccato al suo prejudice e segue la regola del FDG; se vale per tutti, $\Lambda=I$, il modello è proprio il FDG con $A=W$. Per questo da qui in poi almeno un agente ha $\lambda_i<1$.
+    \item Un agente con $\lambda_i<1$ si dice prejudiced: il suo prejudice entra davvero nell'aggiornamento.
+    \item All'estremo opposto, $\lambda_i=0$: l'agente non ascolta più nessuno, e dal primo passo in poi la sua opinione è $u_i$. È stubborn solo se $u_i$ è la sua opinione iniziale; altrimenti salta su $u_i$ al primo passo e resta lì.
+    \item Nel FJ originale il prejudice è l'opinione iniziale, $u=x(0)$, e l'attachment è il self-weight $w_{ii}$. Il tutorial non lo impone, e io nemmeno; negli esempi userò $u=x(0)$.
+    \item Rispetto al FDG cambia ciò a cui l'agente è legato: il self-weight lo lega alla sua opinione attuale, che continua a muoversi verso gli altri; il prejudice lo lega a un valore fisso, che non si muove mai.
+    \item Ora le stesse tre domande per il modello FJ. La prima: quando converge?
+  \end{discorso}
+\end{slide}
+
+% REVISED (2026-11-19, note del 19/11): convergenza FJ nell'ordine del report, in tre
+% slide: definizioni, P-dependent e decomposizione; Teorema 3.2; Corollario 3.3 e intuizione.
+\begin{slide}{m-fj-conv}{Convergence in the FJ model}{0:55}
+  \begin{discorso}
+    \item Il modello FJ converge se il limite esiste per ogni condizione iniziale; è asintoticamente stabile se $\Lambda W$ è convergente, cioè ha raggio spettrale minore di uno.
+    \item Entrambe le proprietà dipendono da quali agenti i prejudice raggiungono. Un agente è P-dependent se è prejudiced, o se è influenzato, direttamente o attraverso altri, da un agente prejudiced. Altrimenti è P-independent.
+    \item Un agente P-independent non è prejudiced, quindi $\lambda_i=1$, e non è influenzato da nessun agente P-dependent: se lo fosse, attraverso di lui sarebbe influenzato da un agente prejudiced.
+    \item Poiché $\Lambda$ è diversa dall'identità, almeno un agente è prejudiced, quindi almeno uno è P-dependent: $r$ è almeno 1.
+    \item Numero prima i P-dependent, da 1 a $r$, poi i P-independent, e divido $x$, $u$, $W$ e $\Lambda$ in blocchi allo stesso modo. Il blocco $W^{21}$ è zero, perché i P-independent non ascoltano i P-dependent, e $\Lambda^{22}$ è l'identità, perché i P-independent non sono prejudiced.
+    \item Il modello si divide in due: le opinioni dei P-dependent dipendono dai loro prejudice e dalle opinioni dei P-independent; quelle dei P-independent evolvono da sole.
+    \item $W^{22}$ dice come i P-independent si ascoltano tra loro, ed è row-stochastic, perché $W$ lo è e $W^{21}$ è zero. Quindi la seconda equazione è un modello FDG fra i P-independent, che nessun prejudice raggiunge; per i P-dependent, le loro opinioni sono un ingresso in più.
+    \item Su questa divisione si basa il teorema di convergenza.
+  \end{discorso}
+\end{slide}
+
+\begin{slide}{m-fj-conv2}{Convergence with P-independent agents}{0:45}
+  \begin{discorso}
+    \item Il teorema dice tre cose. La prima: la parte dei P-dependent è sempre asintoticamente stabile, cioè $\Lambda^{11}W^{11}$ ha raggio spettrale minore di uno.
+    \item La seconda: il modello FJ converge se e solo se tutti gli agenti sono P-dependent, oppure converge il modello FDG dei P-independent, cioè $W^{22}$ è regular.
+    \item La terza: quando converge, le opinioni finali dei P-dependent sono $V$ per il vettore dei loro prejudice e delle opinioni finali dei P-independent. $V$ è stocastica: ogni opinione finale è una combinazione convessa dei prejudice e delle opinioni finali dei P-independent.
+    \item Quindi l'aperiodicità torna a servire, ma solo per i P-independent: il loro modello FDG converge se e solo se tutti i sink del loro condensation digraph sono aperiodici, come dice la Rosetta stone. Lo vedremo in un esempio.
+    \item Il caso più semplice è quello senza P-independent.
+  \end{discorso}
+\end{slide}
+
+% ADDED (2026-11-19, note del 19/11): il Corollario 3.3 come caso r = n, con l'intuizione.
+% REVISED (2026-11-22, note del 21-22/11): perché servono tutti P-dependent; a cosa si
+% riferisce l'intuizione.
+\begin{slide}{m-fj-conv3}{All agents P-dependent}{1:00}
+  \begin{discorso}
+    \item Se tutti gli agenti sono P-dependent, $r=n$: non ci sono P-independent, e la prima equazione è tutto il modello.
+    \item Il corollario dice che il modello FJ è asintoticamente stabile se e solo se tutti gli agenti sono P-dependent, e allora $V=(I-\Lambda W)^{-1}(I-\Lambda)$. Succede per esempio su una rete fortemente connessa con almeno un agente prejudiced, come le nostre due reti.
+    \item Se invece ci sono agenti P-independent, il modello può ancora convergere, ma non è asintoticamente stabile: il limite dipende dalle loro opinioni iniziali. Lo vedremo negli esempi, sulla rete ausiliaria.
+    \item Con $r=n$ la formula del teorema dà, per ogni condizione iniziale, $x(\infty)=Vu$.
+    \item In basso l'intuizione. $Vu$ è un equilibrio del modello. Lo scarto dall'equilibrio, $e(k)=x(k)-Vu$, evolve come $e(k+1)=\Lambda W\,e(k)$: $u$ non compare. Quindi $\Lambda W$ decide se le opinioni convergono, $u$ decide dove.
+    \item A ogni passo l'agente $i$ tiene una frazione $\lambda_i$ della media pesata degli scarti degli agenti che ascolta: un agente non prejudiced fa solo la media, un agente prejudiced ne perde una frazione $1-\lambda_i$. Gli scarti escono dal gruppo solo attraverso gli agenti prejudiced, e si spengono solo se ogni agente è influenzato, direttamente o attraverso altri, da uno di loro.
+    \item La prima parte vale per $r=n$, dove $Vu$ è il limite; la seconda spiega perché serve $r=n$: un gruppo che nessun prejudice raggiunge non perde nessuno scarto, e si comporta come un modello FDG.
+    \item E non serve nessuna aperiodicità, a differenza del FDG.
+    \item Seconda domanda: dove convergono le opinioni?
+  \end{discorso}
+\end{slide}
+
+% REVISED (2026-11-19, note del 19/11): i grafi semplificati detti a voce; il teorema del
+% disagreement passa a Back to the question.
+% REVISED (2026-11-22, note del 21/11): il consensus del FJ e la storia Abelson-Taylor.
+\begin{slide}{m-fj-final}{Final opinions and the augmented graph}{1:15}
+  \begin{discorso}
+    \item Con tutti gli agenti P-dependent le opinioni finali sono $x(\infty)=Vu$.
+    \item Tre conseguenze. Le opinioni iniziali sono dimenticate: $x(0)$ non compare. Contano solo i prejudice degli agenti prejudiced: se $\lambda_j=1$, la colonna $j$ di $V$ è nulla.
+    \item E, per un dato $u$, il gruppo raggiunge un consensus se e solo se tutti gli agenti prejudiced hanno lo stesso prejudice.
+    \item Questo si lega alla storia dei due modelli. Abelson aveva osservato che il consensus, l'esito di una classe molto ampia di modelli di media, è troppo forte per essere realistico: i gruppi reali spesso restano divisi. Taylor ha aggiunto al modello di Abelson i prejudice, e il FJ ne è la controparte a tempo discreto. Qui si vede perché: il consensus richiede che tutti gli agenti prejudiced abbiano lo stesso prejudice; con prejudice diversi il gruppo resta diviso, ed è il disagreement persistente che Abelson chiedeva di spiegare.
+    \item Il tutorial dà anche una seconda lettura, il modello augmented: a ogni agente $i$ si affianca un agente virtuale stubborn $i'$, che vale sempre $u_i$.
+    \item La matrice $\bar A$ è row-stochastic, quindi il modello augmented è un modello FDG su $2n$ agenti. Nella figura l'agente 1 è l'unico prejudiced: a sinistra il modello FJ, a destra il grafo augmented con l'agente virtuale $1'$.
+    \item I grafi sono semplificati, per motivi di spazio. Nel modello FJ ogni agente ha un prejudice $u_i$, ma solo l'agente 1 gli dà peso: per gli altri $1-\lambda_i=0$, quindi disegno solo $u_1$. Il grafo augmented ha $2n=12$ nodi, e ne disegno 7, i sei agenti reali e $1'$: gli agenti virtuali da $2'$ a $6'$ non li ascolta nessuno, perché l'agente $i$ ascolta $i'$ con peso $1-\lambda_i$, che per gli agenti da 2 a 6 è zero. È la stessa scelta della figura del report.
+    \item Ogni agente virtuale è stubborn: l'unico arco che esce da lui è il suo self-loop. Quindi è un sink del grafo augmented, aperiodico per il self-loop.
+    \item In termini sociali: un prejudice si comporta come un agente in più che non cambia mai opinione, messo accanto all'agente prejudiced.
+    \item Letto al contrario, questo risponderà alla domanda lasciata aperta. Prima, la terza domanda: quanto pesa ciascun agente?
+  \end{discorso}
+\end{slide}
+
+% MOVED (2026-11-18): Influence centrality prima di Back to the question.
+\begin{slide}{m-fj-centrality}{Influence centrality}{0:40}
+  \begin{discorso}
+    \item La social power richiede il consensus, che nel modello FJ non è una proprietà del modello: dipende dai prejudice. E il modello augmented ha almeno $n$ sink, quindi per $n\ge2$ non va mai al consensus.
+    \item Serve un'altra misura. Come nel tutorial, prendo il modello FJ asintoticamente stabile e $u=x(0)$, l'ipotesi tradizionale della teoria FJ: è questa che dà un ruolo alle opinioni iniziali, $x(\infty)=Vx(0)$.
+    \item La influence centrality $c_i$ è il peso medio dell'opinione iniziale dell'agente $i$ nelle opinioni finali del gruppo: la media della colonna $i$ di $V$.
+    \item $V$ è stocastica, quindi $c$ è non negativo e somma a uno, come la social power.
+    \item Ora torno alla domanda lasciata aperta.
+  \end{discorso}
+\end{slide}
+
+% REVISED (2026-11-19, note del 19/11): qui il teorema del disagreement, dalla slide
+% Final opinions and the augmented graph.
+\begin{slidedue}{m-back-question}{Back to the question}{1:45}
+  \begin{discorso}
+    \item Riprendo la domanda lasciata aperta con il modello FDG. Sull'anello gli agenti 1 e 4 sono stubborn, non cambiano mai opinione: sono membri del gruppo, o opinioni fisse esterne che gli altri ascoltano?
+    \item Il modello augmented trasforma un prejudice in un agente stubborn virtuale. Letto al contrario: un agente stubborn è un prejudice per gli agenti che lo ascoltano.
+    \item Lo vedo sull'anello: tolgo gli agenti 1 e 4. L'agente 2 aggiorna come $x_2(k+1)=\tfrac12x_3(k)+\tfrac12x_1(0)$: è il modello FJ con $\lambda_2=\tfrac12$ e prejudice $u_2=x_1(0)$.
+    \item Allo stesso modo l'agente 6 ha prejudice $x_1(0)$, e gli agenti 3 e 5 hanno prejudice $x_4(0)$, tutti con $\lambda_i=\tfrac12$. Le traiettorie sono le stesse del FDG.
+    \item \clic Quindi la risposta è: valgono entrambe le letture.
+    \item Come membri del gruppo, 1 e 4 sono agenti FJ con $\lambda_i=0$ e prejudice uguale alla loro opinione iniziale, cioè stubborn, e gli altri seguono la regola del FDG.
+    \item Come opinioni fisse esterne, sono il prejudice degli agenti che li ascoltano, come qui.
+    \item Le due letture danno le stesse traiettorie. Il disagreement dei due agenti stubborn è il disagreement di agenti ancorati a prejudice diversi.
+    \item Questo disagreement lo dà il teorema del disagreement, che chiede solo questo: almeno due sink, tutti aperiodici. Non serve che la rete sia fortemente connessa, anzi con due sink non lo è mai; e ogni sink è per definizione una componente fortemente connessa, quindi ha senso dire che è aperiodico.
+    \item Nel FDG i sink sono i due agenti stubborn, aperiodici per i self-loop. Nel modello augmented i sink sono gli agenti virtuali, aperiodici per i self-loop; con tutti gli agenti P-dependent sono gli unici sink: ogni agente reale ha un cammino verso un agente prejudiced, e da lì verso il suo agente virtuale, quindi nessun gruppo di agenti reali è chiuso.
+    \item Per lo stesso teorema, nel modello augmented gli agenti reali finiscono su combinazioni convesse dei prejudice, che è proprio $Vu$. Il disagreement è quello dei $2n$ agenti del modello augmented, perché gli agenti virtuali restano sui loro prejudice; gli agenti reali possono anche essere d'accordo, se tutti gli agenti prejudiced hanno lo stesso prejudice.
+    \item Stesse traiettorie: ma è lo stesso sistema? Lo vedremo negli esempi, sulle stesse due reti del FDG.
+  \end{discorso}
+\end{slidedue}
+
+
+% =====================================================================
+\parte{Parte 4 — Il modello FJ, esempi}{11:30}
+
+% ADDED (2026-11-18): le reti degli esempi, disegnate.
+% REVISED (2026-11-19, note del 19/11): l'anello ha la sua slide, quella dopo.
+% REVISED (2026-11-22, note del 22/11): quale matrice disegnano i pannelli FJ; perché
+% niente self-loop in W.
+\begin{slide}{m-fj-graphs}{Example networks: directed cycle}{0:50}
+  \begin{discorso}
+    \item Per gli esempi uso le stesse reti del FDG. Qui il ciclo diretto, l'anello nella prossima slide. Nel modello FJ $W$ è la rete senza self-loop, $A(0)$, e il prejudice di ogni agente è la sua opinione iniziale.
+    \item A sinistra un solo agente. Nel FDG, figura (a), l'agente 1 dà peso $t$ alla propria opinione attuale: è il self-loop. Nel FJ, figura (b), lo stesso peso $t$ va sul suo prejudice $u_1$: è la freccia che entra nell'agente 1, che non è un arco del grafo.
+    \item A destra tutti gli agenti. Nel FDG, figura (c), ogni agente ha self-loop 0.2 e ascolta il successivo con peso 0.8; nel FJ, figura (d), ogni agente ha il suo prejudice con peso 0.2, e ascolta il successivo con peso 0.8.
+    \item Nelle figure del FJ gli archi portano i pesi di $\Lambda W$, come nel report: l'arco da 1 a 2 è un arco di $G$ con peso 1 in $W$, e $1-t$ è $\lambda_1$ per $w_{12}$. Le frecce dai prejudice non sono archi di $G$.
+    \item Stessi archi, e gli stessi pesi in $A(t)$ e in $\Lambda W$: cambia solo l'oggetto del peso in più, l'opinione attuale nel FDG, un prejudice nel FJ.
+    \item Per questo $W$ non ha self-loop: se lo avesse, l'agente 1 del FJ avrebbe sia un self-weight sia un attachment, e i due meccanismi si mescolerebbero. Così ogni modello ha un solo meccanismo, e $t=1-\lambda_1$, tutti e due 1 nel caso stubborn.
+    \item La rete (d) la ritroveremo più avanti, scritta come modello augmented.
+    \item Ora le stesse quattro reti sull'anello.
+  \end{discorso}
+\end{slide}
+
+% ADDED (2026-11-19, note del 19/11): le reti degli esempi sull'anello bidirezionale.
+% REVISED (2026-11-22): pannelli dell'anello (e)-(h).
+\begin{slide}{m-fj-graphs-ring}{Example networks: bidirectional ring}{0:45}
+  \begin{discorso}
+    \item Le stesse quattro reti sull'anello bidirezionale, dove ogni agente ascolta i due vicini.
+    \item A sinistra un solo agente. L'agente 1 dà peso $t$ alla sua opinione attuale nel FDG, figura (e), o al suo prejudice nel FJ, figura (f), e ascolta gli agenti 2 e 6 con peso $\frac{1-t}{2}$ ciascuno. Tutti gli altri archi pesano un mezzo: in particolare gli agenti 2 e 6 ascoltano l'agente 1 con peso un mezzo, per ogni $t$.
+    \item A destra tutti gli agenti: ognuno dà peso 0.2 alla sua opinione attuale nel FDG, figura (g), o al suo prejudice nel FJ, figura (h), e 0.4 a ciascuno dei due vicini, cioè 0.8 diviso a metà.
+    \item Valgono le stesse osservazioni del ciclo: nel FJ gli archi portano i pesi di $\Lambda W$, per esempio $\frac{1-t}{2}$ è $\lambda_1$ per $w_{12}=\frac12$; stessi archi, stessi pesi, cambia solo l'oggetto del peso in più.
+    \item Per tutte e due le reti: non sto riscrivendo un modello nell'altro: costruisco la rete FJ analoga, per confrontare i due modelli.
+    \item L'unica eccezione è $t=1$: le figure (b) e (f) diventano la riscrittura del tutorial, $\lambda_1=0$ e $u_1=x_1(0)$, con le stesse traiettorie delle figure (a) ed (e). È la risposta alla domanda.
+    \item Nella prossima slide le stesse cose in formule, per le due reti.
+  \end{discorso}
+\end{slide}
+
+% ADDED (2026-11-22, note del 22/11): le matrici W e Lambda del FJ in una slide a parte.
+\begin{slide}{m-fj-matrices}{FJ on the same networks: $W$ and $\Lambda$}{1:05}
+  \begin{discorso}
+    \item Prima le matrici del FJ. $W$ è la rete originale, senza self-loop: sul ciclo ogni riga ha un 1, sull'agente successivo; sull'anello un mezzo su ciascuno dei due vicini. $W$ è proprio la matrice del FDG a $t=0$, su tutte e due le reti: fortemente connessa ma periodica. Quindi con $\Lambda=I$, cioè senza prejudice, il FJ è quel FDG e le opinioni non convergono. Il prejudice di ogni agente è la sua opinione iniziale, come nel modello FJ originale.
+    \item $\Lambda$ nei tre casi. Agente 1 stubborn: $\lambda_1=0$, gli altri 1. Agente 1 con peso $t$: $\lambda_1=1-t$, gli altri 1. Tutti gli agenti con peso 0.2: $\Lambda=0.8I$.
+    \item $I-\Lambda$ è l'attachment, il peso sul prejudice: solo l'agente 1 nei primi due casi, tutti nel terzo.
+    \item $\Lambda W$ moltiplica la riga $i$ di $W$ per $\lambda_i$: sono i pesi sugli archi dei grafi del FJ. Per esempio nel terzo caso, sull'anello, 0.8 per un mezzo fa 0.4.
+    \item Nell'ultima colonna la matrice del FDG nello stesso caso. $A$ e $\Lambda W$ hanno gli stessi pesi sugli altri agenti; il resto della riga, $1-\lambda_i$, nel FDG va sulla diagonale, cioè sull'opinione attuale, nel FJ esce dalla matrice e va sul prejudice. Quindi $A=\Lambda W+(I-\Lambda)$.
+    \item Il punto: basta un solo prejudice. La rete è fortemente connessa, quindi ogni agente ha un cammino verso l'agente 1 ed è P-dependent: per la condizione di stabilità asintotica il FJ è asintoticamente stabile, e la periodicità non conta più. Nel FDG lo stesso cambiamento su un solo agente, un self-weight positivo, dà il consensus perché rende la rete aperiodica. Sono due sistemi diversi, con due meccanismi diversi, ma in tutti e due un solo agente cambia il comportamento di tutto il gruppo.
+  \end{discorso}
+\end{slide}
+
+% ADDED (2026-11-22, note del 22/11): le matrici del caso «tutti con peso 0.2».
+\begin{slide}{m-fj-matrices-all}{Every agent with weight $0.2$: the matrices}{1:00}
+  \begin{discorso}
+    \item Il terzo caso, che non ha il parametro $t$: tutti gli agenti danno peso 0.2 alla propria opinione attuale nel FDG, al proprio prejudice nel FJ. $\Lambda=0.8I$.
+    \item Perché questo caso: è la differenza principale fra i due modelli. Con un solo prejudice il FJ arriva comunque al consensus, $u_1\uno$. Con un prejudice diverso per ogni agente, sulla stessa rete fortemente connessa dove il FDG può solo andare al consensus, il FJ resta in disaccordo, e il disaccordo viene dai prejudice.
+    \item A sinistra le matrici del FDG, $0.2I+0.8W$: 0.2 sulla diagonale, 0.8 sul successivo nel ciclo, 0.4 su ciascun vicino nell'anello. A destra $\Lambda W=0.8W$: gli stessi pesi senza la diagonale.
+    \item $A$ ha righe e colonne che sommano a 1, quindi è doubly-stochastic; la diagonale positiva la rende aperiodica, e la rete è fortemente connessa: consensus, con social power uniforme, cioè la media delle opinioni iniziali, 0.5.
+    \item In $\Lambda W$ ogni riga somma a 0.8: è row-substochastic. Tutti gli agenti sono prejudiced, quindi tutti P-dependent: il FJ è asintoticamente stabile e converge a $Vu$. Ognuno resta in parte ancorato al proprio prejudice: le opinioni finali si avvicinano fra loro, ma non coincidono, perché i prejudice sono diversi.
+  \end{discorso}
+\end{slide}
+
+% REVISED (2026-11-22, note del 22/11): tabella rifatta, ogni casella è un'equazione di
+% aggiornamento con il peso di ogni opinione; W e Lambda nella slide prima. Era:
+% \begin{slide}{m-fj-networks}{FDG and FJ on the same networks}{0:40}
+%   \begin{discorso}
+%     \item La tabella dice in formule le figure di prima, per le due reti: $W$ è la rete originale, senza self-loop; stesse opinioni iniziali, e il prejudice di ogni agente è la sua opinione iniziale, come nel modello FJ originale.
+%     \item Confronto sempre i due modelli a parità di peso: nel FDG il peso va sull'opinione attuale, nel FJ sul prejudice.
+%     \item Prima riga, il caso estremo: l'agente 1 stubborn è $a_{11}=1$ nel FDG, $\lambda_1=0$ con $u_1=x_1(0)$ nel FJ.
+%     \item Seconda riga, l'agente 1 con peso $t$, scritta per le due reti: sul ciclo l'agente 1 ascolta l'agente 2 con peso $1-t$, sull'anello la media degli agenti 2 e 6, con peso $1-t$ in tutto. Le due equazioni sono uguali tranne un termine: nel FDG l'agente 1 dà peso $t$ alla sua opinione attuale $x_1(k)$, nel FJ al suo prejudice $u_1$. Quindi $1-\lambda_1=t$.
+%     \item Terza riga, tutti gli agenti con lo stesso peso 0.2: nel FDG $A=0.2I+0.8W$, nel FJ $\Lambda=0.8I$. Ogni arco pesa 0.8 sul ciclo e 0.4 sull'anello.
+%     \item Nelle prime due righe gli altri agenti restano come nella rete originale.
+%     \item Stesso peso, oggetto diverso: l'opinione attuale, che si muove ancora verso gli altri, o il prejudice, che non si muove mai.
+%     \item Comincio dal caso estremo, l'agente stubborn.
+%   \end{discorso}
+% \end{slide}
+\begin{slide}{m-fj-networks}{FDG and FJ: the updates}{0:40}
+  \begin{discorso}
+    \item Le stesse cose agente per agente. Ogni casella è un'equazione di aggiornamento, con il peso di ogni opinione scritto per esteso: nel FJ il peso dell'opinione dell'agente $j$ per l'agente $i$ è $\lambda_i w_{ij}$, l'elemento $(i,j)$ di $\Lambda W$.
+    \item Nelle due colonne i pesi sugli altri agenti sono uguali; cambia solo il termine che resta: nel FDG il self-weight sull'opinione attuale, nel FJ l'attachment al prejudice.
+    \item Primo caso, l'agente 1 stubborn: nel FDG la sua opinione resta $x_1(0)$; nel FJ è $u_1=x_1(0)$ a ogni passo.
+    \item Secondo caso, l'agente 1 con peso $t$. Sul ciclo ascolta l'agente 2 con peso $1-t$. Sull'anello ascolta gli agenti 2 e 6 con peso $\frac{1-t}{2}$ ciascuno: un mezzo da $W$, per $\lambda_1=1-t$.
+    \item Terzo caso, tutti gli agenti con peso 0.2: sul ciclo ogni agente ascolta il successivo con peso 0.8, sull'anello ciascuno dei due vicini con peso 0.4.
+    \item Nei primi due casi gli altri agenti restano come nella rete originale, in tutti e due i modelli.
+    \item Stesso peso, oggetto diverso: l'opinione attuale, che si muove ancora verso gli altri, o il prejudice, che non si muove mai.
+    \item Comincio dal caso estremo, l'agente stubborn.
+  \end{discorso}
+\end{slide}
+
+% REVISED (2026-11-19, note del 19/11): qui il significato di $x(\infty)=Vu$.
+\begin{slidedue}{m-state-input}{Stubborn agent: state or input}{1:40}
+  \begin{discorso}
+    \item Prima riga della tabella: l'agente 1 stubborn. Il tutorial riscrive così un modello FDG con agenti stubborn: $\lambda_i=0$ e $u_i=x_i(0)$ per gli stubborn, $\lambda_i=1$ per gli altri.
+    \item A sinistra il FDG con $A(1)$, a destra il FJ con $\lambda_1=0$: le traiettorie sono le stesse, come per la domanda.
+    \item Ma la stabilità no. Il modello FDG converge ma non è mai asintoticamente stabile, perché una matrice row-stochastic ha sempre l'autovalore 1; il modello FJ invece è asintoticamente stabile, perché tutti gli agenti sono P-dependent.
+    \item \clic Per vederlo perturbo l'opinione iniziale dell'agente 1: $x_1(0)=0.5$, con $u$ invariato.
+    \item Nel FDG l'agente 1 tiene 0.5 e il gruppo lo segue. Il limite è $x_1(0)$ per tutti, perché la social power è $e_1$: passa da 0 a 0.5, e la perturbazione non viene mai dimenticata.
+    \item Nel FJ l'agente 1 torna su $u_1=0$ al primo passo, e il gruppo va allo stesso limite di prima. È il significato di $x(\infty)=Vu$: il limite contiene solo i prejudice, non le opinioni iniziali, quindi perturbare $x(0)$ con $u$ fisso non lo cambia.
+    % ADDED (2026-11-22, note del 22/11): il limite non dipende da lambda_1.
+    \item E non cambia nemmeno cambiando $\lambda_1$: con il solo agente 1 prejudiced il limite è $u_1\uno$ per ogni $\lambda_1<1$. È l'unico equilibrio, e lo è per ogni $\lambda_1$: gli altri fanno la media di opinioni tutte uguali a $u_1$, e l'agente 1 ha $\lambda_1 u_1+(1-\lambda_1)u_1=u_1$. L'attachment decide solo quanto in fretta ci si arriva.
+    % ADDED (2026-11-22, note del 22/11).
+    \item Una nota: qui nel FJ l'agente 1 non è più stubborn. Ha ancora $\lambda_1=0$, ma il suo prejudice è 0 e la sua opinione iniziale 0.5: per questo al primo passo torna su 0. Per restare stubborn dovrei cambiare insieme $x_1(0)$ e $u_1$: allora anche il FJ andrebbe a 0.5.
+    \item In formule: la differenza fra le due traiettorie evolve come $\delta(k+1)=\Lambda W\,\delta(k)$, la stessa ricorsione degli scarti, e va a zero perché $\Lambda W$ è Schur stabile. Nel FDG la stessa differenza evolve con $A(1)$ e tende a $w^\top\delta(0)=0.5$ per tutti.
+    \item Sulle matrici: la riga dell'agente 1 è $e_1^\top$ in $A(1)$ ed è zero in $\Lambda W$, quindi l'autovalore 1 di $A(1)$ diventa 0 in $\Lambda W$.
+    % REVISED (2026-11-22, note del 22/11). Era:
+    % \item In termini sociali: nel FDG la stubbornness è una memoria nello stato, mai dimenticata; nel FJ è un ingresso esterno, e lo stato dimentica $x(0)$.
+    % REMOVED (2026-11-22, note del 22/11). Era:
+    % \item In termini sociali: nel FDG l'opinione dello stubborn sta nello stato: se la sposto, il gruppo la segue. Nel FJ è un prejudice fisso: se sposto lo stato, il gruppo finisce dove finiva prima.
+    \item Ora la seconda riga: un solo agente con peso un mezzo.
+  \end{discorso}
+\end{slidedue}
+
+\begin{slide}{m-one-prej}{A single prejudice}{0:50}
+  \begin{discorso}
+    \item Seconda riga della tabella, con $t=\tfrac12$: a sinistra il FDG con $A(\tfrac12)$, peso sull'opinione attuale; a destra il FJ con $\lambda_1=\tfrac12$, peso sul prejudice.
+    \item La rete è fortemente connessa, quindi tutti gli agenti sono P-dependent e il modello FJ è asintoticamente stabile, anche se $G$ è periodico e non ha self-loop.
+    \item Nel FJ $V=\uno e_1^\top$: tutto il gruppo finisce sul prejudice dell'agente 1, zero, per ogni attachment positivo, per quanto piccolo. Nel FDG invece il consensus è a $3/7$.
+    \item Sulla misura del potere: $c=e_1$ per ogni $\lambda_1<1$, l'agente 1 prende tutta la influence centrality; nel FDG, a $t=\tfrac12$, la sua social power è $2/7$.
+    \item Gli altri due valori dell'attachment non hanno bisogno di una figura nuova. Con attachment zero nessun agente ha un prejudice, e il modello FJ è il modello FDG con $A(0)$: la colonna $t=0$ della figura del FDG, che non converge. Con attachment uno l'agente 1 è stubborn: è l'esempio della slide precedente.
+    \item È di nuovo la testardaggine che ribalta la dinamica: un solo agente ancorato, che influenza tutti, decide dove finisce tutto il gruppo, per quanto debole sia il suo attachment.
+    \item E se tutti gli agenti hanno un prejudice?
+  \end{discorso}
+\end{slide}
+
+\begin{slide}{m-all-prej}{Every agent prejudiced}{0:45}
+  \begin{discorso}
+    \item Terza riga della tabella: tutti gli agenti hanno lo stesso peso 0.2, nel FDG come self-weight, nel FJ come attachment. I prejudice invece sono tutti diversi: ognuno ha come prejudice la propria opinione iniziale.
+    \item Nel FDG $A$ è primitiva, perché la rete è fortemente connessa e ha self-loop, e doubly-stochastic: consensus sulla media, 0.5.
+    \item Nel FJ tutti sono prejudiced, quindi il modello è asintoticamente stabile, e $V$ ha tutte le entrate positive: ogni prejudice entra in ogni opinione finale. I prejudice sono diversi: disagreement.
+    \item Su una rete fortemente connessa il FDG non va mai in disagreement: nel FJ il disagreement viene dai prejudice.
+    \item In termini sociali: l'inerzia alla fine cede, l'ancora no; ancore diverse tengono il gruppo diviso, quello che il tutorial chiama un cleavage di opinioni.
+    \item La slide seguente mostra perché questo è un disagreement anche nel senso del corso.
+  \end{discorso}
+\end{slide}
+
+\begin{slidetre}{m-six-sinks}{Six prejudices, six sinks}{1:30}
+  \begin{discorso}
+    \item È la rete (d), quella della Figura 10, scritta come modello FDG su dodici agenti: il modello augmented, con la stessa disposizione. Ogni prejudice $u_i$ diventa l'agente virtuale $i'$, stubborn; ogni agente reale dà 0.8 agli altri agenti reali e 0.2 al suo agente virtuale.
+    \item Gli agenti reali formano una sola componente fortemente connessa, quella ombreggiata, che non è un sink. Collassandola si ottiene il condensation digraph: i sei agenti virtuali sono sei sink, aperiodici per i self-loop.
+    \item Più sink, tutti aperiodici: è il caso del teorema del disagreement, come con più agenti stubborn, e il modello augmented converge. Lo stesso vale sull'anello.
+    \item \clic Quindi $x(\infty)=Vu$, con $V$ a entrate positive: ogni opinione finale è una combinazione convessa di tutti e sei i prejudice.
+    \item Anche con un solo agente prejudiced c'erano sei sink, ma solo $1'$ era ascoltato: togliendo gli altri cinque resta un solo sink, e il consensus.
+    \item Così si chiude il filo del disagreement del FDG: un agente stubborn dà il consensus; due danno il disagreement, l'esempio della domanda; sei agenti virtuali, tutti ascoltati, danno il disagreement di questa slide.
+    \item \clic Una nota sulle traiettorie. La figura mostra solo i sei agenti reali; nel modello augmented le traiettorie sarebbero dodici, e quelle dei sei agenti virtuali sono rette orizzontali sui prejudice.
+    \item Ogni agente reale parte sulla retta del suo agente virtuale e la lascia appena la media delle opinioni che ascolta è diversa: sul ciclo subito, sull'anello gli agenti da 2 a 5 più tardi, quando arriva il cambiamento degli agenti 1 e 6.
+    \item Il peso 0.2 sul suo agente virtuale lo richiama sempre, e si ferma su $Vu$, mai sul proprio prejudice. Nel FDG lo stesso 0.2 sta sull'opinione attuale, e l'agente segue il gruppo fino al consensus.
+    \item Ultimo caso: dove nessun prejudice arriva.
+  \end{discorso}
+\end{slidetre}
+
+\begin{slidedue}{m-aux}{Where no prejudice arrives}{1:10}
+  \begin{discorso}
+    \item Ultimo caso, escluso finora: non tutti gli agenti sono P-dependent.
+    \item La rete: gli agenti 1, 2 e 3 formano un gruppo chiuso, un sink del condensation digraph; 4, 5 e 6 sono una catena che lo ascolta. In ogni esempio un solo agente è prejudiced, con $\lambda=0.5$; ombreggiati gli agenti P-dependent.
+    \item Esempio 1: il prejudiced è l'agente 2, dentro il gruppo chiuso, che è un ciclo periodico. Tutti raggiungono l'agente 2, quindi tutti sono P-dependent. Ci aspettiamo stabilità asintotica, e tutti sul prejudice dell'agente 2, anche se il ciclo è periodico.
+    \item Esempio 2: il prejudiced è l'agente 5, fuori dal gruppo chiuso. Il gruppo chiuso è P-independent: un modello FDG a sé, ed è periodico. Ci aspettiamo che il modello non converga.
+    \item Esempio 3: come il secondo, più l'arco da 2 a 1, che rende il gruppo chiuso aperiodico. Ci aspettiamo convergenza, ma non stabilità asintotica: il limite deve dipendere dalle opinioni iniziali del gruppo chiuso. Per verificarlo, nel pannello (d) cambio solo $x_2(0)$.
+    \item \clic Esempio 1, in alto a sinistra: tutti vanno a 0.5, il prejudice dell'agente 2.
+    \item Esempio 2, in alto a destra: il gruppo chiuso oscilla, e il modello non converge.
+    \item Esempio 3, in basso: converge; 1, 2, 3 e 6 vanno a 0.4, 4 e 5 a 0.65. Portando $x_2(0)$ da 0.5 a 1 diventano 0.6 e 0.75: il limite dipende davvero dalle opinioni iniziali dei P-independent.
+    \item In termini sociali: gli agenti che nessun prejudice raggiunge formano un modello FDG a sé; hanno bisogno dell'aperiodicità e ricordano le loro opinioni iniziali.
+    \item Infine, le due misure di potere.
+  \end{discorso}
+\end{slidedue}
+
+\begin{slidedue}{m-lemma}{Centrality meets social power}{1:15}
+  \begin{discorso}
+    \item Ho due misure per la stessa domanda: quanto pesa l'opinione iniziale di ciascun agente.
+    \item La social power, nel FDG: la quota di ciascun agente nell'opinione su cui il gruppo si mette d'accordo. Richiede il consensus.
+    \item La influence centrality, nel FJ: quanto pesa in media l'opinione iniziale di ciascuno in opinioni finali che possono essere diverse. Richiede la stabilità asintotica e $u=x(0)$.
+    \item Sono misure diverse: la social power pesa lo stato iniziale di un modello che ricorda $x(0)$, la influence centrality l'ingresso di un modello che lo dimentica. Per questo non le confronto direttamente, ma in parallelo.
+    \item Si incontrano nel lemma a destra: se $W$ è fully regular, cioè il FDG con $A=W$ raggiunge il consensus, e tutti hanno la stessa susceptibility $\alpha$, per $\alpha$ che tende a 1 la influence centrality tende alla social power del FDG.
+    \item Per vederlo prendo $W=A(\tfrac12)$, la rete con self-weight un mezzo sull'agente 1: è primitiva, quindi fully regular. E $u=x(0)$.
+    \item Cosa ci aspettiamo. Per $\alpha=0$ ogni agente tiene la sua opinione iniziale: $V=I$, e la influence centrality è uniforme, $1/6$. Per $\alpha$ che tende a 1, $c$ tende a $w$: $2/7$ per l'agente 1, $1/7$ per gli altri.
+    \item \clic Ed è quello che succede: $c_1$ sale da $1/6$ fino a $2/7$, $c_2$ scende fino a $1/7$. Sul ciclo $c_2$ prima scende anche sotto $1/7$.
+    \item In termini sociali: man mano che gli agenti si aprono agli altri, l'inerzia dell'agente 1 conta di più.
+    \item La social power dice chi guida un gruppo che si mette d'accordo; la influence centrality dice chi pesa di più in un gruppo che resta in disagreement. La seconda diventa la prima quando le ancore si allentano.
+    \item Per concludere, i due modelli a confronto.
+  \end{discorso}
+\end{slidedue}
+
+% =====================================================================
+\parte{Parte 5 — Conclusioni}{1:30}
+
+\begin{slide}{m-table}{FDG and FJ side by side}{0:40}
+  \begin{discorso}
+    \item La tabella mette a confronto i due modelli riga per riga.
+    \item La resistenza: nel FDG è un self-weight, un'inerzia; nel FJ un attachment, un'ancora.
+    \item L'agente stubborn: nel FDG è una condizione sulla sola matrice, $a_{ii}=1$; nel FJ sulla matrice e sull'ingresso, $\lambda_i=0$ e $u_i=x_i(0)$. La sua opinione è uno stato nel FDG, un ingresso nel FJ.
+    \item La stabilità asintotica: mai nel FDG; nel FJ se e solo se tutti gli agenti sono P-dependent.
+    \item Su una rete fortemente connessa il FDG dà consensus o nessuna convergenza, mai disagreement; il FJ dà disagreement ogni volta che i prejudice che contano sono diversi.
+    \item L'aperiodicità serve sempre nel FDG; nel FJ solo per gli agenti P-independent.
+    \item E la misura del potere: la social power richiede il consensus; la influence centrality richiede la stabilità asintotica e $u=x(0)$.
+  \end{discorso}
+\end{slide}
+
+\begin{slide}{m-messages}{Take-home messages}{0:50}
+  \begin{discorso}
+    \item Tre messaggi da portare a casa.
+    \item Primo, inerzia e ancora. Un self-weight rallenta un agente ma lo lascia seguire gli altri: su una rete fortemente connessa e periodica basta un self-weight fra 0 e 1 per trasformare le oscillazioni in consensus. Un prejudice non cede mai: un solo agente prejudiced che influenza tutti decide dove finisce il gruppo, e prejudice diversi lo tengono diviso.
+    \item Secondo, stato e ingresso. La stessa opinione stubborn è uno stato nel modello FDG, che non è mai asintoticamente stabile, e un ingresso nel modello FJ, asintoticamente stabile quando tutti gli agenti sono P-dependent. Il grafo augmented riporta gli ingressi a stati.
+    \item Terzo, il potere. La social power cresce gradualmente con il self-weight; un agente prejudiced che influenza tutti prende tutta la influence centrality; e con la stessa susceptibility per tutti e $W$ fully regular, la influence centrality tende alla social power quando $\alpha$ tende a 1.
+  \end{discorso}
+\end{slide}
+
+\begin{slidepag}{\the\numexpr\pg{m-messages}+1\relax}{Thank you!}{}
+  \begin{discorso}
+    \item Grazie per l'attenzione. Sono a disposizione per le domande.
+  \end{discorso}
+\end{slidepag}
+
+\end{document}

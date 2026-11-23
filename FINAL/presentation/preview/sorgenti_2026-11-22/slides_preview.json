@@ -1,0 +1,30 @@
+{
+ "oldpres": "../../presentation_v11/main",
+ "oldnote": "presentazione e canovaccio applicati il 21/11 (v10).",
+ "intro": "Solo le slide cambiate. Il numero di slide non cambia (33).",
+ "slides": [
+  {
+   "title": "Slide \\fr{m-fj-conv3} \\textperiodcentered\\ All agents P-dependent",
+   "note": "Sotto il Corollary 3.3 una riga: con agenti P-independent il modello può ancora convergere, ma non è asintoticamente stabile, perché il limite dipende dalle loro opinioni iniziali; lo si vede in «Where no prejudice arrives». Nel canovaccio anche a cosa si riferisce l'intuizione: la prima parte vale per $r = n$, la seconda spiega perché serve $r = n$.",
+   "old": ["m-fj-conv3"],
+   "new": ["m-fj-conv3"]
+  },
+  {
+   "title": "Slide \\fr{m-fj-graphs} \\textperiodcentered\\ Example networks: directed cycle",
+   "note": "Didascalia: nel FJ $W = A(0)$, senza self-loop; nei pannelli (b), (d) gli archi sono quelli di $G$ e portano i pesi di $\\Lambda W$, $\\lambda_i w_{ij}$, come nelle figure del report (per esempio $w_{12} = 1$ e $\\lambda_1 w_{12} = 1 - t$); le frecce da $u_i$ non sono archi di $G$. Primo punto: gli stessi pesi in $A(t)$ e in $\\Lambda W$, e perché $W$ non ha self-loop (un meccanismo per modello, $t = 1 - \\lambda_1$, tutti e due 1 per un agente stubborn, come nel report, §3.2.1). Gli altri due punti, validi per tutte e due le reti, sono passati alla slide dell'anello per fare spazio.",
+   "old": ["m-fj-graphs"],
+   "new": ["m-fj-graphs"]
+  },
+  {
+   "title": "Slide \\fr{m-fj-graphs-ring} \\textperiodcentered\\ Example networks: bidirectional ring",
+   "note": "Stessa precisazione nella didascalia ($w_{12} = \\frac12$, $\\lambda_1 w_{12} = \\frac{1-t}{2}$). Sotto, i due punti spostati dalla slide del ciclo: non è una riscrittura di un modello nell'altro; solo per $t = 1$ (b) è la riscrittura del tutorial. Grafi un poco più piccoli (scala 0.77 invece di 0.8) per farci stare tutto.",
+   "old": ["m-fj-graphs-ring"],
+   "new": ["m-fj-graphs-ring"]
+  }
+ ],
+ "extra": [
+  "\\textbf{Canovaccio di «Final opinions».} Dopo il punto sul consensus, la storia Abelson--Taylor: il consensus richiede che tutti gli agenti prejudiced abbiano lo stesso prejudice; con prejudice diversi il gruppo resta diviso, il disagreement persistente che Abelson chiedeva di spiegare.",
+  "\\textbf{domande.tex.} Due domande nuove: perché negli esempi $W$ non ha il self-loop mentre nel FJ originale $1 - \\lambda_i = w_{ii}$; se nei grafi del FJ $1 - t$ è un peso di $W$ (no, di $\\Lambda W$)."
+ ],
+ "intro_canovaccio": "Cambiano i blocchi di «All agents P-dependent», «Final opinions and the augmented graph» e delle due slide «Example networks». Tempi per parte aggiornati: in tutto 29:45."
+}
