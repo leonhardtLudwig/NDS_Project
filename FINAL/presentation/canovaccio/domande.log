@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.10.21)  22 NOV 2026 20:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.11.16)  25 NOV 2026 20:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -609,11 +609,11 @@ Package rerunfilecheck Info: File `domande.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14665 strings out of 480247
- 231834 string characters out of 5896150
- 604720 words of memory out of 5000000
+ 14669 strings out of 480247
+ 231879 string characters out of 5896150
+ 604426 words of memory out of 5000000
  32182 multiletter control sequences out of 15000+600000
- 536274 words of font info for 152 fonts, out of 8000000 for 9000
+ 536440 words of font info for 154 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,11n,63p,1106b,495s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
@@ -630,7 +630,7 @@ m/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmsy9.pfb>
-Output written on domande.pdf (3 pages, 263400 bytes).
+Output written on domande.pdf (3 pages, 263107 bytes).
 PDF statistics:
  150 PDF objects out of 1000 (max. 8388607)
  108 compressed objects within 2 object streams

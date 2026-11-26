@@ -1,5 +1,5 @@
 \babel@toc {english}{}\relax 
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{The French--Harary--DeGroot model}{6}{0}{2}
-\beamer@sectionintoc {3}{The Friedkin--Johnsen model}{18}{0}{3}
-\beamer@sectionintoc {4}{Conclusions}{43}{0}{4}
+\beamer@sectionintoc {2}{The French--Harary--DeGroot model}{5}{0}{2}
+\beamer@sectionintoc {3}{The Friedkin--Johnsen model}{13}{0}{3}
+\beamer@sectionintoc {4}{Conclusions}{32}{0}{4}

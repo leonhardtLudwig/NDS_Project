@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.10.21)  22 NOV 2026 20:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.11.16)  25 NOV 2026 20:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1118,103 +1118,87 @@ Package pdftex.def Info: unipd_logo_opaque.png  used on input line 73.
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 137.
+(Font)              <7> on input line 141.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 137.
+(Font)              <5> on input line 141.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 137.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 141.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 137.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 141.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 137.
+(Font)              <9> on input line 141.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 137.
+(Font)              <6> on input line 141.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 137.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 141.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 137.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 141.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 137.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 141.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [3
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 185.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 189.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [4
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 228.
+(Font)              <8> on input line 410.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 228.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 410.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <8> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 228.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 410.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <6> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 228.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 410.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <5> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 228.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 410.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <17.28> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 228.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 410.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <12> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 228.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 410.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <10> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 228.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 410.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 228.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 410.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [5
 
 ]
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <9> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 403.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <7> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 467.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 403.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 467.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
 
 [6
 
 ]
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <7> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 460.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 524.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [7
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 517.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 765.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [8
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 580.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 765.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [9
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 757.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [10
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 757.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [11
 
 ]
 Package epstopdf Info: Source file: <../report/figures//fdg_convergence.eps>
@@ -1226,21 +1210,21 @@ verted-to.pdf>
 (epstopdf)                    size: 20148 bytes
 (epstopdf)             Command: <repstopdf --outfile=../report/figures//fdg_con
 vergence-eps-converted-to.pdf ../report/figures//fdg_convergence.eps>
-(epstopdf)             \includegraphics on input line 802.
+(epstopdf)             \includegraphics on input line 810.
 Package epstopdf Info: Output file is already uptodate.
-<../report/figures//fdg_convergence-eps-converted-to.pdf, id=164, 445.665pt x 2
+<../report/figures//fdg_convergence-eps-converted-to.pdf, id=145, 445.665pt x 2
 71.0125pt>
 File: ../report/figures//fdg_convergence-eps-converted-to.pdf Graphic file (typ
 e pdf)
 <use ../report/figures//fdg_convergence-eps-converted-to.pdf>
 Package pdftex.def Info: ../report/figures//fdg_convergence-eps-converted-to.pd
-f  used on input line 802.
+f  used on input line 810.
 (pdftex.def)             Requested size: 231.03711pt x 140.49722pt.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 802.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 810.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [12
+ [10
 
  <../report/figures//fdg_convergence-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <../report/figures//fdg_social_power.eps>
@@ -1252,26 +1236,44 @@ nverted-to.pdf>
 (epstopdf)                    size: 17331 bytes
 (epstopdf)             Command: <repstopdf --outfile=../report/figures//fdg_soc
 ial_power-eps-converted-to.pdf ../report/figures//fdg_social_power.eps>
-(epstopdf)             \includegraphics on input line 850.
+(epstopdf)             \includegraphics on input line 858.
 Package epstopdf Info: Output file is already uptodate.
-<../report/figures//fdg_social_power-eps-converted-to.pdf, id=187, 426.59375pt 
+<../report/figures//fdg_social_power-eps-converted-to.pdf, id=167, 426.59375pt 
 x 269.005pt>
 File: ../report/figures//fdg_social_power-eps-converted-to.pdf Graphic file (ty
 pe pdf)
 <use ../report/figures//fdg_social_power-eps-converted-to.pdf>
 Package pdftex.def Info: ../report/figures//fdg_social_power-eps-converted-to.p
-df  used on input line 850.
+df  used on input line 858.
 (pdftex.def)             Requested size: 207.13776pt x 130.61913pt.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 850.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 858.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+
+[11
+
+ <../report/figures//fdg_social_power-eps-converted-to.pdf>]
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <9> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 1348.
+
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1348.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [12
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1416.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [13
 
- <../report/figures//fdg_social_power-eps-converted-to.pdf>]
+]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1093.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1562.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
 
 [14
@@ -1279,115 +1281,58 @@ Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1093.
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1093.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1634.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [15
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1093.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1674.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [16
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1310.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1778.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [17
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1375.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1806.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [18
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1521.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1968.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [19
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1588.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1968.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [20
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1621.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2154.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [21
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1723.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2273.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
  [22
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1746.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [23
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1908.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [24
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1908.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [25
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2071.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [26
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2171.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [27
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2237.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [28
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2288.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
-
-[29
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2374.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [30
 
 ]
 Package epstopdf Info: Source file: <../report/figures//fj_stubborn_equivalence
@@ -1401,21 +1346,21 @@ Package epstopdf Info: Source file: <../report/figures//fj_stubborn_equivalence
 (epstopdf)             Command: <repstopdf --outfile=../report/figures//fj_stub
 born_equivalence-eps-converted-to.pdf ../report/figures//fj_stubborn_equivalenc
 e.eps>
-(epstopdf)             \includegraphics on input line 2453.
+(epstopdf)             \includegraphics on input line 2558.
 Package epstopdf Info: Output file is already uptodate.
-<../report/figures//fj_stubborn_equivalence-eps-converted-to.pdf, id=363, 445.6
+<../report/figures//fj_stubborn_equivalence-eps-converted-to.pdf, id=298, 445.6
 65pt x 270.00874pt>
 File: ../report/figures//fj_stubborn_equivalence-eps-converted-to.pdf Graphic f
 ile (type pdf)
 <use ../report/figures//fj_stubborn_equivalence-eps-converted-to.pdf>
 Package pdftex.def Info: ../report/figures//fj_stubborn_equivalence-eps-convert
-ed-to.pdf  used on input line 2453.
+ed-to.pdf  used on input line 2558.
 (pdftex.def)             Requested size: 231.03711pt x 139.97687pt.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2453.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2558.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [31
+ [23
 
  <../report/figures//fj_stubborn_equivalence-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <../report/figures//fj_stubborn_perturbatio
@@ -1429,21 +1374,21 @@ n-eps-converted-to.pdf>
 (epstopdf)             Command: <repstopdf --outfile=../report/figures//fj_stub
 born_perturbation-eps-converted-to.pdf ../report/figures//fj_stubborn_perturbat
 ion.eps>
-(epstopdf)             \includegraphics on input line 2453.
+(epstopdf)             \includegraphics on input line 2558.
 Package epstopdf Info: Output file is already uptodate.
-<../report/figures//fj_stubborn_perturbation-eps-converted-to.pdf, id=392, 445.
+<../report/figures//fj_stubborn_perturbation-eps-converted-to.pdf, id=327, 445.
 665pt x 270.00874pt>
 File: ../report/figures//fj_stubborn_perturbation-eps-converted-to.pdf Graphic 
 file (type pdf)
 <use ../report/figures//fj_stubborn_perturbation-eps-converted-to.pdf>
 Package pdftex.def Info: ../report/figures//fj_stubborn_perturbation-eps-conver
-ted-to.pdf  used on input line 2453.
+ted-to.pdf  used on input line 2558.
 (pdftex.def)             Requested size: 231.03711pt x 139.97687pt.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2453.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2558.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [32
+ [24
 
  <../report/figures//fj_stubborn_perturbation-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <../report/figures//fj_one_prejudiced.eps>
@@ -1455,22 +1400,21 @@ onverted-to.pdf>
 (epstopdf)                    size: 22137 bytes
 (epstopdf)             Command: <repstopdf --outfile=../report/figures//fj_one_
 prejudiced-eps-converted-to.pdf ../report/figures//fj_one_prejudiced.eps>
-(epstopdf)             \includegraphics on input line 2506.
+(epstopdf)             \includegraphics on input line 2611.
 Package epstopdf Info: Output file is already uptodate.
-<../report/figures//fj_one_prejudiced-eps-converted-to.pdf, id=417, 445.665pt x
+<../report/figures//fj_one_prejudiced-eps-converted-to.pdf, id=352, 445.665pt x
  270.00874pt>
 File: ../report/figures//fj_one_prejudiced-eps-converted-to.pdf Graphic file (t
 ype pdf)
 <use ../report/figures//fj_one_prejudiced-eps-converted-to.pdf>
 Package pdftex.def Info: ../report/figures//fj_one_prejudiced-eps-converted-to.
-pdf  used on input line 2506.
+pdf  used on input line 2611.
 (pdftex.def)             Requested size: 231.03711pt x 139.97687pt.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2506.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2611.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
-
-[33
+ [25
 
  <../report/figures//fj_one_prejudiced-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <../report/figures//fj_all_prejudiced.eps>
@@ -1482,55 +1426,33 @@ onverted-to.pdf>
 (epstopdf)                    size: 21069 bytes
 (epstopdf)             Command: <repstopdf --outfile=../report/figures//fj_all_
 prejudiced-eps-converted-to.pdf ../report/figures//fj_all_prejudiced.eps>
-(epstopdf)             \includegraphics on input line 2550.
+(epstopdf)             \includegraphics on input line 2655.
 Package epstopdf Info: Output file is already uptodate.
-<../report/figures//fj_all_prejudiced-eps-converted-to.pdf, id=450, 445.665pt x
+<../report/figures//fj_all_prejudiced-eps-converted-to.pdf, id=385, 445.665pt x
  270.00874pt>
 File: ../report/figures//fj_all_prejudiced-eps-converted-to.pdf Graphic file (t
 ype pdf)
 <use ../report/figures//fj_all_prejudiced-eps-converted-to.pdf>
 Package pdftex.def Info: ../report/figures//fj_all_prejudiced-eps-converted-to.
-pdf  used on input line 2550.
+pdf  used on input line 2655.
 (pdftex.def)             Requested size: 231.03711pt x 139.97687pt.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2550.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2655.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [34
+ [26
 
  <../report/figures//fj_all_prejudiced-eps-converted-to.pdf>]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2823.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [35
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2823.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [36
-
-]
-File: unipd_logo_opaque.png Graphic file (type png)
-<use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2823.
-(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [37
-
-]
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 29
-95.
-
-(/usr/share/texmf/tex/latex/lm/t1lmr.fd
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 31
+01.
+ (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2995.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3101.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [38
+ [27
 
 ]
 Package epstopdf Info: Source file: <../report/figures//fj_auxiliary.eps>
@@ -1542,35 +1464,35 @@ ted-to.pdf>
 (epstopdf)                    size: 16900 bytes
 (epstopdf)             Command: <repstopdf --outfile=../report/figures//fj_auxi
 liary-eps-converted-to.pdf ../report/figures//fj_auxiliary.eps>
-(epstopdf)             \includegraphics on input line 2995.
+(epstopdf)             \includegraphics on input line 3101.
 Package epstopdf Info: Output file is already uptodate.
-<../report/figures//fj_auxiliary-eps-converted-to.pdf, id=521, 445.665pt x 271.
+<../report/figures//fj_auxiliary-eps-converted-to.pdf, id=432, 445.665pt x 271.
 0125pt>
 File: ../report/figures//fj_auxiliary-eps-converted-to.pdf Graphic file (type p
 df)
 <use ../report/figures//fj_auxiliary-eps-converted-to.pdf>
 Package pdftex.def Info: ../report/figures//fj_auxiliary-eps-converted-to.pdf  
-used on input line 2995.
+used on input line 3101.
 (pdftex.def)             Requested size: 215.10016pt x 130.80406pt.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 2995.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3101.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [39
+ [28
 
  <../report/figures//fj_auxiliary-eps-converted-to.pdf>]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3167.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3311.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [40
+ [29
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3167.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3311.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [41
+ [30
 
 ]
 Package epstopdf Info: Source file: <../report/figures//fj_lemma24.eps>
@@ -1582,178 +1504,186 @@ d-to.pdf>
 (epstopdf)                    size: 20119 bytes
 (epstopdf)             Command: <repstopdf --outfile=../report/figures//fj_lemm
 a24-eps-converted-to.pdf ../report/figures//fj_lemma24.eps>
-(epstopdf)             \includegraphics on input line 3167.
+(epstopdf)             \includegraphics on input line 3311.
 Package epstopdf Info: Output file is already uptodate.
-<../report/figures//fj_lemma24-eps-converted-to.pdf, id=570, 386.44376pt x 186.
+<../report/figures//fj_lemma24-eps-converted-to.pdf, id=482, 386.44376pt x 186.
 6975pt>
 File: ../report/figures//fj_lemma24-eps-converted-to.pdf Graphic file (type pdf
 )
 <use ../report/figures//fj_lemma24-eps-converted-to.pdf>
 Package pdftex.def Info: ../report/figures//fj_lemma24-eps-converted-to.pdf  us
-ed on input line 3167.
+ed on input line 3311.
 (pdftex.def)             Requested size: 219.08743pt x 105.84607pt.
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3167.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3311.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [42
+ [31
 
  <../report/figures//fj_lemma24-eps-converted-to.pdf>]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3209.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3356.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [43
+ [32
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
-Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3247.
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3453.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [44
+ [33
 
-] [45
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 3482.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [34
+
+] [35
 
 ] (./backup.tex
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 43.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [46
+ [36
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 72.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [47
+ [37
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 99.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [48
+ [38
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 119.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [49
+ [39
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 142.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [50
+
+[40
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 158.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [51
+ [41
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 298.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
-
-[52
+ [42
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 333.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [53
+ [43
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 359.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [54
+ [44
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 383.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [55
+ [45
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 446.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [56
+ [46
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 479.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [57
+ [47
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 502.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [58
+ [48
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 534.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [59
+ [49
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 557.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [60
+ [50
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 581.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [61
+ [51
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 612.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [62
+ [52
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 655.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [63
+ [53
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 712.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [64
+ [54
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 740.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [65
+
+[55
 
 ]
 Overfull \hbox (0.77713pt too wide) detected at line 768
@@ -1764,14 +1694,14 @@ File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 768.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
-[66
+[56
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 808.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [67
+ [57
 
 ]
 Overfull \hbox (16.59pt too wide) in paragraph at lines 838--838
@@ -1782,28 +1712,28 @@ File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 838.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
-[68
+[58
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 856.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [69
+ [59
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 910.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [70
+ [60
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 910.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [71
+ [61
 
 ]
 Overfull \hbox (26.84499pt too wide) in paragraph at lines 960--960
@@ -1814,14 +1744,77 @@ File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 960.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
-[72
+[62
 
 ]
 File: unipd_logo_opaque.png Graphic file (type png)
 <use unipd_logo_opaque.png>
 Package pdftex.def Info: unipd_logo_opaque.png  used on input line 978.
 (pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
- [73
+ [63
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1016.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [64
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1083.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [65
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1146.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [66
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1197.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [67
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1239.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [68
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1324.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [69
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1324.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [70
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1324.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [71
+
+]
+File: unipd_logo_opaque.png Graphic file (type png)
+<use unipd_logo_opaque.png>
+Package pdftex.def Info: unipd_logo_opaque.png  used on input line 1354.
+(pdftex.def)             Requested size: 74.85956pt x 33.4754pt.
+ [72
 
 ])
 \tf@nav=\write6
@@ -1838,15 +1831,15 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: BCFEB0A89104A0A0154678FB2A28BFBD;674.
  ) 
 Here is how much of TeX's memory you used:
- 29798 strings out of 480247
- 590308 string characters out of 5896150
- 950680 words of memory out of 5000000
- 46859 multiletter control sequences out of 15000+600000
+ 29900 strings out of 480247
+ 592664 string characters out of 5896150
+ 975971 words of memory out of 5000000
+ 46963 multiletter control sequences out of 15000+600000
  597236 words of font info for 105 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 99i,16n,104p,384b,1113s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share
+ 99i,16n,104p,402b,1113s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
+c/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share
 /texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
 -mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texm
 f/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
@@ -1867,10 +1860,10 @@ re/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/l
 m/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on main.pdf (73 pages, 739799 bytes).
+Output written on main.pdf (72 pages, 741686 bytes).
 PDF statistics:
- 1077 PDF objects out of 1200 (max. 8388607)
- 867 compressed objects within 9 object streams
- 281 named destinations out of 1000 (max. 500000)
+ 1090 PDF objects out of 1200 (max. 8388607)
+ 881 compressed objects within 9 object streams
+ 279 named destinations out of 1000 (max. 500000)
  128 words of extra memory for PDF output out of 10000 (max. 10000000)
 

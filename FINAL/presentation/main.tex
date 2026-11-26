@@ -113,8 +113,12 @@
 % \end{frame}
 \begin{frame}[label=m-question]{Stubbornness}
   \begin{itemize}
+    % REVISED (2026-11-24, notes of 24/11: in the FJ model the update is not a plain average). Was:
+    %     \item A social network is a weighted digraph: agents are nodes, edges carry the
+    %           influence, and each agent updates its opinion by averaging the opinions it
+    %           listens to.
     \item A social network is a weighted digraph: agents are nodes, edges carry the
-          influence, and each agent updates its opinion by averaging the opinions it
+          influence, and each agent updates its opinion on the basis of the opinions it
           listens to.
     \item A \alert{stubborn} agent: its opinion remains unchanged independent of the
           others' opinions [5]. It is the extreme case of two graded ways of resisting
@@ -191,41 +195,42 @@
 % ADDED (2026-11-16, order): the notions of Section 1.1 used on the main slides, one line
 % each, so that no term of the Rosetta stone is used before it is introduced. Details
 % in the backup slides bk-graphs, bk-graphs-b, bk-prelim.
-\begin{frame}[label=m-prelim]{Preliminaries}
-  \footnotesize
-  \begin{columns}[T]
-    \column{0.49\textwidth}
-      \textbf{Graphs} [1, 2]
-      \begin{itemize}
-        \item Edge $(i,j)$, $i \to j$, weight $a_{ij} > 0$: agent $i$ is influenced by
-              agent $j$; $A = [a_{ij}]$ the (weighted) adjacency matrix.
-        \item \alert{Strongly connected}: a directed walk from any node to any other
-              node. \alert{Globally reachable} node: reached from any other node.
-        \item A strongly connected digraph is \alert{periodic} if an integer $k > 1$
-              divides the length of every simple cycle; otherwise \alert{aperiodic}.
-              A self-loop makes it aperiodic.
-        \item \alert{Condensation digraph} $C(G)$: each strongly connected component
-              collapsed into a single node. \alert{Sink}: a node with no outgoing edges,
-              i.e.\ a group influenced only by itself.
-      \end{itemize}
-    \column{0.49\textwidth}
-      \textbf{Matrices} [2, 3]
-      \begin{itemize}
-        \item \alert{Row-stochastic}: $A \geq 0$, $A\mathbf{1}_n = \mathbf{1}_n$;
-              \alert{doubly-stochastic}: also $A^\top\mathbf{1}_n = \mathbf{1}_n$.
-        \item \alert{Semi-convergent}: $\lim_{k \to +\infty} A^k$ exists (finite);
-              \alert{convergent} (Schur stable): the limit is $0_{n \times n}$, iff
-              $\rho(A) < 1$.
-        \item Eigenvalue $1$ \alert{simple} (algebraic = geometric multiplicity $= 1$),
-              \alert{semi-simple} (algebraic = geometric multiplicity),
-              \alert{strictly dominant} (all other eigenvalues have modulus $< 1$).
-        \item \alert{Irreducible} ($n \geq 2$) iff $G$ is strongly connected;
-              \alert{primitive}, i.e.\ $A^k > 0$ for some $k$, iff $G$ is strongly
-              connected and aperiodic.
-      \end{itemize}
-  \end{columns}
-  \detailbuttons{\go{bk-graphs}{Graphs}\ \go{bk-prelim}{Matrices}}
-\end{frame}
+% MOVED (2026-11-23, notes of 23/11: to backup.tex, to save time). Was:
+% \begin{frame}[label=m-prelim]{Preliminaries}
+%   \footnotesize
+%   \begin{columns}[T]
+%     \column{0.49\textwidth}
+%       \textbf{Graphs} [1, 2]
+%       \begin{itemize}
+%         \item Edge $(i,j)$, $i \to j$, weight $a_{ij} > 0$: agent $i$ is influenced by
+%               agent $j$; $A = [a_{ij}]$ the (weighted) adjacency matrix.
+%         \item \alert{Strongly connected}: a directed walk from any node to any other
+%               node. \alert{Globally reachable} node: reached from any other node.
+%         \item A strongly connected digraph is \alert{periodic} if an integer $k > 1$
+%               divides the length of every simple cycle; otherwise \alert{aperiodic}.
+%               A self-loop makes it aperiodic.
+%         \item \alert{Condensation digraph} $C(G)$: each strongly connected component
+%               collapsed into a single node. \alert{Sink}: a node with no outgoing edges,
+%               i.e.\ a group influenced only by itself.
+%       \end{itemize}
+%     \column{0.49\textwidth}
+%       \textbf{Matrices} [2, 3]
+%       \begin{itemize}
+%         \item \alert{Row-stochastic}: $A \geq 0$, $A\mathbf{1}_n = \mathbf{1}_n$;
+%               \alert{doubly-stochastic}: also $A^\top\mathbf{1}_n = \mathbf{1}_n$.
+%         \item \alert{Semi-convergent}: $\lim_{k \to +\infty} A^k$ exists (finite);
+%               \alert{convergent} (Schur stable): the limit is $0_{n \times n}$, iff
+%               $\rho(A) < 1$.
+%         \item Eigenvalue $1$ \alert{simple} (algebraic = geometric multiplicity $= 1$),
+%               \alert{semi-simple} (algebraic = geometric multiplicity),
+%               \alert{strictly dominant} (all other eigenvalues have modulus $< 1$).
+%         \item \alert{Irreducible} ($n \geq 2$) iff $G$ is strongly connected;
+%               \alert{primitive}, i.e.\ $A^k > 0$ for some $k$, iff $G$ is strongly
+%               connected and aperiodic.
+%       \end{itemize}
+%   \end{columns}
+%   \detailbuttons{\go{bk-graphs}{Graphs}\ \go{bk-prelim}{Matrices}}
+% \end{frame}
 
 % ===========================================================================
 \section{The French--Harary--DeGroot model}
@@ -400,6 +405,8 @@
               limit is not of the form $\alpha\mathbf{1}_n$.
       \end{itemize}
   \end{columns}
+  % ADDED (2026-11-23): button to the slide moved to backup.
+  \detailbuttons{\go{m-prelim}{Preliminaries}}
 \end{frame}
 
 % ADDED (2026-11-16, layout): second half of the former m-fdg-model.
@@ -513,71 +520,72 @@
         %       power is not defined. This is the starting point of the FJ model.
       \end{itemize}
   \end{columns}
-  \detailbuttons{\go{bk-stubborn}{Stubborn agents}}
+  \detailbuttons{\go{bk-stubborn}{Stubborn agents}\ \go{m-fdg-rosetta}{Rosetta stone}}
 \end{frame}
 
 % MOVED (2026-11-19, notes of 19/11: order of the report, Section 2.1.4): from between
 % m-fdg-model and m-fdg-consensus. After the two theorems, the table summarizes all the
 % cases.
-\begin{frame}[label=m-fdg-rosetta]{Which outcome: the Rosetta stone}
-  \centering
-  \footnotesize
-  The outcome can be read on the spectrum of $A$, on the matrix $A$, or on the digraph
-  $G$; the Rosetta stone of the course links the three.
-
-  \vspace{2mm}
-  \renewcommand{\arraystretch}{1.25}
-  \begin{tabular}{@{}c >{\raggedright\arraybackslash}p{4.4cm}
-                    >{\raggedright\arraybackslash}p{5.2cm} l@{}}
-    \toprule
-    Case & Property of $A$ & Property of $G$ & Outcome \\
-    \midrule
-    (i)   & $A$ primitive
-          & $G$ strongly connected and aperiodic
-          & consensus \\
-    (ii)  & $A$ irreducible, not primitive
-          & $G$ strongly connected and periodic
-          & no convergence \\
-    (iii) & $1$ simple and strictly dominant, $A$ not primitive
-          & $C(G)$ has a unique sink, which is aperiodic
-          & consensus \\
-    (iv)  & $1$ semi-simple but not simple, strictly dominant
-          & $C(G)$ has at least two sinks, all aperiodic
-          & disagreement \\
-    (v)   & $1$ not strictly dominant
-          & $G$ not strongly connected, at least one sink of $C(G)$ is periodic
-          & no convergence \\
-    \bottomrule
-  \end{tabular}
-
-  \vspace{1mm}
-  {\scriptsize Rosetta stone [1]: Table~1 without the examples. The properties of case
-  (v), left blank in [1], follow from [5].}
-
-  % REVISED (2026-11-19, layout: the translation at full width, Corollary 1.12 narrower, so
-  % that it stays clear of the four buttons). Was: \vspace{2mm}, minipage 0.80.
-  \vspace{1.5mm}
-  \raggedright
-  % ADDED (2026-11-19, notes of 19/11): where the translation between A and G comes from,
-  % as in the report (Section 2.1.4).
-  The translation between $A$ and $G$ comes from the characterizations of irreducible and
-  primitive matrices (Theorem~1.11) in cases (i)--(ii), and from Theorems~2.2 and~2.4 in
-  cases (iii)--(iv).
-
-  \smallskip
-  \begin{minipage}{0.62\textwidth}
-    \textbf{Corollary 1.12} [2]: if $G$, of order $n \geq 2$, has at least one self-loop
-    and is strongly connected, then $A$ is primitive.
-    % REVISED (2026-11-19, notes of 19/11: the slide now follows consensus and disagreement;
-    % the focus of the work is on m-fdg-consensus). Was:
-    % \smallskip
-    % Focus of this work: \alert{consensus}, the case in which the weight of each agent can
-    % be measured (next slide); disagreement in one slide after it.
-  \end{minipage}
-  % REVISED (2026-11-19, buttons: Theorem 1.11 is named on the slide). Was:
-  % \detailbuttons{\go{bk-graphs}{Graphs}\ \go{bk-prelim}{Matrices}\ \go{bk-rosetta}{Table 1}}
-  \detailbuttons{\go{bk-graphs}{Graphs}\ \go{bk-prelim}{Matrices}\ \go{bk-prelim2}{Theorem 1.11}\ \go{bk-rosetta}{Table 1}}
-\end{frame}
+% MOVED (2026-11-23, notes of 23/11: to backup.tex, to save time). Was:
+% \begin{frame}[label=m-fdg-rosetta]{Which outcome: the Rosetta stone}
+%   \centering
+%   \footnotesize
+%   The outcome can be read on the spectrum of $A$, on the matrix $A$, or on the digraph
+%   $G$; the Rosetta stone of the course links the three.
+%
+%   \vspace{2mm}
+%   \renewcommand{\arraystretch}{1.25}
+%   \begin{tabular}{@{}c >{\raggedright\arraybackslash}p{4.4cm}
+%                     >{\raggedright\arraybackslash}p{5.2cm} l@{}}
+%     \toprule
+%     Case & Property of $A$ & Property of $G$ & Outcome \\
+%     \midrule
+%     (i)   & $A$ primitive
+%           & $G$ strongly connected and aperiodic
+%           & consensus \\
+%     (ii)  & $A$ irreducible, not primitive
+%           & $G$ strongly connected and periodic
+%           & no convergence \\
+%     (iii) & $1$ simple and strictly dominant, $A$ not primitive
+%           & $C(G)$ has a unique sink, which is aperiodic
+%           & consensus \\
+%     (iv)  & $1$ semi-simple but not simple, strictly dominant
+%           & $C(G)$ has at least two sinks, all aperiodic
+%           & disagreement \\
+%     (v)   & $1$ not strictly dominant
+%           & $G$ not strongly connected, at least one sink of $C(G)$ is periodic
+%           & no convergence \\
+%     \bottomrule
+%   \end{tabular}
+%
+%   \vspace{1mm}
+%   {\scriptsize Rosetta stone [1]: Table~1 without the examples. The properties of case
+%   (v), left blank in [1], follow from [5].}
+%
+%   % REVISED (2026-11-19, layout: the translation at full width, Corollary 1.12 narrower, so
+%   % that it stays clear of the four buttons). Was: \vspace{2mm}, minipage 0.80.
+%   \vspace{1.5mm}
+%   \raggedright
+%   % ADDED (2026-11-19, notes of 19/11): where the translation between A and G comes from,
+%   % as in the report (Section 2.1.4).
+%   The translation between $A$ and $G$ comes from the characterizations of irreducible and
+%   primitive matrices (Theorem~1.11) in cases (i)--(ii), and from Theorems~2.2 and~2.4 in
+%   cases (iii)--(iv).
+%
+%   \smallskip
+%   \begin{minipage}{0.62\textwidth}
+%     \textbf{Corollary 1.12} [2]: if $G$, of order $n \geq 2$, has at least one self-loop
+%     and is strongly connected, then $A$ is primitive.
+%     % REVISED (2026-11-19, notes of 19/11: the slide now follows consensus and disagreement;
+%     % the focus of the work is on m-fdg-consensus). Was:
+%     % \smallskip
+%     % Focus of this work: \alert{consensus}, the case in which the weight of each agent can
+%     % be measured (next slide); disagreement in one slide after it.
+%   \end{minipage}
+%   % REVISED (2026-11-19, buttons: Theorem 1.11 is named on the slide). Was:
+%   % \detailbuttons{\go{bk-graphs}{Graphs}\ \go{bk-prelim}{Matrices}\ \go{bk-rosetta}{Table 1}}
+%   \detailbuttons{\go{bk-graphs}{Graphs}\ \go{bk-prelim}{Matrices}\ \go{bk-prelim2}{Theorem 1.11}\ \go{bk-rosetta}{Table 1}}
+% \end{frame}
 
 % MOVED (2026-11-16, order): this slide was after m-models, before the FDG model.
 \begin{frame}[label=m-networks]{Two networks, one agent}
@@ -753,7 +761,7 @@
               associated with the eigenvalue $1$, and no agent is favoured.
       \end{itemize}}
   \end{columns}
-  \detailbuttons{\go{bk-graphs}{Graphs}}
+  \detailbuttons{\go{bk-graphs}{Graphs}\ \go{m-fdg-rosetta}{Rosetta stone}}
 \end{frame}
 
 \begin{frame}[label=m-fdg-conv]{One self-weight brings agreement}
@@ -846,7 +854,7 @@
       \sociallycol{Inertia earns influence little by little: for $0 < t < 1$ every initial
   opinion still enters the consensus.}
   \end{columns}
-  \detailbuttons{\go{bk-socialpower}{Derivation}}
+  \detailbuttons{\go{bk-socialpower}{Derivation}\ \go{m-fdg-why}{Why the same}}
 \end{frame}
 
 % ADDED (2026-11-16, notes): why the two networks have the same social power, first the
@@ -1027,70 +1035,100 @@
 %   $w_1 + 5b = 1$, the $w(t)$ of the previous slide, unique for $t > 0$ (eigenvalue $1$
 %   simple).\par}}
 % \end{frame}
-\begin{frame}[label=m-fdg-why,t]{Why the same social power}
-  % REVISED (2026-11-21, notes of 21/11: a sequential chain, in two steps: the fact and
-  % the question; then what the limit depends on, the same starting point, the same
-  % change, hence the same limit).
-  \compactblocks
-  \small
-  \only<1>{%
-  \begin{block}{The fact}
-    \small
-    Same social power on the two networks $\iff$ same limit of the powers: by (A2) of
-    Theorem~2.2, for $t \in (0,1]$,
-    \[ \lim_{k \to \infty} A(t)^k = \mathbf{1}_6\, w(t)^\top . \]
-    No $x(0)$ here: $w(t)$ depends only on $A(t)$, and $x(0)$ enters only the consensus
-    value $w(t)^\top x(0)$.
-  \end{block}
-  \begin{block}{The puzzle}
-    \small
-    The two matrices $A(t)$ are different: on the directed cycle every agent listens to one
-    agent, on the bidirectional ring to two. Their spectra are different too.
-  \end{block}
-  \medskip
-  \alert{What do they have in common that gives the same limit?}}%
-  \only<2>{%
-  \begin{block}{Step by step}
-    \small
-    \begin{enumerate}
-      \item \textbf{What the limit depends on.} For $t > 0$ the eigenvalue $1$ is simple
-            and the others lie strictly inside the unit disk, so by Theorem~2.2 the limit is
-            $\mathbf{1}_6\, w(t)^\top$, with $w(t)^\top A(t) = w(t)^\top$. The other
-            eigenvalues do not enter: same limit $\iff$ same $w(t)$.
-      \item \textbf{The same starting point.} At $t = 0$ both matrices are
-            doubly-stochastic: every agent is listened to with total weight $1$, and
-            $w = \frac16\mathbf{1}_6$: all agents count the same.
-      \item \textbf{The same change.} For $t > 0$ only the row of agent~$1$ changes, with
-            the same rule on both networks: agent~$1$ keeps $t$ for itself and listens to
-            the others with $1 - t$ times its old weights.
-    \end{enumerate}
-  \end{block}}%
-  \only<3>{%
-  \begin{block}{Step by step}
-    \small
-    \begin{enumerate}
-      \setcounter{enumi}{3}
-      \item \textbf{The equation for $w(t)$.} Column $j$ of $w(t)^\top A(t) = w(t)^\top$
-            reads $w_j = \sum_i w_i\, a_{ij}(t)$. Suppose agents $2, \dots, 6$ have the
-            same social power $b$, as at $t = 0$.
-            \begin{itemize}
-              \item Column $1$: agent~$1$ listens to itself with weight $t$, and the others
-                    listen to it with total weight $1$, as at $t = 0$. So
-                    $w_1 = t\, w_1 + b$, i.e.\ $b = (1-t)\, w_1$.
-              \item Column $j \neq 1$: agent~$1$ listens to $j$ with weight
-                    $(1-t)\, a_{1j}(0)$; multiplied by $w_1 = b/(1-t)$, this gives
-                    $b\, a_{1j}(0)$, the same term as at $t = 0$, when agent~$1$ had the
-                    same social power $b$ as the others. So every column $j \neq 1$ is as at
-                    $t = 0$ and gives $w_j = b$: the supposition holds, on both networks,
-                    whether agent~$1$ listens to one agent or to two.
-            \end{itemize}
-      \item \textbf{Hence the same $w(t)$} $\propto (1,\, 1-t,\, \dots,\, 1-t)$ on both
-            networks, unique because the eigenvalue $1$ is simple: the same limit
-            $\mathbf{1}_6\, w(t)^\top$, the same social power. What differs between the two
-            networks decides how the opinions converge, not where.
-    \end{enumerate}
-  \end{block}}
-\end{frame}
+% REVISED (2026-11-23, notes of 23/11: one slide instead of three steps). Was:
+% \begin{frame}[label=m-fdg-why,t]{Why the same social power}
+%   % REVISED (2026-11-21, notes of 21/11: a sequential chain, in two steps: the fact and
+%   % the question; then what the limit depends on, the same starting point, the same
+%   % change, hence the same limit).
+%   \compactblocks
+%   \small
+%   \only<1>{%
+%   \begin{block}{The fact}
+%     \small
+%     Same social power on the two networks $\iff$ same limit of the powers: by (A2) of
+%     Theorem~2.2, for $t \in (0,1]$,
+%     \[ \lim_{k \to \infty} A(t)^k = \mathbf{1}_6\, w(t)^\top . \]
+%     No $x(0)$ here: $w(t)$ depends only on $A(t)$, and $x(0)$ enters only the consensus
+%     value $w(t)^\top x(0)$.
+%   \end{block}
+%   \begin{block}{The puzzle}
+%     \small
+%     The two matrices $A(t)$ are different: on the directed cycle every agent listens to one
+%     agent, on the bidirectional ring to two. Their spectra are different too.
+%   \end{block}
+%   \medskip
+%   \alert{What do they have in common that gives the same limit?}}%
+%   \only<2>{%
+%   \begin{block}{Step by step}
+%     \small
+%     \begin{enumerate}
+%       \item \textbf{What the limit depends on.} For $t > 0$ the eigenvalue $1$ is simple
+%             and the others lie strictly inside the unit disk, so by Theorem~2.2 the limit is
+%             $\mathbf{1}_6\, w(t)^\top$, with $w(t)^\top A(t) = w(t)^\top$. The other
+%             eigenvalues do not enter: same limit $\iff$ same $w(t)$.
+%       \item \textbf{The same starting point.} At $t = 0$ both matrices are
+%             doubly-stochastic: every agent is listened to with total weight $1$, and
+%             $w = \frac16\mathbf{1}_6$: all agents count the same.
+%       \item \textbf{The same change.} For $t > 0$ only the row of agent~$1$ changes, with
+%             the same rule on both networks: agent~$1$ keeps $t$ for itself and listens to
+%             the others with $1 - t$ times its old weights.
+%     \end{enumerate}
+%   \end{block}}%
+%   \only<3>{%
+%   \begin{block}{Step by step}
+%     \small
+%     \begin{enumerate}
+%       \setcounter{enumi}{3}
+%       \item \textbf{The equation for $w(t)$.} Column $j$ of $w(t)^\top A(t) = w(t)^\top$
+%             reads $w_j = \sum_i w_i\, a_{ij}(t)$. Suppose agents $2, \dots, 6$ have the
+%             same social power $b$, as at $t = 0$.
+%             \begin{itemize}
+%               \item Column $1$: agent~$1$ listens to itself with weight $t$, and the others
+%                     listen to it with total weight $1$, as at $t = 0$. So
+%                     $w_1 = t\, w_1 + b$, i.e.\ $b = (1-t)\, w_1$.
+%               \item Column $j \neq 1$: agent~$1$ listens to $j$ with weight
+%                     $(1-t)\, a_{1j}(0)$; multiplied by $w_1 = b/(1-t)$, this gives
+%                     $b\, a_{1j}(0)$, the same term as at $t = 0$, when agent~$1$ had the
+%                     same social power $b$ as the others. So every column $j \neq 1$ is as at
+%                     $t = 0$ and gives $w_j = b$: the supposition holds, on both networks,
+%                     whether agent~$1$ listens to one agent or to two.
+%             \end{itemize}
+%       \item \textbf{Hence the same $w(t)$} $\propto (1,\, 1-t,\, \dots,\, 1-t)$ on both
+%             networks, unique because the eigenvalue $1$ is simple: the same limit
+%             $\mathbf{1}_6\, w(t)^\top$, the same social power. What differs between the two
+%             networks decides how the opinions converge, not where.
+%     \end{enumerate}
+%   \end{block}}
+% \end{frame}
+% MOVED (2026-11-24, notes of 24/11: to backup.tex; reached from «Social power grows
+% gradually»). Was:
+% \begin{frame}[label=m-fdg-why]{Why the same social power}
+%   \small
+%   Same social power on the two networks $\iff$ same limit of the powers: by (A2) of
+%   Theorem~2.2, for $t \in (0,1]$, $\lim_{k \to \infty} A(t)^k = \mathbf{1}_6\, w(t)^\top$,
+%   with $w(t)^\top A(t) = w(t)^\top$; no $x(0)$ here. Yet the two matrices are different:
+%   on the directed cycle every agent listens to one agent, on the bidirectional ring to two.
+%
+%   \medskip
+%   \begin{enumerate}
+%     \setlength{\itemsep}{4pt}
+%     \item \textbf{The same starting point.} At $t = 0$ both matrices are doubly-stochastic:
+%           every agent is listened to with total weight $1$, and $w = \frac16\mathbf{1}_6$.
+%     \item \textbf{The same change.} For $t > 0$ only the row of agent~$1$ changes, with the
+%           same rule on both networks.
+%     \item \textbf{Hence the same $w(t)$.} Column $j$ of $w(t)^\top A(t) = w(t)^\top$ reads
+%           $w_j = \sum_i w_i\, a_{ij}(t)$. With agents $2, \dots, 6$ at the same $b$, as at
+%           $t = 0$: column~$1$ gives $w_1 = t\, w_1 + b$, i.e.\ $b = (1-t)\, w_1$; in every
+%           column $j \neq 1$ the term of agent~$1$ is $(1-t)\, a_{1j}(0)\, w_1 = b\,
+%           a_{1j}(0)$, as at $t = 0$, so $w_j = b$. Then
+%           $w(t) \propto (1,\, 1-t,\, \dots,\, 1-t)$ on both networks, unique because the
+%           eigenvalue $1$ is simple.
+%   \end{enumerate}
+%
+%   \medskip
+%   \alert{What differs between the two networks decides how the opinions converge, not
+%   where.}
+% \end{frame}
 
 % REVISED (2026-11-16, notes): the bridge is now in two steps (overlays), with the
 % ring of Figure 1. Was:
@@ -1365,8 +1403,11 @@
         \item $\lambda_i < 1$: agent $i$ \alert{prejudiced}.
         \item $\lambda_i = 0$: $x_i(k) = u_i$ for all $k \geq 1$; \alert{stubborn}
               (Definition~2.5) only if, in addition, $u_i = x_i(0)$.
-        \item Original FJ model: $u = x(0)$ and $1 - \lambda_i = w_{ii}$. As in [5], not
-              imposed here.
+        % REVISED (2026-11-24, notes of 24/11: the coupling 1 - lambda_i = w_ii is not used). Was:
+        %         \item Original FJ model: $u = x(0)$ and $1 - \lambda_i = w_{ii}$. As in [5], not
+        %               imposed here.
+        \item In the examples, $u = x(0)$, as in the original FJ model, unless stated
+              otherwise.
       \end{itemize}
   \end{columns}
   \vspace{3mm}
@@ -1579,12 +1620,17 @@
   \end{block}
   \begin{alertblock}{Aperiodicity is needed again, but only for the P-independent agents}
     \footnotesize
+    % REVISED (2026-11-24, notes of 24/11: the Rosetta stone is in backup). Was:
+    %     The FJ model converges if and only if all agents are P-dependent, or the FDG model (7)
+    %     of the P-independent agents converges. By the Rosetta stone, (7) converges if and only
+    %     if all the sinks of the condensation digraph of the subgraph of the P-independent
+    %     agents are aperiodic.
     The FJ model converges if and only if all agents are P-dependent, or the FDG model (7)
-    of the P-independent agents converges. By the Rosetta stone, (7) converges if and only
-    if all the sinks of the condensation digraph of the subgraph of the P-independent
-    agents are aperiodic.
+    of the P-independent agents converges, i.e.\ $W^{22}$ is regular. As for every FDG
+    model, (7) converges if and only if all the sinks of the condensation digraph of the
+    subgraph of the P-independent agents are aperiodic (Rosetta stone, backup).
   \end{alertblock}
-  \detailbuttons{\go{bk-fj-stab2}{Spectrum}}
+  \detailbuttons{\go{bk-fj-stab2}{Spectrum}\ \go{m-fdg-rosetta}{Rosetta stone}}
 \end{frame}
 
 % ADDED (2026-11-19, notes of 19/11): Corollary 3.3 as the case r = n of Theorem 3.2, with the
@@ -1607,15 +1653,22 @@
   «Where no prejudice arrives».\par}
   With $r = n$, (8) gives, for every $x(0)$, \ $x(\infty) = Vu$ \ (9), with $V$ as in
   Corollary~3.3.
+  % REVISED (2026-11-23, notes of 23/11: a shorter intuition). Was:
+  % \begin{alertblock}{Intuition}
+  %   \footnotesize
+  %   $Vu$ is an equilibrium of (4), since $(I - \Lambda W)V = I - \Lambda$. The deviation
+  %   $e(k) = x(k) - Vu$ obeys $e(k+1) = \Lambda W\, e(k)$ (10): $u$ does not appear.
+  %   $\Lambda W$ decides whether the opinions converge, $u$ decides where. At each step
+  %   agent $i$ keeps a fraction $\lambda_i$ of the weighted average of the deviations it
+  %   listens to: the deviations leave the group only through the prejudiced agents, and
+  %   vanish only if every agent is influenced, directly or through intermediaries, by one
+  %   of them. \alert{No aperiodicity is needed}, unlike in the FDG model.
+  % \end{alertblock}
   \begin{alertblock}{Intuition}
     \footnotesize
-    $Vu$ is an equilibrium of (4), since $(I - \Lambda W)V = I - \Lambda$. The deviation
-    $e(k) = x(k) - Vu$ obeys $e(k+1) = \Lambda W\, e(k)$ (10): $u$ does not appear.
-    $\Lambda W$ decides whether the opinions converge, $u$ decides where. At each step
-    agent $i$ keeps a fraction $\lambda_i$ of the weighted average of the deviations it
-    listens to: the deviations leave the group only through the prejudiced agents, and
-    vanish only if every agent is influenced, directly or through intermediaries, by one
-    of them. \alert{No aperiodicity is needed}, unlike in the FDG model.
+    $Vu$ is the equilibrium of (4), since $(I - \Lambda W)V = I - \Lambda$. The deviation
+    $e(k) = x(k) - Vu$ obeys $e(k+1) = \Lambda W\, e(k)$ (10), where $u$ does not appear.
+    The model is asymptotically stable, so $e(k) \to 0$ for every $x(0)$.
   \end{alertblock}
   \detailbuttons{\go{bk-fj-stab}{Stability}}
 \end{frame}
@@ -1642,8 +1695,10 @@
       All agents P-dependent: $x(\infty) = Vu$ (9), i.e.\
       $x_i(\infty) = \sum_{j} v_{ij}\, u_j$:
       \begin{itemize}
-        \item the initial opinions are \alert{forgotten}: $x(0)$ does not appear in
-              $x(\infty)$;
+        % REVISED (2026-11-23, notes of 23/11). Was:
+        % \item the initial opinions are \alert{forgotten}: $x(0)$ does not appear in
+        %       $x(\infty)$;
+        \item $x(0)$ does not appear in $x(\infty)$;
         \item only the prejudices of prejudiced agents count ($\lambda_j = 1$: column $j$
               of $V$ is zero);
         \item for a given $u$, \alert{consensus} ($x(\infty) = \gamma\,\mathbf{1}_n$) iff
@@ -1729,9 +1784,14 @@
   \compactblocks
   \small
   \begin{itemize}
-    \item The social power requires a consensus, which in the FJ model is not a property
-          of the model but depends on $u$; the augmented model has at least $n$ sinks, so
-          for $n \geq 2$ it never reaches a consensus.
+    % REVISED (2026-11-23, notes of 23/11: the sentence on the sinks removed; as in the
+    % report, Section 3.1.3). Was:
+    % \item The social power requires a consensus, which in the FJ model is not a property
+    %       of the model but depends on $u$; the augmented model has at least $n$ sinks, so
+    %       for $n \geq 2$ it never reaches a consensus.
+    \item The social power requires a consensus for every $x(0)$. In the FJ model
+          $x(\infty) = Vu$ does not depend on $x(0)$, and whether the final opinions
+          coincide depends on $u$.
     \item As in [5]: asymptotically stable FJ model with $u = x(0)$, the traditional
           assumption of the FJ theory. It gives the initial opinions a role:
           $x(\infty) = V x(0)$.
@@ -1999,10 +2059,16 @@
     \foreach \i/\j in {2/3,3/4,4/5,5/6,6/1} {
       \draw[edge] (nb\i) -- (nb\j);
     }
-    \draw[edge] (nb1) -- node[weight, above right] {$1-t$} (nb2);
+    % REVISED (2026-11-24, notes of 24/11: the labels t, 1 - t on the edges looked like influence weights). Was:
+    %     \draw[edge] (nb1) -- node[weight, above right] {$1-t$} (nb2);
+    %     \node[font=\scriptsize, inner sep=1pt] (ub1) at (90:2.45) {$u_1$};
+    %     \draw[edge] (ub1) -- node[weight, right] {$t$} (nb1);
+    %     \node at (0,-2.95) {\scriptsize (b) FJ: $1 - \lambda_1 = t$};
+    \draw[edge] (nb1) -- (nb2);
     \node[font=\scriptsize, inner sep=1pt] (ub1) at (90:2.45) {$u_1$};
-    \draw[edge] (ub1) -- node[weight, right] {$t$} (nb1);
-    \node at (0,-2.95) {\scriptsize (b) FJ: $1 - \lambda_1 = t$};
+    \draw[edge] (ub1) -- node[weight, right] {$1 - \lambda_1 = t$} (nb1);
+    \node[weight, anchor=east, xshift=-2pt] at (nb1.west) {$\lambda_1 = 1-t$};
+    \node at (0,-2.95) {\scriptsize (b) FJ: $\lambda_1 = 1 - t$};
   \end{tikzpicture}\hfill
   \begin{tikzpicture}[baseline=(c.base), scale=0.7]
     \foreach \i in {1,...,6} {
@@ -2031,8 +2097,11 @@
     \foreach \i/\j in {1/2,3/4,4/5,5/6,6/1} {
       \draw[edge] (nd\i) -- (nd\j);
     }
-    \draw[edge] (nd2) -- node[weight, left] {$0.8$} (nd3);
-    \node[weight] at (78:1.95) {$0.2$};
+    % REVISED (2026-11-24, notes of 24/11: edges with the weights of W; the attachment on the prejudice). Was:
+    %     \draw[edge] (nd2) -- node[weight, left] {$0.8$} (nd3);
+    %     \node[weight] at (78:1.95) {$0.2$};
+    \draw[edge] (nd2) -- (nd3);
+    \node[weight, right] at (90:1.9) {$1 - \lambda_i = 0.2$};
     \node at (0,-2.95) {\scriptsize (d) FJ: $\Lambda = 0.8\,I$};
   \end{tikzpicture}
 
@@ -2046,12 +2115,19 @@
   % {\scriptsize Directed cycle of Figure~1(a). FJ model: $W = A(0)$, $u = x(0)$. Unlabelled
   % edges: weight $1$ in (a), (b) and $0.8$ in (c), (d), where every self-loop and every
   % prejudice has weight $0.2$.\par}
+  % REVISED (2026-11-24, notes of 24/11: W on the edges, lambda_i at the agent). Was:
+  %   {\scriptsize Directed cycle of «Two networks, one agent». FJ model: $W = A(0)$, without self-loops,
+  %   and $u = x(0)$. In (b), (d) the edges are those of $G$ and carry the weights of
+  %   $\Lambda W$, $\lambda_i w_{ij}$, as in the report: e.g.\ in (b) $w_{12} = 1$ and
+  %   $\lambda_1 w_{12} = 1 - t$. The arrows from $u_i$, of weight $1 - \lambda_i$, are not edges
+  %   of $G$. Unlabelled edges: weight $1$ in (a), (b) and $0.8$ in (c), (d), where every
+  %   self-loop and every prejudice has weight $0.2$.\par}
   {\scriptsize Directed cycle of «Two networks, one agent». FJ model: $W = A(0)$, without self-loops,
-  and $u = x(0)$. In (b), (d) the edges are those of $G$ and carry the weights of
-  $\Lambda W$, $\lambda_i w_{ij}$, as in the report: e.g.\ in (b) $w_{12} = 1$ and
-  $\lambda_1 w_{12} = 1 - t$. The arrows from $u_i$, of weight $1 - \lambda_i$, are not edges
-  of $G$. Unlabelled edges: weight $1$ in (a), (b) and $0.8$ in (c), (d), where every
-  self-loop and every prejudice has weight $0.2$.\par}
+  $u = x(0)$. In (b), (d) the edges carry the weights of $W$, and $\lambda_i$ multiplies all
+  the weights of agent~$i$: in (b) agent~$1$ listens to agent~$2$ with
+  $\lambda_1 w_{12} = 1 - t$. Arrows from $u_i$: attachment $1 - \lambda_i$, not edges of $G$.
+  Unlabelled edges: $1$ in (a), (b), (d); $0.8$ in (c) (self-loops $0.2$); in (d) every
+  attachment is $0.2$.\par}
 
   \medskip
   \footnotesize
@@ -2061,20 +2137,28 @@
     % \item Same edges and weights: the weight that the FDG model puts on the
     %       \alert{current opinion} (self-loop) is put, in the FJ model, on a
     %       \alert{prejudice} (arrow from $u_i$, not an edge of $G$).
-    \item Same edges, and the same weights in $A(t)$ and $\Lambda W$: the weight that the
-          FDG model puts on the \alert{current opinion} (self-loop) is put, in the FJ
-          model, on a \alert{prejudice}. Hence no self-loop in $W$: one mechanism per
-          model, and $t = 1 - \lambda_1$ (both $1$ for a stubborn agent).
+    % REVISED (2026-11-24, notes of 24/11: W on the edges, lambda_i at the agent). Was:
+    %     \item Same edges, and the same weights in $A(t)$ and $\Lambda W$: the weight that the
+    %           FDG model puts on the \alert{current opinion} (self-loop) is put, in the FJ
+    %           model, on a \alert{prejudice}. Hence no self-loop in $W$: one mechanism per
+    %           model, and $t = 1 - \lambda_1$ (both $1$ for a stubborn agent).
+    \item Same edges, and agent~$1$ listens to agent~$2$ with the same weight,
+          $a_{12}(t) = \lambda_1 w_{12} = 1 - t$. The weight on the \alert{current opinion}
+          (FDG, self-loop $t$) goes, in the FJ model, on a \alert{prejudice}
+          ($1 - \lambda_1 = t$): one mechanism per model, so no self-loop in $W$.
     % MOVED (2026-11-22, layout): the two items below are on m-fj-graphs-ring, valid for
     % both networks.
   \end{itemize}
+  % ADDED (2026-11-23): button to the slide moved to backup.
+  \detailbuttons{\go{m-fj-matrices}{$W$ and $\Lambda$}}
 \end{frame}
 
 % ADDED (2026-11-19, notes of 19/11: the bidirectional ring was missing): the same four
 % networks as m-fj-graphs, on the bidirectional ring of Figure 1(b).
+% REVISED (2026-11-24): scale 0.74 (was 0.77), for the new caption.
 \begin{frame}[label=m-fj-graphs-ring]{Example networks: bidirectional ring}
   \noindent
-  \begin{tikzpicture}[baseline=(c.base), scale=0.77]
+  \begin{tikzpicture}[baseline=(c.base), scale=0.74]
     \foreach \i in {1,...,6} {
       \node[agent] (ra\i) at ({90-60*(\i-1)}:1.3) {\i};
     }
@@ -2093,7 +2177,7 @@
       node[weight, above] {$t$} (ra1);
     \node at (0,-3.0) {\scriptsize (e) FDG: $a_{11} = t$};
   \end{tikzpicture}\hfill
-  \begin{tikzpicture}[baseline=(c.base), scale=0.77]
+  \begin{tikzpicture}[baseline=(c.base), scale=0.74]
     \foreach \i in {1,...,6} {
       \node[agent] (rb\i) at ({90-60*(\i-1)}:1.3) {\i};
     }
@@ -2104,13 +2188,20 @@
     }
     \draw[edge] (rb2) to[bend left=12] (rb1);
     \draw[edge] (rb6) to[bend right=12] (rb1);
-    \draw[edge] (rb1) to[bend left=12] node[weight, above right] {$\frac{1-t}{2}$} (rb2);
-    \draw[edge] (rb1) to[bend right=12] node[weight, above left] {$\frac{1-t}{2}$} (rb6);
+    % REVISED (2026-11-24, notes of 24/11: the labels on the edges looked like influence weights). Was:
+    %     \draw[edge] (rb1) to[bend left=12] node[weight, above right] {$\frac{1-t}{2}$} (rb2);
+    %     \draw[edge] (rb1) to[bend right=12] node[weight, above left] {$\frac{1-t}{2}$} (rb6);
+    %     \node[font=\scriptsize, inner sep=1pt] (urb1) at (90:2.45) {$u_1$};
+    %     \draw[edge] (urb1) -- node[weight, right] {$t$} (rb1);
+    %     \node at (0,-3.0) {\scriptsize (f) FJ: $1 - \lambda_1 = t$};
+    \draw[edge] (rb1) to[bend left=12] (rb2);
+    \draw[edge] (rb1) to[bend right=12] (rb6);
     \node[font=\scriptsize, inner sep=1pt] (urb1) at (90:2.45) {$u_1$};
-    \draw[edge] (urb1) -- node[weight, right] {$t$} (rb1);
-    \node at (0,-3.0) {\scriptsize (f) FJ: $1 - \lambda_1 = t$};
+    \draw[edge] (urb1) -- node[weight, right] {$1 - \lambda_1 = t$} (rb1);
+    \node[weight, anchor=east, xshift=-2pt] at (rb1.west) {$\lambda_1 = 1-t$};
+    \node at (0,-3.0) {\scriptsize (f) FJ: $\lambda_1 = 1 - t$};
   \end{tikzpicture}\hfill
-  \begin{tikzpicture}[baseline=(c.base), scale=0.77]
+  \begin{tikzpicture}[baseline=(c.base), scale=0.74]
     \foreach \i in {1,...,6} {
       \pgfmathsetmacro{\ang}{90-60*(\i-1)}
       \pgfmathsetmacro{\angout}{\ang+28}
@@ -2127,7 +2218,7 @@
     \node[weight] at (0:0.8) {$0.4$};
     \node at (0,-3.0) {\scriptsize (g) FDG: $A = 0.2\,I + 0.8\,W$};
   \end{tikzpicture}\hfill
-  \begin{tikzpicture}[baseline=(c.base), scale=0.77]
+  \begin{tikzpicture}[baseline=(c.base), scale=0.74]
     \foreach \i in {1,...,6} {
       \pgfmathsetmacro{\ang}{90-60*(\i-1)}
       \node[agent] (rd\i) at (\ang:1.3) {\i};
@@ -2139,8 +2230,11 @@
       \draw[edge] (rd\i) to[bend left=12] (rd\j);
       \draw[edge] (rd\j) to[bend left=12] (rd\i);
     }
-    \node[weight] at (78:1.95) {$0.2$};
-    \node[weight] at (0:0.8) {$0.4$};
+    % REVISED (2026-11-24, notes of 24/11: edges with the weights of W; the attachment on the prejudice). Was:
+    %     \node[weight] at (78:1.95) {$0.2$};
+    %     \node[weight] at (0:0.8) {$0.4$};
+    %     \node at (0,-3.0) {\scriptsize (h) FJ: $\Lambda = 0.8\,I$};
+    \node[weight, right] at (90:1.9) {$1 - \lambda_i = 0.2$};
     \node at (0,-3.0) {\scriptsize (h) FJ: $\Lambda = 0.8\,I$};
   \end{tikzpicture}
 
@@ -2151,13 +2245,21 @@
   % Unlabelled edges: weight $1/2$ in (a), (b) and $0.4$ in (c), (d), where every self-loop
   % and every prejudice has weight $0.2$. In (a), (b) agents $2$ and $6$ listen to agent~$1$
   % with weight $1/2$ for every $t$.\par}
+  % REVISED (2026-11-24, notes of 24/11: W on the edges, lambda_i at the agent). Was:
+  %   {\scriptsize Bidirectional ring of «Two networks, one agent». FJ model: $W = A(0)$, without self-loops,
+  %   and $u = x(0)$. In (f), (h) the edges are those of $G$ and carry the weights of
+  %   $\Lambda W$, $\lambda_i w_{ij}$: e.g.\ in (f) $w_{12} = \frac12$ and
+  %   $\lambda_1 w_{12} = \frac{1-t}{2}$. The arrows from $u_i$, of weight $1 - \lambda_i$, are
+  %   not edges of $G$. Unlabelled edges: weight $1/2$ in (e), (f) and $0.4$ in (g), (h), where
+  %   every self-loop and every prejudice has weight $0.2$. In (e), (f) agents $2$ and $6$
+  %   listen to agent~$1$ with weight $1/2$ for every $t$.\par}
   {\scriptsize Bidirectional ring of «Two networks, one agent». FJ model: $W = A(0)$, without self-loops,
-  and $u = x(0)$. In (f), (h) the edges are those of $G$ and carry the weights of
-  $\Lambda W$, $\lambda_i w_{ij}$: e.g.\ in (f) $w_{12} = \frac12$ and
-  $\lambda_1 w_{12} = \frac{1-t}{2}$. The arrows from $u_i$, of weight $1 - \lambda_i$, are
-  not edges of $G$. Unlabelled edges: weight $1/2$ in (e), (f) and $0.4$ in (g), (h), where
-  every self-loop and every prejudice has weight $0.2$. In (e), (f) agents $2$ and $6$
-  listen to agent~$1$ with weight $1/2$ for every $t$.\par}
+  $u = x(0)$. In (f), (h) the edges carry the weights of $W$, and $\lambda_i$ multiplies all
+  the weights of agent~$i$: in (f) agent~$1$ listens to agents $2$ and $6$ with
+  $\lambda_1 w_{12} = \lambda_1 w_{16} = \frac{1-t}{2}$. Arrows from $u_i$: attachment
+  $1 - \lambda_i$, not edges of $G$. Unlabelled edges: $\frac12$ in (e), (f), (h); $0.4$ in (g)
+  (self-loops $0.2$); in (h) every attachment is $0.2$. In (e), (f) agents $2$ and $6$
+  listen to agent~$1$ with $\frac12$ for every $t$.\par}
 
   % MOVED (2026-11-22, layout): from m-fj-graphs; they hold for both networks.
   \smallskip
@@ -2175,117 +2277,119 @@
 % ADDED (2026-11-22, notes of 22/11: W and Lambda of the FJ model in matrix form, on their
 % own slide, before the update equations; the report writes these matrices in Section 3.2.2:
 % A(1/2) and Lambda W, A = 0.2 I + 0.8 W and Lambda W = 0.8 W).
-\begin{frame}[label=m-fj-matrices]{FJ on the same networks: $W$ and $\Lambda$}
-  \footnotesize
-  % REVISED (2026-11-22, notes of 22/11: W is the FDG matrix A(0), strongly connected and
-  % periodic). Was:
-  % $W = A(0)$: the networks of «Two networks, one agent», without self-loops. Prejudices
-  % $u = x(0) = (0, 0.2, \dots, 1)^\top$, as in the original FJ model.
-  $W = A(0)$: the networks of «Two networks, one agent», without self-loops, strongly
-  connected and periodic. With $\Lambda = I$ the FJ model is the FDG model with $A(0)$: the
-  opinions do not converge. Prejudices $u = x(0) = (0, 0.2, \dots, 1)^\top$, as in the
-  original FJ model.
-
-  {\setlength{\arraycolsep}{3.5pt}\renewcommand{\arraystretch}{0.8}%
-  \begin{columns}[c]
-    \column{0.44\textwidth}
-      \centering
-      Directed cycle: \
-      $W = \begin{bmatrix}
-        0&1&0&0&0&0\\ 0&0&1&0&0&0\\ 0&0&0&1&0&0\\ 0&0&0&0&1&0\\ 0&0&0&0&0&1\\ 1&0&0&0&0&0
-      \end{bmatrix}$
-    \column{0.52\textwidth}
-      \centering
-      Bidirectional ring: \
-      $W = \dfrac12 \begin{bmatrix}
-        0&1&0&0&0&1\\ 1&0&1&0&0&0\\ 0&1&0&1&0&0\\ 0&0&1&0&1&0\\ 0&0&0&1&0&1\\ 1&0&0&0&1&0
-      \end{bmatrix}$
-  \end{columns}}
-
-  \smallskip
-  \scriptsize
-  \renewcommand{\arraystretch}{1.1}
-  \begin{tabular}{@{}lllll@{}}
-    \toprule
-    & \textbf{FJ}: $\Lambda$ & $I - \Lambda$ & $\Lambda W$ & \textbf{FDG}: $A$ \\
-    \midrule
-    Agent~$1$ stubborn & $\operatorname{diag}(0, 1, \dots, 1)$
-      & $\operatorname{diag}(1, 0, \dots, 0)$ & $W$ with row~$1$ times $0$ & $A(1)$ \\
-    Agent~$1$ with weight $t$ & $\operatorname{diag}(1-t, 1, \dots, 1)$
-      & $\operatorname{diag}(t, 0, \dots, 0)$ & $W$ with row~$1$ times $1-t$ & $A(t)$ \\
-    Every agent with weight $0.2$ & $0.8\,I$ & $0.2\,I$ & $0.8\,W$ & $0.2\,I + 0.8\,W$ \\
-    \bottomrule
-  \end{tabular}
-
-  \smallskip
-  \footnotesize
-  \begin{itemize}
-    \setlength{\itemsep}{1pt}
-    \item $\Lambda W$ multiplies row~$i$ of $W$ by $\lambda_i$: its entries are the weights
-          on the edges of the FJ graphs (b), (d), (f), (h).
-    \item In the three cases $A$ and $\Lambda W$ have the same weights on the others. The rest of row~$i$,
-          $1 - \lambda_i$, is on the current opinion $x_i(k)$ in the FDG model (diagonal of
-          $A$), on the prejudice $u_i$ in the FJ model (out of the matrix):
-          $A = \Lambda W + (I - \Lambda)$.
-    % ADDED (2026-11-22, notes of 22/11: one prejudice is enough).
-    \item \alert{One prejudiced agent is enough}: $G$ is strongly connected, so every agent
-          has a path to agent~$1$ and is P-dependent; by Corollary~3.3 the FJ model is
-          asymptotically stable. No aperiodicity is needed. In the FDG model the same
-          change of one agent, a self-weight $t > 0$, gives consensus by making $G$
-          aperiodic.
-  \end{itemize}
-\end{frame}
+% MOVED (2026-11-23, notes of 23/11: to backup.tex, to save time). Was:
+% \begin{frame}[label=m-fj-matrices]{FJ on the same networks: $W$ and $\Lambda$}
+%   \footnotesize
+%   % REVISED (2026-11-22, notes of 22/11: W is the FDG matrix A(0), strongly connected and
+%   % periodic). Was:
+%   % $W = A(0)$: the networks of «Two networks, one agent», without self-loops. Prejudices
+%   % $u = x(0) = (0, 0.2, \dots, 1)^\top$, as in the original FJ model.
+%   $W = A(0)$: the networks of «Two networks, one agent», without self-loops, strongly
+%   connected and periodic. With $\Lambda = I$ the FJ model is the FDG model with $A(0)$: the
+%   opinions do not converge. Prejudices $u = x(0) = (0, 0.2, \dots, 1)^\top$, as in the
+%   original FJ model.
+%
+%   {\setlength{\arraycolsep}{3.5pt}\renewcommand{\arraystretch}{0.8}%
+%   \begin{columns}[c]
+%     \column{0.44\textwidth}
+%       \centering
+%       Directed cycle: \
+%       $W = \begin{bmatrix}
+%         0&1&0&0&0&0\\ 0&0&1&0&0&0\\ 0&0&0&1&0&0\\ 0&0&0&0&1&0\\ 0&0&0&0&0&1\\ 1&0&0&0&0&0
+%       \end{bmatrix}$
+%     \column{0.52\textwidth}
+%       \centering
+%       Bidirectional ring: \
+%       $W = \dfrac12 \begin{bmatrix}
+%         0&1&0&0&0&1\\ 1&0&1&0&0&0\\ 0&1&0&1&0&0\\ 0&0&1&0&1&0\\ 0&0&0&1&0&1\\ 1&0&0&0&1&0
+%       \end{bmatrix}$
+%   \end{columns}}
+%
+%   \smallskip
+%   \scriptsize
+%   \renewcommand{\arraystretch}{1.1}
+%   \begin{tabular}{@{}lllll@{}}
+%     \toprule
+%     & \textbf{FJ}: $\Lambda$ & $I - \Lambda$ & $\Lambda W$ & \textbf{FDG}: $A$ \\
+%     \midrule
+%     Agent~$1$ stubborn & $\operatorname{diag}(0, 1, \dots, 1)$
+%       & $\operatorname{diag}(1, 0, \dots, 0)$ & $W$ with row~$1$ times $0$ & $A(1)$ \\
+%     Agent~$1$ with weight $t$ & $\operatorname{diag}(1-t, 1, \dots, 1)$
+%       & $\operatorname{diag}(t, 0, \dots, 0)$ & $W$ with row~$1$ times $1-t$ & $A(t)$ \\
+%     Every agent with weight $0.2$ & $0.8\,I$ & $0.2\,I$ & $0.8\,W$ & $0.2\,I + 0.8\,W$ \\
+%     \bottomrule
+%   \end{tabular}
+%
+%   \smallskip
+%   \footnotesize
+%   \begin{itemize}
+%     \setlength{\itemsep}{1pt}
+%     \item $\Lambda W$ multiplies row~$i$ of $W$ by $\lambda_i$: its entries are the weights
+%           on the edges of the FJ graphs (b), (d), (f), (h).
+%     \item In the three cases $A$ and $\Lambda W$ have the same weights on the others. The rest of row~$i$,
+%           $1 - \lambda_i$, is on the current opinion $x_i(k)$ in the FDG model (diagonal of
+%           $A$), on the prejudice $u_i$ in the FJ model (out of the matrix):
+%           $A = \Lambda W + (I - \Lambda)$.
+%     % ADDED (2026-11-22, notes of 22/11: one prejudice is enough).
+%     \item \alert{One prejudiced agent is enough}: $G$ is strongly connected, so every agent
+%           has a path to agent~$1$ and is P-dependent; by Corollary~3.3 the FJ model is
+%           asymptotically stable. No aperiodicity is needed. In the FDG model the same
+%           change of one agent, a self-weight $t > 0$, gives consensus by making $G$
+%           aperiodic.
+%   \end{itemize}
+% \end{frame}
 
 % ADDED (2026-11-22, notes of 22/11: the matrices of the case «every agent with weight
 % 0.2», as in the report, Section 3.2.2: A = 0.2 I + 0.8 W and Lambda W = 0.8 W).
-\begin{frame}[label=m-fj-matrices-all]{Every agent with weight $0.2$: the matrices}
-  \footnotesize
-  $\Lambda = 0.8\,I$, $I - \Lambda = 0.2\,I$, $u = x(0)$: every agent gives weight $0.2$ to
-  its current opinion in the FDG model, to its prejudice in the FJ model.
-  % ADDED (2026-11-22, notes of 22/11: why this case; report, Section 3.2.2).
-  \alert{Why this case:} with one prejudice the FJ model still reaches a consensus,
-  $u_1\mathbf{1}_6$; with a different prejudice for every agent it disagrees on the same
-  strongly connected network on which the FDG model can only agree. This is the main
-  difference between the two models.
-
-  \smallskip
-
-  \smallskip
-  {\setlength{\arraycolsep}{3pt}\renewcommand{\arraystretch}{0.85}\scriptsize
-  \begin{tabular}{@{}r@{\ \ }c@{\qquad}c@{}}
-    & \textbf{FDG}: $A = 0.2\,I + 0.8\,W$ & \textbf{FJ}: $\Lambda W = 0.8\,W$ \\ \noalign{\vskip 3pt}
-    directed cycle &
-    $\begin{bmatrix}
-      0.2&0.8&0&0&0&0\\ 0&0.2&0.8&0&0&0\\ 0&0&0.2&0.8&0&0\\ 0&0&0&0.2&0.8&0\\
-      0&0&0&0&0.2&0.8\\ 0.8&0&0&0&0&0.2
-    \end{bmatrix}$ &
-    $\begin{bmatrix}
-      0&0.8&0&0&0&0\\ 0&0&0.8&0&0&0\\ 0&0&0&0.8&0&0\\ 0&0&0&0&0.8&0\\
-      0&0&0&0&0&0.8\\ 0.8&0&0&0&0&0
-    \end{bmatrix}$ \\ \noalign{\vskip 6pt}
-    bidirectional ring &
-    $\begin{bmatrix}
-      0.2&0.4&0&0&0&0.4\\ 0.4&0.2&0.4&0&0&0\\ 0&0.4&0.2&0.4&0&0\\ 0&0&0.4&0.2&0.4&0\\
-      0&0&0&0.4&0.2&0.4\\ 0.4&0&0&0&0.4&0.2
-    \end{bmatrix}$ &
-    $\begin{bmatrix}
-      0&0.4&0&0&0&0.4\\ 0.4&0&0.4&0&0&0\\ 0&0.4&0&0.4&0&0\\ 0&0&0.4&0&0.4&0\\
-      0&0&0&0.4&0&0.4\\ 0.4&0&0&0&0.4&0
-    \end{bmatrix}$
-  \end{tabular}\par}
-
-  \footnotesize
-  \begin{itemize}
-    \setlength{\itemsep}{1pt}
-    \item $A$: row- and column-stochastic, i.e.\ doubly-stochastic, with a positive diagonal:
-          $G$ strongly connected and aperiodic, so consensus, with $w = \frac16\mathbf{1}_6$:
-          the average $0.5$ of $x(0)$.
-    \item $\Lambda W$: every row sums to $0.8$ (row-substochastic); every agent is
-          prejudiced, so all P-dependent: asymptotically stable, $x(\infty) = Vu$ (9).
-          The final opinions are closer to each other than the initial ones, but not
-          equal: the prejudices differ, so no consensus.
-  \end{itemize}
-\end{frame}
+% MOVED (2026-11-23, notes of 23/11: to backup.tex, to save time). Was:
+% \begin{frame}[label=m-fj-matrices-all]{Every agent with weight $0.2$: the matrices}
+%   \footnotesize
+%   $\Lambda = 0.8\,I$, $I - \Lambda = 0.2\,I$, $u = x(0)$: every agent gives weight $0.2$ to
+%   its current opinion in the FDG model, to its prejudice in the FJ model.
+%   % ADDED (2026-11-22, notes of 22/11: why this case; report, Section 3.2.2).
+%   \alert{Why this case:} with one prejudice the FJ model still reaches a consensus,
+%   $u_1\mathbf{1}_6$; with a different prejudice for every agent it disagrees on the same
+%   strongly connected network on which the FDG model can only agree. This is the main
+%   difference between the two models.
+%
+%   \smallskip
+%
+%   \smallskip
+%   {\setlength{\arraycolsep}{3pt}\renewcommand{\arraystretch}{0.85}\scriptsize
+%   \begin{tabular}{@{}r@{\ \ }c@{\qquad}c@{}}
+%     & \textbf{FDG}: $A = 0.2\,I + 0.8\,W$ & \textbf{FJ}: $\Lambda W = 0.8\,W$ \\ \noalign{\vskip 3pt}
+%     directed cycle &
+%     $\begin{bmatrix}
+%       0.2&0.8&0&0&0&0\\ 0&0.2&0.8&0&0&0\\ 0&0&0.2&0.8&0&0\\ 0&0&0&0.2&0.8&0\\
+%       0&0&0&0&0.2&0.8\\ 0.8&0&0&0&0&0.2
+%     \end{bmatrix}$ &
+%     $\begin{bmatrix}
+%       0&0.8&0&0&0&0\\ 0&0&0.8&0&0&0\\ 0&0&0&0.8&0&0\\ 0&0&0&0&0.8&0\\
+%       0&0&0&0&0&0.8\\ 0.8&0&0&0&0&0
+%     \end{bmatrix}$ \\ \noalign{\vskip 6pt}
+%     bidirectional ring &
+%     $\begin{bmatrix}
+%       0.2&0.4&0&0&0&0.4\\ 0.4&0.2&0.4&0&0&0\\ 0&0.4&0.2&0.4&0&0\\ 0&0&0.4&0.2&0.4&0\\
+%       0&0&0&0.4&0.2&0.4\\ 0.4&0&0&0&0.4&0.2
+%     \end{bmatrix}$ &
+%     $\begin{bmatrix}
+%       0&0.4&0&0&0&0.4\\ 0.4&0&0.4&0&0&0\\ 0&0.4&0&0.4&0&0\\ 0&0&0.4&0&0.4&0\\
+%       0&0&0&0.4&0&0.4\\ 0.4&0&0&0&0.4&0
+%     \end{bmatrix}$
+%   \end{tabular}\par}
+%
+%   \footnotesize
+%   \begin{itemize}
+%     \setlength{\itemsep}{1pt}
+%     \item $A$: row- and column-stochastic, i.e.\ doubly-stochastic, with a positive diagonal:
+%           $G$ strongly connected and aperiodic, so consensus, with $w = \frac16\mathbf{1}_6$:
+%           the average $0.5$ of $x(0)$.
+%     \item $\Lambda W$: every row sums to $0.8$ (row-substochastic); every agent is
+%           prejudiced, so all P-dependent: asymptotically stable, $x(\infty) = Vu$ (9).
+%           The final opinions are closer to each other than the initial ones, but not
+%           equal: the prejudices differ, so no consensus.
+%   \end{itemize}
+% \end{frame}
 
 % REVISED (2026-11-22, notes of 22/11: the table did not show the entries of W, and the
 % weight of the ring written as (1-t)(x_2(k) + x_6(k))/2 read as 1/2 instead of (1-t)/2.
@@ -2332,46 +2436,47 @@
 %   \socially{The same weight on a different object: the current opinion, which still moves
 %   towards the others, or the prejudice, which never moves.}
 % \end{frame}
-\begin{frame}[label=m-fj-networks]{FDG and FJ: the updates}
-  \footnotesize
-  Every cell is an update equation, with the weight of each opinion written out. In (5)
-  the weight of $x_j(k)$ in the update of agent~$i$ is $\lambda_i w_{ij}$, the entry
-  $(i,j)$ of $\Lambda W$.
-
-  \smallskip
-  \scriptsize
-  \renewcommand{\arraystretch}{1.3}
-  \begin{tabular}{@{}lll@{}}
-    \toprule
-    & \textbf{FDG}: self-weight $a_{ii}$ on the current opinion $x_i(k)$
-    & \textbf{FJ}: attachment $1 - \lambda_i$ to the prejudice $u_i$ \\
-    \midrule
-    \multicolumn{3}{@{}l}{\textbf{Agent~$1$ stubborn}: $a_{11} = 1$, $\lambda_1 = 0$
-      (Figure~6)} \\
-    both & $x_1(k+1) = x_1(k)$ & $x_1(k+1) = u_1 = x_1(0)$ \\
-    \midrule
-    \multicolumn{3}{@{}l}{\textbf{Agent~$1$ with weight $t$}: $a_{11} = t$,
-      $1 - \lambda_1 = t$ (graphs (a), (b), (e), (f); Figure~9: $t = \frac12$)} \\
-    cycle & $x_1(k+1) = t\,x_1(k) + (1-t)\,x_2(k)$
-      & $x_1(k+1) = (1-t)\,x_2(k) + t\,u_1$ \\
-    ring & $x_1(k+1) = t\,x_1(k) + \frac{1-t}{2}\,x_2(k) + \frac{1-t}{2}\,x_6(k)$
-      & $x_1(k+1) = \frac{1-t}{2}\,x_2(k) + \frac{1-t}{2}\,x_6(k) + t\,u_1$ \\
-    \midrule
-    \multicolumn{3}{@{}l}{\textbf{Every agent with weight $0.2$}: $A = 0.2\,I + 0.8\,W$,
-      $\Lambda = 0.8\,I$ (graphs (c), (d), (g), (h); Figure~10)} \\
-    cycle & $x_i(k+1) = 0.2\,x_i(k) + 0.8\,x_{i+1}(k)$
-      & $x_i(k+1) = 0.8\,x_{i+1}(k) + 0.2\,u_i$ \\
-    ring & $x_i(k+1) = 0.2\,x_i(k) + 0.4\,x_{i-1}(k) + 0.4\,x_{i+1}(k)$
-      & $x_i(k+1) = 0.4\,x_{i-1}(k) + 0.4\,x_{i+1}(k) + 0.2\,u_i$ \\
-    \bottomrule
-  \end{tabular}
-
-  \smallskip
-  \footnotesize In the first two cases the other agents are as in $A(0)$ in both models
-  ($\lambda_i = 1$).
-  \socially{The same weight on a different object: the current opinion, which still moves
-  towards the others, or the prejudice, which never moves.}
-\end{frame}
+% MOVED (2026-11-23, notes of 23/11: to backup.tex, to save time). Was:
+% \begin{frame}[label=m-fj-networks]{FDG and FJ: the updates}
+%   \footnotesize
+%   Every cell is an update equation, with the weight of each opinion written out. In (5)
+%   the weight of $x_j(k)$ in the update of agent~$i$ is $\lambda_i w_{ij}$, the entry
+%   $(i,j)$ of $\Lambda W$.
+%
+%   \smallskip
+%   \scriptsize
+%   \renewcommand{\arraystretch}{1.3}
+%   \begin{tabular}{@{}lll@{}}
+%     \toprule
+%     & \textbf{FDG}: self-weight $a_{ii}$ on the current opinion $x_i(k)$
+%     & \textbf{FJ}: attachment $1 - \lambda_i$ to the prejudice $u_i$ \\
+%     \midrule
+%     \multicolumn{3}{@{}l}{\textbf{Agent~$1$ stubborn}: $a_{11} = 1$, $\lambda_1 = 0$
+%       (Figure~6)} \\
+%     both & $x_1(k+1) = x_1(k)$ & $x_1(k+1) = u_1 = x_1(0)$ \\
+%     \midrule
+%     \multicolumn{3}{@{}l}{\textbf{Agent~$1$ with weight $t$}: $a_{11} = t$,
+%       $1 - \lambda_1 = t$ (graphs (a), (b), (e), (f); Figure~9: $t = \frac12$)} \\
+%     cycle & $x_1(k+1) = t\,x_1(k) + (1-t)\,x_2(k)$
+%       & $x_1(k+1) = (1-t)\,x_2(k) + t\,u_1$ \\
+%     ring & $x_1(k+1) = t\,x_1(k) + \frac{1-t}{2}\,x_2(k) + \frac{1-t}{2}\,x_6(k)$
+%       & $x_1(k+1) = \frac{1-t}{2}\,x_2(k) + \frac{1-t}{2}\,x_6(k) + t\,u_1$ \\
+%     \midrule
+%     \multicolumn{3}{@{}l}{\textbf{Every agent with weight $0.2$}: $A = 0.2\,I + 0.8\,W$,
+%       $\Lambda = 0.8\,I$ (graphs (c), (d), (g), (h); Figure~10)} \\
+%     cycle & $x_i(k+1) = 0.2\,x_i(k) + 0.8\,x_{i+1}(k)$
+%       & $x_i(k+1) = 0.8\,x_{i+1}(k) + 0.2\,u_i$ \\
+%     ring & $x_i(k+1) = 0.2\,x_i(k) + 0.4\,x_{i-1}(k) + 0.4\,x_{i+1}(k)$
+%       & $x_i(k+1) = 0.4\,x_{i-1}(k) + 0.4\,x_{i+1}(k) + 0.2\,u_i$ \\
+%     \bottomrule
+%   \end{tabular}
+%
+%   \smallskip
+%   \footnotesize In the first two cases the other agents are as in $A(0)$ in both models
+%   ($\lambda_i = 1$).
+%   \socially{The same weight on a different object: the current opinion, which still moves
+%   towards the others, or the prejudice, which never moves.}
+% \end{frame}
 
 \begin{frame}[label=m-state-input]{Stubborn agent: state or input}
   \begin{columns}[T]
@@ -2546,7 +2651,7 @@
       \sociallycol{Inertia gives way in the end, an anchor does not: different anchors keep the
   group divided, a cleavage of opinions [5].}
   \end{columns}
-  \detailbuttons{\go{bk-all-prej}{Matrices}}
+  \detailbuttons{\go{bk-all-prej}{Matrices}\ \go{m-six-sinks}{Six sinks}}
 \end{frame}
 
 % ADDED (2026-11-16, notes): the FJ model of Figure 10 as an FDG model on the augmented
@@ -2737,90 +2842,91 @@
 %   \end{minipage}}
 %   \detailbuttons{\go{bk-augmented}{Augmented}}
 % \end{frame}
-\begin{frame}[label=m-six-sinks,t]{Six prejudices, six sinks}
-  % [t]: the augmented graph does not move between the three steps
-  \compactblocks
-  \begin{columns}[T]
-    \column{0.36\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.7]
-        \fill[red_unipd!10] (0,0) circle (1.85);
-        \foreach \i in {1,...,6} {
-          \pgfmathsetmacro{\ang}{90-60*(\i-1)}
-          \node[agent, fill=white] (g\i) at (\ang:1.3) {\i};
-          \node[agent, dashed, fill=white, minimum size=5mm] (v\i) at (\ang:2.6) {\i$'$};
-        }
-        \foreach \i/\j in {1/2,3/4,4/5,5/6,6/1} {
-          \draw[edge] (g\i) -- (g\j);
-        }
-        \draw[edge] (g2) -- node[weight, left] {$0.8$} (g3);
-        \foreach \i in {2,...,6} {
-          \draw[edge] (g\i) -- (v\i);
-        }
-        \draw[edge] (g1) -- node[weight, left] {$0.2$} (v1);
-        \foreach \i in {2,...,6} {
-          \pgfmathsetmacro{\ang}{90-60*(\i-1)}
-          \pgfmathsetmacro{\angout}{\ang+28}
-          \pgfmathsetmacro{\angin}{\ang-28}
-          \draw[edge] (v\i) to[out=\angout, in=\angin, looseness=5, min distance=4mm]
-            (v\i);
-        }
-        \draw[edge] (v1) to[out=118, in=62, looseness=5, min distance=4mm]
-          node[weight, right] {$1$} (v1);
-        \node at (0,-3.85) {\scriptsize (a) augmented graph of network (d)};
-      \end{tikzpicture}
-    \column{0.62\textwidth}
-      \footnotesize
-      \only<1>{%
-        {\centering
-          \begin{tikzpicture}[scale=0.62]
-            \node[circle, fill=red_unipd!10, draw=red_unipd, inner sep=0pt,
-                  minimum size=1.15cm, font=\scriptsize] (R) at (0,0) {$\{1,\dots,6\}$};
-            \foreach \i in {1,...,6} {
-              \pgfmathsetmacro{\ang}{90-60*(\i-1)}
-              \node[agent, dashed, minimum size=5mm] (w\i) at (\ang:1.85) {\i$'$};
-              \draw[edge] (R) -- (w\i);
-            }
-            \node[anchor=west, font=\scriptsize] at (2.7,0)
-              {(b) condensation digraph: six sinks};
-          \end{tikzpicture}\par}
-        \smallskip
-        Network (d) ($\Lambda = 0.8I$, Figure~10) as an FDG model on $12$ agents (11):
-        each prejudice $u_i$ becomes the virtual agent $i'$, stubborn at $u_i$; agent $i$
-        gives $0.8$ to the other real agents and $0.2$ to $i'$.
-
-        \smallskip
-        Real agents: one strongly connected component (shaded), not a sink. Virtual
-        agents: six sinks, aperiodic because of their self-loops.
-
-        \smallskip
-        Theorem~2.4 with $n_s = 6$: \alert{case (iv)}, as in Remark~2.7. The same on the
-        bidirectional ring.}%
-      \only<2>{%
-        \begin{itemize}
-          \item $x(\infty) = Vu$, $V = 0.2\,(I - 0.8W)^{-1}$ with all entries positive:
-                every final opinion is a convex combination of all six prejudices.
-          \item Figure~9: six sinks too, but only $1'$ is listened to; without the other
-                five, a single sink and a consensus.
-        \end{itemize}
-        \begin{alertblock}{The FDG disagreement, not forgotten}
-          \footnotesize One stubborn agent: consensus (Figure~2, $t = 1$). Two:
-          disagreement (Two stubborn agents; Back to the question). Six virtual ones, all
-          listened to: here, an FDG model with the disagreement of Theorem~2.4.
-        \end{alertblock}}%
-      \only<3>{%
-        \textbf{Twelve trajectories.} Figure~10 shows only the six real agents; in the
-        augmented model the six virtual agents stay at $u_i = x_i(0)$. Every real agent
-        starts on the line of its virtual agent and leaves it as soon as the opinions it
-        listens to (weight $0.8$) average to a different value: at once on the directed
-        cycle; on the ring, agents $2, \dots, 5$ later, when the change of agents $1$ and
-        $6$ reaches them. The weight $0.2$ on its virtual agent keeps pulling it back, and
-        it settles at $x(\infty) = Vu$, never on its own prejudice. In the FDG model the
-        same $0.2$ is on the current opinion: the agent follows the group to the
-        consensus.}
-  \end{columns}
-  \detailbuttons{\go{bk-augmented}{Augmented}}
-\end{frame}
+% MOVED (2026-11-23, notes of 23/11: to backup.tex, to save time). Was:
+% \begin{frame}[label=m-six-sinks,t]{Six prejudices, six sinks}
+%   % [t]: the augmented graph does not move between the three steps
+%   \compactblocks
+%   \begin{columns}[T]
+%     \column{0.36\textwidth}
+%       \centering
+%       \begin{tikzpicture}[scale=0.7]
+%         \fill[red_unipd!10] (0,0) circle (1.85);
+%         \foreach \i in {1,...,6} {
+%           \pgfmathsetmacro{\ang}{90-60*(\i-1)}
+%           \node[agent, fill=white] (g\i) at (\ang:1.3) {\i};
+%           \node[agent, dashed, fill=white, minimum size=5mm] (v\i) at (\ang:2.6) {\i$'$};
+%         }
+%         \foreach \i/\j in {1/2,3/4,4/5,5/6,6/1} {
+%           \draw[edge] (g\i) -- (g\j);
+%         }
+%         \draw[edge] (g2) -- node[weight, left] {$0.8$} (g3);
+%         \foreach \i in {2,...,6} {
+%           \draw[edge] (g\i) -- (v\i);
+%         }
+%         \draw[edge] (g1) -- node[weight, left] {$0.2$} (v1);
+%         \foreach \i in {2,...,6} {
+%           \pgfmathsetmacro{\ang}{90-60*(\i-1)}
+%           \pgfmathsetmacro{\angout}{\ang+28}
+%           \pgfmathsetmacro{\angin}{\ang-28}
+%           \draw[edge] (v\i) to[out=\angout, in=\angin, looseness=5, min distance=4mm]
+%             (v\i);
+%         }
+%         \draw[edge] (v1) to[out=118, in=62, looseness=5, min distance=4mm]
+%           node[weight, right] {$1$} (v1);
+%         \node at (0,-3.85) {\scriptsize (a) augmented graph of network (d)};
+%       \end{tikzpicture}
+%     \column{0.62\textwidth}
+%       \footnotesize
+%       \only<1>{%
+%         {\centering
+%           \begin{tikzpicture}[scale=0.62]
+%             \node[circle, fill=red_unipd!10, draw=red_unipd, inner sep=0pt,
+%                   minimum size=1.15cm, font=\scriptsize] (R) at (0,0) {$\{1,\dots,6\}$};
+%             \foreach \i in {1,...,6} {
+%               \pgfmathsetmacro{\ang}{90-60*(\i-1)}
+%               \node[agent, dashed, minimum size=5mm] (w\i) at (\ang:1.85) {\i$'$};
+%               \draw[edge] (R) -- (w\i);
+%             }
+%             \node[anchor=west, font=\scriptsize] at (2.7,0)
+%               {(b) condensation digraph: six sinks};
+%           \end{tikzpicture}\par}
+%         \smallskip
+%         Network (d) ($\Lambda = 0.8I$, Figure~10) as an FDG model on $12$ agents (11):
+%         each prejudice $u_i$ becomes the virtual agent $i'$, stubborn at $u_i$; agent $i$
+%         gives $0.8$ to the other real agents and $0.2$ to $i'$.
+%
+%         \smallskip
+%         Real agents: one strongly connected component (shaded), not a sink. Virtual
+%         agents: six sinks, aperiodic because of their self-loops.
+%
+%         \smallskip
+%         Theorem~2.4 with $n_s = 6$: \alert{case (iv)}, as in Remark~2.7. The same on the
+%         bidirectional ring.}%
+%       \only<2>{%
+%         \begin{itemize}
+%           \item $x(\infty) = Vu$, $V = 0.2\,(I - 0.8W)^{-1}$ with all entries positive:
+%                 every final opinion is a convex combination of all six prejudices.
+%           \item Figure~9: six sinks too, but only $1'$ is listened to; without the other
+%                 five, a single sink and a consensus.
+%         \end{itemize}
+%         \begin{alertblock}{The FDG disagreement, not forgotten}
+%           \footnotesize One stubborn agent: consensus (Figure~2, $t = 1$). Two:
+%           disagreement (Two stubborn agents; Back to the question). Six virtual ones, all
+%           listened to: here, an FDG model with the disagreement of Theorem~2.4.
+%         \end{alertblock}}%
+%       \only<3>{%
+%         \textbf{Twelve trajectories.} Figure~10 shows only the six real agents; in the
+%         augmented model the six virtual agents stay at $u_i = x_i(0)$. Every real agent
+%         starts on the line of its virtual agent and leaves it as soon as the opinions it
+%         listens to (weight $0.8$) average to a different value: at once on the directed
+%         cycle; on the ring, agents $2, \dots, 5$ later, when the change of agents $1$ and
+%         $6$ reaches them. The weight $0.2$ on its virtual agent keeps pulling it back, and
+%         it settles at $x(\infty) = Vu$, never on its own prejudice. In the FDG model the
+%         same $0.2$ is on the current opinion: the agent follows the group to the
+%         consensus.}
+%   \end{columns}
+%   \detailbuttons{\go{bk-augmented}{Augmented}}
+% \end{frame}
 
 % REVISED (2026-11-17, preview): three examples, each with what we expect (step 1),
 % then the results (step 2). Was:
@@ -3060,9 +3166,15 @@
     \column{0.46\textwidth}
       % REVISED (2026-11-22, notes of 22/11: the entries of c_alpha). Was:
       % With $\Lambda = \alpha I_n$, $\alpha \in [0,1)$: $V_\alpha$ and $c_\alpha$ [5].
-      With $\Lambda = \alpha I_n$, $\alpha \in [0,1)$: $V_\alpha$ and
-      $c_\alpha = \bigl(c_1(\alpha), \dots, c_n(\alpha)\bigr)^\top$ [5], with $c_i(\alpha)$
-      the influence centrality of agent~$i$.
+      % REVISED (2026-11-24, notes of 24/11: V_alpha and c_alpha written out). Was:
+      %       With $\Lambda = \alpha I_n$, $\alpha \in [0,1)$: $V_\alpha$ and
+      %       $c_\alpha = \bigl(c_1(\alpha), \dots, c_n(\alpha)\bigr)^\top$ [5], with $c_i(\alpha)$
+      %       the influence centrality of agent~$i$.
+      With $\Lambda = \alpha I_n$, $\alpha \in [0,1)$, Corollary~3.3 and (12) give
+      \[ V_\alpha = (1-\alpha)(I - \alpha W)^{-1}, \qquad
+         c_\alpha = n^{-1} V_\alpha^\top \mathbf{1}_n , \]
+      $c_\alpha = \bigl(c_1(\alpha), \dots, c_n(\alpha)\bigr)^\top$, with $c_i(\alpha)$ the
+      influence centrality of agent~$i$ [5].
       \begin{block}{Lemma 3.5 [5]}
         \scriptsize Let $W$ be a fully regular matrix and $w$ stand for the vector of French's
         social power, corresponding to the FDG model (1) with $A = W$. Then,
@@ -3084,13 +3196,21 @@
   \only<2>{%
   \footnotesize
   % REVISED (2026-11-22, notes of 22/11: a new case, said as such).
+  % REVISED (2026-11-23, notes of 23/11: a lighter step: the case, the matrix of the
+  % directed cycle, what we expect).
   \alert{A new case}: the FJ model on $W = A(\frac12)$, the networks of «Two networks, one
   agent» with $t = \frac12$ (agent~$1$ with a self-loop $\frac12$), with every agent
-  prejudiced, $\Lambda = \alpha I$, and $u = x(0)$.
+  prejudiced, $\Lambda = \alpha I$, and $u = x(0)$. $A(\frac12)$ is primitive, hence fully
+  regular, as the lemma requires.
 
   \smallskip
-  {\setlength{\arraycolsep}{3pt}\renewcommand{\arraystretch}{0.8}%
-  \scriptsize
+  % REVISED (2026-11-23): larger matrices, now that the bullets are gone. Was:
+  % {\setlength{\arraycolsep}{3pt}\renewcommand{\arraystretch}{0.8}%
+  % \scriptsize
+  % REVISED (2026-11-24, notes of 24/11: tighter matrices, for the longer «Expected»). Was:
+  %   {\setlength{\arraycolsep}{4pt}\renewcommand{\arraystretch}{1.15}%
+  {\setlength{\arraycolsep}{4pt}\renewcommand{\arraystretch}{1.0}%
+  \footnotesize
   \begin{columns}[c]
     \column{0.47\textwidth}
       \centering
@@ -3109,23 +3229,47 @@
   \end{columns}}
 
   \smallskip
-  \begin{itemize}
-    \setlength{\itemsep}{1pt}
-    \item Unlike the earlier FJ examples ($W = A(0)$), $W$ has the self-loop $\frac12$ of
-          agent~$1$: the lemma needs $W$ fully regular; $A(0)$ is periodic, $A(\frac12)$ is
-          primitive (Corollary~1.12), hence fully regular.
-    \item $I - \Lambda = (1 - \alpha) I$: every agent with the same attachment
-          $1 - \alpha$; $\Lambda W = \alpha\, A(\frac12)$. For
-          $\alpha = 0.8$ it is the attachment $0.2$ of «Every agent with weight $0.2$», but
-          on $A(\frac12)$ instead of $A(0)$.
-  \end{itemize}
-  \begin{alertblock}{Expected}
+  % REVISED (2026-11-23): the two bullets go to the speech (the reason for A(1/2) is now in
+  % the first line). Was:
+%   \begin{itemize}
+%     \setlength{\itemsep}{1pt}
+%     \item Unlike the earlier FJ examples ($W = A(0)$), $W$ has the self-loop $\frac12$ of
+%           agent~$1$: the lemma needs $W$ fully regular; $A(0)$ is periodic, $A(\frac12)$ is
+%           primitive (Corollary~1.12), hence fully regular.
+%     \item $I - \Lambda = (1 - \alpha) I$: every agent with the same attachment
+%           $1 - \alpha$; $\Lambda W = \alpha\, A(\frac12)$. For
+%           $\alpha = 0.8$ it is the attachment $0.2$ of «Every agent with weight $0.2$», but
+%           on $A(\frac12)$ instead of $A(0)$.
+%   \end{itemize}
+%
+  % REVISED (2026-11-24, notes of 24/11: the limits derived from V_alpha and (12)). Was:
+  %   \begin{alertblock}{Expected}
+  %     \footnotesize
+  %     % REVISED (2026-11-24, notes of 24/11: alpha = 0 is not the FDG model; alpha -> 1 is). Was:
+  %     %     For $\alpha = 0$ every agent keeps its initial opinion, $V = I$ and
+  %     %     $c_0 = \frac16\mathbf{1}_6$ ($c_\alpha$ at $\alpha = 0$); as $\alpha \to 1$, $c_\alpha \to w = \frac17\,(2, 1, 1, 1, 1, 1)^\top$,
+  %     %     the social power of the FDG model with $A = A(\frac12)$, the same on both networks:
+  %     %     $w_1 = 2/7$ for agent~$1$, the only one with a self-loop; $w_i = 1/7$ for agents
+  %     %     $2, \dots, 6$.
+  %     $\alpha = 0$: $\Lambda = 0$, every agent listens only to its prejudice:
+  %     $x_i(\infty) = u_i = x_i(0)$, so $V = I$. $x_j(0)$ has weight $1$ in $x_j(\infty)$ and $0$
+  %     in the other five final opinions: mean weight $c_j(0) = \frac16$ for every $j$. Nobody
+  %     listens to the others: not the FDG model.\\
+  %     $\alpha \to 1$: $\Lambda \to I$, the FJ model tends to the FDG model with
+  %     $A = A(\frac12)$, and $c_\alpha \to w = \frac17\,(2, 1, 1, 1, 1, 1)^\top$, its social
+  %     power, the same on both networks ($\frac27$ for agent~$1$, the only one with a
+  %     self-loop).
+  %   \end{alertblock}
+  \begin{alertblock}{Expected, from $c_\alpha = \frac16 V_\alpha^\top \mathbf{1}_6$}
     \footnotesize
-    For $\alpha = 0$ every agent keeps its initial opinion, $V = I$ and
-    $c_0 = \frac16\mathbf{1}_6$ ($c_\alpha$ at $\alpha = 0$); as $\alpha \to 1$, $c_\alpha \to w = \frac17\,(2, 1, 1, 1, 1, 1)^\top$,
-    the social power of the FDG model with $A = A(\frac12)$, the same on both networks:
-    $w_1 = 2/7$ for agent~$1$, the only one with a self-loop; $w_i = 1/7$ for agents
-    $2, \dots, 6$.
+    $\alpha = 0$: $V_0 = (1-0)(I - 0 \cdot W)^{-1} = I$, so $c_0 = \frac16 I^\top \mathbf{1}_6 =
+    \frac16 \mathbf{1}_6$. Every agent listens only to its prejudice, $x(\infty) = u = x(0)$:
+    each $x_j(0)$ weighs only on its own agent. Not the FDG model: nobody listens to the
+    others.\\
+    $\alpha \to 1$: $V_\alpha \to \mathbf{1}_6 w^\top$ [5], so $c_\alpha \to \frac16\, w\,
+    \mathbf{1}_6^\top \mathbf{1}_6 = w = \frac17\,(2, 1, 1, 1, 1, 1)^\top$: the FJ model tends
+    to the FDG model with $A = A(\frac12)$, and $w$ is its social power, the same on both
+    networks ($\frac27$ for agent~$1$, the only one with a self-loop).
   \end{alertblock}
   }%
   \only<3>{%
@@ -3180,7 +3324,10 @@
     \toprule
     & FDG model & FJ model \\
     \midrule
-    Resistance & self-weight $a_{ii}$: inertia & attachment $1 - \lambda_i$: anchor \\
+    % REVISED (2026-11-25: «inertia» and «anchor» are never introduced on the slides). Was:
+    % Resistance & self-weight $a_{ii}$: inertia & attachment $1 - \lambda_i$: anchor \\
+    Resistance & self-weight $a_{ii}$ on the current opinion & attachment $1 - \lambda_i$ to a
+                                                               fixed opinion, the prejudice \\
     Stubborn agent & $a_{ii} = 1$ (matrix only) & $\lambda_i = 0$, $u_i = x_i(0)$ (matrix
                                                    and input) \\
     Its opinion & a state & an input \\
@@ -3226,23 +3373,111 @@
 %     social power as $\alpha \to 1$.
 %   \end{alertblock}
 % \end{frame}
-\begin{frame}[label=m-messages]{Take-home messages}
-  \begin{alertblock}{1.\ Inertia and anchor}
-    \small A self-weight slows an agent down but lets it follow: on a strongly connected
-    periodic network, one self-weight $0 < a_{ii} < 1$ turns the oscillations into a
-    consensus. A prejudice never gives way: one prejudiced agent that influences everybody
-    decides where the group ends, different prejudices keep it divided.
+% REVISED (2026-11-25: the messages answer the three questions of the slide «Stubbornness»,
+% plus the question of «Two stubborn agents»; «inertia» and «anchor» are never introduced on the
+% slides). Was:
+% \begin{frame}[label=m-messages]{Take-home messages}
+%   \begin{alertblock}{1.\ Inertia and anchor}
+%     \small A self-weight slows an agent down but lets it follow: on a strongly connected
+%     periodic network, one self-weight $0 < a_{ii} < 1$ turns the oscillations into a
+%     consensus. A prejudice never gives way: one prejudiced agent that influences everybody
+%     decides where the group ends, different prejudices keep it divided.
+%   \end{alertblock}
+%   \begin{alertblock}{2.\ State and input}
+%     \small The same stubborn opinion is a state in the FDG model (never asymptotically
+%     stable) and an input in the FJ model (asymptotically stable when all agents are
+%     P-dependent). The augmented graph turns the inputs back into states.
+%   \end{alertblock}
+%   \begin{alertblock}{3.\ Power}
+%     \small The social power grows gradually with the self-weight; one prejudiced agent
+%     that influences everybody takes all the influence centrality; with
+%     $\Lambda = \alpha I$ and $W$ fully regular, $c_\alpha \to w$ as $\alpha \to 1$
+%     (Lemma~3.5).
+%   \end{alertblock}
+% \end{frame}
+% REVISED (2026-11-25, sera: frasi ambigue; nel FDG c'era solo il caso fortemente connesso,
+% che sembrava dire che il disagreement viene da ogni rete non fortemente connessa. Ora due
+% slide, FDG e FJ separati in ogni blocco, e la classificazione completa per sink). Was:
+% \begin{frame}[label=m-messages]{Take-home messages}
+%   \compactblocks
+%   \begin{alertblock}{1.\ Do the opinions converge?}
+%     \footnotesize \textbf{FDG}: iff all the sinks of $C(G)$ are aperiodic; on a strongly
+%     connected network one self-weight $0 < a_{ii} < 1$ is enough. \textbf{FJ}: all agents
+%     P-dependent: on any network, periodic ones included (asymptotically stable); aperiodicity is
+%     needed only for the P-independent agents.
+%   \end{alertblock}
+%   \begin{alertblock}{2.\ To what?}
+%     \footnotesize \textbf{FDG}, strongly connected network: consensus or no convergence, never
+%     disagreement. \textbf{FJ}, all agents P-dependent: $x(\infty) = Vu$, convex combinations of
+%     the prejudices, equal only if the prejudices that count coincide.
+%   \end{alertblock}
+%   \begin{alertblock}{3.\ How much does each initial opinion weigh?}
+%     \footnotesize \textbf{FDG}: social power $w$, requires a consensus, grows gradually with the
+%     self-weight. \textbf{FJ}: influence centrality $c$, no consensus required; a single
+%     prejudiced agent takes all of it. With $\Lambda = \alpha I$ and $W$ fully regular,
+%     $c_\alpha \to w$ as $\alpha \to 1$ (Lemma~3.5).
+%   \end{alertblock}
+%   \begin{alertblock}{4.\ A stubborn agent: state or input?}
+%     \footnotesize Same trajectories: a state in the FDG model (never asymptotically stable), an
+%     input in the FJ model (asymptotically stable if all agents are P-dependent). The augmented
+%     graph turns the inputs back into states.
+%   \end{alertblock}
+% \end{frame}
+\begin{frame}[label=m-messages]{Take-home messages (1/2)}
+  \compactblocks
+  \begin{alertblock}{1.\ Do the opinions converge?}
+    \small
+    \begin{itemize}\setlength{\itemsep}{1pt}
+      \item \textbf{FDG model.} They converge if and only if every sink of $C(G)$ is
+            aperiodic. On a strongly connected network, one self-weight $0 < a_{ii} < 1$
+            makes the network aperiodic.
+      \item \textbf{FJ model.} If all agents are P-dependent, they always converge, on any
+            network, periodic ones included: the model is asymptotically stable. Otherwise
+            they converge if and only if $W^{22}$ is regular: aperiodicity is needed only
+            among the P-independent agents.
+    \end{itemize}
   \end{alertblock}
-  \begin{alertblock}{2.\ State and input}
-    \small The same stubborn opinion is a state in the FDG model (never asymptotically
-    stable) and an input in the FJ model (asymptotically stable when all agents are
-    P-dependent). The augmented graph turns the inputs back into states.
+  \begin{alertblock}{2.\ To what?}
+    \small
+    \begin{itemize}\setlength{\itemsep}{1pt}
+      \item \textbf{FDG model.} Three cases, by the sinks of $C(G)$ (Table~1): consensus with
+            one sink, aperiodic; disagreement with two or more sinks, all aperiodic; no
+            convergence if a sink is periodic. If $G$ is strongly connected, $C(G)$ is a
+            single node: never disagreement.
+      \item \textbf{FJ model.} If all agents are P-dependent, each final opinion is a convex
+            combination of the prejudices, $x(\infty) = Vu$, independent of $x(0)$. Consensus
+            if and only if all the prejudiced agents have the same prejudice: different
+            prejudices give a disagreement, even on a strongly connected network.
+    \end{itemize}
   \end{alertblock}
-  \begin{alertblock}{3.\ Power}
-    \small The social power grows gradually with the self-weight; one prejudiced agent
-    that influences everybody takes all the influence centrality; with
-    $\Lambda = \alpha I$ and $W$ fully regular, $c_\alpha \to w$ as $\alpha \to 1$
-    (Lemma~3.5).
+\end{frame}
+
+% ADDED (2026-11-25, sera): second slide of the take-home messages.
+\begin{frame}[label=m-messages2]{Take-home messages (2/2)}
+  \compactblocks
+  \begin{alertblock}{3.\ How much does each initial opinion weigh?}
+    \small
+    \begin{itemize}\setlength{\itemsep}{1pt}
+      \item \textbf{FDG model.} The social power $w$ is defined only with a consensus. The
+            social power of an agent grows gradually with its self-weight; a stubborn
+            agent~$i$ that influences everybody takes all of it, $w = e_i$.
+      \item \textbf{FJ model.} The influence centrality $c$ requires asymptotic stability
+            and $u = x(0)$, not a consensus. A single prejudiced agent~$i$ that
+            influences everybody takes all of it, $c = e_i$, however weak its attachment. With
+            $\Lambda = \alpha I$ and $W$ fully regular, $c_\alpha \to w$ as $\alpha \to 1$
+            (Lemma~3.5).
+    \end{itemize}
+  \end{alertblock}
+  \begin{alertblock}{4.\ A stubborn agent: state or input?}
+    \small
+    \begin{itemize}\setlength{\itemsep}{1pt}
+      \item \textbf{FDG model.} Its opinion is a state: the model is never asymptotically
+            stable (eigenvalue $1$).
+      \item \textbf{FJ model.} Its opinion is an input, $u_i = x_i(0)$: the model is
+            asymptotically stable if all agents are P-dependent.
+    \end{itemize}
+    Same trajectories, different stability. The augmented graph turns the inputs back into
+    states.
   \end{alertblock}
 \end{frame}
 
